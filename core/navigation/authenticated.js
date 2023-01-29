@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Home } from "../../views/screens";
 import { HomeIcon } from "../../assets/icons";
 import { LightThemeColors } from "../../common/theme";
+import { MainTabIconsMapping } from "../../common/constants/icons";
 
 const Tab = createBottomTabNavigator();
 export default function AuthenticatedScreens() {
@@ -10,23 +11,24 @@ export default function AuthenticatedScreens() {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused }) => {
-          let icon;
+          const color = focused
+            ? LightThemeColors.primary
+            : LightThemeColors.secondaryLight;
 
-          if (route.name === "Home") {
-            focused
-              ? (icon = <HomeIcon color={LightThemeColors.primary} />)
-              : (icon = <HomeIcon color={LightThemeColors.secondary} />);
-          }
-          return icon;
+          return React.cloneElement(MainTabIconsMapping[route.name], { color });
         },
         tabBarActiveTintColor: LightThemeColors.primary,
-        tabBarInactiveTintColor: LightThemeColors.secondary,
+        tabBarInactiveTintColor: LightThemeColors.secondaryLight,
+        tabBarIconStyle: {
+          marginBottom: route.name === "Add" && 20,
+        },
+        tabBarShowLabel: false,
       })}>
       <Tab.Screen name='Home' component={Home} />
-      {/* <Tab.Screen name='Help' component={Messages} />
-      <Tab.Screen name='Add' component={Messages} />
-      <Tab.Screen name='Recipes' component={Messages} />
-      <Tab.Screen name='Account' component={Messages} /> */}
+      <Tab.Screen name='Help' component={Home} />
+      <Tab.Screen name='Add' component={Home} />
+      <Tab.Screen name='Recipes' component={Home} />
+      <Tab.Screen name='Account' component={Home} />
     </Tab.Navigator>
   );
 }
