@@ -2,7 +2,7 @@ import * as React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { Home, Help, Add, Recipes, Account } from "../../views/screens";
-import { LightThemeColors } from "../../common/theme";
+import ThemeColors from "../../common/theme";
 import { MainTabIconsMapping } from "../../common/constants/icons";
 
 const Tab = createBottomTabNavigator();
@@ -12,13 +12,13 @@ export default function AuthenticatedScreens() {
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused }) => {
           const color = focused
-            ? LightThemeColors.primary
-            : LightThemeColors.secondaryLight;
+            ? ThemeColors.primary
+            : ThemeColors.secondaryLight;
 
           return React.cloneElement(MainTabIconsMapping[route.name], { color });
         },
-        tabBarActiveTintColor: LightThemeColors.primary,
-        tabBarInactiveTintColor: LightThemeColors.secondaryLight,
+        tabBarActiveTintColor: ThemeColors.primary,
+        tabBarInactiveTintColor: ThemeColors.secondaryLight,
         tabBarIconStyle: {
           marginBottom: route.name === "Add" && 20,
         },

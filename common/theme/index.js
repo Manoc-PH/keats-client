@@ -1,1 +1,5 @@
-export { default as LightThemeColors } from "./light";
+import lightColors from "./light";
+
+const themeColors = lightColors;
+
+export default themeColors;
