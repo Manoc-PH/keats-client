@@ -6,13 +6,13 @@ export const styles = StyleSheet.create({
     marginTop: 20,
     flexDirection: "row",
     justifyContent: "space-between",
-    gap: 20,
   },
   title: { fontSize: FONT_SIZES.ExtraLarge },
   subtitle: {
     textTransform: "capitalize",
     fontWeight: FONT_WEIGHTS.Light,
   },
+  // TODO USE GAP WHEN IT FINALLY WORKS
   rowContainer: { flex: 1 },
   valueContainer: { flexDirection: "row", alignItems: "flex-end" },
   barContainer: { paddingTop: 5, paddingBottom: 10 },

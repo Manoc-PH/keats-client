@@ -13,8 +13,13 @@ export default function MacroSummaryBars(props) {
   ];
   return (
     <View style={styles.wrapper}>
-      {dummy_macros.map((item) => (
-        <View key={item.label} style={styles.rowContainer}>
+      {dummy_macros.map((item, i) => (
+        <View
+          key={item.label}
+          style={{
+            ...styles.rowContainer,
+            marginRight: i === dummy_macros.length - 1 ? 0 : 20,
+          }}>
           <View style={styles.valueContainer}>
             <BodyText style={styles.title}>{item.value}</BodyText>
             <BodyText style={styles.subtitle}>
