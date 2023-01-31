@@ -9,13 +9,14 @@ export default function CalorieSummaryBar(props) {
   return (
     <View>
       <CircularProgressBar
+        size={190}
         progress={progress}
         foregroundColor={themeColors.primary}
         backgroundColor={themeColors.backgroundLight}>
         <View style={{ alignItems: "center", justifyContent: "center" }}>
           <Txt
             style={{
-              marginBottom: 5,
+              marginBottom: 2,
               fontSize: FONT_SIZES.Huge,
               fontWeight: FONT_WEIGHTS.Bold,
             }}>

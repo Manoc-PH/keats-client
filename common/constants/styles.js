@@ -1,3 +1,5 @@
+import themeColors from "../theme";
+
 export const SIZES = {
   Tiny: "Tiny",
   Small: "Small",
@@ -8,13 +10,13 @@ export const SIZES = {
   Huge: "Huge",
 };
 export const FONT_SIZES = {
-  Tiny: 10,
-  Small: 12,
-  Regular: 14,
-  Medium: 16,
-  Large: 20,
-  ExtraLarge: 24,
-  Huge: 32,
+  Tiny: 12,
+  Small: 14,
+  Regular: 16,
+  Medium: 18,
+  Large: 22,
+  ExtraLarge: 26,
+  Huge: 38,
 };
 export const FONT_WEIGHTS = {
   Light: "200",
@@ -27,4 +29,10 @@ export const BTN_VARIANTS = {
   primary: "primary",
   secondary: "secondary",
   transparent: "transparent",
+};
+export const NUTRIENT_COLOR_MAPPING = {
+  calories: themeColors.primary,
+  protein: themeColors.blue,
+  carbs: themeColors.yellow,
+  fats: themeColors.red,
 };

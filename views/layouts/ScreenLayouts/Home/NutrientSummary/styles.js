@@ -3,11 +3,11 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   wrapper: {
-    flex: 1,
     width: "100%",
-    backgroundColor: themeColors.background,
-    alignItems: "center",
     justifyContent: "start",
-    padding: 20,
+  },
+  container: {
+    width: "100%",
+    paddingTop: 30,
   },
 });
