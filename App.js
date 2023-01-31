@@ -20,9 +20,5 @@ export default function App() {
   //     />
   //   );
   // }
-  return (
-    <View>
-      <MainNavigator></MainNavigator>;
-    </View>
-  );
+  return <MainNavigator></MainNavigator>;
 }
