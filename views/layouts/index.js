@@ -1,2 +1,2 @@
 // Progress bars
-// export { default as CircularProgressBar } from "./ProgressBars/CircularProgressBar";
+export { default as CalorieSummaryBar } from "./SummaryBars/CalorieSummaryBar";

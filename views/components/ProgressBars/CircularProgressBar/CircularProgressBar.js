@@ -1,10 +1,11 @@
+import themeColors from "@app/common/theme";
 import * as React from "react";
 import { Text, View } from "react-native";
 import Svg, { G, Circle, Path, Defs } from "react-native-svg";
 /* SVGR has dropped some elements not supported by react-native-svg: filter */
 
 function CircularProgressBar(props) {
-  const { size, children } = props;
+  const { size, children, progress, foregroundColor, backgroundColor } = props;
 
   const sizeLocal = size || 170;
   const strokeWidth = sizeLocal * 0.07;
@@ -29,16 +30,18 @@ function CircularProgressBar(props) {
             cy={center}
             r={radius}
             strokeWidth={strokeWidth}
-            stroke='#F9F9F9'
+            stroke={backgroundColor || themeColors.backgroundLight}
           />
           <Circle
-            stroke='#0BB68C'
+            stroke={foregroundColor || themeColors.primary}
             cx={center}
             cy={center}
             r={radius}
             strokeWidth={strokeWidth}
             strokeDasharray={circumference}
-            strokeDashoffset={circumference - (circumference * 20) / 100}
+            strokeDashoffset={
+              circumference - (circumference * (progress || 0)) / 100
+            }
             strokeLinecap='round'
             strokeLinejoin='round'
           />
