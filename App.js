@@ -1,24 +1,33 @@
-import { View } from "react-native";
-// import AppLoading from "expo-app-loading";
+import { View, Text } from "react-native";
+import {
+  useFonts,
+  Montserrat_200ExtraLight,
+  Montserrat_400Regular,
+  Montserrat_500Medium,
+  Montserrat_600SemiBold,
+  Montserrat_700Bold,
+} from "@expo-google-fonts/montserrat";
 
 import MainNavigator from "./core/navigation/main";
-// import useFonts from "./core/hooks/useFonts";
 
 export default function App() {
-  // const [IsReady, SetIsReady] = useState(false);
-
-  // const LoadFonts = async () => {
-  //   await useFonts();
-  // };
-
-  // if (!IsReady) {
-  //   return (
-  //     <AppLoading
-  //       startAsync={LoadFonts}
-  //       onFinish={() => SetIsReady(true)}
-  //       onError={() => {}}
-  //     />
-  //   );
-  // }
-  return <MainNavigator></MainNavigator>;
+  const [fontsLoaded] = useFonts({
+    Montserrat_200ExtraLight,
+    Montserrat_400Regular,
+    Montserrat_500Medium,
+    Montserrat_600SemiBold,
+    Montserrat_700Bold,
+  });
+  return (
+    <>
+      {fontsLoaded ? (
+        <MainNavigator></MainNavigator>
+      ) : (
+        <View>
+          {/* TODO ADD LOADING PAGE */}
+          <Text>Loading...</Text>
+        </View>
+      )}
+    </>
+  );
 }

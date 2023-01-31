@@ -19,11 +19,11 @@ export const FONT_SIZES = {
   Huge: 38,
 };
 export const FONT_WEIGHTS = {
-  Light: "200",
-  Regular: "400",
-  Medium: "500",
-  SemiBold: "600",
-  Bold: "700",
+  Light: "Montserrat_200ExtraLight",
+  Regular: "Montserrat_400Regular",
+  Medium: "Montserrat_500Medium",
+  SemiBold: "Montserrat_600SemiBold",
+  Bold: "Montserrat_700Bold",
 };
 export const BTN_VARIANTS = {
   primary: "primary",

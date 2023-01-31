@@ -7,10 +7,10 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
-  title: { fontSize: FONT_SIZES.ExtraLarge },
+  title: { fontSize: FONT_SIZES.ExtraLarge, fontWeight: FONT_WEIGHTS.SemiBold },
   subtitle: {
     textTransform: "capitalize",
-    fontWeight: FONT_WEIGHTS.Light,
+    fontWeight: FONT_WEIGHTS.Regular,
   },
   // TODO USE GAP WHEN IT FINALLY WORKS
   rowContainer: { flex: 1 },
