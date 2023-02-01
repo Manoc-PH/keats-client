@@ -1,5 +1,5 @@
 import { NUTRIENT_COLOR_MAPPING } from "@app/common/constants/styles";
-import { BodyText, HorizontalProgressBar } from "@app/views/components";
+import { Txt, HorizontalProgressBar } from "@app/views/components";
 import { View } from "react-native";
 import { styles } from "./styles";
 
@@ -21,10 +21,10 @@ export default function MacroSummaryBars(props) {
             marginRight: i === dummy_macros.length - 1 ? 0 : 20,
           }}>
           <View style={styles.valueContainer}>
-            <BodyText style={styles.title}>{item.value}</BodyText>
-            <BodyText style={styles.subtitle}>
+            <Txt style={styles.title}>{item.value}</Txt>
+            <Txt style={styles.subtitle}>
               {` / ${item.valueMax} ${item.amountUnit}`}
-            </BodyText>
+            </Txt>
           </View>
           <View style={styles.barContainer}>
             <HorizontalProgressBar
@@ -34,7 +34,7 @@ export default function MacroSummaryBars(props) {
             />
           </View>
           <View style={styles.valueContainer}>
-            <BodyText style={styles.subtitle}>{item.label}</BodyText>
+            <Txt style={styles.subtitle}>{item.label}</Txt>
           </View>
         </View>
       ))}
