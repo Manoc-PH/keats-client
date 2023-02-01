@@ -8,7 +8,7 @@ export default function NutrientSummary(props) {
   return (
     <View style={styles.wrapper}>
       <View style={styles.container}>
-        <CalorieSummaryBar />
+        <CalorieSummaryBar calories={1300} maxCalories={2051} />
       </View>
       <View style={styles.container}>
         <MacroSummaryBars />

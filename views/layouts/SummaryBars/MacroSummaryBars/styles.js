@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { FONT_SIZES, FONT_WEIGHTS } from "@app/common/constants/styles";
+import themeColors from "@app/common/theme";
 
 export const styles = StyleSheet.create({
   wrapper: {
@@ -7,10 +8,10 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
-  title: { fontSize: FONT_SIZES.ExtraLarge, fontWeight: FONT_WEIGHTS.SemiBold },
+  title: { fontSize: FONT_SIZES.ExtraLarge },
   subtitle: {
     textTransform: "capitalize",
-    fontWeight: FONT_WEIGHTS.Regular,
+    color: themeColors.secondaryLight,
   },
   // TODO USE GAP WHEN IT FINALLY WORKS
   rowContainer: { flex: 1 },

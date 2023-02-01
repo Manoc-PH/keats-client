@@ -5,12 +5,12 @@ import { FONT_SIZES, FONT_WEIGHTS } from "@app/common/constants/styles";
 import themeColors from "@app/common/theme";
 
 export default function CalorieSummaryBar(props) {
-  const { progress, calories, maxCalories } = props;
+  const { calories, maxCalories } = props;
   return (
     <View>
       <CircularProgressBar
         size={190}
-        progress={progress}
+        progress={(calories / maxCalories) * 100}
         foregroundColor={themeColors.primary}
         backgroundColor={themeColors.backgroundLight}>
         <View style={{ alignItems: "center", justifyContent: "center" }}>
@@ -22,7 +22,7 @@ export default function CalorieSummaryBar(props) {
             }}>
             {calories || 0}
           </Txt>
-          <Txt style={{ fontWeight: FONT_WEIGHTS.Light }}>
+          <Txt style={{ color: themeColors.secondaryLight }}>
             of {maxCalories || 0} Calories
           </Txt>
         </View>
