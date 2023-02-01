@@ -3,8 +3,8 @@ import MacroSummaryBars from "@app/views/layouts/SummaryBars/MacroSummaryBars";
 import { View } from "react-native";
 import { styles } from "./styles";
 
-export default function NutrientSummary(props) {
-  const {} = props;
+export default function NutrientSummary() {
+  // TODO QUERY ENDPOINTS HERE
   return (
     <View style={styles.wrapper}>
       <View style={styles.container}>

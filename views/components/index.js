@@ -4,3 +4,4 @@ export { default as HorizontalProgressBar } from "./ProgressBars/HorizontalProgr
 
 // Basic components
 export { default as Txt } from "./Basic/Txt";
+export { default as Card } from "./Basic/Card";
