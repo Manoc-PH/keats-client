@@ -1,7 +1,11 @@
-import { ScrollView } from "react-native";
+import { ScrollView, View } from "react-native";
 
 import { styles } from "./styles";
-import { NutrientSummary, CurrentDietCard } from "@app/views/layouts";
+import {
+  NutrientSummary,
+  CurrentDietCard,
+  CalorieGoalProgress,
+} from "@app/views/layouts";
 
 export default function Home() {
   return (
@@ -11,8 +15,11 @@ export default function Home() {
         alignItems: "center",
         justifyContent: "start",
       }}>
-      <NutrientSummary />
-      <CurrentDietCard />
+      <View style={styles.container}>
+        <NutrientSummary />
+        <CurrentDietCard />
+        <CalorieGoalProgress />
+      </View>
     </ScrollView>
   );
 }
