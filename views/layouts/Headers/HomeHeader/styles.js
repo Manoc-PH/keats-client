@@ -4,7 +4,6 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   wrapper: {
     paddingHorizontal: 16,
-    paddingVertical: 4,
     backgroundColor: themeColors.background,
   },
   navContainer: {
@@ -16,7 +15,7 @@ export const styles = StyleSheet.create({
 
   //
   titleContainer: {
-    paddingVertical: 10,
+    paddingVertical: 11,
   },
 
   //
@@ -32,9 +31,11 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     flex: 1,
-    backgroundColor: themeColors.backgroundLight,
+    borderWidth: 1,
+    borderColor: themeColors.backgroundLight,
     borderRadius: 50,
     paddingHorizontal: 8,
+    marginVertical: 4,
     marginRight: 8,
   },
   //
