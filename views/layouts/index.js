@@ -11,3 +11,6 @@ export { default as CurrentDietCard } from "./Cards/CurrentDietCard";
 
 // Graphs
 export { default as CalorieGraph } from "./Graphs/CalorieGraph";
+
+// Headers
+export { default as HomeHeader } from "./Headers/HomeHeader";

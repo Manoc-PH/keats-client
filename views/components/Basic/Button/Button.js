@@ -53,7 +53,6 @@ export default function Button(props) {
       borderColor: borderColor || themeColors.backgroundLight,
     },
     transparent: {
-      width: "100%",
       flexDirection: "row",
       padding: size
         ? CardPaddingSizeMapping[size]
@@ -65,8 +64,7 @@ export default function Button(props) {
       fontWeight: FONT_WEIGHTS.SemiBold,
       backgroundColor: backgroundColor || `${themeColors.background}00`,
       color: color || themeColors.secondary,
-      borderWidth: 1,
-      borderColor: borderColor || themeColors.backgroundLight,
+      borderWidth: 0,
     },
   });
 

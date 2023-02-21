@@ -1,10 +1,12 @@
 import * as React from "react";
+import { StatusBar } from "expo-status-bar";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import { Home, Help, Add, Recipes, Account } from "@app/views/screens";
 import ThemeColors from "@app/common/theme";
 import { MainTabIconsMapping } from "@app/common/constants/icons";
-import { StatusBar } from "expo-status-bar";
+
+import { Home, Help, Add, Recipes, Account } from "@app/views/screens";
+import { HomeHeader } from "@app/views/layouts";
 
 const Tab = createBottomTabNavigator();
 export default function AuthenticatedScreens() {
@@ -29,7 +31,13 @@ export default function AuthenticatedScreens() {
           },
           tabBarShowLabel: false,
         })}>
-        <Tab.Screen name='Home' component={Home} />
+        <Tab.Screen
+          name='Home'
+          component={Home}
+          options={{
+            header: HomeHeader,
+          }}
+        />
         <Tab.Screen
           options={{ headerShown: false }}
           name='Help'
