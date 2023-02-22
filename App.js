@@ -9,6 +9,7 @@ import {
 } from "@expo-google-fonts/montserrat";
 
 import MainNavigator from "./core/navigation/main";
+import AppStoreProvider from "./core/providers/AppStoreProvider";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -19,7 +20,7 @@ export default function App() {
     Montserrat_700Bold,
   });
   return (
-    <>
+    <AppStoreProvider>
       {fontsLoaded ? (
         <MainNavigator></MainNavigator>
       ) : (
@@ -28,6 +29,6 @@ export default function App() {
           <Text>Loading...</Text>
         </View>
       )}
-    </>
+    </AppStoreProvider>
   );
 }

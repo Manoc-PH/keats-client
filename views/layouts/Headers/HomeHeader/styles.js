@@ -4,8 +4,11 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   wrapper: {
-    paddingHorizontal: SPACING[2],
+    flex: 0,
     backgroundColor: themeColors.background,
+  },
+  container: {
+    paddingHorizontal: SPACING[2],
   },
   navContainer: {
     width: "100%",

@@ -1,5 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { View, SafeAreaView, TextInput } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+
+// Store
+import { actions } from "@app/core/store";
 
 import {
   BTN_VARIANTS,
@@ -15,31 +19,34 @@ import themeColors from "@app/common/theme";
 import { styles } from "./styles";
 
 export default function HomeHeader() {
-  const [isSearchActive, setIsSearchActive] = useState(false);
+  // Store State
+  const { isHomeSearchActive } = useSelector((state) => state.search);
+  // Store Actions
+  const { setIsHomeSearchActive } = actions;
+  const dispatch = useDispatch();
+  const setIsSearchActive = (txt) => dispatch(setIsHomeSearchActive(txt));
+
   const [text, onChangeText] = useState("");
 
   return (
-    <SafeAreaView>
-      <View style={styles.wrapper}>
+    <SafeAreaView style={styles.wrapper}>
+      <View style={styles.container}>
         <View style={styles.navContainer}>
-          <View
-            style={{
-              ...styles.titleContainer,
-              display: isSearchActive ? "none" : "flex",
-            }}>
-            <Txt
-              style={{
-                fontWeight: FONT_WEIGHTS.SemiBold,
-                fontSize: FONT_SIZES.ExtraLarge,
-              }}>
-              KEATS
-            </Txt>
-          </View>
-
+          {!isHomeSearchActive && (
+            <View style={styles.titleContainer}>
+              <Txt
+                style={{
+                  fontWeight: FONT_WEIGHTS.SemiBold,
+                  fontSize: FONT_SIZES.ExtraLarge,
+                }}>
+                KEATS
+              </Txt>
+            </View>
+          )}
           <View
             style={[
               styles.searchWrapper,
-              isSearchActive && styles.activeSearchWrapper,
+              isHomeSearchActive && styles.activeSearchWrapper,
             ]}>
             <Button
               style={styles.btnContainer}
@@ -47,8 +54,8 @@ export default function HomeHeader() {
               size={SIZES.Tiny}
               onPress={() => setIsSearchActive(true)}>
               <SearchIcon
-                height={isSearchActive ? 16 : 22}
-                width={isSearchActive ? 16 : 22}
+                height={isHomeSearchActive ? 16 : 22}
+                width={isHomeSearchActive ? 16 : 22}
                 style={{
                   alignItems: "center",
                   justifyContent: "flex-end",
@@ -56,7 +63,7 @@ export default function HomeHeader() {
                 color={themeColors.secondary}
               />
             </Button>
-            {isSearchActive && (
+            {isHomeSearchActive && (
               <TextInput
                 onChangeText={onChangeText}
                 value={text}
@@ -69,7 +76,7 @@ export default function HomeHeader() {
                 autoCorrect={false}
               />
             )}
-            {!isSearchActive && (
+            {!isHomeSearchActive && (
               <Button
                 style={styles.btnContainer}
                 variant={BTN_VARIANTS.transparent}
@@ -79,7 +86,7 @@ export default function HomeHeader() {
               </Button>
             )}
           </View>
-          {isSearchActive && (
+          {isHomeSearchActive && (
             <Button
               style={styles.btnContainer}
               variant={BTN_VARIANTS.transparent}
