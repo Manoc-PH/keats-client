@@ -1,9 +1,10 @@
+import { SPACING } from "@app/common/constants/styles";
 import themeColors from "@app/common/theme";
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   wrapper: {
-    paddingHorizontal: 16,
+    paddingHorizontal: SPACING[2],
     backgroundColor: themeColors.background,
   },
   navContainer: {
@@ -15,7 +16,7 @@ export const styles = StyleSheet.create({
 
   //
   titleContainer: {
-    paddingVertical: 11,
+    paddingVertical: SPACING[1.5],
   },
 
   //
@@ -24,7 +25,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   searchContainer: {
-    padding: 10,
+    padding: SPACING[1],
     alignItems: "center",
   },
   activeSearchWrapper: {
@@ -34,12 +35,12 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: themeColors.backgroundLight,
     borderRadius: 50,
-    paddingHorizontal: 8,
-    marginVertical: 4,
-    marginRight: 8,
+    paddingHorizontal: SPACING[1],
+    marginVertical: SPACING[0.5] + 1,
+    marginRight: SPACING[1],
   },
   //
   btnContainer: {
-    padding: 8,
+    padding: SPACING[1],
   },
 });

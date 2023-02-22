@@ -1,10 +1,14 @@
 import { StyleSheet } from "react-native";
-import { FONT_SIZES, FONT_WEIGHTS } from "@app/common/constants/styles";
+import {
+  FONT_SIZES,
+  FONT_WEIGHTS,
+  SPACING,
+} from "@app/common/constants/styles";
 import themeColors from "@app/common/theme";
 
 export const styles = StyleSheet.create({
   wrapper: {
-    marginTop: 20,
+    marginTop: SPACING[2.5],
     flexDirection: "row",
     justifyContent: "space-between",
   },
@@ -16,5 +20,5 @@ export const styles = StyleSheet.create({
   // TODO USE GAP WHEN IT FINALLY WORKS
   rowContainer: { flex: 1 },
   valueContainer: { flexDirection: "row", alignItems: "flex-end" },
-  barContainer: { paddingTop: 5, paddingBottom: 10 },
+  barContainer: { paddingTop: SPACING[0.5], paddingBottom: SPACING[1] },
 });

@@ -1,3 +1,4 @@
+import { SPACING } from "@app/common/constants/styles";
 import themeColors from "@app/common/theme";
 import { StyleSheet } from "react-native";
 
@@ -6,11 +7,11 @@ export const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     backgroundColor: themeColors.background,
-    padding: 20,
+    padding: SPACING[2],
   },
   container: {
     flex: 1,
     width: "100%",
-    marginBottom: 50,
+    marginBottom: SPACING[4],
   },
 });

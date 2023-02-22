@@ -41,3 +41,12 @@ export const BUTTON_VARIANTS = {
   outlined: "outlined",
   transparent: "transparent",
 };
+export const SPACING = {
+  0.5: 4,
+  1: 8,
+  1.5: 12,
+  2: 16,
+  2.5: 20,
+  3: 24,
+  4: 32,
+};
