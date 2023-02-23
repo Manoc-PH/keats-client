@@ -12,7 +12,7 @@ import {
   SIZES,
 } from "@app/common/constants/styles";
 
-import { Button, Txt } from "@app/views/components";
+import { Button, Title1, Body } from "@app/views/components";
 import { SearchIcon, IntakeIcon } from "@app/assets/icons";
 import themeColors from "@app/common/theme";
 
@@ -38,13 +38,7 @@ export default function HomeHeader({ navigation }) {
         <View style={styles.navContainer}>
           {!isHomeSearchActive && (
             <View style={styles.titleContainer}>
-              <Txt
-                style={{
-                  fontWeight: FONT_WEIGHTS.SemiBold,
-                  fontSize: FONT_SIZES.ExtraLarge,
-                }}>
-                KEATS
-              </Txt>
+              <Title1>KEATS</Title1>
             </View>
           )}
           <View
@@ -96,7 +90,7 @@ export default function HomeHeader({ navigation }) {
               variant={BTN_VARIANTS.transparent}
               size={SIZES.Tiny}
               onPress={() => setIsSearchActive(false)}>
-              <Txt>Cancel</Txt>
+              <Body>Cancel</Body>
             </Button>
           )}
         </View>

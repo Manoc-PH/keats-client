@@ -12,11 +12,11 @@ export const SIZES = {
 export const FONT_SIZES = {
   Tiny: 12,
   Small: 14,
-  Regular: 16,
-  Medium: 18,
+  Regular: 18,
+  Medium: 20,
   Large: 22,
-  ExtraLarge: 26,
-  Huge: 38,
+  ExtraLarge: 28,
+  Huge: 34,
 };
 export const FONT_WEIGHTS = {
   Light: "Montserrat_200ExtraLight",

@@ -6,3 +6,14 @@ export { default as HorizontalProgressBar } from "./ProgressBars/HorizontalProgr
 export { default as Txt } from "./Basic/Txt";
 export { default as Card } from "./Basic/Card";
 export { default as Button } from "./Basic/Button";
+// Texts
+export { default as Body } from "./Basic/Texts/Body";
+export { default as Caption1 } from "./Basic/Texts/Caption1";
+export { default as Caption2 } from "./Basic/Texts/Caption2";
+export { default as Headline } from "./Basic/Texts/Headline";
+export { default as SubHeadline1 } from "./Basic/Texts/SubHeadline1";
+export { default as SubHeadline2 } from "./Basic/Texts/SubHeadline2";
+export { default as LargeTitle } from "./Basic/Texts/LargeTitle";
+export { default as Title1 } from "./Basic/Texts/Title1";
+export { default as Title2 } from "./Basic/Texts/Title2";
+export { default as Title3 } from "./Basic/Texts/Title3";

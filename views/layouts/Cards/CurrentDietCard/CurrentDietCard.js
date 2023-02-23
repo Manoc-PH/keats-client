@@ -1,6 +1,6 @@
 import { ArrowRightIcon } from "@app/assets/icons";
 import themeColors from "@app/common/theme";
-import { Card, Txt } from "@app/views/components";
+import { Card, SubHeadline2, Body } from "@app/views/components";
 import { View } from "react-native";
 import { styles } from "./styles";
 
@@ -12,23 +12,22 @@ export default function CurrentDietCard() {
       <Card>
         <View style={styles.container}>
           <View style={styles.rowContainer}>
-            <Txt style={styles.subTitle}>Current Diet Plan</Txt>
+            <SubHeadline2>Current Diet Plan</SubHeadline2>
             <View style={styles.btnContainer}>
               {/* TODO ADD LINK TO CURRENT OPTIONS */}
-              <Txt
+              <SubHeadline2
                 style={{
-                  ...styles.subTitle,
                   color: themeColors.primary,
                   marginRight: 5,
                 }}>
                 Change
-              </Txt>
+              </SubHeadline2>
               <View style={styles.iconContainer}>
                 <ArrowRightIcon />
               </View>
             </View>
           </View>
-          <Txt style={styles.title}>{title}</Txt>
+          <Body>{title}</Body>
         </View>
       </Card>
     </View>

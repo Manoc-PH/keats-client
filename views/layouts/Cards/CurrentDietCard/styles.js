@@ -19,13 +19,4 @@ export const styles = StyleSheet.create({
     height: "100%",
     marginTop: SPACING[1],
   },
-  title: {
-    fontSize: FONT_SIZES.Large,
-  },
-  subTitle: {
-    fontSize: FONT_SIZES.Small,
-    marginBottom: SPACING["0.5"],
-    color: themeColors.secondaryLight,
-    fontWeight: FONT_WEIGHTS.Medium,
-  },
 });
