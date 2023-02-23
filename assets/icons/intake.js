@@ -6,8 +6,8 @@ function IntakeIcon(props) {
   return (
     <View style={{ aspectRatio: 1 }}>
       <Svg
-        width={19}
-        height={23}
+        width={18}
+        height={22}
         viewBox='0 0 17 21'
         fill='none'
         xmlns='http://www.w3.org/2000/svg'

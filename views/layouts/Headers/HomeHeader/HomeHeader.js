@@ -10,6 +10,7 @@ import {
   FONT_SIZES,
   FONT_WEIGHTS,
   SIZES,
+  SPACING,
 } from "@app/common/constants/styles";
 
 import { Button, Title1, Body } from "@app/views/components";
@@ -47,7 +48,10 @@ export default function HomeHeader({ navigation }) {
               isHomeSearchActive && styles.activeSearchWrapper,
             ]}>
             <Button
-              style={styles.btnContainer}
+              style={{
+                ...styles.btnContainer,
+                padding: isHomeSearchActive ? SPACING[1] : SPACING[1.5],
+              }}
               variant={BTN_VARIANTS.transparent}
               size={SIZES.Tiny}
               onPress={() => setIsSearchActive(true)}>

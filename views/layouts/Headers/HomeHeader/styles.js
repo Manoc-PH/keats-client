@@ -46,6 +46,6 @@ export const styles = StyleSheet.create({
   },
   //
   btnContainer: {
-    padding: SPACING[1],
+    padding: SPACING[1.5],
   },
 });
