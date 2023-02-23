@@ -18,13 +18,17 @@ import themeColors from "@app/common/theme";
 
 import { styles } from "./styles";
 
-export default function HomeHeader() {
+export default function HomeHeader({ navigation }) {
   // Store State
   const { isHomeSearchActive } = useSelector((state) => state.search);
   // Store Actions
   const { setIsHomeSearchActive } = actions;
   const dispatch = useDispatch();
-  const setIsSearchActive = (txt) => dispatch(setIsHomeSearchActive(txt));
+  const setIsSearchActive = (value) => {
+    dispatch(setIsHomeSearchActive(value));
+    if (value === true) navigation.navigate("Home", { screen: "HomeSearch" });
+    else navigation.navigate("Home", { screen: "HomeDefault" });
+  };
 
   const [text, onChangeText] = useState("");
 

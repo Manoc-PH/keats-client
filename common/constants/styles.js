@@ -50,3 +50,7 @@ export const SPACING = {
   3: 24,
   4: 32,
 };
+export const ZINDEX = {
+  modal: 2,
+  header: 10,
+};

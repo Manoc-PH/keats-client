@@ -1,4 +1,4 @@
-import { SPACING } from "@app/common/constants/styles";
+import { SPACING, ZINDEX } from "@app/common/constants/styles";
 import themeColors from "@app/common/theme";
 import { StyleSheet } from "react-native";
 
@@ -6,6 +6,8 @@ export const styles = StyleSheet.create({
   wrapper: {
     flex: 0,
     backgroundColor: themeColors.background,
+    zIndex: ZINDEX.header,
+    elevation: ZINDEX.header,
   },
   container: {
     paddingHorizontal: SPACING[2],

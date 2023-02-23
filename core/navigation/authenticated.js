@@ -1,14 +1,31 @@
 import * as React from "react";
 import { StatusBar } from "expo-status-bar";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import ThemeColors from "@app/common/theme";
 import { MainTabIconsMapping } from "@app/common/constants/icons";
 
 import { Home, Help, Add, Recipes, Account } from "@app/views/screens";
-import { HomeHeader } from "@app/views/layouts";
+import { HomeHeader, HomeSearchModal } from "@app/views/layouts";
+import { NavigationContainer } from "@react-navigation/native";
 
 const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
+
+const HomeNavigator = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{ header: HomeHeader, headerMode: "screen" }}>
+      <Stack.Screen name='HomeDefault' component={Home} />
+      {/* <Stack.Screen
+        name='HomeSearch'
+        component={HomeSearchModal}
+        options={{ gestureDirection: "vertical", gestureEnabled: false }}
+      /> */}
+    </Stack.Navigator>
+  );
+};
 export default function AuthenticatedScreens() {
   return (
     <>
@@ -33,10 +50,8 @@ export default function AuthenticatedScreens() {
         })}>
         <Tab.Screen
           name='Home'
-          component={Home}
-          options={{
-            header: HomeHeader,
-          }}
+          component={HomeNavigator}
+          options={{ headerShown: false }}
         />
         <Tab.Screen
           options={{ headerShown: false }}

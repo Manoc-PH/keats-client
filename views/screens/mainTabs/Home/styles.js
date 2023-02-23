@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
     width: "100%",
     backgroundColor: themeColors.background,
     padding: SPACING[2],
+    position: "relative",
   },
   container: {
     flex: 1,

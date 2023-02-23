@@ -12,6 +12,7 @@
     "@expo-google-fonts/montserrat": "^0.2.2",
     "@react-navigation/bottom-tabs": "^6.5.3",
     "@react-navigation/native": "^6.1.2",
+    "@react-navigation/native-stack": "^6.9.10",
     "@reduxjs/toolkit": "^1.9.3",
     "axios": "^1.2.5",
     "expo": "~47.0.8",
