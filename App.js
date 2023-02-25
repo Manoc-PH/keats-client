@@ -8,8 +8,9 @@ import {
   Montserrat_700Bold,
 } from "@expo-google-fonts/montserrat";
 
-import MainNavigator from "./core/navigation/main";
-import AppStoreProvider from "./core/providers/AppStoreProvider";
+import MainNavigator from "@app/core/navigation/main";
+import AppStoreProvider from "@app/core/providers/AppStoreProvider";
+import AppReactQueryProvider from "@app/core/providers/AppReactQueryProvider";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -21,14 +22,16 @@ export default function App() {
   });
   return (
     <AppStoreProvider>
-      {fontsLoaded ? (
-        <MainNavigator></MainNavigator>
-      ) : (
-        <View>
-          {/* TODO ADD LOADING PAGE */}
-          <Text>Loading...</Text>
-        </View>
-      )}
+      <AppReactQueryProvider>
+        {fontsLoaded ? (
+          <MainNavigator></MainNavigator>
+        ) : (
+          <View>
+            {/* TODO ADD LOADING PAGE */}
+            <Text>Loading...</Text>
+          </View>
+        )}
+      </AppReactQueryProvider>
     </AppStoreProvider>
   );
 }
