@@ -1,7 +1,7 @@
 import { useMutation } from "react-query";
 
 // Services
-import { Login } from "@app/services/Auth";
+import { Login } from "@app/services/api/Auth";
 
 export default () => {
   const {
