@@ -42,13 +42,13 @@ export const BUTTON_VARIANTS = {
   transparent: "transparent",
 };
 export const SPACING = {
-  0.5: 4,
-  1: 8,
-  1.5: 12,
-  2: 16,
-  2.5: 20,
-  3: 24,
-  4: 32,
+  Tiny: 4,
+  Small: 8,
+  SmallMedium: 12,
+  Medium: 16,
+  MediumLarge: 20,
+  Large: 24,
+  Huge: 32,
 };
 export const ZINDEX = {
   modal: 2,

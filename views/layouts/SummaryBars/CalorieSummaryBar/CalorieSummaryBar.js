@@ -6,6 +6,7 @@ import {
   SubHeadline2,
 } from "@app/views/components";
 import themeColors from "@app/common/theme";
+import { SPACING } from "@app/common/constants/styles";
 
 export default function CalorieSummaryBar(props) {
   const { calories, maxCalories } = props;
@@ -17,7 +18,9 @@ export default function CalorieSummaryBar(props) {
         foregroundColor={themeColors.primary}
         backgroundColor={themeColors.backgroundLight}>
         <View style={{ alignItems: "center", justifyContent: "center" }}>
-          <LargeTitle style={{ marginBottom: 2 }}>{calories || 0}</LargeTitle>
+          <LargeTitle style={{ marginBottom: SPACING.Tiny }}>
+            {calories || 0}
+          </LargeTitle>
           <SubHeadline2>of {maxCalories || 0} Calories</SubHeadline2>
         </View>
       </CircularProgressBar>

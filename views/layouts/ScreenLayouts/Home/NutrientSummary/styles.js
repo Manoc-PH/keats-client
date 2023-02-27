@@ -5,10 +5,10 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   wrapper: {
     width: "100%",
-    justifyContent: "start",
+    justifyContent: "flex-start",
   },
   container: {
     width: "100%",
-    paddingTop: SPACING[4],
+    paddingTop: SPACING.Huge,
   },
 });

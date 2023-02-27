@@ -5,12 +5,12 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   wrapper: {
     width: "100%",
-    justifyContent: "start",
-    paddingTop: SPACING[4],
+    justifyContent: "flex-start",
+    paddingTop: SPACING.Huge,
   },
   rowWrapper: {
     width: "100%",
     flexDirection: "row",
-    paddingBottom: SPACING[1],
+    paddingBottom: SPACING.Small,
   },
 });

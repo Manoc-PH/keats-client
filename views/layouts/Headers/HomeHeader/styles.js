@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
     elevation: ZINDEX.header,
   },
   container: {
-    paddingHorizontal: SPACING[2],
+    paddingHorizontal: SPACING.Medium,
   },
   navContainer: {
     width: "100%",
@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
 
   //
   titleContainer: {
-    paddingVertical: SPACING[1.5],
+    paddingVertical: SPACING.SmallMedium,
   },
 
   //
@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   searchContainer: {
-    padding: SPACING[1],
+    padding: SPACING.Small,
     alignItems: "center",
   },
   activeSearchWrapper: {
@@ -40,12 +40,12 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: themeColors.backgroundLight,
     borderRadius: 50,
-    paddingHorizontal: SPACING[1],
-    marginVertical: SPACING[0.5] + 1,
-    marginRight: SPACING[1],
+    paddingHorizontal: SPACING.Small,
+    marginVertical: SPACING.Tiny + 1,
+    marginRight: SPACING.Small,
   },
   //
   btnContainer: {
-    padding: SPACING[1.5],
+    padding: SPACING.SmallMedium,
   },
 });

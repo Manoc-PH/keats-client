@@ -50,7 +50,9 @@ export default function HomeHeader({ navigation }) {
             <Button
               style={{
                 ...styles.btnContainer,
-                padding: isHomeSearchActive ? SPACING[1] : SPACING[1.5],
+                padding: isHomeSearchActive
+                  ? SPACING.Small
+                  : SPACING.SmallMedium,
               }}
               variant={BTN_VARIANTS.transparent}
               size={SIZES.Tiny}

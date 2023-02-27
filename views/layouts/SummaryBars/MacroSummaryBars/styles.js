@@ -8,7 +8,7 @@ import themeColors from "@app/common/theme";
 
 export const styles = StyleSheet.create({
   wrapper: {
-    marginTop: SPACING[2.5],
+    marginTop: SPACING.MediumLarge,
     flexDirection: "row",
     justifyContent: "space-between",
   },
@@ -19,5 +19,5 @@ export const styles = StyleSheet.create({
   // TODO USE GAP WHEN IT FINALLY WORKS
   rowContainer: { flex: 1 },
   valueContainer: { flexDirection: "row", alignItems: "flex-end" },
-  barContainer: { paddingTop: SPACING[0.5], paddingBottom: SPACING[1] },
+  barContainer: { paddingTop: SPACING.Tiny, paddingBottom: SPACING.Small },
 });

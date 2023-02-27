@@ -13,6 +13,6 @@ export const styles = StyleSheet.create({
     top: 0,
   },
   container: {
-    paddingHorizontal: SPACING[2],
+    paddingHorizontal: SPACING.Medium,
   },
 });

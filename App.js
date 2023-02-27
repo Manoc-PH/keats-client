@@ -22,6 +22,7 @@ export default function App() {
     Montserrat_600SemiBold,
     Montserrat_700Bold,
   });
+  console.log(fontsLoaded);
   useEffect(() => SetupDB(), []);
   return (
     <AppStoreProvider>

@@ -7,12 +7,12 @@ export const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     backgroundColor: themeColors.background,
-    padding: SPACING[2],
+    padding: SPACING.Medium,
     position: "relative",
   },
   container: {
     flex: 1,
     width: "100%",
-    marginBottom: SPACING[4],
+    marginBottom: SPACING.Huge,
   },
 });

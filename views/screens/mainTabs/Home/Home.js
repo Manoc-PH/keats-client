@@ -15,7 +15,7 @@ export default function Home() {
         style={styles.wrapper}
         contentContainerStyle={{
           alignItems: "center",
-          justifyContent: "start",
+          justifyContent: "flex-start",
         }}>
         <View style={styles.container}>
           <NutrientSummary />

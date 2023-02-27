@@ -5,7 +5,7 @@ function HorizontalProgressBar(props) {
   const { progress, foregroundColor, backgroundColor } = props;
 
   return (
-    <View style={{ alignItems: "start", justifyContent: "start" }}>
+    <View style={{ alignItems: "flex-start", justifyContent: "flex-start" }}>
       <View
         style={{
           width: `${progress}%`,
