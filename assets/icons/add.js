@@ -5,7 +5,7 @@ export default function AddIcon(props) {
   return (
     <Svg width={56} height={56} viewBox='0 0 56 56' fill='none' {...props}>
       <G filter='url(#filter0_d_0_1)'>
-        <Circle cx={28.0001} cy={26} r={23.6364} fill='#0BB68C' />
+        <Circle cx={28.0001} cy={26} r={23.6364} fill='#3EBD70' />
       </G>
       <Path
         d='M20.273 26h15.454M28 33.727V18.273'

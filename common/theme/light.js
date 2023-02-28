@@ -1,5 +1,5 @@
 const lightColors = {
-  primary: "#0BB68C",
+  primary: "#3EBD70",
   secondary: "#434343",
   secondaryLight: "#A8AAAE",
 

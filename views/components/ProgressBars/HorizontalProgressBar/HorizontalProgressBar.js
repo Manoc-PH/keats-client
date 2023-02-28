@@ -2,19 +2,19 @@ import * as React from "react";
 import { StyleSheet, View } from "react-native";
 
 function HorizontalProgressBar(props) {
-  const { progress, foregroundColor, backgroundColor } = props;
+  const { progress, foregroundColor, backgroundColor, thickness } = props;
 
   const inlineStyle = StyleSheet.create({
     foreground: {
       width: `${progress}%`,
-      height: 6,
+      height: thickness || 6,
       borderRadius: 4,
       backgroundColor: foregroundColor,
       position: "absolute",
     },
     background: {
       width: "100%",
-      height: 6,
+      height: thickness || 6,
       borderRadius: 4,
       backgroundColor: backgroundColor,
       position: "absolute",
