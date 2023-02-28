@@ -15,13 +15,7 @@ export default function CurrentDietCard() {
             <SubHeadline2>Current Diet Plan</SubHeadline2>
             <View style={styles.btnContainer}>
               {/* TODO ADD LINK TO CURRENT OPTIONS */}
-              <SubHeadline2
-                style={{
-                  color: themeColors.primary,
-                  marginRight: 5,
-                }}>
-                Change
-              </SubHeadline2>
+              <SubHeadline2 style={styles.subheadline}>Change</SubHeadline2>
               <View style={styles.iconContainer}>
                 <ArrowRightIcon />
               </View>

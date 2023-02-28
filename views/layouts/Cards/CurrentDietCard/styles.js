@@ -19,4 +19,8 @@ export const styles = StyleSheet.create({
     height: "100%",
     marginTop: SPACING.Small,
   },
+  subheadline: {
+    color: themeColors.primary,
+    marginRight: 5,
+  },
 });

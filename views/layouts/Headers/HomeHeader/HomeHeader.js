@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, SafeAreaView, TextInput } from "react-native";
+import { View, SafeAreaView, TextInput, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 // Store
@@ -33,6 +33,16 @@ export default function HomeHeader({ navigation }) {
 
   const [text, onChangeText] = useState("");
 
+  const inlineStyle = StyleSheet.create({
+    btnContainer: {
+      padding: isHomeSearchActive ? SPACING.Small : SPACING.SmallMedium,
+    },
+    txtInput: {
+      flex: 1,
+      fontSize: FONT_SIZES.Medium,
+      paddingVertical: 4,
+    },
+  });
   return (
     <SafeAreaView style={styles.wrapper}>
       <View style={styles.container}>
@@ -48,22 +58,14 @@ export default function HomeHeader({ navigation }) {
               isHomeSearchActive && styles.activeSearchWrapper,
             ]}>
             <Button
-              style={{
-                ...styles.btnContainer,
-                padding: isHomeSearchActive
-                  ? SPACING.Small
-                  : SPACING.SmallMedium,
-              }}
+              style={{ ...styles.btnContainer, ...inlineStyle.btnContainer }}
               variant={BTN_VARIANTS.transparent}
               size={SIZES.Tiny}
               onPress={() => setIsSearchActive(true)}>
               <SearchIcon
                 height={isHomeSearchActive ? 16 : 22}
                 width={isHomeSearchActive ? 16 : 22}
-                style={{
-                  alignItems: "center",
-                  justifyContent: "flex-end",
-                }}
+                style={styles.searchIcon}
                 color={themeColors.secondary}
               />
             </Button>
@@ -72,11 +74,7 @@ export default function HomeHeader({ navigation }) {
                 onChangeText={onChangeText}
                 value={text}
                 placeholder='Search for anything...'
-                style={{
-                  flex: 1,
-                  fontSize: FONT_SIZES.Medium,
-                  paddingVertical: 4,
-                }}
+                style={inlineStyle.txtInput}
                 autoCorrect={false}
               />
             )}

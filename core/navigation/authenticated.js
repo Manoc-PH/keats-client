@@ -44,7 +44,7 @@ export default function AuthenticatedScreens() {
           tabBarActiveTintColor: ThemeColors.primary,
           tabBarInactiveTintColor: ThemeColors.secondaryLight,
           tabBarIconStyle: {
-            marginBottom: route.name === "Add" && 20,
+            marginBottom: route.name === "Add" ? 20 : 0,
           },
           tabBarShowLabel: false,
         })}>

@@ -33,6 +33,10 @@ export const styles = StyleSheet.create({
     padding: SPACING.Small,
     alignItems: "center",
   },
+  searchIcon: {
+    alignItems: "center",
+    justifyContent: "flex-end",
+  },
   activeSearchWrapper: {
     flexDirection: "row",
     alignItems: "center",

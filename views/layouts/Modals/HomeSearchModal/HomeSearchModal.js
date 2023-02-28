@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, Modal, ScrollView } from "react-native";
+import { View, Modal, ScrollView, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 // Store
@@ -20,11 +20,14 @@ export default function HomeSearchModal() {
 
   const [text, onChangeText] = useState("");
 
+  const inlineStyle = StyleSheet.create({
+    wrapper: { display: isHomeSearchActive ? "flex" : "none" },
+  });
   return (
     <View
       style={{
         ...styles.wrapper,
-        display: isHomeSearchActive ? "flex" : "none",
+        ...inlineStyle.wrapper,
       }}>
       <Txt>Hello</Txt>
     </View>
