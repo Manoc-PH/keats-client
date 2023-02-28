@@ -40,7 +40,7 @@ export default function HomeHeader({ navigation }) {
     txtInput: {
       flex: 1,
       fontSize: FONT_SIZES.Medium,
-      paddingVertical: 4,
+      paddingVertical: SPACING.Small,
     },
   });
   return (

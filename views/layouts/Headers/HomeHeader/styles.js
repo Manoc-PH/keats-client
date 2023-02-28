@@ -1,6 +1,6 @@
 import { SPACING, ZINDEX } from "@app/common/constants/styles";
 import themeColors from "@app/common/theme";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Platform, StatusBar } from "react-native";
 
 export const styles = StyleSheet.create({
   wrapper: {
@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
     backgroundColor: themeColors.background,
     zIndex: ZINDEX.header,
     elevation: ZINDEX.header,
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
   container: {
     paddingHorizontal: SPACING.Medium,
@@ -45,7 +46,7 @@ export const styles = StyleSheet.create({
     borderColor: themeColors.backgroundLight,
     borderRadius: 50,
     paddingHorizontal: SPACING.Small,
-    marginVertical: SPACING.Tiny + 1,
+    marginVertical: SPACING.Small - 1,
     marginRight: SPACING.Small,
   },
   //
