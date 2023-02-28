@@ -1,5 +1,5 @@
 import React from "react";
-import { QueryClient, QueryClientProvider, QueriesObserver } from "react-query";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 export default function AppReactQueryProvider({ children }) {
   const queryClient = new QueryClient();

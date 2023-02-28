@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
     backgroundColor: themeColors.background,
     zIndex: ZINDEX.header,
     elevation: ZINDEX.header,
+    shadowColor: "#00000000",
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
   container: {

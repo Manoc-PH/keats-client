@@ -13,8 +13,6 @@ export default () => {
     isError: isLoginUserError,
   } = useMutation(Login);
 
-  // credentials and isloggedin are set in the loginform component
-
   return {
     loginUser,
     loginUserData,

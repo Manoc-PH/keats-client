@@ -13,6 +13,7 @@ import AppStoreProvider from "@app/core/providers/AppStoreProvider";
 import AppReactQueryProvider from "@app/core/providers/AppReactQueryProvider";
 import { SetupDB } from "./core/db/setup";
 import { useEffect } from "react";
+import { Splash } from "./views/screens";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -26,14 +27,7 @@ export default function App() {
   return (
     <AppStoreProvider>
       <AppReactQueryProvider>
-        {fontsLoaded ? (
-          <MainNavigator></MainNavigator>
-        ) : (
-          <View>
-            {/* TODO ADD LOADING PAGE */}
-            <Text>Loading...</Text>
-          </View>
-        )}
+        {fontsLoaded ? <MainNavigator></MainNavigator> : <Splash />}
       </AppReactQueryProvider>
     </AppStoreProvider>
   );
