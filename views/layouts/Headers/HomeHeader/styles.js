@@ -4,6 +4,8 @@ import { StyleSheet, Platform, StatusBar } from "react-native";
 
 export const styles = StyleSheet.create({
   wrapper: {
+    width: "100%",
+    maxWidth: "100%",
     flex: 0,
     backgroundColor: themeColors.background,
     zIndex: ZINDEX.header,
@@ -15,7 +17,6 @@ export const styles = StyleSheet.create({
     paddingHorizontal: SPACING.Medium,
   },
   navContainer: {
-    width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
@@ -27,7 +28,7 @@ export const styles = StyleSheet.create({
   },
 
   //
-  searchWrapper: {
+  iconContainer: {
     flexDirection: "row",
     alignItems: "center",
   },

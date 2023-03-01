@@ -17,3 +17,6 @@ export { default as LargeTitle } from "./Basic/Texts/LargeTitle";
 export { default as Title1 } from "./Basic/Texts/Title1";
 export { default as Title2 } from "./Basic/Texts/Title2";
 export { default as Title3 } from "./Basic/Texts/Title3";
+
+// Inputs
+export { default as TextInput } from "./Input/TextInput";

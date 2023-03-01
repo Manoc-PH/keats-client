@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, SafeAreaView, TextInput, StyleSheet } from "react-native";
+import { View, SafeAreaView, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 // Store
@@ -13,7 +13,7 @@ import {
   SPACING,
 } from "@app/common/constants/styles";
 
-import { Button, Title1, Body } from "@app/views/components";
+import { Button, Title1, Body, TextInput } from "@app/views/components";
 import { SearchIcon, IntakeIcon } from "@app/assets/icons";
 import themeColors from "@app/common/theme";
 
@@ -52,33 +52,20 @@ export default function HomeHeader({ navigation }) {
               <Title1>KEATS</Title1>
             </View>
           )}
-          <View
-            style={[
-              styles.searchWrapper,
-              isHomeSearchActive && styles.activeSearchWrapper,
-            ]}>
-            <Button
-              style={{ ...styles.btnContainer, ...inlineStyle.btnContainer }}
-              variant={BTN_VARIANTS.transparent}
-              size={SIZES.Tiny}
-              onPress={() => setIsSearchActive(true)}>
-              <SearchIcon
-                height={isHomeSearchActive ? 16 : 22}
-                width={isHomeSearchActive ? 16 : 22}
-                style={styles.searchIcon}
-                color={themeColors.secondary}
-              />
-            </Button>
-            {isHomeSearchActive && (
-              <TextInput
-                onChangeText={onChangeText}
-                value={text}
-                placeholder='Search for anything...'
-                style={inlineStyle.txtInput}
-                autoCorrect={false}
-              />
-            )}
-            {!isHomeSearchActive && (
+          {!isHomeSearchActive && (
+            <View style={styles.iconContainer}>
+              <Button
+                style={{ ...styles.btnContainer, ...inlineStyle.btnContainer }}
+                variant={BTN_VARIANTS.transparent}
+                size={SIZES.Tiny}
+                onPress={() => setIsSearchActive(true)}>
+                <SearchIcon
+                  height={22}
+                  width={22}
+                  style={styles.searchIcon}
+                  color={themeColors.secondary}
+                />
+              </Button>
               <Button
                 style={styles.btnContainer}
                 variant={BTN_VARIANTS.transparent}
@@ -86,8 +73,24 @@ export default function HomeHeader({ navigation }) {
                 onPress={() => alert("Pressed!")}>
                 <IntakeIcon color={themeColors.secondary} />
               </Button>
-            )}
-          </View>
+            </View>
+          )}
+          {isHomeSearchActive && (
+            <TextInput
+              onChangeText={onChangeText}
+              value={text}
+              placeholder='Search for anything...'
+              onStartIconPress={() => setIsSearchActive(true)}
+              startIcon={
+                <SearchIcon
+                  height={SPACING.Medium}
+                  width={SPACING.Medium}
+                  style={styles.startIcon}
+                  color={themeColors.secondary}
+                />
+              }
+            />
+          )}
           {isHomeSearchActive && (
             <Button
               style={styles.btnContainer}

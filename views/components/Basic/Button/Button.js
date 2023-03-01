@@ -23,7 +23,7 @@ export default function Button(props) {
   };
   const styles = StyleSheet.create({
     primary: {
-      width: "100%",
+      flex: 1,
       flexDirection: "row",
       padding: size
         ? CardPaddingSizeMapping[size]
@@ -37,7 +37,7 @@ export default function Button(props) {
       backgroundColor: backgroundColor || themeColors.primary,
     },
     outlined: {
-      width: "100%",
+      flex: 1,
       flexDirection: "row",
       padding: size
         ? CardPaddingSizeMapping[size]
