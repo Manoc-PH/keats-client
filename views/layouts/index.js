@@ -17,3 +17,6 @@ export { default as HomeHeader } from "./Headers/HomeHeader";
 
 // Modals
 export { default as HomeSearchModal } from "./Modals/HomeSearchModal";
+
+// Forms
+export { default as LoginForm } from "./Forms/LoginForm";

@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
 
   //
   titleContainer: {
-    paddingVertical: SPACING.SmallMedium,
+    paddingVertical: SPACING.Regular,
   },
 
   //
@@ -53,6 +53,6 @@ export const styles = StyleSheet.create({
   },
   //
   btnContainer: {
-    padding: SPACING.SmallMedium,
+    padding: SPACING.Regular,
   },
 });

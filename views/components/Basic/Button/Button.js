@@ -1,4 +1,8 @@
-import { FONT_SIZES, FONT_WEIGHTS } from "@app/common/constants/styles";
+import {
+  FONT_SIZES,
+  FONT_WEIGHTS,
+  SPACING,
+} from "@app/common/constants/styles";
 import themeColors from "@app/common/theme";
 import { StyleSheet, Text, Pressable, View } from "react-native";
 
@@ -13,38 +17,24 @@ export default function Button(props) {
     children,
   } = props;
 
-  const CardPaddingSizeMapping = {
-    Small: 10,
-    Regular: 15,
-  };
-  const CardRadiusSizeMapping = {
-    Small: 7,
-    Regular: 10,
-  };
   const styles = StyleSheet.create({
     primary: {
-      flex: 1,
       flexDirection: "row",
-      padding: size
-        ? CardPaddingSizeMapping[size]
-        : CardPaddingSizeMapping.Regular,
-      borderRadius: size
-        ? CardRadiusSizeMapping[size]
-        : CardRadiusSizeMapping.Regular,
+      justifyContent: "center",
+      paddingHorizontal: size ? SPACING[size] * 2 : SPACING.Regular * 2,
+      paddingVertical: size ? SPACING[size] * 0.82 : SPACING.Regular * 0.82,
+      borderRadius: SPACING.Huge,
       fontSize: size ? FONT_SIZES[size] : FONT_SIZES.Regular,
       fontWeight: FONT_WEIGHTS.SemiBold,
       color: color || themeColors.background,
       backgroundColor: backgroundColor || themeColors.primary,
     },
     outlined: {
-      flex: 1,
       flexDirection: "row",
-      padding: size
-        ? CardPaddingSizeMapping[size]
-        : CardPaddingSizeMapping.Regular,
-      borderRadius: size
-        ? CardRadiusSizeMapping[size]
-        : CardRadiusSizeMapping.Regular,
+      justifyContent: "center",
+      paddingHorizontal: size ? SPACING[size] * 2 : SPACING.Regular * 2,
+      paddingVertical: size ? SPACING[size] * 0.82 : SPACING.Regular * 0.82,
+      borderRadius: SPACING.Huge,
       fontSize: size ? FONT_SIZES[size] : FONT_SIZES.Regular,
       fontWeight: FONT_WEIGHTS.SemiBold,
       backgroundColor: backgroundColor || themeColors.background,
@@ -54,12 +44,10 @@ export default function Button(props) {
     },
     transparent: {
       flexDirection: "row",
-      padding: size
-        ? CardPaddingSizeMapping[size]
-        : CardPaddingSizeMapping.Regular,
-      borderRadius: size
-        ? CardRadiusSizeMapping[size]
-        : CardRadiusSizeMapping.Regular,
+      justifyContent: "center",
+      paddingHorizontal: size ? SPACING[size] * 2 : SPACING.Regular * 2,
+      paddingVertical: size ? SPACING[size] * 0.82 : SPACING.Regular * 0.82,
+      borderRadius: SPACING.Huge,
       fontSize: size ? FONT_SIZES[size] : FONT_SIZES.Regular,
       fontWeight: FONT_WEIGHTS.SemiBold,
       backgroundColor: backgroundColor || `${themeColors.background}00`,

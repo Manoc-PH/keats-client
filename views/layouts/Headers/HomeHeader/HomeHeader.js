@@ -35,7 +35,7 @@ export default function HomeHeader({ navigation }) {
 
   const inlineStyle = StyleSheet.create({
     btnContainer: {
-      padding: isHomeSearchActive ? SPACING.Small : SPACING.SmallMedium,
+      padding: isHomeSearchActive ? SPACING.Small : SPACING.Regular,
     },
     txtInput: {
       flex: 1,
@@ -85,7 +85,7 @@ export default function HomeHeader({ navigation }) {
                 <SearchIcon
                   height={SPACING.Medium}
                   width={SPACING.Medium}
-                  style={styles.startIcon}
+                  style={styles.searchIcon}
                   color={themeColors.secondary}
                 />
               }

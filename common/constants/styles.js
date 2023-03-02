@@ -44,10 +44,10 @@ export const BUTTON_VARIANTS = {
 export const SPACING = {
   Tiny: 4,
   Small: 8,
-  SmallMedium: 12,
+  Regular: 12,
   Medium: 16,
-  MediumLarge: 20,
-  Large: 24,
+  Large: 20,
+  ExtraLarge: 24,
   Huge: 32,
 };
 export const ZINDEX = {

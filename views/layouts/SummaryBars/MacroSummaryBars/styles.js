@@ -8,7 +8,7 @@ import themeColors from "@app/common/theme";
 
 export const styles = StyleSheet.create({
   wrapper: {
-    marginTop: SPACING.MediumLarge,
+    marginTop: SPACING.Large,
     flexDirection: "row",
     justifyContent: "space-between",
   },

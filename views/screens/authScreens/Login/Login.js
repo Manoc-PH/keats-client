@@ -1,25 +1,36 @@
-import { TextInput, Title1 } from "@app/views/components";
-import React, { useState } from "react";
-import { View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, ScrollView, KeyboardAvoidingView, Platform } from "react-native";
+
+import { Button, TextInput, Title1 } from "@app/views/components";
 
 import { styles } from "./styles";
+import { LoginForm } from "@app/views/layouts";
 
 export default function Login() {
-  const [username, setUsername] = useState("");
-  return (
-    <View style={styles.wrapper}>
-      <Title1>KEATS</Title1>
+  const [data, setData] = useState({ username: "", password: "" });
 
-      <TextInput
-        value={username}
-        setValue={setUsername}
-        placeholder={"Enter username"}
-      />
-      <TextInput
-        value={username}
-        setValue={setUsername}
-        placeholder={"Enter username"}
-      />
-    </View>
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
+  return (
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : ""}
+      style={styles.wrapper}>
+      <ScrollView
+        contentContainerStyle={{
+          flexGrow: 1,
+          alignItems: "center",
+          justifyContent: "center",
+          width: "100%",
+        }}>
+        <View style={styles.titleContainer}>
+          <Title1>KEATS</Title1>
+        </View>
+
+        <LoginForm data={data} setData={setData} />
+        <Button style={{ width: "100%", alignItems: "center" }}>Login</Button>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
