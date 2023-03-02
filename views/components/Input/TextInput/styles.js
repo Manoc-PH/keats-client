@@ -11,14 +11,10 @@ import themeColors from "@app/common/theme";
 export const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    height: "100%",
     marginVertical: SPACING.Small - 1,
     marginRight: SPACING.Small,
   },
   container: {
-    width: "100%",
-    height: "100%",
-    flex: 1,
     flexDirection: "row",
     alignItems: "center",
     borderWidth: 1,
@@ -32,18 +28,8 @@ export const styles = StyleSheet.create({
     marginTop: SPACING.Tiny,
   },
   // CONTENT
-
-  startIcon: {
-    alignItems: "center",
-    justifyContent: "flex-end",
-  },
-  inputContainer: {
-    flex: 1,
-    flexDirection: "row",
-    gap: SPACING.Tiny,
-  },
+  inputContainer: { flex: 1 },
   txtInput: {
-    flex: 1,
     fontSize: FONT_SIZES.Medium,
     paddingVertical: SPACING.Small,
     paddingHorizontal: SPACING.Regular,

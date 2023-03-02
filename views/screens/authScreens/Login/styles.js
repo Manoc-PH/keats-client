@@ -5,6 +5,7 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
+    width: "100%",
     backgroundColor: themeColors.background,
     padding: SPACING.Medium,
   },
@@ -20,5 +21,5 @@ export const styles = StyleSheet.create({
     width: "100%",
     alignItems: "stretch",
   },
-  login: { marginBottom: SPACING.Small },
+  login: { marginBottom: SPACING.Medium },
 });

@@ -5,8 +5,6 @@ import { StyleSheet, Platform, StatusBar } from "react-native";
 export const styles = StyleSheet.create({
   wrapper: {
     width: "100%",
-    maxWidth: "100%",
-    flex: 0,
     backgroundColor: themeColors.background,
     zIndex: ZINDEX.header,
     elevation: ZINDEX.header,
@@ -14,9 +12,12 @@ export const styles = StyleSheet.create({
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
   container: {
+    width: "100%",
     paddingHorizontal: SPACING.Medium,
+    alignItems: "stretch",
   },
   navContainer: {
+    width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",

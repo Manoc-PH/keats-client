@@ -19,6 +19,7 @@ export default function Button(props) {
     borderColor,
     color,
     children,
+    ...rest
   } = props;
 
   const styles = StyleSheet.create({
@@ -63,7 +64,7 @@ export default function Button(props) {
     }).start();
 
   return (
-    <Pressable {...props} onPressIn={onPressIn} onPressOut={onPressOut}>
+    <Pressable {...rest} onPressIn={onPressIn} onPressOut={onPressOut}>
       <Animated.View
         style={{
           ...styles.defaults,

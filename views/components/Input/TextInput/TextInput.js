@@ -26,18 +26,8 @@ export default function TextInput(props) {
     ...rest
   } = props;
 
-  const maxHeight =
-    FONT_SIZES.Medium * PixelRatio.getFontScale() + SPACING.Small * 3;
-  const maxHeightWithLabel =
-    (FONT_SIZES.Medium + FONT_SIZES.Regular) * PixelRatio.getFontScale() +
-    SPACING.Small * 6 +
-    2;
   return (
-    <View
-      style={{
-        ...styles.wrapper,
-        maxHeight: !!label ? maxHeightWithLabel : maxHeight,
-      }}>
+    <View style={styles.wrapper}>
       {label && (
         <View style={styles.labelContainer}>
           <SubHeadline1>{label}</SubHeadline1>
@@ -57,27 +47,16 @@ export default function TextInput(props) {
             onChangeText={onChangeText}
             value={value}
             placeholder={placeholder}
-            style={styles.txtInput}
+            style={{
+              ...styles.txtInput,
+              marginLeft: startIcon ? SPACING.Small * -1 : 0,
+            }}
             autoCorrect={false}
             secureTextEntry={secureTextEntry || false}
             {...rest}
           />
           {suffix && suffix}
         </View>
-        {/* {startIcon && (
-          <Button
-            style={styles.btnContainer}
-            variant={BTN_VARIANTS.transparent}
-            size={SIZES.Tiny}
-            onPress={onStartIconPress}>
-            <SearchIcon
-              height={SPACING.Medium}
-              width={SPACING.Medium}
-              style={styles.startIcon}
-              color={themeColors.secondary}
-            />
-          </Button>
-        )} */}
       </View>
     </View>
   );

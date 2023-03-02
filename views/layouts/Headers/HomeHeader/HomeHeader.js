@@ -37,11 +37,6 @@ export default function HomeHeader({ navigation }) {
     btnContainer: {
       padding: isHomeSearchActive ? SPACING.Small : SPACING.Regular,
     },
-    txtInput: {
-      flex: 1,
-      fontSize: FONT_SIZES.Medium,
-      paddingVertical: SPACING.Small,
-    },
   });
   return (
     <SafeAreaView style={styles.wrapper}>
