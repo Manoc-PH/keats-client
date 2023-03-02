@@ -37,7 +37,7 @@ export default function Button(props) {
     },
     outlined: {
       backgroundColor: backgroundColor || themeColors.background,
-      color: color || themeColors.secondary,
+      color: color || themeColors.primary,
       borderWidth: 1,
       borderColor: borderColor || themeColors.backgroundLight,
     },

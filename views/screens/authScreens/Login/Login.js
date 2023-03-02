@@ -37,7 +37,14 @@ export default function Login() {
             Forgot Password
           </Button>
         </View>
-        <Button style={styles.login}>Login</Button>
+        <View
+          style={{
+            width: "100%",
+            alignItems: "stretch",
+          }}>
+          <Button style={styles.login}>Login</Button>
+          <Button variant={BTN_VARIANTS.outlined}>Signup</Button>
+        </View>
       </ScrollView>
     </KeyboardAvoidingView>
   );
