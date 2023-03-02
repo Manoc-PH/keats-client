@@ -44,8 +44,8 @@ export default function MainNavigator() {
   return (
     <NavigationContainer>
       {isReadCredentialsLoading && <Splash />}
-      {!isReadCredentialsLoading && !isLoggedIn && <AuthenticatedScreens />}
-      {!isReadCredentialsLoading && isLoggedIn && <UnauthenticatedScreens />}
+      {!isReadCredentialsLoading && isLoggedIn && <AuthenticatedScreens />}
+      {!isReadCredentialsLoading && !isLoggedIn && <UnauthenticatedScreens />}
     </NavigationContainer>
   );
 }

@@ -11,6 +11,7 @@ import themeColors from "@app/common/theme";
 export const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
+    alignSelf: "stretch",
     marginVertical: SPACING.Small - 1,
     marginRight: SPACING.Small,
   },
@@ -28,7 +29,9 @@ export const styles = StyleSheet.create({
     marginTop: SPACING.Tiny,
   },
   // CONTENT
-  inputContainer: { flex: 1 },
+  inputContainer: {
+    flex: 1,
+  },
   txtInput: {
     fontSize: FONT_SIZES.Medium,
     paddingVertical: SPACING.Small,
