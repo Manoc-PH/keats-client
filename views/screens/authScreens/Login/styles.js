@@ -11,4 +11,10 @@ export const styles = StyleSheet.create({
   titleContainer: {
     marginBottom: SPACING.Medium,
   },
+  forgotPassword: {
+    width: "100%",
+    alignItems: "flex-end",
+    marginBottom: SPACING.Huge,
+  },
+  login: { width: "100%" },
 });

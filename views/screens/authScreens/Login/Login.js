@@ -5,6 +5,8 @@ import { Button, TextInput, Title1 } from "@app/views/components";
 
 import { styles } from "./styles";
 import { LoginForm } from "@app/views/layouts";
+import { BTN_VARIANTS, SIZES, SPACING } from "@app/common/constants/styles";
+import themeColors from "@app/common/theme";
 
 export default function Login() {
   const [data, setData] = useState({ username: "", password: "" });
@@ -27,7 +29,15 @@ export default function Login() {
         </View>
 
         <LoginForm data={data} setData={setData} />
-        <Button style={{ width: "100%", alignItems: "center" }}>Login</Button>
+        <View style={styles.forgotPassword}>
+          <Button
+            variant={BTN_VARIANTS.transparent}
+            size={SIZES.Small}
+            color={themeColors.secondaryLight}>
+            Forgot Password
+          </Button>
+        </View>
+        <Button style={styles.login}>Login</Button>
       </ScrollView>
     </KeyboardAvoidingView>
   );

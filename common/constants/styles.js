@@ -36,11 +36,6 @@ export const NUTRIENT_COLOR_MAPPING = {
   carbs: themeColors.yellow,
   fats: themeColors.red,
 };
-export const BUTTON_VARIANTS = {
-  primary: "primary",
-  outlined: "outlined",
-  transparent: "transparent",
-};
 export const SPACING = {
   Tiny: 4,
   Small: 8,
