@@ -37,11 +37,7 @@ export default function Login() {
             Forgot Password
           </Button>
         </View>
-        <View
-          style={{
-            width: "100%",
-            alignItems: "stretch",
-          }}>
+        <View style={styles.btnsContainer}>
           <Button style={styles.login}>Login</Button>
           <Button variant={BTN_VARIANTS.outlined}>Signup</Button>
         </View>

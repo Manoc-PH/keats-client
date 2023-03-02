@@ -16,5 +16,9 @@ export const styles = StyleSheet.create({
     alignItems: "flex-end",
     marginBottom: SPACING.Huge,
   },
+  btnsContainer: {
+    width: "100%",
+    alignItems: "stretch",
+  },
   login: { marginBottom: SPACING.Small },
 });
