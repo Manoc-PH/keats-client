@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View } from "react-native";
+import { KeyboardAvoidingView } from "react-native";
 
 import { styles } from "./styles";
 import { TextInput } from "@app/views/components";
@@ -15,7 +15,9 @@ export default function LoginForm(props) {
     setData({ username, password });
   }
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : ""}
+      style={styles.container}>
       <TextInput
         value={username}
         onChangeText={setUsername}
@@ -29,6 +31,6 @@ export default function LoginForm(props) {
         onBlur={updateData}
         secureTextEntry={true}
       />
-    </View>
+    </KeyboardAvoidingView>
   );
 }

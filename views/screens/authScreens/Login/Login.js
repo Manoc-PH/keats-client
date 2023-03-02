@@ -14,9 +14,7 @@ export default function Login() {
   useEffect(() => {}, [data]);
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : ""}
-      style={styles.wrapper}>
+    <View style={styles.wrapper}>
       <ScrollView
         contentContainerStyle={{
           flexGrow: 1,
@@ -42,6 +40,6 @@ export default function Login() {
           <Button variant={BTN_VARIANTS.outlined}>Signup</Button>
         </View>
       </ScrollView>
-    </KeyboardAvoidingView>
+    </View>
   );
 }
