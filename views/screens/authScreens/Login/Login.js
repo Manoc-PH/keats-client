@@ -9,9 +9,7 @@ import { LoginForm } from "@app/views/layouts";
 export default function Login() {
   const [data, setData] = useState({ username: "", password: "" });
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
+  useEffect(() => {}, [data]);
 
   return (
     <KeyboardAvoidingView
