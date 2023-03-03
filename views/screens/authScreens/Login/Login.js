@@ -8,7 +8,11 @@ import { LoginForm } from "@app/views/layouts";
 import { BTN_VARIANTS, SIZES, SPACING } from "@app/common/constants/styles";
 import themeColors from "@app/common/theme";
 
-export default function Login() {
+export default function Login(props) {
+  // Props
+  const { navigation } = props;
+
+  // Local States
   const [data, setData] = useState({ username: "", password: "" });
 
   useEffect(() => {}, [data]);
@@ -37,7 +41,11 @@ export default function Login() {
         </View>
         <View style={styles.btnsContainer}>
           <Button style={styles.login}>Login</Button>
-          <Button variant={BTN_VARIANTS.outlined}>Signup</Button>
+          <Button
+            variant={BTN_VARIANTS.outlined}
+            onPress={() => navigation.navigate("Signup")}>
+            Signup
+          </Button>
         </View>
       </ScrollView>
     </View>
