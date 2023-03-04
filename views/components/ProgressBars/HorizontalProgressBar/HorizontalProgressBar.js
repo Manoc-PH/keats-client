@@ -7,14 +7,14 @@ function HorizontalProgressBar(props) {
   const inlineStyle = StyleSheet.create({
     foreground: {
       width: `${progress}%`,
-      height: thickness || 6,
+      height: thickness || 4,
       borderRadius: 4,
       backgroundColor: foregroundColor,
       position: "absolute",
     },
     background: {
       width: "100%",
-      height: thickness || 6,
+      height: thickness || 4,
       borderRadius: 4,
       backgroundColor: backgroundColor,
       position: "absolute",

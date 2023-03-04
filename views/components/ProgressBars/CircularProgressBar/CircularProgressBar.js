@@ -8,7 +8,7 @@ function CircularProgressBar(props) {
   const { size, children, progress, foregroundColor, backgroundColor } = props;
 
   const sizeLocal = size || 170;
-  const strokeWidth = sizeLocal * 0.07;
+  const strokeWidth = sizeLocal * 0.04;
   const center = sizeLocal / 2;
   const radius = sizeLocal / 2 - strokeWidth / 2;
   const circumference = 2 * Math.PI * radius;

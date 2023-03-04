@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { SafeAreaView, Platform, StatusBar } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -42,10 +43,16 @@ export default function MainNavigator() {
     if (readCredentialsError) setIsLoggedIn(false);
   }, [readCredentialsError]);
   return (
-    <NavigationContainer>
-      {isReadCredentialsLoading && <Splash />}
-      {!isReadCredentialsLoading && isLoggedIn && <AuthenticatedScreens />}
-      {!isReadCredentialsLoading && !isLoggedIn && <UnauthenticatedScreens />}
-    </NavigationContainer>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+      }}>
+      <NavigationContainer>
+        {isReadCredentialsLoading && <Splash />}
+        {!isReadCredentialsLoading && isLoggedIn && <AuthenticatedScreens />}
+        {!isReadCredentialsLoading && !isLoggedIn && <UnauthenticatedScreens />}
+      </NavigationContainer>
+    </SafeAreaView>
   );
 }
