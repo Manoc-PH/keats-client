@@ -71,20 +71,22 @@ export default function HomeHeader({ navigation }) {
             </View>
           )}
           {isHomeSearchActive && (
-            <TextInput
-              onChangeText={onChangeText}
-              value={text}
-              placeholder='Search for anything...'
-              onStartIconPress={() => setIsSearchActive(true)}
-              startIcon={
-                <SearchIcon
-                  height={SPACING.Medium}
-                  width={SPACING.Medium}
-                  style={styles.searchIcon}
-                  color={themeColors.secondary}
-                />
-              }
-            />
+            <View style={styles.searchInputContainer}>
+              <TextInput
+                onChangeText={onChangeText}
+                value={text}
+                placeholder='Search for anything...'
+                onStartIconPress={() => setIsSearchActive(true)}
+                startIcon={
+                  <SearchIcon
+                    height={SPACING.Medium}
+                    width={SPACING.Medium}
+                    style={styles.searchIcon}
+                    color={themeColors.secondary}
+                  />
+                }
+              />
+            </View>
           )}
           {isHomeSearchActive && (
             <Button

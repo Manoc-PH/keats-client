@@ -1,6 +1,6 @@
 import { SPACING, ZINDEX } from "@app/common/constants/styles";
 import themeColors from "@app/common/theme";
-import { StyleSheet, Platform, StatusBar } from "react-native";
+import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   wrapper: {
@@ -9,7 +9,6 @@ export const styles = StyleSheet.create({
     zIndex: ZINDEX.header,
     elevation: ZINDEX.header,
     shadowColor: "#00000000",
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
   container: {
     width: "100%",
@@ -22,25 +21,14 @@ export const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
+  searchInputContainer: { flex: 1, marginRight: SPACING.Regular },
 
   //
-  titleContainer: {
-    paddingVertical: SPACING.Regular,
-  },
+  titleContainer: { paddingVertical: SPACING.Regular },
 
   //
-  iconContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  searchContainer: {
-    padding: SPACING.Small,
-    alignItems: "center",
-  },
-  searchIcon: {
-    alignItems: "center",
-    justifyContent: "flex-end",
-  },
+  iconContainer: { flexDirection: "row", alignItems: "center" },
+  searchIcon: { alignItems: "center", justifyContent: "flex-end" },
   activeSearchWrapper: {
     flexDirection: "row",
     alignItems: "center",
@@ -53,7 +41,5 @@ export const styles = StyleSheet.create({
     marginRight: SPACING.Small,
   },
   //
-  btnContainer: {
-    padding: SPACING.Regular,
-  },
+  btnContainer: { padding: SPACING.Regular },
 });

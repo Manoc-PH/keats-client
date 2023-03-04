@@ -10,7 +10,7 @@ import themeColors from "@app/common/theme";
 
 export const styles = StyleSheet.create({
   wrapper: {
-    flex: 1,
+    width: "100%",
     alignSelf: "stretch",
     marginVertical: SPACING.Small - 1,
     marginRight: SPACING.Small,
