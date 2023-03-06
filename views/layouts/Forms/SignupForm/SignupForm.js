@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { KeyboardAvoidingView, View } from "react-native";
 
 import { styles } from "./styles";
-import { TextInput, Title3 } from "@app/views/components";
+import { DateInput, TextInput, Title3 } from "@app/views/components";
 import themeColors from "@app/common/theme";
 
 export default function SignupForm(props) {
@@ -83,7 +83,7 @@ function Sex(props) {
 }
 function Birthday(props) {
   const {} = props;
-  return <View></View>;
+  return <DateInput />;
 }
 function Weight(props) {
   const {} = props;
