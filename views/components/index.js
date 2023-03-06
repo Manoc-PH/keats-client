@@ -21,3 +21,4 @@ export { default as Title3 } from "./Basic/Texts/Title3";
 // Inputs
 export { default as TextInput } from "./Input/TextInput";
 export { default as DateInput } from "./Input/DateInput";
+export { default as SliderInput } from "./Input/SliderInput";

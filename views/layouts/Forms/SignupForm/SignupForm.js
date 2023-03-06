@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import { KeyboardAvoidingView, View } from "react-native";
 
 import { styles } from "./styles";
-import { DateInput, TextInput, Title3 } from "@app/views/components";
+import {
+  DateInput,
+  SliderInput,
+  TextInput,
+  Title3,
+} from "@app/views/components";
 import themeColors from "@app/common/theme";
 
 export default function SignupForm(props) {
@@ -25,8 +30,8 @@ export default function SignupForm(props) {
     "Enter username and password",
     "Select your sex",
     "Enter your birthday",
-    "Selct your height",
     "Selct your weight",
+    "Selct your height",
     "Selct your activity level",
     "Selct your fitness goal",
   ];
@@ -83,11 +88,15 @@ function Sex(props) {
 }
 function Birthday(props) {
   const {} = props;
-  return <DateInput />;
+  return <DateInput onChangeText={() => {}} />;
 }
 function Weight(props) {
   const {} = props;
-  return <View></View>;
+  return (
+    <View>
+      <SliderInput initialIndex={60} minValue={1} maxValue={100} incValue={1} />
+    </View>
+  );
 }
 function Height(props) {
   const {} = props;

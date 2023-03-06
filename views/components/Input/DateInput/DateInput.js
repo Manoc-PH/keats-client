@@ -23,9 +23,7 @@ export default function DateInput(props) {
     new Date(moment().subtract(18, "years").format("YYYY-MM-DD"))
   );
 
-  // useEffect(() => {
-  //   console.log(date);
-  // }, [date]);
+  useEffect(() => onChangeText(date), [date]);
   return (
     <View style={styles.wrapper}>
       {label && (
