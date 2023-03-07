@@ -1,5 +1,5 @@
 export const BASE_URL = "";
-export const LOCAL_URL = "http://localhost:8000";
+export const LOCAL_URL = "http://localhost:3001";
 //! REVERT BACK TO NEW URL BEFORE DEPLOYING TO PROD
 export const AUTH_ENDPOINTS = {
   POST_SIGNUP: "/api/auth/signup",

@@ -1,22 +1,35 @@
 import axios from "axios";
+import { useDispatch } from "react-redux";
 
-import { BASE_URL } from "@app/common/constants/APIUrls";
+// TODO Set back to production url
+import { BASE_URL, LOCAL_URL } from "@app/common/constants/APIUrls";
 
-const accessToken = JSON.parse(
-  localStorage.getItem("userCredentials")
-)?.access_token;
+// Services
+import { ClearCredentials } from "@app/services/db";
+
+// Store
+import { actions } from "@app/core/store";
 
 export const authAxios = axios.create({
-  baseURL: BASE_URL,
+  baseURL: LOCAL_URL,
   withCredentials: true,
 });
 // Logging out user if token expires
 authAxios.interceptors.response.use(
   (response) => response,
   (error) => {
+    // Store Actions
+    // TODO CHECK IF THIS WORKS
+    const { setIsLoggedIn: setIsLoggedInState } = actions;
+    const dispatch = useDispatch();
+    const setIsLoggedIn = (v) => dispatch(setIsLoggedInState(v));
     if (error.response.status === 401 || error.response.status === 403) {
-      localStorage.setItem("userCredentials", "{}");
-      window.location.reload();
+      ClearCredentials()
+        .then(() => {
+          setIsLoggedIn(false);
+          return Promise.reject(error);
+        })
+        .catch((err) => console.log(err));
     }
     return Promise.reject(error);
   }
@@ -24,5 +37,5 @@ authAxios.interceptors.response.use(
 
 // TODO: REVERT THIS BACK TO THE REAL SERVER
 export const publicAxios = axios.create({
-  baseURL: BASE_URL,
+  baseURL: LOCAL_URL,
 });

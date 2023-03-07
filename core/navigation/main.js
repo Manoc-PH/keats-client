@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 // Store
 import { actions } from "@app/core/store";
 
+// Hooks
 import { useReadCredentials } from "@app/core/hooks/db";
 
 import { Splash } from "@app/views/screens";
@@ -48,7 +49,7 @@ export default function MainNavigator() {
         flex: 1,
         paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
       }}>
-      <NavigationContainer>
+      <NavigationContainer key={isLoggedIn}>
         {isReadCredentialsLoading && <Splash />}
         {!isReadCredentialsLoading && isLoggedIn && <AuthenticatedScreens />}
         {!isReadCredentialsLoading && !isLoggedIn && <UnauthenticatedScreens />}
