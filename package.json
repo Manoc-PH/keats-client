@@ -2,6 +2,7 @@
   "name": "client-mobile",
   "version": "1.0.0",
   "scripts": {
+    "dev": "expo-cli start --tunnel",
     "start": "expo start --dev-client",
     "android": "expo run:android",
     "native-android": "npx expo run:android",
