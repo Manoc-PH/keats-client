@@ -1,5 +1,6 @@
+import { SPACING } from "@app/common/constants/styles";
 import * as React from "react";
-import { StyleSheet, View } from "react-native";
+import { PixelRatio, StyleSheet, View } from "react-native";
 
 function HorizontalProgressBar(props) {
   const { progress, foregroundColor, backgroundColor, thickness } = props;
@@ -7,14 +8,14 @@ function HorizontalProgressBar(props) {
   const inlineStyle = StyleSheet.create({
     foreground: {
       width: `${progress}%`,
-      height: thickness || 4,
+      height: thickness || SPACING.Tiny * PixelRatio.getFontScale(),
       borderRadius: 4,
       backgroundColor: foregroundColor,
       position: "absolute",
     },
     background: {
       width: "100%",
-      height: thickness || 4,
+      height: thickness || SPACING.Tiny * PixelRatio.getFontScale(),
       borderRadius: 4,
       backgroundColor: backgroundColor,
       position: "absolute",

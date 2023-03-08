@@ -1,6 +1,7 @@
+import { SPACING } from "@app/common/constants/styles";
 import themeColors from "@app/common/theme";
 import * as React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { PixelRatio, StyleSheet, Text, View } from "react-native";
 import Svg, { G, Circle, Path, Defs } from "react-native-svg";
 /* SVGR has dropped some elements not supported by react-native-svg: filter */
 
@@ -8,7 +9,8 @@ function CircularProgressBar(props) {
   const { size, children, progress, foregroundColor, backgroundColor } = props;
 
   const sizeLocal = size || 170;
-  const strokeWidth = sizeLocal * 0.04;
+  const strokeWidth =
+    sizeLocal * (SPACING.Tiny * 0.01 * PixelRatio.getFontScale());
   const center = sizeLocal / 2;
   const radius = sizeLocal / 2 - strokeWidth / 2;
   const circumference = 2 * Math.PI * radius;

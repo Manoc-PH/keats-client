@@ -63,7 +63,7 @@ export default function MainNavigator() {
   useEffect(() => {
     if (readCredentialsError) setIsLoggedIn(false);
   }, [readCredentialsError]);
-  useEffect(() => console.log(isLoggedIn), [isLoggedIn]);
+
   return (
     <SafeAreaView
       style={{
