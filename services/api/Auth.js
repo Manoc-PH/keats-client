@@ -5,12 +5,11 @@ import { authAxios } from "@app/common/utils/axios";
 import { AUTH_ENDPOINTS } from "@app/common/constants/APIUrls";
 
 export const Login = async ({ username, password }) => {
-  console.log({ username, password });
   const response = await authAxios.post(AUTH_ENDPOINTS.POST_LOGIN, {
     username,
     password,
   });
-  return response?.data;
+  return response;
 };
 export const Logout = async () => {
   const response = await authAxios.post(AUTH_ENDPOINTS.POST_LOGOUT);

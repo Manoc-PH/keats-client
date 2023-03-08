@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import {
   View,
   ScrollView,
@@ -7,13 +8,16 @@ import {
   ActivityIndicator,
 } from "react-native";
 
-import { Button, Body, TextInput, Title1 } from "@app/views/components";
-import { Loader, LoginForm } from "@app/views/layouts";
+// Store
+import { actions } from "@app/core/store";
 
 // Hooks
 import { useLogin } from "@app/core/hooks/api";
 
 import themeColors from "@app/common/theme";
+import { useCreateCredentials } from "@app/core/hooks/db";
+import { Button, Body, TextInput, Title1 } from "@app/views/components";
+import { Loader, LoginForm } from "@app/views/layouts";
 import { BTN_VARIANTS, SIZES, SPACING } from "@app/common/constants/styles";
 import { styles } from "./styles";
 
@@ -25,14 +29,16 @@ export default function Login(props) {
   const [data, setData] = useState({ username: "", password: "" });
   const [errMsg, setErrMsg] = useState("");
 
+  // Store Actions
+  const { setIsLoggedIn: setIsLoggedInState } = actions;
+  const dispatch = useDispatch();
+  const setIsLoggedIn = (v) => dispatch(setIsLoggedInState(v));
+
   // Hooks
-  const {
-    loginUser,
-    loginUserData,
-    isLoginUserLoading,
-    loginUserError,
-    isLoginUserSuccess,
-  } = useLogin();
+  const { loginUser, loginUserData, isLoginUserLoading, loginUserError } =
+    useLogin();
+  const { createCredentials, isCreateCredentialsSuccess } =
+    useCreateCredentials();
 
   // Functions
   function handleSubmit() {
@@ -47,11 +53,31 @@ export default function Login(props) {
       setErrMsg(loginUserError?.response?.data?.message || "An error occured");
     }
   }
+  function handleLoginSuccess() {
+    const cred = {
+      id: loginUserData.data.id,
+      username: loginUserData.data.username,
+      name_first: loginUserData.data.name_first,
+      name_last: loginUserData.data.name_last,
+      phone_number: loginUserData.data.phone_number,
+      account_type_id: loginUserData.data.account_type_id,
+      account_vitals_id: loginUserData.data.account_vitals_id,
+      account_profile_id: loginUserData.data.account_profile_id,
+      measure_unit_id: loginUserData.data.measure_unit_id,
+      token: loginUserData.headers["set-cookie"][0],
+    };
+    createCredentials(cred);
+  }
 
   // UseEffect
   useEffect(() => setErrMsg(), [data]);
-  useEffect(() => loginUserData && console.log(loginUserData), [loginUserData]);
+  useEffect(() => {
+    if (loginUserData) handleLoginSuccess();
+  }, [loginUserData]);
   useEffect(() => handleLoginErr(), [loginUserError]);
+  useEffect(() => {
+    if (isCreateCredentialsSuccess) setIsLoggedIn(true);
+  }, [isCreateCredentialsSuccess]);
 
   return (
     <View style={styles.wrapper}>
