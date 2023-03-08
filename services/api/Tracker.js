@@ -6,26 +6,26 @@ import { TRACKER_ENDPOINTS } from "@app/common/constants/APIUrls";
 
 export const GetDailyNutrients = async () => {
   const response = await authAxios.post(TRACKER_ENDPOINTS.GET_DAILY_NUTRIENTS);
-  return response;
+  return response?.data;
 };
 
 export const GetDailyNutrientsList = async () => {
   const response = await authAxios.post(
     TRACKER_ENDPOINTS.GET_DAILY_NUTRIENTS_LIST
   );
-  return response;
+  return response?.data;
 };
 
 export const GetIntakes = async () => {
   const response = await authAxios.post(TRACKER_ENDPOINTS.GET_INTAKES);
-  return response;
+  return response?.data;
 };
 
 export const GetIntake = async ({ intake_id }) => {
   const response = await authAxios.get(TRACKER_ENDPOINTS.GET_INTAKE, {
     params: { intake_id: intake_id },
   });
-  return response;
+  return response?.data;
 };
 
 export const PostIntake = async ({
@@ -44,7 +44,7 @@ export const PostIntake = async ({
     amount_unit_desc: amount_unit_desc,
     serving_size: serving_size,
   });
-  return response;
+  return response?.data;
 };
 
 export const PutIntake = async ({
@@ -65,12 +65,12 @@ export const PutIntake = async ({
     amount_unit_desc: amount_unit_desc,
     serving_size: serving_size,
   });
-  return response;
+  return response?.data;
 };
 
 export const DeleteIntake = async ({ intake_id }) => {
   const response = await authAxios.get(TRACKER_ENDPOINTS.DELETE_INTAKE, {
     intake_id: intake_id,
   });
-  return response;
+  return response?.data;
 };

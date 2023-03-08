@@ -10,11 +10,11 @@ export const Login = async ({ username, password }) => {
     username,
     password,
   });
-  return response;
+  return response?.data;
 };
 export const Logout = async () => {
   const response = await authAxios.post(AUTH_ENDPOINTS.POST_LOGOUT);
-  return response;
+  return response?.data;
 };
 export const Signup = async ({
   username,
@@ -38,5 +38,5 @@ export const Signup = async ({
     diet_plan_id,
     measure_unit_id,
   });
-  return response;
+  return response?.data;
 };
