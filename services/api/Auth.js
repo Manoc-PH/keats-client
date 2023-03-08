@@ -1,10 +1,11 @@
 // import { publicAxios } from 'common/utils/axios'
-import { authAxios } from "common/utils/axios";
+import { authAxios } from "@app/common/utils/axios";
 
 // Endpoint
-import { AUTH_ENDPOINTS, BASE_URL } from "common/constants/apiUrls";
+import { AUTH_ENDPOINTS } from "@app/common/constants/APIUrls";
 
 export const Login = async ({ username, password }) => {
+  console.log({ username, password });
   const response = await authAxios.post(AUTH_ENDPOINTS.POST_LOGIN, {
     username,
     password,

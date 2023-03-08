@@ -1,4 +1,4 @@
-import { SPACING } from "@app/common/constants/styles";
+import { FONT_WEIGHTS, SPACING } from "@app/common/constants/styles";
 import themeColors from "@app/common/theme";
 import { StyleSheet } from "react-native";
 
@@ -12,6 +12,13 @@ export const styles = StyleSheet.create({
   titleContainer: {
     marginBottom: SPACING.Medium,
   },
+  errorContainer: {
+    width: "100%",
+    alignItems: "flex-start",
+    paddingBottom: SPACING.Tiny,
+    paddingHorizontal: SPACING.Large,
+  },
+  error: { color: themeColors.red, fontWeight: FONT_WEIGHTS.SemiBold },
   forgotPassword: {
     width: "100%",
     alignItems: "flex-end",

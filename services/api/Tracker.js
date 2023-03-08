@@ -1,8 +1,8 @@
 // import { publicAxios } from 'common/utils/axios'
-import { authAxios } from "common/utils/axios";
+import { authAxios } from "@app/common/utils/axios";
 
 // Endpoint
-import { TRACKER_ENDPOINTS, BASE_URL } from "common/constants/apiUrls";
+import { TRACKER_ENDPOINTS } from "@app/common/constants/APIUrls";
 
 export const GetDailyNutrients = async () => {
   const response = await authAxios.post(TRACKER_ENDPOINTS.GET_DAILY_NUTRIENTS);

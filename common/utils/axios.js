@@ -15,25 +15,25 @@ export const authAxios = axios.create({
   withCredentials: true,
 });
 // Logging out user if token expires
-authAxios.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    // Store Actions
-    // TODO CHECK IF THIS WORKS
-    const { setIsLoggedIn: setIsLoggedInState } = actions;
-    const dispatch = useDispatch();
-    const setIsLoggedIn = (v) => dispatch(setIsLoggedInState(v));
-    if (error.response.status === 401 || error.response.status === 403) {
-      ClearCredentials()
-        .then(() => {
-          setIsLoggedIn(false);
-          return Promise.reject(error);
-        })
-        .catch((err) => console.log(err));
-    }
-    return Promise.reject(error);
-  }
-);
+// authAxios.interceptors.response.use(
+//   (response) => response,
+//   (error) => {
+//     // Store Actions
+//     // TODO CHECK IF THIS WORKS
+//     // const { setIsLoggedIn: setIsLoggedInState } = actions;
+//     // const dispatch = useDispatch();
+//     // const setIsLoggedIn = (v) => dispatch(setIsLoggedInState(v));
+//     if (error.response.status === 401 || error.response.status === 403) {
+//       ClearCredentials()
+//         .then(() => {
+//           // setIsLoggedIn(false);
+//           return Promise.reject(error);
+//         })
+//         .catch((err) => console.log(err));
+//     }
+//     return Promise.reject(error);
+//   }
+// );
 
 // TODO: REVERT THIS BACK TO THE REAL SERVER
 export const publicAxios = axios.create({
