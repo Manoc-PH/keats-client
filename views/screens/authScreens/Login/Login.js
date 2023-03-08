@@ -20,6 +20,7 @@ import { Button, Body, TextInput, Title1 } from "@app/views/components";
 import { Loader, LoginForm } from "@app/views/layouts";
 import { BTN_VARIANTS, SIZES, SPACING } from "@app/common/constants/styles";
 import { styles } from "./styles";
+import { authAxios } from "@app/common/utils/axios";
 
 export default function Login(props) {
   // Props
@@ -66,6 +67,8 @@ export default function Login(props) {
       measure_unit_id: loginUserData.data.measure_unit_id,
       token: loginUserData.headers["set-cookie"][0],
     };
+    authAxios.defaults.headers.common["Cookie"] =
+      loginUserData.headers["set-cookie"][0];
     createCredentials(cred);
   }
 

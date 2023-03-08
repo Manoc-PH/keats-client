@@ -1,10 +1,30 @@
+import { View } from "react-native";
+import { useEffect, useState } from "react";
+
+// Hooks
+import { useGetDailyNutrients } from "@app/core/hooks/api";
+
 import CalorieSummaryBar from "@app/views/layouts/SummaryBars/CalorieSummaryBar";
 import MacroSummaryBars from "@app/views/layouts/SummaryBars/MacroSummaryBars";
-import { View } from "react-native";
 import { styles } from "./styles";
 
 export default function NutrientSummary() {
-  // TODO QUERY ENDPOINTS HERE
+  const [data, setData] = useState();
+
+  // Hooks
+  const {
+    getDailyNutrients,
+    getDailyNutrientsData,
+    isGetDailyNutrientsLoading,
+    isGetDailyNutrientsSuccess,
+  } = useGetDailyNutrients();
+
+  useEffect(() => {
+    getDailyNutrients();
+  }, []);
+  useEffect(() => {
+    // console.log(getDailyNutrientsData);
+  }, [getDailyNutrientsData]);
   return (
     <View style={styles.wrapper}>
       <View style={styles.container}>
