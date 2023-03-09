@@ -18,6 +18,9 @@ import {
 import { useGetDailyNutrients } from "@app/core/hooks/api";
 
 export default function Home() {
+  // Store State
+  const { dailyNutrients } = useSelector((state) => state.tracker);
+
   // Store Actions
   const { setDailyNutrients: setDailyNutrientsState } = actions;
   const dispatch = useDispatch();
@@ -32,7 +35,7 @@ export default function Home() {
   } = useGetDailyNutrients();
 
   useEffect(() => {
-    getDailyNutrients();
+    if (!dailyNutrients) getDailyNutrients();
   }, []);
   useEffect(() => {
     setDailyNutrients(getDailyNutrientsData);

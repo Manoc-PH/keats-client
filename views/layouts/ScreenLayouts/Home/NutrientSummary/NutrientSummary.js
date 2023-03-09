@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import CalorieSummaryBar from "@app/views/layouts/SummaryBars/CalorieSummaryBar";
 import MacroSummaryBars from "@app/views/layouts/SummaryBars/MacroSummaryBars";
