@@ -38,7 +38,7 @@ export default function Home() {
     if (!dailyNutrients) getDailyNutrients();
   }, []);
   useEffect(() => {
-    setDailyNutrients(getDailyNutrientsData);
+    if (isGetDailyNutrientsSuccess) setDailyNutrients(getDailyNutrientsData);
   }, [getDailyNutrientsData]);
   return (
     <>

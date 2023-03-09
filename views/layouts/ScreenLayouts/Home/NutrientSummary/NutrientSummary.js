@@ -46,7 +46,7 @@ export default function NutrientSummary() {
       <View style={styles.container}>
         <CalorieSummaryBar
           calories={dailyNutrients?.calories || 0}
-          maxCalories={dailyNutrients?.maxCalories || 0}
+          maxCalories={dailyNutrients?.max_calories || 0}
         />
       </View>
       <View style={styles.container}>
