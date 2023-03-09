@@ -15,16 +15,21 @@ import {
 } from "@app/views/layouts";
 
 // Hooks
-import { useGetDailyNutrients } from "@app/core/hooks/api";
+import { useGetDailyNutrients, useGetAccountVitals } from "@app/core/hooks/api";
 
 export default function Home() {
   // Store State
   const { dailyNutrients } = useSelector((state) => state.tracker);
+  const { accountVitals } = useSelector((state) => state.account);
 
   // Store Actions
-  const { setDailyNutrients: setDailyNutrientsState } = actions;
+  const {
+    setDailyNutrients: setDailyNutrientsState,
+    setAccountVitals: setAccountVitalsState,
+  } = actions;
   const dispatch = useDispatch();
   const setDailyNutrients = (v) => dispatch(setDailyNutrientsState(v));
+  const setAccountVitals = (v) => dispatch(setAccountVitalsState(v));
 
   // Hooks
   const {
@@ -33,13 +38,21 @@ export default function Home() {
     isGetDailyNutrientsLoading,
     isGetDailyNutrientsSuccess,
   } = useGetDailyNutrients();
+  const {
+    getAccountVitals,
+    getAccountVitalsData,
+    isGetAccountVitalsLoading,
+    isGetAccountVitalsSuccess,
+  } = useGetAccountVitals();
 
   useEffect(() => {
     if (!dailyNutrients) getDailyNutrients();
+    if (!accountVitals) getAccountVitals();
   }, []);
   useEffect(() => {
     if (isGetDailyNutrientsSuccess) setDailyNutrients(getDailyNutrientsData);
-  }, [getDailyNutrientsData]);
+    if (isGetAccountVitalsSuccess) setAccountVitals(getAccountVitalsData);
+  }, [getDailyNutrientsData, getAccountVitalsData]);
   return (
     <>
       <ScrollView
@@ -52,7 +65,9 @@ export default function Home() {
           {isGetDailyNutrientsLoading && <Loader />}
           {/* TODO ADD PROPER LOADER FOR NUTRIENT SUMMARY */}
           {!isGetDailyNutrientsLoading && <NutrientSummary />}
-          <CurrentDietCard />
+          {isGetAccountVitalsLoading && <Loader />}
+          {/* TODO ADD PROPER LOADER FOR CurrentDietCard */}
+          {!isGetAccountVitalsLoading && <CurrentDietCard />}
           <CalorieGoalProgress />
         </View>
       </ScrollView>

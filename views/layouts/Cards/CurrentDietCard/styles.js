@@ -9,7 +9,11 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   wrapper: { width: "100%", marginTop: SPACING.ExtraLarge },
   container: { width: "100%" },
-  rowContainer: { flexDirection: "row", justifyContent: "space-between" },
+  rowContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: SPACING.Tiny,
+  },
   btnContainer: {
     flexDirection: "row",
     justifyContent: "flex-end",
@@ -22,5 +26,8 @@ export const styles = StyleSheet.create({
   subheadline: {
     color: themeColors.primary,
     marginRight: 5,
+  },
+  title: {
+    textTransform: "capitalize",
   },
 });

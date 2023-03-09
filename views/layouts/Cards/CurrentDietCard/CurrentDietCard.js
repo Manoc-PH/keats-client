@@ -1,12 +1,15 @@
-import { ArrowRightIcon } from "@app/assets/icons";
-import themeColors from "@app/common/theme";
-import { Card, SubHeadline2, Body } from "@app/views/components";
 import { View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+
+import { ArrowRightIcon } from "@app/assets/icons";
+
+import { Card, SubHeadline2, Body } from "@app/views/components";
 import { styles } from "./styles";
 
 export default function CurrentDietCard() {
-  // TODO QUERY DIET PLAN HERE
-  const title = "Extreme Lean Weight Loss";
+  // Store State
+  const { accountVitals } = useSelector((state) => state.account);
+
   return (
     <View style={styles.wrapper}>
       <Card>
@@ -21,7 +24,9 @@ export default function CurrentDietCard() {
               </View>
             </View>
           </View>
-          <Body>{title}</Body>
+          <Body style={styles.title}>
+            {accountVitals?.diet_plan_name || ""}
+          </Body>
         </View>
       </Card>
     </View>

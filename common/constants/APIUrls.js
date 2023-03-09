@@ -21,3 +21,8 @@ export const TRACKER_ENDPOINTS = {
   PUT_INTAKE: "/api/tracker/intake",
   DELETE_INTAKE: "/api/tracker/intake",
 };
+
+export const ACCOUNT_ENDPOINTS = {
+  GET_ACCOUNT_VITALS: "/api/account/account_vitals",
+  UPDATE_ACCOUNT_PROFILE: "/api/account/account_profile",
+};

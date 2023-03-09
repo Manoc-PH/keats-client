@@ -11,3 +11,6 @@ export { default as useGetIntake } from "./tracker/useGetIntake";
 export { default as useGetIntakes } from "./tracker/useGetIntakes";
 export { default as usePostIntake } from "./tracker/usePostIntake";
 export { default as usePutIntake } from "./tracker/usePutIntake";
+
+// ACCOUNTS
+export { default as useGetAccountVitals } from "./account/useGetAccountVitals";
