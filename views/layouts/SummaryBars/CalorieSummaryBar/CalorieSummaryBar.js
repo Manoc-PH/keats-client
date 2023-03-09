@@ -10,6 +10,8 @@ import { styles } from "./styles";
 
 export default function CalorieSummaryBar(props) {
   const { calories, maxCalories } = props;
+
+  // TODO ADD PROPER LOADING VIEW
   return (
     <View>
       <CircularProgressBar
