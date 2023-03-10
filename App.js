@@ -18,6 +18,7 @@ import { Splash } from "./views/screens";
 import { SetupDB } from "./services/db";
 
 export default function App() {
+  // TODO use react-native-reanimated for animations
   const [isSetupDBLoading, setIsSetupDBLoading] = useState(true);
   const [isSetupDBSuccess, setisSetupDBSuccess] = useState(false);
   const [fontsLoaded] = useFonts({
@@ -45,7 +46,7 @@ export default function App() {
     <AppStoreProvider>
       <AppReactQueryProvider>
         {fontsLoaded && isSetupDBSuccess && <MainNavigator />}
-        {isSetupDBLoading && !fontsLoaded && <Splash />}
+        {(isSetupDBLoading || !fontsLoaded) && <Splash />}
         {/* TODO Show error page for errors on setupDB */}
         {/* {!isSetupDBSuccess && <Splash />} */}
       </AppReactQueryProvider>

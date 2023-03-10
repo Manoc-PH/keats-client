@@ -14,3 +14,7 @@ export { default as usePutIntake } from "./tracker/usePutIntake";
 
 // ACCOUNTS
 export { default as useGetAccountVitals } from "./account/useGetAccountVitals";
+
+// FOOD
+export { default as useGetFoodDetails } from "./food/useGetFoodDetails";
+export { default as useGetSearchFood } from "./food/useGetSearchFood";
