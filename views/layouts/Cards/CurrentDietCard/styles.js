@@ -30,4 +30,7 @@ export const styles = StyleSheet.create({
   title: {
     textTransform: "capitalize",
   },
+  skeleton: {
+    marginTop: SPACING.Small,
+  },
 });

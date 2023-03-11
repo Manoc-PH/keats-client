@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { ArrowRightIcon } from "@app/assets/icons";
 
-import { Card, SubHeadline2, Body } from "@app/views/components";
+import { FONT_SIZES } from "@app/common/constants/styles";
+
+import { Card, SubHeadline2, Body, TextSkeleton } from "@app/views/components";
 import { styles } from "./styles";
 
 export default function CurrentDietCard() {
@@ -18,15 +20,23 @@ export default function CurrentDietCard() {
             <SubHeadline2>Current Diet Plan</SubHeadline2>
             <View style={styles.btnContainer}>
               {/* TODO ADD LINK TO CURRENT OPTIONS */}
-              <SubHeadline2 style={styles.subheadline}>Change</SubHeadline2>
+              {accountVitals && (
+                <SubHeadline2 style={styles.subheadline}>Change</SubHeadline2>
+              )}
               <View style={styles.iconContainer}>
                 <ArrowRightIcon />
               </View>
             </View>
           </View>
-          <Body style={styles.title}>
-            {accountVitals?.diet_plan_name || ""}
-          </Body>
+          {!accountVitals ? (
+            <View style={styles.skeleton}>
+              <TextSkeleton fontSize={FONT_SIZES.Regular} />
+            </View>
+          ) : (
+            <Body style={styles.title}>
+              {accountVitals?.diet_plan_name || ""}
+            </Body>
+          )}
         </View>
       </Card>
     </View>
