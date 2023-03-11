@@ -62,12 +62,8 @@ export default function Home() {
           justifyContent: "flex-start",
         }}>
         <View style={styles.container}>
-          {isGetDailyNutrientsLoading && <Loader />}
-          {/* TODO ADD PROPER LOADER FOR NUTRIENT SUMMARY */}
-          {!isGetDailyNutrientsLoading && <NutrientSummary />}
-          {isGetAccountVitalsLoading && <Loader />}
-          {/* TODO ADD PROPER LOADER FOR CurrentDietCard */}
-          {!isGetAccountVitalsLoading && <CurrentDietCard />}
+          <NutrientSummary />
+          <CurrentDietCard />
           <CalorieGoalProgress />
         </View>
       </ScrollView>

@@ -45,12 +45,13 @@ export default function NutrientSummary() {
     <View style={styles.wrapper}>
       <View style={styles.container}>
         <CalorieSummaryBar
+          loading={!dailyNutrients}
           calories={dailyNutrients?.calories || 0}
           maxCalories={dailyNutrients?.max_calories || 0}
         />
       </View>
       <View style={styles.container}>
-        <MacroSummaryBars macros={macroSummary} />
+        <MacroSummaryBars loading={!macroSummary} macros={macroSummary} />
       </View>
     </View>
   );
