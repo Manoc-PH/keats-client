@@ -81,7 +81,7 @@ export default function TextSkeleton(props) {
 
   useEffect(() => {
     // TODO OPTIMIZE ANIMATION OF GRADIENTS
-    // *Currently its taking too much processing power to animate
+    // *Currently taking too much processing power to animate
     // infiniteRainbow();
   }, []);
   return (
