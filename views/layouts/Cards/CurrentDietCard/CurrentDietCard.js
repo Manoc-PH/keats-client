@@ -17,20 +17,26 @@ export default function CurrentDietCard() {
       <Card>
         <View style={styles.container}>
           <View style={styles.rowContainer}>
-            <SubHeadline2>Current Diet Plan</SubHeadline2>
-            <View style={styles.btnContainer}>
-              {/* TODO ADD LINK TO CURRENT OPTIONS */}
-              {accountVitals && (
-                <SubHeadline2 style={styles.subheadline}>Change</SubHeadline2>
-              )}
-              <View style={styles.iconContainer}>
-                <ArrowRightIcon />
+            {accountVitals ? (
+              <>
+                <SubHeadline2>Current Diet Plan</SubHeadline2>
+                <View style={styles.btnContainer}>
+                  {/* TODO ADD LINK TO CURRENT OPTIONS */}
+                  <SubHeadline2 style={styles.subheadline}>Change</SubHeadline2>
+                  <View style={styles.iconContainer}>
+                    <ArrowRightIcon />
+                  </View>
+                </View>
+              </>
+            ) : (
+              <View style={styles.smallSkeleton}>
+                <TextSkeleton fontSize={FONT_SIZES.Small} />
               </View>
-            </View>
+            )}
           </View>
           {!accountVitals ? (
             <View style={styles.skeleton}>
-              <TextSkeleton fontSize={FONT_SIZES.Regular} />
+              <TextSkeleton fontSize={FONT_SIZES.Medium} />
             </View>
           ) : (
             <Body style={styles.title}>

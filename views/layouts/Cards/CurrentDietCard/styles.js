@@ -33,4 +33,7 @@ export const styles = StyleSheet.create({
   skeleton: {
     marginTop: SPACING.Small,
   },
+  smallSkeleton: {
+    width: "40%",
+  },
 });
