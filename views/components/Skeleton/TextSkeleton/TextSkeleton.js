@@ -80,7 +80,9 @@ export default function TextSkeleton(props) {
   });
 
   useEffect(() => {
-    infiniteRainbow();
+    // TODO OPTIMIZE ANIMATION OF GRADIENTS
+    // *Currently its taking too much processing power to animate
+    // infiniteRainbow();
   }, []);
   return (
     <View style={localStyles.wrapper}>
