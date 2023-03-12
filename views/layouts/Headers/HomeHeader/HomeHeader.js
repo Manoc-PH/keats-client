@@ -1,9 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { View, SafeAreaView, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 // Store
 import { actions } from "@app/core/store";
+
+// Utils
+import useDebounce from "@app/common/utils/debounce";
+
+// Hooks
+import { useGetSearchFood } from "@app/core/hooks/api";
 
 import {
   BTN_VARIANTS,
@@ -31,13 +37,35 @@ export default function HomeHeader({ navigation }) {
     else navigation.navigate("Home", { screen: "HomeDefault" });
   };
 
+  // Hooks
+  const {
+    getSearchFood,
+    getSearchFoodData,
+    isGetSearchFoodSuccess,
+    isGetSearchFoodLoading,
+  } = useGetSearchFood();
+
+  // Local State
   const [text, onChangeText] = useState("");
 
+  // Functions
+  function fetchFoodSearch() {
+    if (text) getSearchFood(text);
+  }
+
+  // Custom Hooks
+  useDebounce(fetchFoodSearch, [text], 800);
+
+  // UseEffects
+  useEffect(() => {
+    if (isGetSearchFoodSuccess) console.log(isGetSearchFoodSuccess);
+  }, [getSearchFoodData]);
   const inlineStyle = StyleSheet.create({
     btnContainer: {
       padding: isHomeSearchActive ? SPACING.Small : SPACING.Regular,
     },
   });
+
   return (
     <SafeAreaView style={styles.wrapper}>
       <View style={styles.container}>

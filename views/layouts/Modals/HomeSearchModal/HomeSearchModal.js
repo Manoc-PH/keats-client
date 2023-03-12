@@ -8,15 +8,16 @@ import { actions } from "@app/core/store";
 import { Txt } from "@app/views/components";
 
 import { styles } from "./styles";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeSearchModal() {
   // Store State
   const { isHomeSearchActive } = useSelector((state) => state.search);
+  const { foodSearchResults } = useSelector((state) => state.food);
   // Store Actions
-  const { setIsHomeSearchActive } = actions;
+  const { setIsHomeSearchActive, setFoodSearchResults } = actions;
   const dispatch = useDispatch();
   const setIsSearchActive = (txt) => dispatch(setIsHomeSearchActive(txt));
+  const setFoodSearchRes = (txt) => dispatch(setFoodSearchResults(txt));
 
   const [text, onChangeText] = useState("");
 
@@ -29,7 +30,9 @@ export default function HomeSearchModal() {
         ...styles.wrapper,
         ...inlineStyle.wrapper,
       }}>
-      <Txt>Hello</Txt>
+      <ScrollView style={styles.container}>
+        <Txt>Hello</Txt>
+      </ScrollView>
     </View>
   );
 }

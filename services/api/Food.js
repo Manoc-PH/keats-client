@@ -4,8 +4,10 @@ import { authAxios } from "@app/common/utils/axios";
 // Endpoint
 import { FOOD_ENDPOINTS } from "@app/common/constants/APIUrls";
 
-export const GetSearchFood = async () => {
-  const response = await authAxios.get(FOOD_ENDPOINTS.GET_SEARCH_FOOD);
+export const GetSearchFood = async (search_term) => {
+  const response = await authAxios.get(FOOD_ENDPOINTS.GET_SEARCH_FOOD, {
+    params: { search_term },
+  });
   return response?.data;
 };
 
