@@ -41,5 +41,8 @@ export const styles = StyleSheet.create({
     marginRight: SPACING.Small,
   },
   //
-  btnContainer: { padding: SPACING.Regular },
+  btnContainer: {
+    padding: SPACING.Regular,
+    paddingHorizontal: SPACING.Regular,
+  },
 });
