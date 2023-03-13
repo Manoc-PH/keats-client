@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { KeyboardAvoidingView } from "react-native";
+import { KeyboardAvoidingView, Platform } from "react-native";
 
 import { styles } from "./styles";
 import { TextInput } from "@app/views/components";

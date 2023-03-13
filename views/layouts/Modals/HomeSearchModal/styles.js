@@ -12,6 +12,7 @@ export const styles = StyleSheet.create({
     position: "absolute",
     top: 0,
   },
+  scrollContainer: { height: "100%", width: "100%" },
   container: {
     paddingBottom: SPACING.Large,
     paddingHorizontal: SPACING.Medium,

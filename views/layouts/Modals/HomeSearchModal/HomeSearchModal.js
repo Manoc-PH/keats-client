@@ -20,16 +20,17 @@ export default function HomeSearchModal() {
     wrapper: { display: isHomeSearchActive ? "flex" : "none" },
   });
 
+  // Functions
+  function handlePress() {
+    console.log("Pressed");
+  }
+
   // UseEffects
   useEffect(() => {
     if (foodSearchResults) setResults(foodSearchResults);
   }, [foodSearchResults]);
   return (
-    <View
-      style={{
-        ...styles.wrapper,
-        ...inlineStyle.wrapper,
-      }}>
+    <View style={{ ...styles.wrapper, ...inlineStyle.wrapper }}>
       <ScrollView style={styles.container} overScrollMode='never'>
         {/* TODO add previously queried items */}
         {results &&
@@ -41,6 +42,7 @@ export default function HomeSearchModal() {
               name_ph={item.name_ph}
               name_brand={item.name_brand}
               thumbnail_link={item.thumbnail_link}
+              onPress={handlePress}
             />
           ))}
         {isFoodSearchLoading &&
