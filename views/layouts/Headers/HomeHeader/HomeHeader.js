@@ -55,6 +55,11 @@ export default function HomeHeader() {
   function fetchFoodSearch() {
     if (text) getSearchFood(text);
   }
+  function handleCancel() {
+    setIsSearchActive(false);
+    setFoodSearchRes();
+    onChangeText("");
+  }
 
   // Custom Hooks
   useDebounce(fetchFoodSearch, [text], 800);
@@ -127,7 +132,7 @@ export default function HomeHeader() {
               style={styles.btnContainer}
               variant={BTN_VARIANTS.transparent}
               size={SIZES.Tiny}
-              onPress={() => setIsSearchActive(false)}>
+              onPress={handleCancel}>
               <Body>Cancel</Body>
             </Button>
           )}

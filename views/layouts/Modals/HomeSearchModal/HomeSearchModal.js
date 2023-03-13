@@ -28,6 +28,7 @@ export default function HomeSearchModal() {
   // UseEffects
   useEffect(() => {
     if (foodSearchResults) setResults(foodSearchResults);
+    else setResults();
   }, [foodSearchResults]);
   return (
     <View style={{ ...styles.wrapper, ...inlineStyle.wrapper }}>
