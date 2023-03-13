@@ -34,6 +34,7 @@ export default function HomeSearchModal() {
     <View style={{ ...styles.wrapper, ...inlineStyle.wrapper }}>
       <ScrollView style={styles.container} overScrollMode='never'>
         {/* TODO add previously queried items */}
+        {/* TODO add no results component*/}
         {results &&
           !isFoodSearchLoading &&
           results.map((item) => (

@@ -22,3 +22,6 @@ export { default as HomeSearchModal } from "./Modals/HomeSearchModal";
 // Forms
 export { default as LoginForm } from "./Forms/LoginForm";
 export { default as SignupForm } from "./Forms/SignupForm";
+
+// Page Wrappers
+export { default as Splash } from "./pageWrappers/Splash";

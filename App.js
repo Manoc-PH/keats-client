@@ -14,7 +14,7 @@ import {
 import MainNavigator from "@app/core/navigation/main";
 import AppStoreProvider from "@app/core/providers/AppStoreProvider";
 import AppReactQueryProvider from "@app/core/providers/AppReactQueryProvider";
-import { Splash } from "./views/screens";
+import { Splash } from "./views/layouts";
 import { SetupDB } from "./services/db";
 
 export default function App() {

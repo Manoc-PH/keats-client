@@ -12,7 +12,7 @@ import { useClearCredentials, useReadCredentials } from "@app/core/hooks/db";
 
 // Utils
 import { authAxios } from "@app/common/utils/axios";
-import { Splash } from "@app/views/screens";
+import { Splash } from "@app/views/layouts";
 import AuthenticatedScreens from "./authenticated";
 import UnauthenticatedScreens from "./unauthenticated";
 

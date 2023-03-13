@@ -8,6 +8,3 @@ export { default as Recipes } from "./mainTabs/Recipes";
 // Auth Screens
 export { default as Login } from "./authScreens/Login";
 export { default as Signup } from "./authScreens/Signup";
-
-// Page Wrappers
-export { default as Splash } from "./pageWrappers/Splash";
