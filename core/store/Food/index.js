@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   foodSearchResults: null,
+  isFoodSearchLoading: null,
 };
 
 const store = createSlice({
@@ -11,6 +12,10 @@ const store = createSlice({
     setFoodSearchResults: (state, { payload }) => {
       if (payload) state.foodSearchResults = payload;
       else state.foodSearchResults = null;
+    },
+    setIsFoodSearchLoading: (state, { payload }) => {
+      if (payload) state.isFoodSearchLoading = payload;
+      else state.isFoodSearchLoading = false;
     },
   },
 });

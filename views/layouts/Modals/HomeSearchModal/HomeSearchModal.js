@@ -1,37 +1,52 @@
-import { useState } from "react";
-import { View, Modal, ScrollView, StyleSheet } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { View, ScrollView, StyleSheet } from "react-native";
+import { useSelector } from "react-redux";
 
-// Store
-import { actions } from "@app/core/store";
-
-import { Txt } from "@app/views/components";
+import { FoodCard, Txt } from "@app/views/components";
 
 import { styles } from "./styles";
+import { DUMMY_SERACH_DATA } from "@app/common/constants/dummyData";
 
 export default function HomeSearchModal() {
   // Store State
   const { isHomeSearchActive } = useSelector((state) => state.search);
-  const { foodSearchResults } = useSelector((state) => state.food);
-  // Store Actions
-  const { setIsHomeSearchActive, setFoodSearchResults } = actions;
-  const dispatch = useDispatch();
-  const setIsSearchActive = (txt) => dispatch(setIsHomeSearchActive(txt));
-  const setFoodSearchRes = (txt) => dispatch(setFoodSearchResults(txt));
+  const { foodSearchResults, isFoodSearchLoading } = useSelector(
+    (state) => state.food
+  );
 
-  const [text, onChangeText] = useState("");
-
+  // Local State
+  const [results, setResults] = useState();
   const inlineStyle = StyleSheet.create({
     wrapper: { display: isHomeSearchActive ? "flex" : "none" },
   });
+
+  // UseEffects
+  useEffect(() => {
+    if (foodSearchResults) setResults(foodSearchResults);
+  }, [foodSearchResults]);
   return (
     <View
       style={{
         ...styles.wrapper,
         ...inlineStyle.wrapper,
       }}>
-      <ScrollView style={styles.container}>
-        <Txt>Hello</Txt>
+      <ScrollView style={styles.container} overScrollMode='never'>
+        {/* TODO add previously queried items */}
+        {results &&
+          !isFoodSearchLoading &&
+          results.map((item) => (
+            <FoodCard
+              key={item.id}
+              name={item.name}
+              name_ph={item.name_ph}
+              name_brand={item.name_brand}
+              thumbnail_link={item.thumbnail_link}
+            />
+          ))}
+        {isFoodSearchLoading &&
+          DUMMY_SERACH_DATA.map((item) => (
+            <FoodCard key={item.id} isLoading={true} />
+          ))}
       </ScrollView>
     </View>
   );

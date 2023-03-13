@@ -25,3 +25,6 @@ export { default as SliderInput } from "./Input/SliderInput";
 
 // Skeletons
 export { default as TextSkeleton } from "./Skeleton/TextSkeleton";
+
+// Cards
+export { default as FoodCard } from "./Cards/FoodCard";

@@ -8,11 +8,13 @@ export const styles = StyleSheet.create({
     zIndex: ZINDEX.modal,
     elevation: ZINDEX.modal,
     width: Dimensions.get("window").width,
-    height: Dimensions.get("window").height - 130,
+    height: Dimensions.get("window").height - 138,
     position: "absolute",
     top: 0,
   },
   container: {
-    padding: SPACING.Medium,
+    paddingBottom: SPACING.Large,
+    paddingHorizontal: SPACING.Medium,
+    marginBottom: SPACING.Regular,
   },
 });

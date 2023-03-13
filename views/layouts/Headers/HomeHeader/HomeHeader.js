@@ -25,17 +25,20 @@ import themeColors from "@app/common/theme";
 
 import { styles } from "./styles";
 
-export default function HomeHeader({ navigation }) {
+export default function HomeHeader() {
   // Store State
   const { isHomeSearchActive } = useSelector((state) => state.search);
   // Store Actions
-  const { setIsHomeSearchActive } = actions;
+  const {
+    setIsHomeSearchActive,
+    setFoodSearchResults,
+    setIsFoodSearchLoading,
+  } = actions;
   const dispatch = useDispatch();
-  const setIsSearchActive = (value) => {
-    dispatch(setIsHomeSearchActive(value));
-    if (value === true) navigation.navigate("Home", { screen: "HomeSearch" });
-    else navigation.navigate("Home", { screen: "HomeDefault" });
-  };
+  const setFoodSearchLoading = (value) =>
+    dispatch(setIsFoodSearchLoading(value));
+  const setIsSearchActive = (value) => dispatch(setIsHomeSearchActive(value));
+  const setFoodSearchRes = (value) => dispatch(setFoodSearchResults(value));
 
   // Hooks
   const {
@@ -58,14 +61,17 @@ export default function HomeHeader({ navigation }) {
 
   // UseEffects
   useEffect(() => {
-    if (isGetSearchFoodSuccess) console.log(isGetSearchFoodSuccess);
+    if (isGetSearchFoodSuccess) setFoodSearchRes(getSearchFoodData);
   }, [getSearchFoodData]);
+  useEffect(() => {
+    setFoodSearchLoading(isGetSearchFoodLoading);
+  }, [isGetSearchFoodLoading]);
+
   const inlineStyle = StyleSheet.create({
     btnContainer: {
       padding: isHomeSearchActive ? SPACING.Small : SPACING.Regular,
     },
   });
-
   return (
     <SafeAreaView style={styles.wrapper}>
       <View style={styles.container}>
