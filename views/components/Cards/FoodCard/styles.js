@@ -20,6 +20,14 @@ export const styles = StyleSheet.create({
     backgroundColor: themeColors.backgroundLight,
     maxWidth: SPACING.Huge * 1.5,
     width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  image: {
+    width: "100%",
+    height: "100%",
+    resizeMode: "cover",
+    borderRadius: 50,
   },
   nameContainer: {
     justifyContent: "center",

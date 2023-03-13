@@ -1,6 +1,7 @@
-import { FONT_SIZES } from "@app/common/constants/styles";
 import React from "react";
-import { View } from "react-native";
+import { ImageIcon } from "@app/assets/icons";
+import { FONT_SIZES } from "@app/common/constants/styles";
+import { Image, View } from "react-native";
 
 // Basic
 import Caption1 from "../../Basic/Texts/Caption1";
@@ -15,26 +16,33 @@ export default function FoodCard(props) {
 
   return (
     <View style={styles.wrapper}>
-      <View style={styles.imageContainer}></View>
+      <View style={styles.imageContainer}>
+        {!thumbnail_link && <ImageIcon width={20} />}
+        {thumbnail_link && (
+          <Image style={styles.image} source={{ uri: thumbnail_link }} />
+        )}
+      </View>
       <View style={styles.nameContainer}>
-        {isLoading ? (
+        {isLoading && (
           <View style={styles.titleSkeleton}>
             <TextSkeleton
               style={styles.skeleton}
               fontSize={FONT_SIZES.Medium}
             />
           </View>
-        ) : (
+        )}
+        {isLoading && (
+          <View style={styles.subHeadlineSkeleton}>
+            <TextSkeleton fontSize={FONT_SIZES.Small} />
+          </View>
+        )}
+        {!isLoading && (
           <Caption1 style={styles.title}>
             {name}
             {name_ph && ` - ${name_ph}`}
           </Caption1>
         )}
-        {isLoading ? (
-          <View style={styles.subHeadlineSkeleton}>
-            <TextSkeleton fontSize={FONT_SIZES.Small} />
-          </View>
-        ) : (
+        {!isLoading && (
           <Caption2 style={styles.subtitle}>{name_brand}</Caption2>
         )}
       </View>

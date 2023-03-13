@@ -11,3 +11,6 @@ export { default as ArrowRightIcon } from "./arrowRight";
 // Header Icons
 export { default as SearchIcon } from "./search";
 export { default as IntakeIcon } from "./intake";
+
+//
+export { default as ImageIcon } from "./image";
