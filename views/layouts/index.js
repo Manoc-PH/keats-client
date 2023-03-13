@@ -25,3 +25,4 @@ export { default as SignupForm } from "./Forms/SignupForm";
 
 // Page Wrappers
 export { default as Splash } from "./pageWrappers/Splash";
+export { default as ScrollPage } from "./pageWrappers/ScrollPage";

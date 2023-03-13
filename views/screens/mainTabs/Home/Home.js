@@ -12,6 +12,7 @@ import {
   CalorieGoalProgress,
   HomeSearchModal,
   Loader,
+  ScrollPage,
 } from "@app/views/layouts";
 
 // Hooks
@@ -55,18 +56,13 @@ export default function Home() {
   }, [getDailyNutrientsData, getAccountVitalsData]);
   return (
     <>
-      <ScrollView
-        style={styles.wrapper}
-        contentContainerStyle={{
-          alignItems: "center",
-          justifyContent: "flex-start",
-        }}>
+      <ScrollPage>
         <View style={styles.container}>
           <NutrientSummary />
           <CurrentDietCard />
           <CalorieGoalProgress />
         </View>
-      </ScrollView>
+      </ScrollPage>
       {/* MODALS */}
       <HomeSearchModal />
     </>
