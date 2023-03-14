@@ -14,7 +14,7 @@ import {
   Account,
   FoodDetails,
 } from "@app/views/screens";
-import { HomeHeader } from "@app/views/layouts";
+import { FoodDetailsHeader, HomeHeader } from "@app/views/layouts";
 import { NavigationContainer } from "@react-navigation/native";
 
 const Tab = createBottomTabNavigator();
@@ -31,7 +31,7 @@ const HomeNavigator = () => {
         options={{
           gestureDirection: "vertical",
           gestureEnabled: true,
-          header: HomeHeader,
+          header: FoodDetailsHeader,
           headerMode: "screen",
         }}
       />

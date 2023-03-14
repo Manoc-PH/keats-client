@@ -14,7 +14,7 @@ import { FoodCard, Txt } from "@app/views/components";
 
 import { styles } from "./styles";
 
-export default function HomeSearchModal(props) {
+export default function HomeSearchModal() {
   // Hooks
   const navigation = useNavigation();
 
