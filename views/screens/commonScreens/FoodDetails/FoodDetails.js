@@ -5,64 +5,51 @@ import { useDispatch, useSelector } from "react-redux";
 // Store
 import { actions } from "@app/core/store";
 
-import { styles } from "./styles";
+// Hooks
+import { useGetFoodDetails } from "@app/core/hooks/api";
+
+// Layouts
 import {
   NutrientSummary,
   CurrentDietCard,
   CalorieGoalProgress,
-  HomeSearchModal,
-  Loader,
   ScrollPage,
 } from "@app/views/layouts";
 
-// Hooks
-import { useGetDailyNutrients, useGetAccountVitals } from "@app/core/hooks/api";
+import { styles } from "./styles";
 
 export default function FoodDetails() {
   // Store State
-  const { dailyNutrients } = useSelector((state) => state.tracker);
-  const { accountVitals } = useSelector((state) => state.account);
+  const { foodDetails, selectedFoodID } = useSelector((state) => state.food);
 
   // Store Actions
-  const {
-    setDailyNutrients: setDailyNutrientsState,
-    setAccountVitals: setAccountVitalsState,
-  } = actions;
+  const { setFoodDetails: setFoodDetail } = actions;
   const dispatch = useDispatch();
-  const setDailyNutrients = (v) => dispatch(setDailyNutrientsState(v));
-  const setAccountVitals = (v) => dispatch(setAccountVitalsState(v));
+  const setFoodDetails = (v) => dispatch(setFoodDetail(v));
 
   // Hooks
   const {
-    getDailyNutrients,
-    getDailyNutrientsData,
-    isGetDailyNutrientsLoading,
-    isGetDailyNutrientsSuccess,
-  } = useGetDailyNutrients();
-  const {
-    getAccountVitals,
-    getAccountVitalsData,
-    isGetAccountVitalsLoading,
-    isGetAccountVitalsSuccess,
-  } = useGetAccountVitals();
+    getFoodDetails,
+    getFoodDetailsData,
+    isGetFoodDetailsLoading,
+    isGetFoodDetailsSuccess,
+  } = useGetFoodDetails();
 
   useEffect(() => {
-    if (!dailyNutrients) getDailyNutrients();
-    if (!accountVitals) getAccountVitals();
-  }, []);
+    if (selectedFoodID) {
+      if (!foodDetails || foodDetails?.id !== selectedFoodID)
+        getFoodDetails(selectedFoodID);
+    }
+  }, [selectedFoodID]);
   useEffect(() => {
-    if (isGetDailyNutrientsSuccess) setDailyNutrients(getDailyNutrientsData);
-    if (isGetAccountVitalsSuccess) setAccountVitals(getAccountVitalsData);
-  }, [getDailyNutrientsData, getAccountVitalsData]);
+    console.log(getFoodDetailsData);
+    if (isGetFoodDetailsSuccess) setFoodDetails(getFoodDetailsData);
+  }, [getFoodDetailsData]);
   return (
     <>
       <ScrollPage>
-        <View style={styles.container}>
-          <NutrientSummary />
-          <CurrentDietCard />
-          <CalorieGoalProgress />
-        </View>
-      </ScrollPage> 
+        <View style={styles.container}>{/* <NutrientSummary /> */}</View>
+      </ScrollPage>
     </>
   );
 }

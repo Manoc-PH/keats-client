@@ -1,18 +1,33 @@
 import { useEffect, useState } from "react";
 import { View, ScrollView, StyleSheet } from "react-native";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
 
+// Constants
+import { DUMMY_SERACH_DATA } from "@app/common/constants/dummyData";
+
+// Store
+import { actions } from "@app/core/store";
+
+// Components
 import { FoodCard, Txt } from "@app/views/components";
 
 import { styles } from "./styles";
-import { DUMMY_SERACH_DATA } from "@app/common/constants/dummyData";
 
-export default function HomeSearchModal() {
+export default function HomeSearchModal(props) {
+  // Hooks
+  const navigation = useNavigation();
+
   // Store State
   const { isHomeSearchActive } = useSelector((state) => state.search);
   const { foodSearchResults, isFoodSearchLoading } = useSelector(
     (state) => state.food
   );
+
+  // Store Actions
+  const { setSelectedFoodID: setSelectedFoodid } = actions;
+  const dispatch = useDispatch();
+  const setSelectedFoodID = (v) => dispatch(setSelectedFoodid(v));
 
   // Local State
   const [results, setResults] = useState();
@@ -21,8 +36,9 @@ export default function HomeSearchModal() {
   });
 
   // Functions
-  function handlePress() {
-    console.log("Pressed");
+  function handlePress(id) {
+    setSelectedFoodID(id);
+    navigation.navigate("Home", { screen: "FoodDetails" });
   }
 
   // UseEffects
@@ -44,7 +60,9 @@ export default function HomeSearchModal() {
               name_ph={item.name_ph}
               name_brand={item.name_brand}
               thumbnail_link={item.thumbnail_link}
-              onPress={handlePress}
+              onPress={() => {
+                handlePress(item.id);
+              }}
             />
           ))}
         {isFoodSearchLoading &&

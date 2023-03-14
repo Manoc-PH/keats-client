@@ -11,7 +11,9 @@ export const GetSearchFood = async (search_term) => {
   return response?.data;
 };
 
-export const GetFoodDetails = async () => {
-  const response = await authAxios.get(FOOD_ENDPOINTS.GET_FOOD_DETAILS);
+export const GetFoodDetails = async (food_id) => {
+  const response = await authAxios.get(FOOD_ENDPOINTS.GET_FOOD_DETAILS, {
+    params: { food_id },
+  });
   return response?.data;
 };

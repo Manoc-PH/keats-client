@@ -6,8 +6,15 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ThemeColors from "@app/common/theme";
 import { MainTabIconsMapping } from "@app/common/constants/icons";
 
-import { Home, Help, Add, Recipes, Account } from "@app/views/screens";
-import { HomeHeader, HomeSearchModal } from "@app/views/layouts";
+import {
+  Home,
+  Help,
+  Add,
+  Recipes,
+  Account,
+  FoodDetails,
+} from "@app/views/screens";
+import { HomeHeader } from "@app/views/layouts";
 import { NavigationContainer } from "@react-navigation/native";
 
 const Tab = createBottomTabNavigator();
@@ -18,11 +25,16 @@ const HomeNavigator = () => {
     <Stack.Navigator
       screenOptions={{ header: HomeHeader, headerMode: "screen" }}>
       <Stack.Screen name='HomeDefault' component={Home} />
-      {/* <Stack.Screen
-        name='HomeSearch'
-        component={HomeSearchModal}
-        options={{ gestureDirection: "vertical", gestureEnabled: false }}
-      /> */}
+      <Stack.Screen
+        name='FoodDetails'
+        component={FoodDetails}
+        options={{
+          gestureDirection: "vertical",
+          gestureEnabled: true,
+          header: HomeHeader,
+          headerMode: "screen",
+        }}
+      />
     </Stack.Navigator>
   );
 };
