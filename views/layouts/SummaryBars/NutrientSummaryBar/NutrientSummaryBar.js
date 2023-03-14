@@ -14,11 +14,12 @@ import {
 import { styles } from "./styles";
 import { useEffect, useState } from "react";
 
-export default function NutrientSummaryBars(props) {
+export default function NutrientSummaryBar(props) {
   const { macros, loading } = props;
 
   // Local states
   const [macroState, setMacroState] = useState([
+    { label: "kcal", value: 0, valueMax: 0, amountUnit: "" },
     { label: "protein", value: 0, valueMax: 0, amountUnit: "g" },
     { label: "fats", value: 0, valueMax: 0, amountUnit: "g" },
     { label: "carbs", value: 0, valueMax: 0, amountUnit: "g" },

@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   foodSearchResults: null,
   isFoodSearchLoading: null,
+  foodNutrients: null,
 };
 
 const store = createSlice({
@@ -16,6 +17,10 @@ const store = createSlice({
     setIsFoodSearchLoading: (state, { payload }) => {
       if (payload) state.isFoodSearchLoading = payload;
       else state.isFoodSearchLoading = false;
+    },
+    setFoodNutrients: (state, { payload }) => {
+      if (payload) state.foodNutrients = payload;
+      else state.foodNutrients = false;
     },
   },
 });

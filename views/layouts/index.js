@@ -1,10 +1,11 @@
 // Progress bars
 export { default as CalorieSummaryBar } from "./SummaryBars/CalorieSummaryBar";
 export { default as MacroSummaryBars } from "./SummaryBars/MacroSummaryBars";
+export { default as NutrientSummaryBar } from "./SummaryBars/NutrientSummaryBar";
 
 // Home
 export { default as Loader } from "./ScreenLayouts/Loader";
-export { default as MacroSummary } from "./ScreenLayouts/Home/NutrientSummary";
+export { default as MacroSummary } from "./ScreenLayouts/Home/MacroSummary";
 export { default as CalorieGoalProgress } from "./ScreenLayouts/Home/CalorieGoalProgress";
 
 // Cards
