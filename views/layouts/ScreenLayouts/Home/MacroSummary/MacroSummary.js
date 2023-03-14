@@ -6,7 +6,7 @@ import CalorieSummaryBar from "@app/views/layouts/SummaryBars/CalorieSummaryBar"
 import MacroSummaryBars from "@app/views/layouts/SummaryBars/MacroSummaryBars";
 import { styles } from "./styles";
 
-export default function NutrientSummary() {
+export default function MacroSummary() {
   // Store State
   const { dailyNutrients } = useSelector((state) => state.tracker);
 

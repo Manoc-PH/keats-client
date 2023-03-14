@@ -4,7 +4,7 @@ export { default as MacroSummaryBars } from "./SummaryBars/MacroSummaryBars";
 
 // Home
 export { default as Loader } from "./ScreenLayouts/Loader";
-export { default as NutrientSummary } from "./ScreenLayouts/Home/NutrientSummary";
+export { default as MacroSummary } from "./ScreenLayouts/Home/NutrientSummary";
 export { default as CalorieGoalProgress } from "./ScreenLayouts/Home/CalorieGoalProgress";
 
 // Cards

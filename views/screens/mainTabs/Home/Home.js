@@ -7,7 +7,7 @@ import { actions } from "@app/core/store";
 
 import { styles } from "./styles";
 import {
-  NutrientSummary,
+  MacroSummary,
   CurrentDietCard,
   CalorieGoalProgress,
   HomeSearchModal,
@@ -58,7 +58,7 @@ export default function Home() {
     <>
       <ScrollPage>
         <View style={styles.container}>
-          <NutrientSummary />
+          <MacroSummary />
           <CurrentDietCard />
           <CalorieGoalProgress />
         </View>
