@@ -17,6 +17,9 @@ import {
   FoodName,
 } from "@app/views/layouts";
 
+// Components
+import { Image } from "@app/views/components";
+
 import { styles } from "./styles";
 
 export default function FoodDetails() {
@@ -43,13 +46,14 @@ export default function FoodDetails() {
     }
   }, [selectedFoodID]);
   useEffect(() => {
-    console.log(getFoodDetailsData);
     if (isGetFoodDetailsSuccess) setFoodDetails(getFoodDetailsData);
   }, [getFoodDetailsData]);
   return (
     <>
       <ScrollPage style={styles.wrapper}>
-        <View style={styles.imageWrapper}></View>
+        <View style={styles.imageWrapper}>
+          <Image src={foodDetails?.thumbnail_image_link} />
+        </View>
         <View style={styles.container}>
           <FoodName />
           <NutrientSummary />

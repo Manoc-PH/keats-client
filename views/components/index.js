@@ -6,6 +6,7 @@ export { default as HorizontalProgressBar } from "./ProgressBars/HorizontalProgr
 export { default as Txt } from "./Basic/Txt";
 export { default as Card } from "./Basic/Card";
 export { default as Button } from "./Basic/Button";
+export { default as Image } from "./Basic/Image";
 // Texts
 export { default as Body } from "./Basic/Texts/Body";
 export { default as Caption1 } from "./Basic/Texts/Caption1";
