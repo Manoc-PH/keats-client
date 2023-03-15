@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useLayoutEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -15,12 +15,22 @@ import {
   FoodDetails,
 } from "@app/views/screens";
 import { FoodDetailsHeader, HomeHeader } from "@app/views/layouts";
-import { NavigationContainer } from "@react-navigation/native";
+import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
-const HomeNavigator = () => {
+const HomeNavigator = ({ navigation, route }) => {
+  useLayoutEffect(() => {
+    const routeName = getFocusedRouteNameFromRoute(route);
+    if (routeName === "FoodDetails") {
+      navigation.setOptions({
+        tabBarStyle: { height: 0, width: 0, opacity: 0 },
+      });
+    } else {
+      navigation.setOptions({ tabBarStyle: {} });
+    }
+  }, [navigation, route]);
   return (
     <Stack.Navigator
       screenOptions={{ header: HomeHeader, headerMode: "screen" }}>
@@ -63,7 +73,12 @@ export default function AuthenticatedScreens() {
         <Tab.Screen
           name='Home'
           component={HomeNavigator}
-          options={{ headerShown: false }}
+          options={{
+            headerShown: false,
+            tabBarStyle: ({ route }) => {
+              console.log(route);
+            },
+          }}
         />
         <Tab.Screen
           options={{ headerShown: false }}

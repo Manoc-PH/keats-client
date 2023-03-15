@@ -52,6 +52,7 @@ export default function FoodDetails() {
     <>
       <ScrollPage style={styles.wrapper}>
         <View style={styles.imageWrapper}>
+          {/* TODO Add proper images, not just the thumbnail */}
           <Image src={foodDetails?.thumbnail_image_link} />
         </View>
         <View style={styles.container}>
