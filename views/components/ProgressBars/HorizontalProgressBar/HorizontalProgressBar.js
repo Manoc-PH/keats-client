@@ -7,7 +7,7 @@ function HorizontalProgressBar(props) {
 
   const inlineStyle = StyleSheet.create({
     foreground: {
-      width: `${progress}%`,
+      width: `${progress > 100 ? 100 : progress}%`,
       height: thickness || SPACING.Tiny * PixelRatio.getFontScale(),
       borderRadius: 4,
       backgroundColor: foregroundColor,
