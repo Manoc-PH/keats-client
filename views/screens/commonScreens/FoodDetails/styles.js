@@ -4,15 +4,19 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   wrapper: {
-    flex: 1,
-    width: "100%",
-    backgroundColor: themeColors.background,
-    padding: SPACING.Medium,
-    position: "relative",
+    paddingHorizontal: 0,
+    paddingTop: 0,
   },
   container: {
     flex: 1,
     width: "100%",
     marginBottom: SPACING.Huge,
+    paddingHorizontal: SPACING.Medium,
+    paddingTop: SPACING.Medium,
+  },
+  imageWrapper: {
+    aspectRatio: 1,
+    width: "100%",
+    backgroundColor: themeColors.backgroundLight,
   },
 });

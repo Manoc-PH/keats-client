@@ -9,6 +9,6 @@ export const styles = StyleSheet.create({
   },
   container: {
     width: "100%",
-    paddingTop: SPACING.Huge,
+    paddingTop: SPACING.Medium,
   },
 });

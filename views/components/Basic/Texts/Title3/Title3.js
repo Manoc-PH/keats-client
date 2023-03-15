@@ -8,7 +8,7 @@ export default function Title3(props) {
     main: {
       ...style,
       fontFamily: style?.fontWeight ? style.fontWeight : FONT_WEIGHTS.SemiBold,
-      fontSize: style?.fontSize ? style.fontSize : FONT_SIZES.Medium,
+      fontSize: style?.fontSize ? style.fontSize : FONT_SIZES.Regular,
       color: style?.color ? style.color : themeColors.secondary,
     },
   });

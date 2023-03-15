@@ -8,6 +8,10 @@ export { default as Loader } from "./ScreenLayouts/Loader";
 export { default as MacroSummary } from "./ScreenLayouts/Home/MacroSummary";
 export { default as CalorieGoalProgress } from "./ScreenLayouts/Home/CalorieGoalProgress";
 
+// Food
+export { default as NutrientSummary } from "./ScreenLayouts/Food/NutrientSummary";
+export { default as FoodName } from "./ScreenLayouts/Food/FoodName";
+
 // Cards
 export { default as CurrentDietCard } from "./Cards/CurrentDietCard";
 

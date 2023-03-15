@@ -9,7 +9,7 @@ import { styles } from "./styles";
 
 export default function NutrientSummary() {
   // Store State
-  const { foodNutrients } = useSelector((state) => state.food);
+  const { foodDetails } = useSelector((state) => state.food);
   const { dailyNutrients } = useSelector((state) => state.tracker);
 
   // Local State
@@ -19,26 +19,26 @@ export default function NutrientSummary() {
   function formatMacros() {
     const macros = [];
     macros.push({
-      label: "kcal",
-      value: dailyNutrients.calories + foodNutrients.calories,
-      valueMax: Math.floor(dailyNutrients.max_carbs),
+      label: "calories",
+      value: dailyNutrients.calories + foodDetails.food_nutrients.calories,
+      valueMax: Math.floor(dailyNutrients.max_calories),
       amountUnit: "",
     });
     macros.push({
       label: "carbs",
-      value: dailyNutrients.carbs + foodNutrients.carbs,
+      value: dailyNutrients.carbs + foodDetails.food_nutrients.carbs,
       valueMax: Math.floor(dailyNutrients.max_carbs),
       amountUnit: "g",
     });
     macros.push({
       label: "fats",
-      value: dailyNutrients.fats + foodNutrients.fats,
+      value: dailyNutrients.fats + foodDetails.food_nutrients.fats,
       valueMax: Math.floor(dailyNutrients.max_fats),
       amountUnit: "g",
     });
     macros.push({
       label: "protein",
-      value: dailyNutrients.protein + foodNutrients.protein,
+      value: dailyNutrients.protein + foodDetails.food_nutrients.protein,
       valueMax: Math.floor(dailyNutrients.max_protein),
       amountUnit: "g",
     });
@@ -47,17 +47,10 @@ export default function NutrientSummary() {
 
   // UseEffects
   useEffect(() => {
-    if (foodNutrients) formatMacros();
-  }, [foodNutrients]);
+    if (foodDetails) formatMacros();
+  }, [foodDetails]);
   return (
     <View style={styles.wrapper}>
-      <View style={styles.container}>
-        <CalorieSummaryBar
-          loading={!foodNutrients}
-          calories={foodNutrients?.calories || 0}
-          maxCalories={foodNutrients?.max_calories || 0}
-        />
-      </View>
       <View style={styles.container}>
         <NutrientSummaryBar
           loading={!nutrientSummary}

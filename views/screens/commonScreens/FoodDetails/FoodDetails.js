@@ -14,6 +14,7 @@ import {
   CurrentDietCard,
   CalorieGoalProgress,
   ScrollPage,
+  FoodName,
 } from "@app/views/layouts";
 
 import { styles } from "./styles";
@@ -47,8 +48,12 @@ export default function FoodDetails() {
   }, [getFoodDetailsData]);
   return (
     <>
-      <ScrollPage>
-        <View style={styles.container}>{/* <NutrientSummary /> */}</View>
+      <ScrollPage style={styles.wrapper}>
+        <View style={styles.imageWrapper}></View>
+        <View style={styles.container}>
+          <FoodName />
+          <NutrientSummary />
+        </View>
       </ScrollPage>
     </>
   );
