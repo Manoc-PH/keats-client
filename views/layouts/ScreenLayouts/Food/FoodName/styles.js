@@ -10,4 +10,7 @@ export const styles = StyleSheet.create({
   container: {},
   title: { color: themeColors.secondary },
   brandname: { color: themeColors.primary, fontWeight: FONT_WEIGHTS.Medium },
+
+  titleSkeleton: { marginBottom: SPACING.Small },
+  brandnameSkeleton: { width: "40%" },
 });

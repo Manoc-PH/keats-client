@@ -3,7 +3,8 @@ import { View } from "react-native";
 import { useSelector } from "react-redux";
 
 import { styles } from "./styles";
-import { Caption2, Title3 } from "@app/views/components";
+import { Caption2, TextSkeleton, Title3 } from "@app/views/components";
+import { FONT_SIZES } from "@app/common/constants/styles";
 
 export default function FoodName() {
   // Store State
@@ -21,6 +22,19 @@ export default function FoodName() {
             <Caption2 style={styles.brandname}>
               {foodDetails.name_brand}
             </Caption2>
+          </>
+        )}
+        {!foodDetails && (
+          <>
+            <View style={styles.titleSkeleton}>
+              <TextSkeleton fontSize={FONT_SIZES.Medium} />
+            </View>
+            <View style={styles.titleSkeleton}>
+              <TextSkeleton fontSize={FONT_SIZES.Medium} />
+            </View>
+            <View style={styles.brandnameSkeleton}>
+              <TextSkeleton fontSize={FONT_SIZES.Tiny} />
+            </View>
           </>
         )}
       </View>
