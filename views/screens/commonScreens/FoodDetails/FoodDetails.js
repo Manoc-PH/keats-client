@@ -15,6 +15,7 @@ import {
   CalorieGoalProgress,
   ScrollPage,
   FoodName,
+  ConsumeFoodFooter,
 } from "@app/views/layouts";
 
 // Components
@@ -60,6 +61,7 @@ export default function FoodDetails() {
           <NutrientSummary />
         </View>
       </ScrollPage>
+      <ConsumeFoodFooter />
     </>
   );
 }

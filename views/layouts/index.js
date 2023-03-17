@@ -22,6 +22,9 @@ export { default as CalorieGraph } from "./Graphs/CalorieGraph";
 export { default as HomeHeader } from "./Headers/HomeHeader";
 export { default as FoodDetailsHeader } from "./Headers/FoodDetailsHeader";
 
+// Footers
+export { default as ConsumeFoodFooter } from "./Footers/ConsumeFoodFooter";
+
 // Modals
 export { default as HomeSearchModal } from "./Modals/HomeSearchModal";
 
