@@ -62,7 +62,8 @@ export default function HomeHeader() {
   }
 
   // Custom Hooks
-  useDebounce(fetchFoodSearch, [text], 800);
+  // TODO Switch loading state to true when typing
+  useDebounce(fetchFoodSearch, [text], 400);
 
   // UseEffects
   useEffect(() => {
