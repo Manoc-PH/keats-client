@@ -19,7 +19,13 @@ import {
   SPACING,
 } from "@app/common/constants/styles";
 
-import { Button, Title1, Body, TextInput } from "@app/views/components";
+import {
+  Button,
+  Title1,
+  Body,
+  TextInput,
+  NumberInput,
+} from "@app/views/components";
 import { SearchIcon, IntakeIcon } from "@app/assets/icons";
 import themeColors from "@app/common/theme";
 
@@ -72,13 +78,13 @@ export default function ConsumeFoodFooter() {
   useEffect(() => {
     setFoodSearchLoading(isGetSearchFoodLoading);
   }, [isGetSearchFoodLoading]);
- 
+
   return (
     <SafeAreaView style={styles.wrapper}>
       <View style={styles.container}>
         <View style={styles.navContainer}>
           <View style={styles.searchInputContainer}>
-            <TextInput
+            <NumberInput
               onChangeText={onChangeText}
               value={text}
               onStartIconPress={() => setIsSearchActive(true)}
@@ -86,7 +92,7 @@ export default function ConsumeFoodFooter() {
           </View>
           <Button
             style={styles.btnContainer}
-            size={SIZES.Regular}
+            size={SIZES.Small}
             onPress={handleCancel}>
             Consume
           </Button>

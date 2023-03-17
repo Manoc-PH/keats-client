@@ -18,7 +18,9 @@ export const styles = StyleSheet.create({
   },
   container: {
     width: "100%",
+    height: "100%",
     paddingHorizontal: SPACING.Medium,
+    paddingVertical: SPACING.Small,
     alignItems: "stretch",
   },
   navContainer: {
@@ -28,9 +30,6 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   searchInputContainer: { flex: 1, marginRight: SPACING.Regular },
-
-  //
-  titleContainer: { paddingVertical: SPACING.Regular },
 
   //
   iconContainer: { flexDirection: "row", alignItems: "center" },
@@ -48,6 +47,7 @@ export const styles = StyleSheet.create({
   },
   //
   btnContainer: {
-    padding: SPACING.Regular,
+    height: "100%",
+    alignItems: "center",
   },
 });

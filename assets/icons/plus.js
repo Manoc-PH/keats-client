@@ -1,0 +1,24 @@
+import React from "react";
+import { View } from "react-native";
+import Svg, { Path } from "react-native-svg";
+
+export default function PlusIcon(props) {
+  return (
+    <View {...props}>
+      <Svg
+        width={props.width || 15}
+        height={props.height || 15}
+        viewBox='0 0 15 15'
+        fill='none'
+        xmlns='http://www.w3.org/2000/svg'>
+        <Path
+          d='M1 7.5h13M7.5 14V1'
+          stroke='#434343'
+          strokeWidth={1.5}
+          strokeLinecap='round'
+          strokeLinejoin='round'
+        />
+      </Svg>
+    </View>
+  );
+}

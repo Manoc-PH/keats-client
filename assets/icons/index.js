@@ -15,3 +15,7 @@ export { default as IntakeIcon } from "./intake";
 
 //
 export { default as ImageIcon } from "./image";
+
+//
+export { default as PlusIcon } from "./plus";
+export { default as MinusIcon } from "./minus";
