@@ -9,7 +9,9 @@ import { styles } from "./styles";
 
 export default function NutrientSummary() {
   // Store State
-  const { foodDetails } = useSelector((state) => state.food);
+  const { foodDetails, selectedFoodAmount } = useSelector(
+    (state) => state.food
+  );
   const { dailyNutrients } = useSelector((state) => state.tracker);
 
   // Local State
@@ -17,28 +19,39 @@ export default function NutrientSummary() {
 
   // Functions
   function formatMacros() {
+    const multiplier = selectedFoodAmount * 0.01;
     const macros = [];
     macros.push({
       label: "calories",
-      value: dailyNutrients.calories + foodDetails.food_nutrients.calories,
+      value: selectedFoodAmount
+        ? multiplier * foodDetails.food_nutrients.calories +
+          dailyNutrients.calories
+        : dailyNutrients.calories + foodDetails.food_nutrients.calories,
       valueMax: Math.floor(dailyNutrients.max_calories),
       amountUnit: "",
     });
     macros.push({
       label: "carbs",
-      value: dailyNutrients.carbs + foodDetails.food_nutrients.carbs,
+      value: selectedFoodAmount
+        ? multiplier * foodDetails.food_nutrients.carbs + dailyNutrients.carbs
+        : dailyNutrients.carbs + foodDetails.food_nutrients.carbs,
       valueMax: Math.floor(dailyNutrients.max_carbs),
       amountUnit: "g",
     });
     macros.push({
       label: "fats",
-      value: dailyNutrients.fats + foodDetails.food_nutrients.fats,
+      value: selectedFoodAmount
+        ? multiplier * foodDetails.food_nutrients.fats + dailyNutrients.fats
+        : dailyNutrients.fats + foodDetails.food_nutrients.fats,
       valueMax: Math.floor(dailyNutrients.max_fats),
       amountUnit: "g",
     });
     macros.push({
       label: "protein",
-      value: dailyNutrients.protein + foodDetails.food_nutrients.protein,
+      value: selectedFoodAmount
+        ? multiplier * foodDetails.food_nutrients.protein +
+          dailyNutrients.protein
+        : dailyNutrients.protein + foodDetails.food_nutrients.protein,
       valueMax: Math.floor(dailyNutrients.max_protein),
       amountUnit: "g",
     });
@@ -48,7 +61,7 @@ export default function NutrientSummary() {
   // UseEffects
   useEffect(() => {
     if (foodDetails) formatMacros();
-  }, [foodDetails]);
+  }, [foodDetails, selectedFoodAmount]);
   return (
     <View style={styles.wrapper}>
       <View style={styles.container}>

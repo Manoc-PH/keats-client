@@ -32,19 +32,12 @@ import themeColors from "@app/common/theme";
 import { styles } from "./styles";
 
 export default function ConsumeFoodFooter() {
-  // // Store State
-  // const { isHomeSearchActive } = useSelector((state) => state.search);
-  // // Store Actions
-  // const {
-  //   setIsHomeSearchActive,
-  //   setFoodSearchResults,
-  //   setIsFoodSearchLoading,
-  // } = actions;
-  // const dispatch = useDispatch();
-  // const setFoodSearchLoading = (value) =>
-  //   dispatch(setIsFoodSearchLoading(value));
-  // const setIsSearchActive = (value) => dispatch(setIsHomeSearchActive(value));
-  // const setFoodSearchRes = (value) => dispatch(setFoodSearchResults(value));
+  // Store State
+  const { foodDetails } = useSelector((state) => state.food);
+  // Store Actions
+  const { setSelectedFoodAmount: sfa } = actions;
+  const dispatch = useDispatch();
+  const setSelectedFoodAmount = (value) => dispatch(sfa(value));
 
   // Local State
   const [amount, setAmount] = useState(50);
@@ -59,6 +52,11 @@ export default function ConsumeFoodFooter() {
     { value: "g", label: "Grams", shortLabel: "G" },
     { value: "srvs", label: "Servings", shortLabel: "SRVS" },
   ];
+
+  // UseEffects
+  useEffect(() => {
+    setSelectedFoodAmount(amount);
+  }, [amount]);
   // TODO add support for servings
   return (
     <SafeAreaView style={styles.wrapper}>

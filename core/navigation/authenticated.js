@@ -25,7 +25,14 @@ const HomeNavigator = ({ navigation, route }) => {
     const routeName = getFocusedRouteNameFromRoute(route);
     if (routeName === "FoodDetails") {
       navigation.setOptions({
-        tabBarStyle: { height: 0, width: 0, opacity: 0 },
+        tabBarStyle: {
+          height: 0,
+          width: 0,
+          marginLeft: -500,
+          zIndex: 0,
+          elevation: 0,
+          shadowColor: "#00000000",
+        },
       });
     } else {
       navigation.setOptions({ tabBarStyle: {} });

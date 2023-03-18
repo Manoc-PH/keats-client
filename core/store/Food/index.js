@@ -5,6 +5,7 @@ const initialState = {
   isFoodSearchLoading: null,
   foodDetails: null,
   selectedFoodID: null,
+  selectedFoodAmount: null,
 };
 
 const store = createSlice({
@@ -26,6 +27,10 @@ const store = createSlice({
     setSelectedFoodID: (state, { payload }) => {
       if (payload) state.selectedFoodID = payload;
       else state.selectedFoodID = null;
+    },
+    setSelectedFoodAmount: (state, { payload }) => {
+      if (payload) state.selectedFoodAmount = payload;
+      else state.selectedFoodAmount = null;
     },
   },
 });
