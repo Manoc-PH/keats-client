@@ -17,6 +17,7 @@ import {
 
 // Hooks
 import { useGetDailyNutrients, useGetAccountVitals } from "@app/core/hooks/api";
+import moment from "moment";
 
 export default function Home() {
   // Store State
@@ -47,8 +48,14 @@ export default function Home() {
   } = useGetAccountVitals();
 
   useEffect(() => {
-    if (!dailyNutrients) getDailyNutrients();
     if (!accountVitals) getAccountVitals();
+    if (!dailyNutrients) {
+      getDailyNutrients();
+    } else if (dailyNutrients?.date_created) {
+      if (!moment().isSame(moment(dailyNutrients?.date_created), "day")) {
+        getDailyNutrients();
+      }
+    }
   }, []);
   useEffect(() => {
     if (isGetDailyNutrientsSuccess) setDailyNutrients(getDailyNutrientsData);

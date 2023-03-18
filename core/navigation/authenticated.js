@@ -28,7 +28,7 @@ const HomeNavigator = ({ navigation, route }) => {
         tabBarStyle: {
           height: 0,
           width: 0,
-          marginLeft: -500,
+          marginLeft: -5000,
           zIndex: 0,
           elevation: 0,
           shadowColor: "#00000000",
