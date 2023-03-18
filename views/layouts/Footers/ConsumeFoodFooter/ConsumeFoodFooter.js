@@ -32,68 +32,54 @@ import themeColors from "@app/common/theme";
 import { styles } from "./styles";
 
 export default function ConsumeFoodFooter() {
-  // Store State
-  const { isHomeSearchActive } = useSelector((state) => state.search);
-  // Store Actions
-  const {
-    setIsHomeSearchActive,
-    setFoodSearchResults,
-    setIsFoodSearchLoading,
-  } = actions;
-  const dispatch = useDispatch();
-  const setFoodSearchLoading = (value) =>
-    dispatch(setIsFoodSearchLoading(value));
-  const setIsSearchActive = (value) => dispatch(setIsHomeSearchActive(value));
-  const setFoodSearchRes = (value) => dispatch(setFoodSearchResults(value));
-
-  // Hooks
-  const {
-    getSearchFood,
-    getSearchFoodData,
-    isGetSearchFoodSuccess,
-    isGetSearchFoodLoading,
-  } = useGetSearchFood();
+  // // Store State
+  // const { isHomeSearchActive } = useSelector((state) => state.search);
+  // // Store Actions
+  // const {
+  //   setIsHomeSearchActive,
+  //   setFoodSearchResults,
+  //   setIsFoodSearchLoading,
+  // } = actions;
+  // const dispatch = useDispatch();
+  // const setFoodSearchLoading = (value) =>
+  //   dispatch(setIsFoodSearchLoading(value));
+  // const setIsSearchActive = (value) => dispatch(setIsHomeSearchActive(value));
+  // const setFoodSearchRes = (value) => dispatch(setFoodSearchResults(value));
 
   // Local State
-  const [text, onChangeText] = useState("");
-
-  // Functions
-  function fetchFoodSearch() {
-    if (text) getSearchFood(text);
-  }
-  function handleCancel() {
-    setIsSearchActive(false);
-    setFoodSearchRes();
-    onChangeText("");
-  }
-
-  // Custom Hooks
-  // TODO Switch loading state to true when typing
-  useDebounce(fetchFoodSearch, [text], 400);
-
-  // UseEffects
-  useEffect(() => {
-    if (isGetSearchFoodSuccess) setFoodSearchRes(getSearchFoodData);
-  }, [getSearchFoodData]);
-  useEffect(() => {
-    setFoodSearchLoading(isGetSearchFoodLoading);
-  }, [isGetSearchFoodLoading]);
-
+  const [amount, setAmount] = useState(50);
+  const [maxAmount, setMaxAmount] = useState(1000);
+  const [incrementValue, setIncrementValue] = useState(50);
+  const [measureUnit, setMeasureUnit] = useState({
+    value: "g",
+    label: "Grams",
+    shortLabel: "G",
+  });
+  const options = [
+    { value: "g", label: "Grams", shortLabel: "G" },
+    { value: "srvs", label: "Servings", shortLabel: "SRVS" },
+  ];
+  // TODO add support for servings
   return (
     <SafeAreaView style={styles.wrapper}>
       <View style={styles.container}>
         <View style={styles.navContainer}>
           <View style={styles.searchInputContainer}>
             <NumberInput
-              onChangeText={onChangeText}
-              value={text}
+              value={amount}
               onStartIconPress={() => setIsSearchActive(true)}
+              onChange={setAmount}
+              incrementValue={incrementValue}
+              maxValue={maxAmount}
+              options={options}
+              onOptionChange={setMeasureUnit}
+              optionPlaceholder={measureUnit.shortLabel}
             />
           </View>
           <Button
             style={styles.btnContainer}
             size={SIZES.Small}
-            onPress={handleCancel}>
+            onPress={() => {}}>
             Consume
           </Button>
         </View>

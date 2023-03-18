@@ -19,6 +19,7 @@ export default function Button(props) {
     borderColor,
     color,
     children,
+    endIcon,
     ...rest
   } = props;
 
@@ -26,6 +27,7 @@ export default function Button(props) {
     defaults: {
       flexDirection: "row",
       justifyContent: "center",
+      alignItems: "center",
       paddingHorizontal: size ? SPACING[size] * 2 : SPACING.Regular * 2,
       paddingVertical: size ? SPACING[size] * 0.82 : SPACING.Regular * 0.82,
       borderRadius: SPACING.Huge,
@@ -77,9 +79,11 @@ export default function Button(props) {
             fontSize: styles.defaults.fontSize,
             fontWeight: styles.defaults.fontWeight,
             color: currentStyle.color,
+            marginRight: endIcon ? SPACING.Small : 0,
           }}>
           {children}
         </Txt>
+        {endIcon && endIcon}
       </Animated.View>
     </Pressable>
   );

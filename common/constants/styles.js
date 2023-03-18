@@ -49,3 +49,13 @@ export const ZINDEX = {
   modal: 2,
   header: 10,
 };
+
+export const RADIUS = {
+  Tiny: 4,
+  Small: 8,
+  Regular: 12,
+  Medium: 16,
+  Large: 20,
+  ExtraLarge: 24,
+  Huge: 32,
+};

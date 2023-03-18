@@ -3,6 +3,7 @@ import { StyleSheet, Platform, StatusBar } from "react-native";
 import {
   FONT_SIZES,
   FONT_WEIGHTS,
+  RADIUS,
   SPACING,
   ZINDEX,
 } from "@app/common/constants/styles";
@@ -10,12 +11,15 @@ import themeColors from "@app/common/theme";
 
 export const styles = StyleSheet.create({
   wrapper: {
-    width: "100%",
     alignSelf: "stretch",
+    justifyContent: "center",
+    position: "relative",
+    minWidth: SPACING.Huge,
   },
   container: {
     flexDirection: "row",
     alignItems: "center",
+    paddingRight: SPACING.Small,
   },
   btnContainer: {
     flexDirection: "row",
@@ -27,36 +31,28 @@ export const styles = StyleSheet.create({
     marginTop: SPACING.Tiny,
   },
   // CONTENT
-  inputWrapper: {
-    flex: 1,
+  inputContainer: {
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
-    borderWidth: 1,
-    borderColor: themeColors.backgroundLight,
-    borderRadius: 50,
-    paddingLeft: SPACING.Tiny,
-  },
-  inputContainer: {
-    flex: 1,
-  },
-  selectContainer: {
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    alignItems: "center",
-  },
-  txtInput: {
-    fontSize: FONT_SIZES.Medium,
-    paddingVertical: SPACING.Small,
-    paddingHorizontal: SPACING.Regular,
   },
   btn: {
-    aspectRatio: 1,
-    height: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-    paddingVertical: 0,
+    paddingVertical: SPACING.Small + 2,
     paddingHorizontal: 0,
-    marginRight: SPACING.Small,
+  },
+  // OPTIONS
+  optionsContainer: {
+    position: "absolute",
+    bottom: 40,
+    right: 0,
+    paddingVertical: SPACING.Regular,
+    paddingHorizontal: SPACING.Tiny,
+    borderRadius: RADIUS.Regular,
+    backgroundColor: themeColors.background,
+    borderWidth: 1,
+    borderColor: themeColors.backgroundLight,
+  },
+  optionBtn: {
+    justifyContent: "flex-start",
   },
 });

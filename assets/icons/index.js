@@ -5,9 +5,10 @@ export { default as AddIcon } from "./add";
 export { default as RecipeIcon } from "./recipe";
 export { default as AccountIcon } from "./account";
 
-//
+// Arrows
 export { default as ArrowRightIcon } from "./arrowRight";
 export { default as ArrowLeftIcon } from "./arrowLeft";
+export { default as ArrowUpIcon } from "./arrowUp";
 
 // Header Icons
 export { default as SearchIcon } from "./search";
