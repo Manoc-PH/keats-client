@@ -43,9 +43,9 @@ export default function NutrientSummaryBars(props) {
               <TextSkeleton />
             ) : (
               <View style={styles.valueContainer}>
-                <Title2>{item.value}</Title2>
+                <Title2>{Math.floor(item.value)}</Title2>
                 <Caption1 style={styles.body}>
-                  {` / ${item.valueMax} ${item.amountUnit}`}
+                  {` / ${Math.floor(item.valueMax)} ${item.amountUnit}`}
                 </Caption1>
               </View>
             )}

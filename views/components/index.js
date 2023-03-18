@@ -31,3 +31,6 @@ export { default as TextSkeleton } from "./Skeleton/TextSkeleton";
 
 // Cards
 export { default as FoodCard } from "./Cards/FoodCard";
+
+// Loaders
+export { default as CircleLoader } from "./Loaders/CircleLoader";

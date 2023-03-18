@@ -4,6 +4,7 @@ import { PixelRatio, StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   wrapper: {
+    alignItems: "center",
     position: "absolute",
     bottom: 0,
     left: 0,

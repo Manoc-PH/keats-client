@@ -52,7 +52,7 @@ export default function NutrientSummaryBar(props) {
             )}
             <View style={styles.barContainer}>
               <HorizontalProgressBar
-                progress={(item.value / item.valueMax) * 100}
+                progress={(item.total / item.valueMax) * 100}
                 foregroundColor={NUTRIENT_COLOR_MAPPING[item.label]}
                 backgroundColor={`${NUTRIENT_COLOR_MAPPING[item.label]}25`}
               />

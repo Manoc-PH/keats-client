@@ -46,8 +46,8 @@ export default function MacroSummary() {
       <View style={styles.container}>
         <CalorieSummaryBar
           loading={!dailyNutrients}
-          calories={dailyNutrients?.calories || 0}
-          maxCalories={dailyNutrients?.max_calories || 0}
+          calories={Math.floor(dailyNutrients?.calories) || 0}
+          maxCalories={Math.floor(dailyNutrients?.max_calories) || 0}
         />
       </View>
       <View style={styles.container}>
