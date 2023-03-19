@@ -2,6 +2,7 @@ import React, { useLayoutEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 
 import ThemeColors from "@app/common/theme";
 import { MainTabIconsMapping } from "@app/common/constants/icons";
@@ -13,9 +14,14 @@ import {
   Recipes,
   Account,
   FoodDetails,
+  IntakeList,
 } from "@app/views/screens";
-import { FoodDetailsHeader, HomeHeader } from "@app/views/layouts";
-import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
+
+import {
+  FoodDetailsHeader,
+  HomeHeader,
+  MyIntakesHeader,
+} from "@app/views/layouts";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -49,6 +55,16 @@ const HomeNavigator = ({ navigation, route }) => {
           gestureDirection: "vertical",
           gestureEnabled: true,
           header: FoodDetailsHeader,
+          headerMode: "screen",
+        }}
+      />
+      <Stack.Screen
+        name='MyIntakes'
+        component={IntakeList}
+        options={{
+          gestureDirection: "vertical",
+          gestureEnabled: true,
+          header: MyIntakesHeader,
           headerMode: "screen",
         }}
       />

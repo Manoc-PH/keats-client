@@ -9,7 +9,6 @@ import Caption2 from "../../Basic/Texts/Caption2";
 import TextSkeleton from "../../Skeleton/TextSkeleton";
 
 import { styles } from "./styles";
-import themeColors from "@app/common/theme";
 
 export default function FoodCard(props) {
   // Destructure
@@ -19,6 +18,7 @@ export default function FoodCard(props) {
   function handlePress() {
     if (onPress) onPress();
   }
+
   return (
     <View style={styles.wrapper}>
       {!isLoading && (

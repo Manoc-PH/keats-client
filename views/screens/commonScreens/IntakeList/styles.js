@@ -3,10 +3,6 @@ import themeColors from "@app/common/theme";
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  wrapper: {
-    paddingHorizontal: 0,
-    paddingTop: 0,
-  },
   container: {
     flex: 1,
     width: "100%",

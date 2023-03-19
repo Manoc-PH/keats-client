@@ -1,57 +1,88 @@
 import { ScrollView, View } from "react-native";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // Store
 import { actions } from "@app/core/store";
 
 // Hooks
-import { useGetFoodDetails } from "@app/core/hooks/api";
+import { useGetIntakes } from "@app/core/hooks/api";
 
 // Layouts
-import {
-  NutrientSummary,
-  CurrentDietCard,
-  CalorieGoalProgress,
-  ScrollPage,
-  FoodName,
-  ConsumeFoodFooter,
-} from "@app/views/layouts";
+import { ScrollPage } from "@app/views/layouts";
 
 // Components
-import { Image } from "@app/views/components";
+import { FoodCard, Image } from "@app/views/components";
 
 import { styles } from "./styles";
+import { DUMMY_SERACH_DATA } from "@app/common/constants/dummyData";
 
 export default function IntakeList() {
   // Store State
-  const { foodDetails, selectedFoodID } = useSelector((state) => state.food);
+  const { dailyIntakes } = useSelector((state) => state.tracker);
 
   // Store Actions
-  const { setFoodDetails: setFoodDetail } = actions;
+  const { setDailyIntakes: sdi } = actions;
   const dispatch = useDispatch();
-  const setFoodDetails = (v) => dispatch(setFoodDetail(v));
+  const setDailyIntakes = (v) => dispatch(sdi(v));
 
   // Hooks
   const {
-    getFoodDetails,
-    getFoodDetailsData,
-    isGetFoodDetailsLoading,
-    isGetFoodDetailsSuccess,
-  } = useGetFoodDetails();
+    getIntakes,
+    getIntakesData,
+    isGetIntakesLoading,
+    isGetIntakesSuccess,
+  } = useGetIntakes();
 
+  // Functions
+
+  // UseEffects
   useEffect(() => {
-    if (selectedFoodID) {
-      if (!foodDetails || foodDetails?.id !== selectedFoodID)
-        getFoodDetails(selectedFoodID);
+    if (!dailyIntakes) {
+      getIntakes();
     }
-  }, [selectedFoodID]);
+  }, []);
   useEffect(() => {
-    if (isGetFoodDetailsSuccess) setFoodDetails(getFoodDetailsData);
-  }, [getFoodDetailsData]);
+    if (isGetIntakesSuccess) {
+      setDailyIntakes(getIntakesData);
+    }
+  }, [getIntakesData]);
+
   return (
-    <>
-      <ScrollPage style={styles.wrapper}></ScrollPage>
-    </>
+    <ScrollPage>
+      {isGetIntakesLoading &&
+        DUMMY_SERACH_DATA.map((item) => (
+          <FoodCard key={item.id} isLoading={true} />
+        ))}
+      {!isGetIntakesLoading &&
+        dailyIntakes &&
+        dailyIntakes.map((item) => (
+          <FoodCard
+            key={item.id}
+            name={item.food_name || item.recipe_name}
+            name_ph={item.food_name_ph}
+            name_brand={item.food_name_brand || item.recipe_name_owner}
+            thumbnail_link={item.thumbnail_link}
+            onPress={() => {}}
+          />
+        ))}
+    </ScrollPage>
   );
 }
+
+// Intake format:
+// "id": 16,
+// "account_id": "5bf69ea0-c455-4645-82f8-05b5388893f7",
+// "food_id": 9828,
+// "recipe_id": 0,
+// "date_created": "2023-03-19T15:16:10.425664Z",
+// "amount": 150,
+// "amount_unit": "g",
+// "amount_unit_desc": "gram",
+// "serving_size": 0,
+// "food_name": "Chicken, broilers or fryers, meat only, cooked, fried",
+// "food_name_ph": "",
+// "food_name_brand": "USDA",
+// "food_nutrient_id": 9828,
+// "recipe_name": "",
+// "recipe_name_owner": ""

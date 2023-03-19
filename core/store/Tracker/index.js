@@ -17,6 +17,7 @@ const initialState = {
   //   max_protein: 123,
   //   protein: 0,
   // },
+  dailyIntakes: null,
 };
 
 const store = createSlice({
@@ -26,6 +27,10 @@ const store = createSlice({
     setDailyNutrients: (state, { payload }) => {
       if (payload) state.dailyNutrients = payload;
       else state.dailyNutrients = null;
+    },
+    setDailyIntakes: (state, { payload }) => {
+      if (payload) state.dailyIntakes = payload;
+      else state.dailyIntakes = null;
     },
   },
 });

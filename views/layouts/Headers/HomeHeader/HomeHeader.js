@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { View, SafeAreaView, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
 
 // Store
 import { actions } from "@app/core/store";
@@ -11,13 +12,7 @@ import useDebounce from "@app/common/utils/debounce";
 // Hooks
 import { useGetSearchFood } from "@app/core/hooks/api";
 
-import {
-  BTN_VARIANTS,
-  FONT_SIZES,
-  FONT_WEIGHTS,
-  SIZES,
-  SPACING,
-} from "@app/common/constants/styles";
+import { BTN_VARIANTS, SIZES, SPACING } from "@app/common/constants/styles";
 
 import { Button, Title1, Body, TextInput } from "@app/views/components";
 import { SearchIcon, IntakeIcon } from "@app/assets/icons";
@@ -28,6 +23,7 @@ import { styles } from "./styles";
 export default function HomeHeader() {
   // Store State
   const { isHomeSearchActive } = useSelector((state) => state.search);
+
   // Store Actions
   const {
     setIsHomeSearchActive,
@@ -47,6 +43,7 @@ export default function HomeHeader() {
     isGetSearchFoodSuccess,
     isGetSearchFoodLoading,
   } = useGetSearchFood();
+  const navigation = useNavigation();
 
   // Local State
   const [text, onChangeText] = useState("");
@@ -59,6 +56,9 @@ export default function HomeHeader() {
     setIsSearchActive(false);
     setFoodSearchRes();
     onChangeText("");
+  }
+  function openIntakesPage() {
+    navigation.navigate("Home", { screen: "MyIntakes" });
   }
 
   // Custom Hooks
@@ -105,7 +105,7 @@ export default function HomeHeader() {
                 style={styles.btnContainer}
                 variant={BTN_VARIANTS.transparent}
                 size={SIZES.Tiny}
-                onPress={() => alert("Pressed!")}>
+                onPress={openIntakesPage}>
                 <IntakeIcon color={themeColors.secondary} />
               </Button>
             </View>
