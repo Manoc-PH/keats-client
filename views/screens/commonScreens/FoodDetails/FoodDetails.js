@@ -60,7 +60,7 @@ export default function FoodDetails() {
           <Image src={foodDetails?.thumbnail_image_link} />
         </View>
         <View style={styles.container}>
-          <FoodName />
+          <FoodName foodDetails={foodDetails} />
           <NutrientSummary
             dailyNutrients={dailyNutrients}
             foodDetails={foodDetails}

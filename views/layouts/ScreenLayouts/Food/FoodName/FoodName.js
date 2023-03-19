@@ -1,14 +1,11 @@
-import { useEffect, useState } from "react";
 import { View } from "react-native";
-import { useSelector } from "react-redux";
 
 import { styles } from "./styles";
 import { Caption2, TextSkeleton, Title3 } from "@app/views/components";
 import { FONT_SIZES } from "@app/common/constants/styles";
 
-export default function FoodName() {
-  // Store State
-  const { foodDetails } = useSelector((state) => state.food);
+export default function FoodName(props) {
+  const { foodDetails } = props;
 
   return (
     <View style={styles.wrapper}>
