@@ -25,7 +25,10 @@ import { styles } from "./styles";
 
 export default function FoodDetails() {
   // Store State
-  const { foodDetails, selectedFoodID } = useSelector((state) => state.food);
+  const { dailyNutrients } = useSelector((state) => state.tracker);
+  const { foodDetails, selectedFoodID, selectedFoodAmount } = useSelector(
+    (state) => state.food
+  );
 
   // Store Actions
   const { setFoodDetails: setFoodDetail } = actions;
@@ -58,7 +61,11 @@ export default function FoodDetails() {
         </View>
         <View style={styles.container}>
           <FoodName />
-          <NutrientSummary />
+          <NutrientSummary
+            dailyNutrients={dailyNutrients}
+            foodDetails={foodDetails}
+            selectedFoodAmount={selectedFoodAmount}
+          />
         </View>
       </ScrollPage>
       <ConsumeFoodFooter />

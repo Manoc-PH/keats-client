@@ -1,18 +1,13 @@
 import { useEffect, useState } from "react";
 import { View } from "react-native";
-import { useSelector } from "react-redux";
 
-import CalorieSummaryBar from "@app/views/layouts/SummaryBars/CalorieSummaryBar";
 import NutrientSummaryBar from "@app/views/layouts/SummaryBars/NutrientSummaryBar";
 
 import { styles } from "./styles";
 
-export default function NutrientSummary() {
-  // Store State
-  const { foodDetails, selectedFoodAmount } = useSelector(
-    (state) => state.food
-  );
-  const { dailyNutrients } = useSelector((state) => state.tracker);
+export default function NutrientSummary(props) {
+  // Props
+  const { foodDetails, selectedFoodAmount, dailyNutrients } = props;
 
   // Local State
   const [nutrientSummary, setNutrientSummary] = useState();
@@ -41,7 +36,7 @@ export default function NutrientSummary() {
     }
     macros.push({
       label: "calories",
-      value: foodDetails.food_nutrients.calories,
+      value: multiplier * foodDetails.food_nutrients.calories,
       total: calTotal,
       valueMax: Math.floor(dailyNutrients.max_calories),
       amountUnit: "",
@@ -49,21 +44,21 @@ export default function NutrientSummary() {
     macros.push({
       label: "carbs",
       total: carTotal,
-      value: foodDetails.food_nutrients.carbs,
+      value: multiplier * foodDetails.food_nutrients.carbs,
       valueMax: Math.floor(dailyNutrients.max_carbs),
       amountUnit: "g",
     });
     macros.push({
       label: "fats",
       total: fatTotal,
-      value: foodDetails.food_nutrients.fats,
+      value: multiplier * foodDetails.food_nutrients.fats,
       valueMax: Math.floor(dailyNutrients.max_fats),
       amountUnit: "g",
     });
     macros.push({
       label: "protein",
       total: proTotal,
-      value: foodDetails.food_nutrients.protein,
+      value: multiplier * foodDetails.food_nutrients.protein,
       valueMax: Math.floor(dailyNutrients.max_protein),
       amountUnit: "g",
     });
