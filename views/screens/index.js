@@ -11,3 +11,4 @@ export { default as Signup } from "./authScreens/Signup";
 
 // Common Screens
 export { default as FoodDetails } from "./commonScreens/FoodDetails";
+export { default as IntakeList } from "./commonScreens/IntakeList";

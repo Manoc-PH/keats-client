@@ -10,7 +10,7 @@ export default function CalorieGoalProgress() {
   return (
     <View style={styles.wrapper}>
       <View style={styles.rowWrapper}>
-        <Title2>Calorie Goal Progress</Title2>
+        <Title2>My Progress</Title2>
       </View>
       <CalorieGraph />
     </View>
