@@ -5,6 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 // Store
 import { actions } from "@app/core/store";
 
+// Constants
+import { DUMMY_SERACH_DATA } from "@app/common/constants/dummyData";
+
 // Hooks
 import { useGetIntakes } from "@app/core/hooks/api";
 
@@ -15,7 +18,6 @@ import { ScrollPage } from "@app/views/layouts";
 import { FoodCard, Image } from "@app/views/components";
 
 import { styles } from "./styles";
-import { DUMMY_SERACH_DATA } from "@app/common/constants/dummyData";
 
 export default function IntakeList() {
   // Store State
@@ -48,11 +50,12 @@ export default function IntakeList() {
     }
   }, [getIntakesData]);
 
+  // TODO Add intake to daily intakes when consuming food
   return (
     <ScrollPage>
       {isGetIntakesLoading &&
-        DUMMY_SERACH_DATA.map((item) => (
-          <FoodCard key={item.id} isLoading={true} />
+        DUMMY_SERACH_DATA.map((dummy) => (
+          <FoodCard key={dummy.id} isLoading={true} />
         ))}
       {!isGetIntakesLoading &&
         dailyIntakes &&
@@ -62,6 +65,12 @@ export default function IntakeList() {
             name={item.food_name || item.recipe_name}
             name_ph={item.food_name_ph}
             name_brand={item.food_name_brand || item.recipe_name_owner}
+            calories={Math.floor(
+              (item.food_nutrient_calories / item.food_nutrient_amount) *
+                item.amount
+            )}
+            amount={item.amount}
+            amount_desc={item.amount_unit}
             thumbnail_link={item.thumbnail_link}
             onPress={() => {}}
           />
