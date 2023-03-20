@@ -65,10 +65,7 @@ export default function IntakeList() {
             name={item.food_name || item.recipe_name}
             name_ph={item.food_name_ph}
             name_brand={item.food_name_brand || item.recipe_name_owner}
-            calories={Math.floor(
-              (item.food_nutrient_calories / item.food_nutrient_amount) *
-                item.amount
-            )}
+            calories={Math.floor(item.calories)}
             amount={item.amount}
             amount_desc={item.amount_unit}
             thumbnail_link={item.thumbnail_link}

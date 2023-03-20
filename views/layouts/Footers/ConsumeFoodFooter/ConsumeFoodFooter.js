@@ -20,17 +20,21 @@ import { useNavigation } from "@react-navigation/native";
 export default function ConsumeFoodFooter() {
   // Store State
   const { foodDetails } = useSelector((state) => state.food);
-  const { dailyNutrients } = useSelector((state) => state.tracker);
+  const { dailyNutrients, dailyIntakes } = useSelector(
+    (state) => state.tracker
+  );
   // Store Actions
   const {
     setSelectedFoodAmount: sfa,
     setDailyNutrients: sdn,
     setIsHomeSearchActive: sihsa,
+    setDailyIntakes: sdi,
   } = actions;
   const dispatch = useDispatch();
   const setSelectedFoodAmount = (value) => dispatch(sfa(value));
   const setDailyNutrients = (value) => dispatch(sdn(value));
   const setIsHomeSearchActive = (value) => dispatch(sihsa(value));
+  const setDailyIntakes = (v) => dispatch(sdi(v));
 
   // Local State
   const [amount, setAmount] = useState(100);
@@ -76,6 +80,28 @@ export default function ConsumeFoodFooter() {
       carbs: dailyNutrients.carbs + postIntakeData.added_daily_nutrients.carbs,
       fats: dailyNutrients.fats + postIntakeData.added_daily_nutrients.fats,
     };
+    const newIntake = {
+      id: postIntakeData.intake.id,
+      account_id: postIntakeData.intake.account_id,
+      food_id: postIntakeData.intake.food_id,
+      recipe_id: postIntakeData.intake.recipe_id,
+      date_created: postIntakeData.intake.date_created,
+      calories: postIntakeData.added_daily_nutrients.calories,
+      amount: postIntakeData.intake.amount,
+      amount_unit: postIntakeData.intake.amount_unit,
+      amount_unit_desc: postIntakeData.intake.amount_unit_desc,
+      serving_size: postIntakeData.intake.serving_size,
+
+      food_name: postIntakeData.food.name,
+      food_name_ph: postIntakeData.food.name_ph,
+      food_name_brand: postIntakeData.food.name_brand,
+      food_nutrient_id: postIntakeData.food.food_nutrient_id,
+      food_nutrient_calories: postIntakeData.added_daily_nutrients.calories,
+
+      recipe_name: postIntakeData.recipe_name,
+      recipe_name_owner: postIntakeData.recipe_name_owner,
+    };
+    setDailyIntakes([newIntake, ...dailyIntakes]);
     setDailyNutrients(newData);
     setIsHomeSearchActive(false);
     navigation.navigate("Home", { screen: "HomeDefault" });
