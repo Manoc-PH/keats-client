@@ -52,7 +52,7 @@ export default function IntakeList() {
 
   // TODO Add intake to daily intakes when consuming food
   return (
-    <ScrollPage>
+    <ScrollPage style={styles.wrapper}>
       {isGetIntakesLoading &&
         DUMMY_SERACH_DATA.map((dummy) => (
           <FoodCard key={dummy.id} isLoading={true} />
@@ -72,6 +72,7 @@ export default function IntakeList() {
             onPress={() => {}}
           />
         ))}
+      <View style={styles.spacer} />
     </ScrollPage>
   );
 }
