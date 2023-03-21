@@ -65,8 +65,8 @@ export default function Home() {
     <>
       <ScrollPage>
         <View style={styles.container}>
-          <MacroSummary />
-          <CurrentDietCard />
+          <MacroSummary dailyNutrients={dailyNutrients} />
+          <CurrentDietCard accountVitals={accountVitals} />
           <CalorieGoalProgress />
         </View>
       </ScrollPage>

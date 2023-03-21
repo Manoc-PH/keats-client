@@ -1,5 +1,4 @@
 import { View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
 
 import { ArrowRightIcon } from "@app/assets/icons";
 
@@ -8,13 +7,14 @@ import { FONT_SIZES } from "@app/common/constants/styles";
 import { Card, SubHeadline2, Body, TextSkeleton } from "@app/views/components";
 import { styles } from "./styles";
 
-export default function CurrentDietCard() {
-  // Store State
-  const { accountVitals } = useSelector((state) => state.account);
+export default function CurrentDietCard(props) {
+  // Props
+  const { accountVitals } = props;
 
   // Functions
   function handlePress() {
     if (!accountVitals) return;
+    console.log(accountVitals);
   }
   return (
     <View style={styles.wrapper}>

@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import { View } from "react-native";
-import { useSelector } from "react-redux";
 
 import CalorieSummaryBar from "@app/views/layouts/SummaryBars/CalorieSummaryBar";
 import MacroSummaryBars from "@app/views/layouts/SummaryBars/MacroSummaryBars";
 import { styles } from "./styles";
 
-export default function MacroSummary() {
-  // Store State
-  const { dailyNutrients } = useSelector((state) => state.tracker);
+export default function MacroSummary(props) {
+  // Props
+  const { dailyNutrients } = props;
 
   // Local State
   const [macroSummary, setMacroSummary] = useState();
