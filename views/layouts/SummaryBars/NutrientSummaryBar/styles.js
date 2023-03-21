@@ -11,7 +11,6 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
-  body: { fontWeight: FONT_WEIGHTS.Medium },
   subheadline: {
     textTransform: "capitalize",
     color: themeColors.secondaryLight,

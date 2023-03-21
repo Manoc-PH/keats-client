@@ -10,7 +10,7 @@ import {
   HorizontalProgressBar,
   Caption1,
   TextSkeleton,
-  Body,
+  Headline,
 } from "@app/views/components";
 import { styles } from "./styles";
 import { useEffect, useState } from "react";
@@ -45,7 +45,7 @@ export default function NutrientSummaryBar(props) {
               <TextSkeleton />
             ) : (
               <View style={styles.valueContainer}>
-                <Body style={styles.body}>{Math.floor(item.value)}</Body>
+                <Headline>{Math.floor(item.value)}</Headline>
                 <Caption1
                   style={styles.subheadline}>{` ${item.amountUnit}`}</Caption1>
               </View>

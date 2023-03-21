@@ -9,6 +9,7 @@ import {
   HorizontalProgressBar,
   Caption1,
   Title2,
+  Headline,
   TextSkeleton,
 } from "@app/views/components";
 import { styles } from "./styles";
@@ -43,7 +44,7 @@ export default function NutrientSummaryBars(props) {
               <TextSkeleton />
             ) : (
               <View style={styles.valueContainer}>
-                <Title2>{Math.floor(item.value)}</Title2>
+                <Headline>{Math.floor(item.value)}</Headline>
                 <Caption1 style={styles.body}>
                   {` / ${Math.floor(item.valueMax)} ${item.amountUnit}`}
                 </Caption1>
