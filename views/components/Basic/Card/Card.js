@@ -1,5 +1,5 @@
 import themeColors from "@app/common/theme";
-import { Text, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 
 import { StyleSheet } from "react-native";
 
@@ -32,8 +32,8 @@ export default function Card(props) {
     colContainer: {},
   });
   return (
-    <View {...props} style={styles.rowContainer}>
+    <Pressable {...props} style={styles.rowContainer}>
       {children}
-    </View>
+    </Pressable>
   );
 }

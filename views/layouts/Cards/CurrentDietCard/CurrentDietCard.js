@@ -12,9 +12,13 @@ export default function CurrentDietCard() {
   // Store State
   const { accountVitals } = useSelector((state) => state.account);
 
+  // Functions
+  function handlePress() {
+    if (!accountVitals) return;
+  }
   return (
     <View style={styles.wrapper}>
-      <Card>
+      <Card onPress={handlePress}>
         <View style={styles.container}>
           <View style={styles.rowContainer}>
             {accountVitals ? (

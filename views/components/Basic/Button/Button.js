@@ -53,16 +53,19 @@ export default function Button(props) {
 
   const currentStyle = styles[variant] || styles.primary;
 
-  const buttonOpacity = useRef(new Animated.Value(1)).current;
+  const buttonScale = useRef(new Animated.Value(1)).current;
   const onPressIn = () =>
-    Animated.spring(buttonOpacity, {
+    Animated.timing(buttonScale, {
       toValue: 0.8,
       useNativeDriver: true,
+      duration: 100,
     }).start();
   const onPressOut = () =>
-    Animated.spring(buttonOpacity, {
+    Animated.timing(buttonScale, {
       toValue: 1,
       useNativeDriver: true,
+      duration: 100,
+      delay: 0,
     }).start();
 
   return (
@@ -72,7 +75,7 @@ export default function Button(props) {
           ...styles.defaults,
           ...currentStyle,
           ...style,
-          opacity: buttonOpacity,
+          transform: [{ scale: buttonScale }],
         }}>
         <Txt
           style={{
