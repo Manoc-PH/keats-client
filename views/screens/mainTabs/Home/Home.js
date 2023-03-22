@@ -25,13 +25,10 @@ export default function Home() {
   const { accountVitals } = useSelector((state) => state.account);
 
   // Store Actions
-  const {
-    setDailyNutrients: setDailyNutrientsState,
-    setAccountVitals: setAccountVitalsState,
-  } = actions;
+  const { setDailyNutrients: sdns, setAccountVitals: savs } = actions;
   const dispatch = useDispatch();
-  const setDailyNutrients = (v) => dispatch(setDailyNutrientsState(v));
-  const setAccountVitals = (v) => dispatch(setAccountVitalsState(v));
+  const setDailyNutrients = (v) => dispatch(sdns(v));
+  const setAccountVitals = (v) => dispatch(savs(v));
 
   // Hooks
   const {
