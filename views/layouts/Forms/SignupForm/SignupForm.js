@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { KeyboardAvoidingView, View } from "react-native";
 
 import { styles } from "./styles";
 import {
   DateInput,
   SliderInput,
+  SubHeadline2,
   TextInput,
   Title3,
 } from "@app/views/components";
@@ -12,12 +13,11 @@ import themeColors from "@app/common/theme";
 
 export default function SignupForm(props) {
   // Destructure
-  const { data, setData, activePage } = props;
+  const { data, setData, activePage, errorMsg, setErrorMsg } = props;
 
   // Form states
   const [username, setUsername] = useState(data?.username || "");
   const [password, setPassword] = useState(data?.password || "");
-  const [confirmPassword, setConfirmPassword] = useState();
   const [birthday, setBirthday] = useState(data?.birthday);
   const [sex, setSex] = useState(data?.sex);
   const [weight, setWeight] = useState(data?.weight);
@@ -30,38 +30,80 @@ export default function SignupForm(props) {
     "Enter username and password",
     "Select your sex",
     "Enter your birthday",
-    "Selct your weight",
-    "Selct your height",
-    "Selct your activity level",
-    "Selct your fitness goal",
+    "Enter your weight",
+    "Enter your height",
+    "Select your activity level",
+    "Select your fitness goal",
   ];
   const components = [
-    <UsernamePassword username={username} setUsername={setUsername} />,
+    <UsernamePassword
+      username={username}
+      setUsername={setUsername}
+      password={password}
+      setPassword={setPassword}
+      setErrorMsg={setErrorMsg}
+    />,
     <Sex />,
-    <Birthday />,
+    <Birthday birthday={birthday} setBirthday={setBirthday} />,
     <Weight />,
     <Height />,
     <ActivityLevel />,
     <FitnessGoal />,
   ];
   function updateData() {
-    setData({ username, password, birthday });
+    setData({
+      username,
+      password,
+      birthday,
+      sex,
+      weight,
+      height,
+      activity_lvl_id,
+      diet_plan_id,
+    });
   }
+  useEffect(() => {
+    updateData();
+  }, [
+    username,
+    password,
+    birthday,
+    sex,
+    weight,
+    height,
+    activity_lvl_id,
+    diet_plan_id,
+  ]);
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : ""}
       style={styles.container}>
       <View style={styles.contentWrapper}>
-        <View style={styles.title}>
-          <Title3>{titles[activePage]}</Title3>
-        </View>
+        <Title3 style={styles.title}>{titles[activePage]}</Title3>
+        {errorMsg && (
+          <SubHeadline2 style={styles.error}>{errorMsg}</SubHeadline2>
+        )}
         {components[activePage]}
       </View>
     </KeyboardAvoidingView>
   );
 }
 function UsernamePassword(props) {
-  const { username, setUsername, password, setPassword } = props;
+  const { username, setUsername, password, setPassword, setErrorMsg } = props;
+  const [confirmPassword, setConfirmPassword] = useState();
+
+  useEffect(() => {
+    setErrorMsg("");
+  }, [username]);
+  useEffect(() => {
+    if (!confirmPassword || !password) return;
+    if (confirmPassword === password) {
+      setErrorMsg("");
+      return;
+    } else if (confirmPassword !== password) {
+      setErrorMsg("Password does not match");
+    }
+  }, [confirmPassword, password]);
   return (
     <>
       <TextInput
@@ -73,6 +115,12 @@ function UsernamePassword(props) {
         value={password}
         onChangeText={setPassword}
         placeholder={"Password"}
+        secureTextEntry={true}
+      />
+      <TextInput
+        value={confirmPassword}
+        onChangeText={setConfirmPassword}
+        placeholder={"Confirm Password"}
         secureTextEntry={true}
       />
     </>
@@ -87,8 +135,8 @@ function Sex(props) {
   );
 }
 function Birthday(props) {
-  const {} = props;
-  return <DateInput onChangeText={() => {}} />;
+  const { birthday, setBirthday } = props;
+  return <DateInput onChangeText={setBirthday} value={birthday} />;
 }
 function Weight(props) {
   const {} = props;

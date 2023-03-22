@@ -1,4 +1,5 @@
 import { SPACING } from "@app/common/constants/styles";
+import themeColors from "@app/common/theme";
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
@@ -15,4 +16,5 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
   },
   title: { marginBottom: SPACING.Large },
+  error: { color: themeColors.red, textAlign: "center" },
 });
