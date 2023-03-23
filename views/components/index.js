@@ -7,6 +7,7 @@ export { default as Txt } from "./Basic/Txt";
 export { default as Card } from "./Basic/Card";
 export { default as Button } from "./Basic/Button";
 export { default as Image } from "./Basic/Image";
+export { default as ImageButton } from "./Basic/ImageButton";
 // Texts
 export { default as Body } from "./Basic/Texts/Body";
 export { default as Caption1 } from "./Basic/Texts/Caption1";

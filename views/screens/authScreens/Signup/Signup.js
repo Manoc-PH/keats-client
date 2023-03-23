@@ -32,27 +32,27 @@ export default function Signup() {
       return;
     }
     if (activePage === 1 && !data.sex) {
-      setErrorMsg("Missing fields, please select your sex");
+      setErrorMsg("Please select your sex");
       return;
     }
     if (activePage === 2 && !data.birthday) {
-      setErrorMsg("Missing fields, please enter your birthday");
+      setErrorMsg("Please enter your birthday");
       return;
     }
     if (activePage === 3 && !data.weight) {
-      setErrorMsg("Missing fields, please enter your weight");
+      setErrorMsg("Please enter your weight");
       return;
     }
     if (activePage === 4 && !data.height) {
-      setErrorMsg("Missing fields, please enter your height");
+      setErrorMsg("Please enter your height");
       return;
     }
     if (activePage === 5 && !data.activity_lvl_id) {
-      setErrorMsg("Missing fields, please select your activity level");
+      setErrorMsg("Please select your activity level");
       return;
     }
     if (activePage === 6 && !data.diet_plan_id) {
-      setErrorMsg("Missing fields, please select your diet plan");
+      setErrorMsg("Please select your diet plan");
       return;
     }
     if (activePage < numOfPages - 1) setActivePage((prev) => prev + 1);

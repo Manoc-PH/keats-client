@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     borderWidth: 1,
     borderColor: themeColors.backgroundLight,
-    borderRadius: 50,
+    borderRadius: SPACING.Regular,
     paddingHorizontal: SPACING.Small,
   },
   // LABEL

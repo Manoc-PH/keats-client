@@ -17,4 +17,18 @@ export const styles = StyleSheet.create({
   },
   title: { marginBottom: SPACING.Large },
   error: { color: themeColors.red, textAlign: "center" },
+  sexContainer: {
+    width: "100%",
+    height: "60%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  imageButton: {
+    width: "100%",
+    height: "100%",
+  },
+  imageButtonImageContainer: {
+    padding: SPACING.Small,
+  },
 });

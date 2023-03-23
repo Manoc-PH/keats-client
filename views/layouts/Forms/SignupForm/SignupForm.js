@@ -4,12 +4,16 @@ import { KeyboardAvoidingView, View } from "react-native";
 import { styles } from "./styles";
 import {
   DateInput,
+  ImageButton,
   SliderInput,
   SubHeadline2,
   TextInput,
   Title3,
 } from "@app/views/components";
 import themeColors from "@app/common/theme";
+import { BTN_VARIANTS } from "@app/common/constants/styles";
+import { MaleSvg } from "@app/assets/imageSvg";
+import FemaleSvg from "@app/assets/imageSvg/female";
 
 export default function SignupForm(props) {
   // Destructure
@@ -43,7 +47,7 @@ export default function SignupForm(props) {
       setPassword={setPassword}
       setErrorMsg={setErrorMsg}
     />,
-    <Sex />,
+    <Sex sex={sex} setSex={setSex} />,
     <Birthday birthday={birthday} setBirthday={setBirthday} />,
     <Weight />,
     <Height />,
@@ -129,9 +133,42 @@ function UsernamePassword(props) {
 function Sex(props) {
   const { sex, setSex } = props;
   return (
-    <>
-      <TextInput value={sex} onChangeText={setSex} placeholder={"Sex"} />
-    </>
+    <View style={styles.sexContainer}>
+      <ImageButton
+        variant={BTN_VARIANTS.outlined}
+        style={{
+          ...styles.imageButton,
+          borderColor:
+            sex === "M" ? themeColors.primary : themeColors.backgroundLight,
+        }}
+        onPress={() => {
+          setSex("M");
+        }}
+        image={
+          <View style={styles.imageButtonImageContainer}>
+            <MaleSvg />
+          </View>
+        }>
+        Male
+      </ImageButton>
+      <ImageButton
+        variant={BTN_VARIANTS.outlined}
+        style={{
+          ...styles.imageButton,
+          borderColor:
+            sex === "F" ? themeColors.primary : themeColors.backgroundLight,
+        }}
+        onPress={() => {
+          setSex("F");
+        }}
+        image={
+          <View style={styles.imageButtonImageContainer}>
+            <FemaleSvg />
+          </View>
+        }>
+        Female
+      </ImageButton>
+    </View>
   );
 }
 function Birthday(props) {

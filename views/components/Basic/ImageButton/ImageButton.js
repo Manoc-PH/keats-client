@@ -19,18 +19,18 @@ export default function Button(props) {
     borderColor,
     color,
     children,
-    endIcon,
+    image,
     ...rest
   } = props;
 
   const styles = StyleSheet.create({
+    wrapper: { flex: 1, padding: SPACING.Small },
     defaults: {
-      flexDirection: "row",
       justifyContent: "center",
       alignItems: "center",
       paddingHorizontal: size ? SPACING[size] * 2 : SPACING.Regular * 2,
-      paddingVertical: size ? SPACING[size] * 0.82 : SPACING.Regular * 0.82,
-      borderRadius: size ? SPACING[size] : SPACING.Regular,
+      paddingVertical: size ? SPACING[size] * 2 : SPACING.Regular * 2,
+      borderRadius: size ? SPACING[size] * 2 : SPACING.Regular * 2,
       fontSize: size ? FONT_SIZES[size] : FONT_SIZES.Regular,
       fontWeight: FONT_WEIGHTS.SemiBold,
     },
@@ -69,7 +69,11 @@ export default function Button(props) {
     }).start();
 
   return (
-    <Pressable {...rest} onPressIn={onPressIn} onPressOut={onPressOut}>
+    <Pressable
+      style={styles.wrapper}
+      {...rest}
+      onPressIn={onPressIn}
+      onPressOut={onPressOut}>
       <Animated.View
         style={{
           ...styles.defaults,
@@ -77,16 +81,15 @@ export default function Button(props) {
           ...style,
           transform: [{ scale: buttonScale }],
         }}>
+        {image}
         <Txt
           style={{
             fontSize: styles.defaults.fontSize,
             fontWeight: styles.defaults.fontWeight,
             color: currentStyle.color,
-            marginRight: endIcon ? SPACING.Small : 0,
           }}>
           {children}
         </Txt>
-        {endIcon && endIcon}
       </Animated.View>
     </Pressable>
   );
