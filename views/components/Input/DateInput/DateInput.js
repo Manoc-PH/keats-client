@@ -20,7 +20,7 @@ export default function DateInput(props) {
   } = props;
 
   const [date, setDate] = useState(
-    new Date(moment().subtract(18, "years").format("YYYY-MM-DD"))
+    new Date(value || moment().subtract(18, "years").format("YYYY-MM-DD"))
   );
 
   useEffect(() => onChangeText(date), [date]);
