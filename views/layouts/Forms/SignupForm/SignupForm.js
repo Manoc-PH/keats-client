@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { KeyboardAvoidingView, View } from "react-native";
+import { Dimensions, KeyboardAvoidingView, View } from "react-native";
 
 import { styles } from "./styles";
 import {
@@ -13,8 +13,12 @@ import {
 } from "@app/views/components";
 import themeColors from "@app/common/theme";
 import { BTN_VARIANTS } from "@app/common/constants/styles";
-import { MaleSvg } from "@app/assets/imageSvg";
-import FemaleSvg from "@app/assets/imageSvg/female";
+import {
+  MaleSvg,
+  FemaleSvg,
+  FemaleDarkSvg,
+  MaleDarkSvg,
+} from "@app/assets/imageSvg";
 
 export default function SignupForm(props) {
   // Destructure
@@ -53,7 +57,7 @@ export default function SignupForm(props) {
     <Sex sex={sex} setSex={setSex} />,
     <Birthday birthday={birthday} setBirthday={setBirthday} />,
     <Weight weight={weight} setWeight={setWeight} />,
-    <Height />,
+    <Height height={height} setHeight={setHeight} sex={sex} />,
     <ActivityLevel />,
     <FitnessGoal />,
   ];
@@ -141,7 +145,6 @@ function Sex(props) {
         variant={BTN_VARIANTS.outlined}
         color={sex === "M" ? themeColors.primary : themeColors.secondaryLight}
         style={{
-          ...styles.imageButton,
           borderColor:
             sex === "M" ? themeColors.primary : themeColors.backgroundLight,
         }}
@@ -159,7 +162,6 @@ function Sex(props) {
         variant={BTN_VARIANTS.outlined}
         color={sex === "F" ? themeColors.primary : themeColors.secondaryLight}
         style={{
-          ...styles.imageButton,
           borderColor:
             sex === "F" ? themeColors.primary : themeColors.backgroundLight,
         }}
@@ -194,8 +196,53 @@ function Weight(props) {
   );
 }
 function Height(props) {
-  const {} = props;
-  return <View></View>;
+  const { sex, height, setHeight } = props;
+  const maxHeight = 272;
+  const usableScreen = Dimensions.get("window").height * 0.6;
+
+  function convertToFt(v) {
+    if (v) {
+      const inches = v / 2.54;
+      const feet = Math.floor(inches / 12);
+      return `${feet}'${Math.floor(inches % 12)} ft`;
+    }
+  }
+  return (
+    <View style={styles.heightWrapper}>
+      <View style={styles.heightContentWrapper}>
+        <View style={styles.heightContentContainer}>
+          <SubHeadline2 style={styles.subtitle}>
+            Avg {sex === "F" ? "Female" : "Male"} Filipino{" "}
+            {sex === "F" ? "(4'11 ft or 149 cm)" : "(5'4 ft or 156 cm)"}
+          </SubHeadline2>
+          {sex === "F" ? (
+            <FemaleDarkSvg height={(usableScreen / maxHeight) * 149} />
+          ) : (
+            <MaleDarkSvg height={(usableScreen / maxHeight) * 156} />
+          )}
+        </View>
+        <View style={styles.heightContentContainer}>
+          <SubHeadline2 style={styles.subtitle}>
+            Your height{" "}
+            {height ? `(${convertToFt(height)} or ${height} cm)` : ""}
+          </SubHeadline2>
+          {sex === "F" ? (
+            <FemaleSvg height={(usableScreen / maxHeight) * (height || 149)} />
+          ) : (
+            <MaleSvg height={(usableScreen / maxHeight) * (height || 191)} />
+          )}
+        </View>
+      </View>
+      <NumberInput
+        incrementValue={1}
+        maxValue={maxHeight}
+        optionPlaceholder={"CM"}
+        options={[]}
+        value={height}
+        onChange={setHeight}
+      />
+    </View>
+  );
 }
 function ActivityLevel(props) {
   const {} = props;

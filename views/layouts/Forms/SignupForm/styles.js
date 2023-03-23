@@ -24,7 +24,6 @@ export const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
-  imageButton: {},
   imageButtonImageContainer: {
     padding: SPACING.Small,
   },
@@ -42,5 +41,28 @@ export const styles = StyleSheet.create({
   numberContainer: {
     width: "30%",
     flex: 0,
+  },
+  heightWrapper: {
+    height: "70%",
+    width: "100%",
+    justifyContent: "flex-end",
+    alignItems: "center",
+  },
+  heightContentWrapper: {
+    flex: 1,
+    width: "100%",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: SPACING.Huge,
+  },
+  heightContentContainer: {
+    flex: 1,
+    height: "100%",
+    justifyContent: "flex-end",
+    alignItems: "center",
+  },
+  subtitle: {
+    textAlign: "center",
   },
 });

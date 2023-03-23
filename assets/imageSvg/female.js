@@ -6,7 +6,7 @@ export default function FemaleSvg(props) {
   return (
     <View style={{ aspectRatio: 1 }}>
       <Svg
-        height='100%'
+        height={props.height || "100%"}
         width='100%'
         viewBox='0 0 506 1246'
         fill='none'
