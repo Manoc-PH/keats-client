@@ -5,6 +5,7 @@ import { styles } from "./styles";
 import {
   DateInput,
   ImageButton,
+  NumberInput,
   SliderInput,
   SubHeadline2,
   TextInput,
@@ -29,6 +30,8 @@ export default function SignupForm(props) {
   const [activity_lvl_id, setActivityLvlId] = useState(data?.activity_lvl_id);
   const [diet_plan_id, setDietPlanId] = useState(data?.diet_plan_id);
 
+  const [measure, setMeasure] = useState("metric");
+
   // Variables
   const titles = [
     "Enter username and password",
@@ -49,7 +52,7 @@ export default function SignupForm(props) {
     />,
     <Sex sex={sex} setSex={setSex} />,
     <Birthday birthday={birthday} setBirthday={setBirthday} />,
-    <Weight />,
+    <Weight weight={weight} setWeight={setWeight} />,
     <Height />,
     <ActivityLevel />,
     <FitnessGoal />,
@@ -136,6 +139,7 @@ function Sex(props) {
     <View style={styles.sexContainer}>
       <ImageButton
         variant={BTN_VARIANTS.outlined}
+        color={sex === "M" ? themeColors.primary : themeColors.secondaryLight}
         style={{
           ...styles.imageButton,
           borderColor:
@@ -153,6 +157,7 @@ function Sex(props) {
       </ImageButton>
       <ImageButton
         variant={BTN_VARIANTS.outlined}
+        color={sex === "F" ? themeColors.primary : themeColors.secondaryLight}
         style={{
           ...styles.imageButton,
           borderColor:
@@ -176,11 +181,16 @@ function Birthday(props) {
   return <DateInput onChangeText={setBirthday} value={birthday} />;
 }
 function Weight(props) {
-  const {} = props;
+  const { weight, setWeight } = props;
   return (
-    <View>
-      <SliderInput initialIndex={60} minValue={1} maxValue={100} incValue={1} />
-    </View>
+    <NumberInput
+      incrementValue={1}
+      maxValue={635}
+      optionPlaceholder={"Kilograms"}
+      options={[]}
+      value={weight}
+      onChange={setWeight}
+    />
   );
 }
 function Height(props) {

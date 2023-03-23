@@ -1,6 +1,6 @@
 import { SPACING } from "@app/common/constants/styles";
 import themeColors from "@app/common/theme";
-import { StyleSheet } from "react-native";
+import { PixelRatio, StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   container: {
@@ -24,11 +24,23 @@ export const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
-  imageButton: {
-    width: "100%",
-    height: "100%",
-  },
+  imageButton: {},
   imageButtonImageContainer: {
     padding: SPACING.Small,
+  },
+  numberWrapper: {
+    width: "100%",
+    height: SPACING.Large * 3 * PixelRatio.getFontScale(),
+    backgroundColor: themeColors.red,
+  },
+  numberContainer: {
+    width: "30%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  numberContainer: {
+    width: "30%",
+    flex: 0,
   },
 });

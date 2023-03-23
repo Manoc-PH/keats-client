@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { View, TextInput as TextInputRN, PixelRatio } from "react-native";
+import {
+  View,
+  TextInput as TextInputRN,
+  PixelRatio,
+  StyleSheet,
+} from "react-native";
 
 // Icons
 import { MinusIcon, PlusIcon } from "@app/assets/icons";

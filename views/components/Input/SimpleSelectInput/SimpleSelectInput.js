@@ -73,7 +73,9 @@ export default function SimpleSelectInput(props) {
           variant={BTN_VARIANTS.transparent}
           size={SIZES.Small}
           endIcon={<ArrowUpIcon />}
-          onPress={() => setIsOpen(!isOpen)}>
+          onPress={() => {
+            if (options?.length > 0) setIsOpen(!isOpen);
+          }}>
           {placeholder}
         </Button>
       </View>

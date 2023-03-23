@@ -1,4 +1,4 @@
-import { StyleSheet, Platform, StatusBar } from "react-native";
+import { StyleSheet, Platform, StatusBar, PixelRatio } from "react-native";
 
 import {
   FONT_SIZES,
@@ -20,6 +20,7 @@ export const styles = StyleSheet.create({
   btnContainer: {
     flexDirection: "row",
     justifyContent: "flex-start",
+    height: FONT_SIZES.Large * 2 * PixelRatio.getFontScale(),
   },
   // LABEL
   labelContainer: {
@@ -34,7 +35,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     borderWidth: 1,
     borderColor: themeColors.backgroundLight,
-    borderRadius: 50,
+    borderRadius: SPACING.Regular,
     paddingLeft: SPACING.Tiny,
   },
   inputContainer: {
