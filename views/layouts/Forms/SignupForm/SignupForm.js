@@ -213,12 +213,12 @@ function Height(props) {
         <View style={styles.heightContentContainer}>
           <SubHeadline2 style={styles.subtitle}>
             Avg {sex === "F" ? "Female" : "Male"} Filipino{" "}
-            {sex === "F" ? "(4'11 ft or 149 cm)" : "(5'4 ft or 156 cm)"}
+            {sex === "F" ? "(4'11 ft or 149 cm)" : "(5'4 ft or 163 cm)"}
           </SubHeadline2>
           {sex === "F" ? (
             <FemaleDarkSvg height={(usableScreen / maxHeight) * 149} />
           ) : (
-            <MaleDarkSvg height={(usableScreen / maxHeight) * 156} />
+            <MaleDarkSvg height={(usableScreen / maxHeight) * 163} />
           )}
         </View>
         <View style={styles.heightContentContainer}>
@@ -238,7 +238,7 @@ function Height(props) {
         maxValue={maxHeight}
         optionPlaceholder={"CM"}
         options={[]}
-        value={height}
+        value={height || (sex === "F" ? 149 : 163)}
         onChange={setHeight}
       />
     </View>

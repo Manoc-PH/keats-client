@@ -27,21 +27,6 @@ export const styles = StyleSheet.create({
   imageButtonImageContainer: {
     padding: SPACING.Small,
   },
-  numberWrapper: {
-    width: "100%",
-    height: SPACING.Large * 3 * PixelRatio.getFontScale(),
-    backgroundColor: themeColors.red,
-  },
-  numberContainer: {
-    width: "30%",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  numberContainer: {
-    width: "30%",
-    flex: 0,
-  },
   heightWrapper: {
     height: "70%",
     width: "100%",
