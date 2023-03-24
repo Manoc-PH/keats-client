@@ -3,6 +3,7 @@ import { Dimensions, KeyboardAvoidingView, View } from "react-native";
 
 import { styles } from "./styles";
 import {
+  CarouselInput,
   DateInput,
   ImageButton,
   NumberInput,
@@ -33,8 +34,6 @@ export default function SignupForm(props) {
   const [height, setHeight] = useState(data?.height);
   const [activity_lvl_id, setActivityLvlId] = useState(data?.activity_lvl_id);
   const [diet_plan_id, setDietPlanId] = useState(data?.diet_plan_id);
-
-  const [measure, setMeasure] = useState("metric");
 
   // Variables
   const titles = [
@@ -246,7 +245,7 @@ function Height(props) {
 }
 function ActivityLevel(props) {
   const {} = props;
-  return <View></View>;
+  return <CarouselInput style={{ height: "80%" }} />;
 }
 function FitnessGoal(props) {
   const {} = props;

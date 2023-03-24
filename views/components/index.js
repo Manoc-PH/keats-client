@@ -26,6 +26,7 @@ export { default as DateInput } from "./Input/DateInput";
 export { default as SliderInput } from "./Input/SliderInput";
 export { default as NumberInput } from "./Input/NumberInput";
 export { default as SimpleSelectInput } from "./Input/SimpleSelectInput";
+export { default as CarouselInput } from "./Input/CarouselInput";
 
 // Skeletons
 export { default as TextSkeleton } from "./Skeleton/TextSkeleton";
