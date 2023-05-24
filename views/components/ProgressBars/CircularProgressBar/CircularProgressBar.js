@@ -9,8 +9,7 @@ function CircularProgressBar(props) {
   const { size, children, progress, foregroundColor, backgroundColor } = props;
 
   const sizeLocal = size || 170;
-  const strokeWidth =
-    sizeLocal * (SPACING.Tiny * 0.01 * PixelRatio.getFontScale());
+  const strokeWidth = sizeLocal * 0.12;
   const center = sizeLocal / 2;
   const radius = sizeLocal / 2 - strokeWidth / 2;
   const circumference = 2 * Math.PI * radius;
@@ -27,15 +26,19 @@ function CircularProgressBar(props) {
     <View style={inlineStyle.wrapper}>
       <View style={inlineStyle.container}>{children}</View>
       <Svg height={sizeLocal} width={sizeLocal} fill='none' {...props}>
-        <G rotation={-90} filter='url(#filter0_d_0_1)' origin={center}>
+        <G rotation={145} filter='url(#filter0_d_0_1)' origin={center}>
           <Circle
             cx={center}
             cy={center}
             r={radius}
             strokeWidth={strokeWidth}
             stroke={backgroundColor || themeColors.backgroundLight}
+            strokeDasharray={circumference}
+            strokeDashoffset={circumference - (circumference * 70) / 100}
+            strokeLinecap='round'
+            strokeLinejoin='round'
           />
-          <Circle
+          {/* <Circle
             stroke={foregroundColor || themeColors.primary}
             cx={center}
             cy={center}
@@ -47,7 +50,7 @@ function CircularProgressBar(props) {
             }
             strokeLinecap='round'
             strokeLinejoin='round'
-          />
+          /> */}
         </G>
       </Svg>
     </View>

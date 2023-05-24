@@ -7,6 +7,11 @@ export const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "flex-start",
   },
+  wholePageContainer: {
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   container: {
     width: "100%",
     paddingTop: SPACING.Huge,

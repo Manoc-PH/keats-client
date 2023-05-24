@@ -1,14 +1,21 @@
 import { useEffect, useState } from "react";
-import { View } from "react-native";
+import { View, Dimensions } from "react-native";
+import { useHeaderHeight } from "@react-navigation/elements";
+import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 
 import CalorieSummaryBar from "@app/views/layouts/SummaryBars/CalorieSummaryBar";
 import MacroSummaryBars from "@app/views/layouts/SummaryBars/MacroSummaryBars";
 import { styles } from "./styles";
+import { SPACING } from "@app/common/constants/styles";
 
 export default function MacroSummary(props) {
   // Props
   const { dailyNutrients } = props;
 
+  // Hooks
+  const headerHeight = useHeaderHeight();
+  const tabBarHeight = useBottomTabBarHeight();
+  console.log(headerHeight, tabBarHeight);
   // Local State
   const [macroSummary, setMacroSummary] = useState();
 
@@ -42,7 +49,15 @@ export default function MacroSummary(props) {
   }, [dailyNutrients]);
   return (
     <View style={styles.wrapper}>
-      <View style={styles.container}>
+      <View
+        style={{
+          ...styles.wholePageContainer,
+          height:
+            Dimensions.get("window").height -
+            headerHeight -
+            tabBarHeight -
+            SPACING.Medium,
+        }}>
         <CalorieSummaryBar
           loading={!dailyNutrients}
           calories={Math.floor(dailyNutrients?.calories) || 0}

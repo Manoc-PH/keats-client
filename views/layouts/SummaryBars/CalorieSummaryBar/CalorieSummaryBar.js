@@ -13,11 +13,11 @@ import { FONT_SIZES } from "@app/common/constants/styles";
 export default function CalorieSummaryBar(props) {
   const { calories, maxCalories, loading } = props;
 
-  const width = Math.floor(Dimensions.get("screen").width * 0.5);
+  const width = Math.floor(Dimensions.get("screen").width * 0.8);
 
   const localyStyle = StyleSheet.create({
     container: {
-      width: Math.floor(width * 0.8),
+      width: Math.floor(width * 0.6),
     },
   });
   return (

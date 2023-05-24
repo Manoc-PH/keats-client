@@ -4,7 +4,6 @@ import { PixelRatio, StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   wrapper: {
-    height: SPACING.Large * 3 * PixelRatio.getFontScale(),
     width: "100%",
     backgroundColor: themeColors.background,
     zIndex: ZINDEX.header,
