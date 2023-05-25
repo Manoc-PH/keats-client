@@ -15,7 +15,7 @@ export default function MacroSummary(props) {
   // Hooks
   const headerHeight = useHeaderHeight();
   const tabBarHeight = useBottomTabBarHeight();
-  console.log(headerHeight, tabBarHeight);
+
   // Local State
   const [macroSummary, setMacroSummary] = useState();
 

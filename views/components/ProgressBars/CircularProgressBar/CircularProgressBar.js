@@ -38,7 +38,7 @@ function CircularProgressBar(props) {
             strokeLinecap='round'
             strokeLinejoin='round'
           />
-          {/* <Circle
+          <Circle
             stroke={foregroundColor || themeColors.primary}
             cx={center}
             cy={center}
@@ -46,11 +46,11 @@ function CircularProgressBar(props) {
             strokeWidth={strokeWidth}
             strokeDasharray={circumference}
             strokeDashoffset={
-              circumference - (circumference * (progress || 0)) / 100
+              circumference - (circumference * 0.7 * (progress || 0)) / 100
             }
             strokeLinecap='round'
             strokeLinejoin='round'
-          /> */}
+          />
         </G>
       </Svg>
     </View>
