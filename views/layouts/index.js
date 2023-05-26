@@ -6,6 +6,7 @@ export { default as NutrientSummaryBar } from "./SummaryBars/NutrientSummaryBar"
 // Home
 export { default as Loader } from "./ScreenLayouts/Loader";
 export { default as MacroSummary } from "./ScreenLayouts/Home/MacroSummary";
+export { default as CalorieSummary } from "./ScreenLayouts/Home/CalorieSummary";
 export { default as CalorieGoalProgress } from "./ScreenLayouts/Home/CalorieGoalProgress";
 
 // Food
