@@ -14,16 +14,18 @@ export default function CalorieSummary(props) {
   const headerHeight = useHeaderHeight();
   const tabBarHeight = useBottomTabBarHeight();
   return (
-    <View style={styles.wrapper}>
-      <View
-        style={{
-          ...styles.container,
-          height:
-            Dimensions.get("window").height -
-            headerHeight -
-            tabBarHeight -
-            SPACING.Medium,
-        }}>
+    <View
+      style={{
+        ...styles.wrapper,
+        height:
+          Dimensions.get("window").height -
+          headerHeight -
+          tabBarHeight -
+          SPACING.Huge -
+          SPACING.Huge -
+          SPACING.Medium,
+      }}>
+      <View style={styles.container}>
         <CalorieSummaryBar
           loading={!dailyNutrients}
           calories={Math.floor(dailyNutrients?.calories) || 0}

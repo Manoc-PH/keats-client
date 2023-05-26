@@ -14,6 +14,7 @@ import {
   HomeSearchModal,
   Loader,
   ScrollPage,
+  PageDivider,
 } from "@app/views/layouts";
 
 // Hooks
@@ -62,11 +63,22 @@ export default function Home() {
   return (
     <>
       <ScrollPage>
-        <View style={styles.container}>
-          <CalorieSummary dailyNutrients={dailyNutrients} />
-          <MacroSummary dailyNutrients={dailyNutrients} />
-          <CurrentDietCard accountVitals={accountVitals} />
-          <CalorieGoalProgress />
+        <View style={styles.wrapper}>
+          <View style={styles.container}>
+            <CalorieSummary dailyNutrients={dailyNutrients} />
+          </View>
+          <PageDivider />
+          <View style={styles.container}>
+            <MacroSummary dailyNutrients={dailyNutrients} />
+          </View>
+          <PageDivider />
+          <View style={styles.container}>
+            <CurrentDietCard accountVitals={accountVitals} />
+          </View>
+          <PageDivider />
+          <View style={styles.container}>
+            <CalorieGoalProgress />
+          </View>
         </View>
       </ScrollPage>
       {/* MODALS */}

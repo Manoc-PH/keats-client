@@ -7,7 +7,7 @@ import themeColors from "@app/common/theme";
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  wrapper: { width: "100%", marginTop: SPACING.ExtraLarge },
+  wrapper: { width: "100%" },
   container: { width: "100%" },
   rowContainer: {
     flexDirection: "row",
