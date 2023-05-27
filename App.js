@@ -4,12 +4,12 @@ import { View, Text } from "react-native";
 // Fonts
 import {
   useFonts,
-  Montserrat_200ExtraLight,
-  Montserrat_400Regular,
-  Montserrat_500Medium,
-  Montserrat_600SemiBold,
-  Montserrat_700Bold,
-} from "@expo-google-fonts/montserrat";
+  Outfit_200ExtraLight,
+  Outfit_300Light,
+  Outfit_400Regular,
+  Outfit_500Medium,
+  Outfit_600SemiBold,
+} from "@expo-google-fonts/outfit";
 
 import MainNavigator from "@app/core/navigation/main";
 import AppStoreProvider from "@app/core/providers/AppStoreProvider";
@@ -22,11 +22,11 @@ export default function App() {
   const [isSetupDBLoading, setIsSetupDBLoading] = useState(true);
   const [isSetupDBSuccess, setisSetupDBSuccess] = useState(false);
   const [fontsLoaded] = useFonts({
-    Montserrat_200ExtraLight,
-    Montserrat_400Regular,
-    Montserrat_500Medium,
-    Montserrat_600SemiBold,
-    Montserrat_700Bold,
+    Outfit_200ExtraLight,
+    Outfit_300Light,
+    Outfit_400Regular,
+    Outfit_500Medium,
+    Outfit_600SemiBold,
   });
 
   function handleSetup() {
