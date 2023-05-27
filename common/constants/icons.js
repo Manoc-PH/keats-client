@@ -1,6 +1,6 @@
 import {
   AccountIcon,
-  AddIcon,
+  InsightsIcon,
   HelpIcon,
   HomeIcon,
   RecipeIcon,
@@ -9,7 +9,7 @@ import {
 export const MainTabIconsMapping = {
   Home: <HomeIcon />,
   Help: <HelpIcon />,
-  Add: <AddIcon />,
+  Insights: <InsightsIcon />,
   Recipes: <RecipeIcon />,
   Account: <AccountIcon />,
 };

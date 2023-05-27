@@ -10,7 +10,7 @@ import { MainTabIconsMapping } from "@app/common/constants/icons";
 import {
   Home,
   Help,
-  Add,
+  Insights,
   Recipes,
   Account,
   FoodDetails,
@@ -22,6 +22,7 @@ import {
   HomeHeader,
   MyIntakesHeader,
 } from "@app/views/layouts";
+import { BTN_VARIANTS } from "@app/common/constants/styles";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -79,29 +80,22 @@ export default function AuthenticatedScreens() {
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused }) => {
             const color = focused
-              ? ThemeColors.primary
+              ? ThemeColors.secondary
               : ThemeColors.secondaryLight;
 
             return React.cloneElement(MainTabIconsMapping[route.name], {
               color,
+              variant: focused ? BTN_VARIANTS.primary : BTN_VARIANTS.outlined,
             });
           },
           tabBarActiveTintColor: ThemeColors.primary,
           tabBarInactiveTintColor: ThemeColors.secondaryLight,
-          tabBarIconStyle: {
-            marginBottom: route.name === "Add" ? 20 : 0,
-          },
           tabBarShowLabel: false,
         })}>
         <Tab.Screen
           name='Home'
           component={HomeNavigator}
-          options={{
-            headerShown: false,
-            tabBarStyle: ({ route }) => {
-              console.log(route);
-            },
-          }}
+          options={{ headerShown: false }}
         />
         <Tab.Screen
           options={{ headerShown: false }}
@@ -110,8 +104,8 @@ export default function AuthenticatedScreens() {
         />
         <Tab.Screen
           options={{ headerShown: false }}
-          name='Add'
-          component={Add}
+          name='Insights'
+          component={Insights}
         />
         <Tab.Screen
           options={{ headerShown: false }}
