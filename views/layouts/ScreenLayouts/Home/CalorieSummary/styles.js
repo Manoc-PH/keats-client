@@ -1,3 +1,4 @@
+import { SPACING } from "@app/common/constants/styles";
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
@@ -10,5 +11,8 @@ export const styles = StyleSheet.create({
     height: "100%",
     justifyContent: "center",
     alignItems: "center",
+  },
+  itemContainer: {
+    marginBottom: SPACING.Large,
   },
 });

@@ -1,6 +1,7 @@
 import { Dimensions, StyleSheet, View } from "react-native";
 
 import {
+  CircleButton,
   CircularProgressBar,
   LargeTitle,
   SubHeadline2,
@@ -8,7 +9,8 @@ import {
 } from "@app/views/components";
 import themeColors from "@app/common/theme";
 import { styles } from "./styles";
-import { FONT_SIZES } from "@app/common/constants/styles";
+import { BTN_VARIANTS, FONT_SIZES } from "@app/common/constants/styles";
+import { PlusIcon } from "@app/assets/icons";
 
 export default function CalorieSummaryBar(props) {
   const { calories, maxCalories, loading } = props;
@@ -48,6 +50,11 @@ export default function CalorieSummaryBar(props) {
           ) : (
             <SubHeadline2>of {maxCalories || 0} Calories</SubHeadline2>
           )}
+          <View style={styles.addBtnContainer}>
+            <CircleButton variant={BTN_VARIANTS.outlined}>
+              <PlusIcon width={25} height={25} color={themeColors.primary} />
+            </CircleButton>
+          </View>
         </View>
       </CircularProgressBar>
     </View>
