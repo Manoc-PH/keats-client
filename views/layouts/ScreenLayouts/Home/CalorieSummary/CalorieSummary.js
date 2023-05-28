@@ -4,8 +4,12 @@ import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 
 import CalorieSummaryBar from "@app/views/layouts/SummaryBars/CalorieSummaryBar";
 import { styles } from "./styles";
-import { BTN_VARIANTS, SPACING } from "@app/common/constants/styles";
-import { CircleButton, Title3 } from "@app/views/components";
+import {
+  BTN_VARIANTS,
+  FONT_SIZES,
+  SPACING,
+} from "@app/common/constants/styles";
+import { CircleButton, TextSkeleton, Title3 } from "@app/views/components";
 import { TrippleArrowDownIcon } from "@app/assets/icons";
 
 export default function CalorieSummary(props) {
@@ -29,7 +33,13 @@ export default function CalorieSummary(props) {
       }}>
       <View style={styles.container}>
         <View style={styles.itemContainer}>
-          <Title3>How much I've eaten today</Title3>
+          {!dailyNutrients && (
+            <TextSkeleton
+              style={styles.skeleton}
+              fontSize={FONT_SIZES.Regular}
+            />
+          )}
+          {dailyNutrients && <Title3>How much I've eaten today</Title3>}
         </View>
         <View style={styles.itemContainer}>
           <CalorieSummaryBar
