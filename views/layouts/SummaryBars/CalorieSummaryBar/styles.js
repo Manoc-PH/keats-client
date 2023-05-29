@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
   ghostTitle: { height: 0 },
   addBtnContainer: {
     position: "absolute",
-    top: "200%",
+    top: "220%",
     zIndex: ZINDEX.basicComponent,
     elevation: ZINDEX.basicComponent,
     shadowColor: "#00000000",
