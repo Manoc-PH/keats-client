@@ -4,13 +4,7 @@ import * as SQLite from "expo-sqlite";
 export default async function CreateCredentials({
   id,
   username,
-  name_first,
-  name_last,
-  phone_number,
   account_type_id,
-  account_vitals_id,
-  account_profile_id,
-  measure_unit_id,
   token,
 }) {
   const db = SQLite.openDatabase(dbName);
@@ -20,27 +14,10 @@ export default async function CreateCredentials({
       tx.executeSql(
         `INSERT INTO credentials (
   			id,
-  			username,
-        name_first,
-        name_last,
-        phone_number,
-  			account_type_id,
-  			account_vitals_id,
-  			account_profile_id,
-  			measure_unit_id,
-  			token) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-        [
-          id,
-          username,
-          name_first || "",
-          name_last || "",
-          phone_number || "",
-          account_type_id,
-          account_vitals_id,
-          account_profile_id,
-          measure_unit_id,
-          token,
-        ],
+  			username, 
+  			account_type_id, 
+  			token) values (?, ?, ?, ?)`,
+        [id, username, account_type_id, token],
         (txObj, resultSet) => resolve(resultSet.rows._array),
         (txObj, error) => reject(error)
       );

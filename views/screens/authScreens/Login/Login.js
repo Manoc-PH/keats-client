@@ -55,16 +55,12 @@ export default function Login(props) {
     }
   }
   function handleLoginSuccess() {
+    // TODO PROPERLY HANDLE LOGIN SUCCESS
+    // !THIS DOES NOT WORK CURRENTLY
     const cred = {
       id: loginUserData.data.id,
       username: loginUserData.data.username,
-      name_first: loginUserData.data.name_first,
-      name_last: loginUserData.data.name_last,
-      phone_number: loginUserData.data.phone_number,
       account_type_id: loginUserData.data.account_type_id,
-      account_vitals_id: loginUserData.data.account_vitals_id,
-      account_profile_id: loginUserData.data.account_profile_id,
-      measure_unit_id: loginUserData.data.measure_unit_id,
       token: loginUserData.headers["set-cookie"][0],
     };
     authAxios.defaults.headers.common["Cookie"] =
