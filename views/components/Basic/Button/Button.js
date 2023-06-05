@@ -69,7 +69,11 @@ export default function Button(props) {
     }).start();
 
   return (
-    <Pressable {...rest} onPressIn={onPressIn} onPressOut={onPressOut}>
+    <Pressable
+      {...rest}
+      style={style}
+      onPressIn={onPressIn}
+      onPressOut={onPressOut}>
       <Animated.View
         style={{
           ...styles.defaults,

@@ -24,7 +24,7 @@ export default function CurrentDietCard(props) {
   }
   return (
     <View style={styles.wrapper}>
-      <Card onPress={handlePress}>
+      <Card>
         <View style={styles.container}>
           {!accountVitals ? (
             <View style={styles.skeleton}>
@@ -68,7 +68,9 @@ export default function CurrentDietCard(props) {
         </View>
       </Card>
       <View style={styles.spacer} />
-      <Button style={styles.btn}>Know More</Button>
+      <Button style={styles.btn} onPress={handlePress}>
+        Know More
+      </Button>
     </View>
   );
 }
