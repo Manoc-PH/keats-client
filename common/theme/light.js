@@ -6,7 +6,7 @@ const lightColors = {
   background: "#FFFFFF",
   backgroundLight: "#EBEFF6",
 
-  red: "#EF7F5C",
+  red: "#EF5C5C",
   blue: "#62A1FF",
   yellow: "#EFC65C",
 };

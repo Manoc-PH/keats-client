@@ -1,37 +1,41 @@
+import {
+  FONT_SIZES,
+  FONT_WEIGHTS,
+  SPACING,
+} from "@app/common/constants/styles";
+import themeColors from "@app/common/theme";
 import * as React from "react";
-import { View } from "react-native";
+import { Text, View } from "react-native";
 import Svg, { Path } from "react-native-svg";
 
 function IntakeIcon(props) {
   return (
-    <View style={{ aspectRatio: 1 }}>
-      <Svg
-        width={18}
-        height={22}
-        viewBox='0 0 17 21'
-        fill='none'
-        xmlns='http://www.w3.org/2000/svg'
-        {...props}>
+    <View style={{ aspectRatio: 1, position: "relative" }}>
+      <Svg width={21} height={21} viewBox='0 0 21 21' fill='none' {...props}>
         <Path
-          d='M4.129 6.664v-.97c0-2.251 1.758-4.462 3.944-4.672 2.603-.26 4.798 1.85 4.798 4.482v1.38'
-          stroke={props.color || "#A8AAAE"}
-          strokeWidth={1.5}
-          strokeMiterlimit={10}
-          strokeLinecap='round'
-          strokeLinejoin='round'
-        />
-        <Path
-          d='M5.586 21h5.828c3.905 0 4.604-1.61 4.808-3.572l.729-6.002c.262-2.441-.418-4.432-4.566-4.432h-7.77c-4.148 0-4.828 1.991-4.566 4.432l.729 6.002C.982 19.39 1.68 21 5.586 21z'
-          fill={props.color || "#A8AAAE"}
-        />
-        <Path
-          d='M11.895 10.996h.01M5.095 10.996h.009'
-          stroke={props.secondaryColor || "#fff"}
-          strokeWidth={2}
-          strokeLinecap='round'
-          strokeLinejoin='round'
+          d='M.752 20.732a.864.864 0 01-.263-.625c0-.238.087-.447.263-.625L12.43 7.604a4.553 4.553 0 01-.292-2.962c.234-1.022.79-1.98 1.668-2.873.878-.873 1.942-1.434 3.19-1.682 1.25-.248 2.274.035 3.074.848.82.834 1.097 1.876.834 3.126-.264 1.25-.854 2.352-1.77 3.305-.8.833-1.694 1.379-2.68 1.637-.985.258-1.906.198-2.765-.179l-1.961 1.995 8.517 8.663a.864.864 0 01.264.625.864.864 0 01-.264.625.836.836 0 01-1.229 0l-8.517-8.663-8.518 8.663a.836.836 0 01-1.23 0zm4.273-9.824L1.542 7.366C.664 6.473.162 5.446.035 4.284A5.457 5.457 0 01.693.994a.813.813 0 01.674-.416c.292-.02.546.08.76.298l6.381 6.49-3.483 3.542z'
+          fill={props.color || themeColors.secondary}
         />
       </Svg>
+      <View
+        style={{
+          position: "absolute",
+          bottom: -SPACING.Tiny,
+          right: -SPACING.Tiny,
+          paddingHorizontal: SPACING.Tiny,
+          borderRadius: SPACING.Tiny,
+          backgroundColor: themeColors.red,
+        }}>
+        {/* ! Do not use components to avoid circular dependency */}
+        <Text
+          style={{
+            color: themeColors.background,
+            fontFamily: FONT_WEIGHTS.Medium,
+            fontSize: FONT_SIZES.Tiny,
+          }}>
+          {props?.count || 0}
+        </Text>
+      </View>
     </View>
   );
 }
