@@ -12,28 +12,31 @@ export const styles = StyleSheet.create({
   rowContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: SPACING.Tiny,
+    marginTop: SPACING.Tiny,
   },
   btnContainer: {
     flexDirection: "row",
     justifyContent: "flex-end",
     alignItems: "center",
   },
-  iconContainer: {
-    height: "100%",
-    marginTop: SPACING.Small,
+  iconContainer: { height: "100%", marginTop: SPACING.Small },
+  subheadline: { color: themeColors.primary, marginRight: 5 },
+  title: { textTransform: "capitalize" },
+  skeleton: { marginTop: SPACING.Small },
+  smallSkeleton: { width: "40%" },
+  spacerLine: {
+    width: "100%",
+    height: 1,
+    borderTopColor: themeColors.backgroundLight,
+    borderTopWidth: 1,
+    marginVertical: SPACING.Regular,
   },
-  subheadline: {
-    color: themeColors.primary,
-    marginRight: 5,
+  spacer: {
+    width: "100%",
+    height: 1,
+    marginVertical: SPACING.Regular,
   },
-  title: {
-    textTransform: "capitalize",
-  },
-  skeleton: {
-    marginTop: SPACING.Small,
-  },
-  smallSkeleton: {
-    width: "40%",
+  btn: {
+    alignSelf: "flex-start",
   },
 });
