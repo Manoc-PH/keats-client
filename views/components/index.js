@@ -9,6 +9,7 @@ export { default as Button } from "./Basic/Button";
 export { default as CircleButton } from "./Basic/CircleButton";
 export { default as Image } from "./Basic/Image";
 export { default as ImageButton } from "./Basic/ImageButton";
+export { default as SwitchButton } from "./Basic/SwitchButton";
 // Texts
 export { default as Body } from "./Basic/Texts/Body";
 export { default as Caption1 } from "./Basic/Texts/Caption1";

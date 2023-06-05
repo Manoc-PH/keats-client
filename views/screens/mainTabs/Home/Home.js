@@ -1,4 +1,4 @@
-import { ScrollView, View } from "react-native";
+import { Dimensions, ScrollView, View } from "react-native";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -20,6 +20,8 @@ import {
 // Hooks
 import { useGetDailyNutrients, useGetAccountVitals } from "@app/core/hooks/api";
 import moment from "moment";
+import { SubHeadline2, SwitchButton } from "@app/views/components";
+import { SPACING } from "@app/common/constants/styles";
 
 export default function Home() {
   // Store State
@@ -69,16 +71,26 @@ export default function Home() {
           </View>
           <PageDivider />
           <View style={styles.container}>
+            <SwitchButton
+              onValueChange={() => {}}
+              switchWidth={
+                Dimensions.get("window").width - SPACING.Medium - SPACING.Medium
+              }
+              text1={"Simple View"}
+              text2={"Advanced View"}
+            />
+            <View style={styles.spacer} />
             <MacroSummary dailyNutrients={dailyNutrients} />
-          </View>
-          <PageDivider />
-          <View style={styles.container}>
+            <View style={styles.spacer} />
+            <SubHeadline2>My Current Options</SubHeadline2>
+            <View style={styles.spacerSubheadline} />
             <CurrentDietCard accountVitals={accountVitals} />
-          </View>
-          <PageDivider />
-          <View style={styles.container}>
+            <View style={styles.spacer} />
+            <SubHeadline2>How much I've tracked</SubHeadline2>
+            <View style={styles.spacerSubheadline} />
             <CalorieGoalProgress />
           </View>
+          <PageDivider />
         </View>
       </ScrollPage>
       {/* MODALS */}

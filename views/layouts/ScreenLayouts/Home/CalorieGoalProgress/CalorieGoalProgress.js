@@ -9,9 +9,6 @@ export default function CalorieGoalProgress() {
   // TODO QUERY ENDPOINTS HERE
   return (
     <View style={styles.wrapper}>
-      <View style={styles.rowWrapper}>
-        <Title2>My Progress</Title2>
-      </View>
       <CalorieGraph />
     </View>
   );

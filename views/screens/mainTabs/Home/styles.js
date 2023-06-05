@@ -13,4 +13,6 @@ export const styles = StyleSheet.create({
     paddingHorizontal: SPACING.Medium,
     paddingVertical: SPACING.Huge,
   },
+  spacer: { height: SPACING.Huge, width: "100%" },
+  spacerSubheadline: { height: SPACING.Regular, width: "100%" },
 });

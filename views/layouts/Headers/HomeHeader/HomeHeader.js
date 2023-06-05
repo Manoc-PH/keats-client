@@ -89,7 +89,7 @@ export default function HomeHeader() {
           )}
           {!isHomeSearchActive && (
             <View style={styles.iconContainer}>
-              <Button
+              {/* <Button
                 style={{ ...styles.btnContainer, ...inlineStyle.btnContainer }}
                 variant={BTN_VARIANTS.transparent}
                 size={SIZES.Tiny}
@@ -100,7 +100,7 @@ export default function HomeHeader() {
                   style={styles.searchIcon}
                   color={themeColors.secondary}
                 />
-              </Button>
+              </Button> */}
               <Button
                 style={styles.btnContainer}
                 variant={BTN_VARIANTS.transparent}
