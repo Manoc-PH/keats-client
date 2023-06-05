@@ -31,12 +31,6 @@ export const styles = StyleSheet.create({
     borderTopWidth: 1,
     marginVertical: SPACING.Regular,
   },
-  spacer: {
-    width: "100%",
-    height: 1,
-    marginVertical: SPACING.Regular,
-  },
-  btn: {
-    alignSelf: "flex-start",
-  },
+  spacer: { width: "100%", marginTop: SPACING.Large },
+  btn: { alignSelf: "flex-start" },
 });

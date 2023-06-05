@@ -69,7 +69,7 @@ export default function CurrentDietCard(props) {
       </Card>
       <View style={styles.spacer} />
       <Button style={styles.btn} onPress={handlePress}>
-        Know More
+        Change
       </Button>
     </View>
   );

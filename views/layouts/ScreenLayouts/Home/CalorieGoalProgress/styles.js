@@ -12,4 +12,6 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     paddingBottom: SPACING.Small,
   },
+  spacer: { width: "100%", marginTop: SPACING.Regular },
+  btn: { alignSelf: "flex-start" },
 });
