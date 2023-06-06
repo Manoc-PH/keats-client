@@ -31,16 +31,21 @@ const Stack = createNativeStackNavigator();
 const HomeNavigator = ({ navigation, route }) => {
   useLayoutEffect(() => {
     const routeName = getFocusedRouteNameFromRoute(route);
+    const hidden = {
+      height: 0,
+      width: 0,
+      marginLeft: -5000,
+      zIndex: 0,
+      elevation: 0,
+      shadowColor: "#00000000",
+    };
     if (routeName === "FoodDetails") {
       navigation.setOptions({
-        tabBarStyle: {
-          height: 0,
-          width: 0,
-          marginLeft: -5000,
-          zIndex: 0,
-          elevation: 0,
-          shadowColor: "#00000000",
-        },
+        tabBarStyle: hidden,
+      });
+    } else if (routeName === "AddIntake") {
+      navigation.setOptions({
+        tabBarStyle: hidden,
       });
     } else {
       navigation.setOptions({ tabBarStyle: {} });
@@ -48,11 +53,7 @@ const HomeNavigator = ({ navigation, route }) => {
   }, [navigation, route]);
   return (
     <Stack.Navigator
-      screenOptions={({ route }) => ({
-        header: HomeHeader,
-        headerMode: "screen",
-        tabBarVisible: false,
-      })}>
+      screenOptions={() => ({ header: HomeHeader, headerMode: "screen" })}>
       <Stack.Screen name='HomeDefault' component={Home} />
       <Stack.Screen
         name='FoodDetails'
@@ -83,25 +84,27 @@ const HomeNavigator = ({ navigation, route }) => {
   );
 };
 export default function AuthenticatedScreens() {
+  function screenOptions({ route }) {
+    return {
+      tabBarIcon: ({ focused }) => {
+        const color = focused
+          ? ThemeColors.secondary
+          : ThemeColors.secondaryLight;
+
+        return React.cloneElement(MainTabIconsMapping[route.name], {
+          color,
+          variant: focused ? BTN_VARIANTS.primary : BTN_VARIANTS.outlined,
+        });
+      },
+      tabBarActiveTintColor: ThemeColors.primary,
+      tabBarInactiveTintColor: ThemeColors.secondaryLight,
+      tabBarShowLabel: false,
+    };
+  }
   return (
     <>
       <StatusBar style='auto' />
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused }) => {
-            const color = focused
-              ? ThemeColors.secondary
-              : ThemeColors.secondaryLight;
-
-            return React.cloneElement(MainTabIconsMapping[route.name], {
-              color,
-              variant: focused ? BTN_VARIANTS.primary : BTN_VARIANTS.outlined,
-            });
-          },
-          tabBarActiveTintColor: ThemeColors.primary,
-          tabBarInactiveTintColor: ThemeColors.secondaryLight,
-          tabBarShowLabel: false,
-        })}>
+      <Tab.Navigator screenOptions={screenOptions}>
         <Tab.Screen
           name='Home'
           component={HomeNavigator}
