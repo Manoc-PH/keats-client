@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     zIndex: ZINDEX.modal,
     elevation: ZINDEX.modal,
     width: Dimensions.get("window").width,
-    height: Dimensions.get("window").height - 138,
+    height: Dimensions.get("window").height,
     position: "absolute",
     top: 0,
   },

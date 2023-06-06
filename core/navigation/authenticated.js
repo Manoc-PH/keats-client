@@ -15,6 +15,7 @@ import {
   Account,
   FoodDetails,
   IntakeList,
+  AddIntake,
 } from "@app/views/screens";
 
 import {
@@ -47,7 +48,11 @@ const HomeNavigator = ({ navigation, route }) => {
   }, [navigation, route]);
   return (
     <Stack.Navigator
-      screenOptions={{ header: HomeHeader, headerMode: "screen" }}>
+      screenOptions={({ route }) => ({
+        header: HomeHeader,
+        headerMode: "screen",
+        tabBarVisible: false,
+      })}>
       <Stack.Screen name='HomeDefault' component={Home} />
       <Stack.Screen
         name='FoodDetails'
@@ -68,6 +73,11 @@ const HomeNavigator = ({ navigation, route }) => {
           header: MyIntakesHeader,
           headerMode: "screen",
         }}
+      />
+      <Stack.Screen
+        name='AddIntake'
+        component={AddIntake}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );

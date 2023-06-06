@@ -1,4 +1,11 @@
 import { Dimensions, StyleSheet, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+
+// Theme
+import themeColors from "@app/common/theme";
+
+// Constants
+import { BTN_VARIANTS, FONT_SIZES } from "@app/common/constants/styles";
 
 import {
   CircleButton,
@@ -7,13 +14,14 @@ import {
   SubHeadline2,
   TextSkeleton,
 } from "@app/views/components";
-import themeColors from "@app/common/theme";
-import { styles } from "./styles";
-import { BTN_VARIANTS, FONT_SIZES } from "@app/common/constants/styles";
 import { PlusIcon } from "@app/assets/icons";
+import { styles } from "./styles";
 
 export default function CalorieSummaryBar(props) {
   const { calories, maxCalories, loading } = props;
+
+  // Hooks
+  const navigation = useNavigation();
 
   const width = Math.floor(Dimensions.get("screen").width * 0.8);
 
@@ -51,7 +59,11 @@ export default function CalorieSummaryBar(props) {
             <SubHeadline2>of {maxCalories || 0} Calories</SubHeadline2>
           )}
           <View style={styles.addBtnContainer}>
-            <CircleButton variant={BTN_VARIANTS.outlined}>
+            <CircleButton
+              variant={BTN_VARIANTS.outlined}
+              onPress={() => {
+                navigation.navigate("Home", { screen: "AddIntake" });
+              }}>
               <PlusIcon width={25} height={25} color={themeColors.primary} />
             </CircleButton>
           </View>
