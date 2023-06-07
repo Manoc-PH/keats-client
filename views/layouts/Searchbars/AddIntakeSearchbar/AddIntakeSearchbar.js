@@ -18,6 +18,8 @@ import { BTN_VARIANTS, SIZES, SPACING } from "@app/common/constants/styles";
 import { SearchIcon } from "@app/assets/icons";
 
 import { styles } from "./styles";
+import { useGetSearchIngredient } from "@app/core/hooks/api";
+import useDebounce from "@app/common/utils/debounce";
 
 export default function AddIntakeSearchbar() {
   // Refs
@@ -26,108 +28,74 @@ export default function AddIntakeSearchbar() {
   // Local State
   const [scrollHeight, setScrollHeight] = useState(0);
   const [text, onChangeText] = useState("");
-  const [isSearchActive, setIsSearchActive] = useState(false);
   const [searchResult, setSearchResult] = useState([]);
 
   // Hooks
   const navigation = useNavigation();
+  const {
+    getSearchIngredient,
+    getSearchIngredientData,
+    isGetSearchIngredientLoading,
+    getSearchIngredientError,
+  } = useGetSearchIngredient();
+
+  // Constants
+  const isOptionsShown = text || searchResult?.length > 0;
 
   // Functions
+  function search() {
+    if (text) getSearchIngredient(text);
+    else {
+      setSearchResult([]);
+      onChangeText("");
+    }
+  }
   const handleCancel = () =>
     navigation.navigate("Home", { screen: "HomeDefault" });
-  const handleFocus = () => setIsSearchActive(true);
-  const handleBlur = () => setIsSearchActive(false);
   const scrollDown = () =>
     scrollViewRef.current.scrollToEnd({ animated: true });
   function handleBottomLayout(event) {
     var { height } = event.nativeEvent.layout;
     setScrollHeight(Dimensions.get("window").height - height);
   }
+  function formatSearchData() {
+    if (getSearchIngredientData) {
+      const newData = [];
+      getSearchIngredientData.reverse().map((item) =>
+        newData.push({
+          id: item.id,
+          title: `${item.name}${item?.name_ph && " - " + item?.name_ph}`,
+          subtitle: item.name_owner,
+        })
+      );
+      setSearchResult(newData);
+    }
+  }
 
-  const sampleData = [
-    {
-      id: 1,
-      title: "Lorem Ipsum Doler Ipsut",
-      subtitle: "Lorem Ipsum Doler Ipsut",
-    },
-    {
-      id: 2,
-      title: "Lorem Ipsum Doler Ipsut",
-      subtitle: "Lorem Ipsum Doler Ipsut",
-    },
-    {
-      id: 3,
-      title: "Lorem Ipsum Doler Ipsut",
-      subtitle: "Lorem Ipsum Doler Ipsut",
-    },
-    {
-      id: 4,
-      title: "Lorem Ipsum Doler Ipsut",
-      subtitle: "Lorem Ipsum Doler Ipsut",
-    },
-    {
-      id: 5,
-      title: "Lorem Ipsum Doler Ipsut",
-      subtitle: "Lorem Ipsum Doler Ipsut",
-    },
-    {
-      id: 6,
-      title: "Lorem Ipsum Doler Ipsut",
-      subtitle: "Lorem Ipsum Doler Ipsut",
-    },
-    {
-      id: 7,
-      title: "Lorem Ipsum Doler Ipsut",
-      subtitle: "Lorem Ipsum Doler Ipsut",
-    },
-    {
-      id: 8,
-      title: "Lorem Ipsum Doler Ipsut",
-      subtitle: "Lorem Ipsum Doler Ipsut",
-    },
-    {
-      id: 9,
-      title: "Lorem Ipsum Doler Ipsut",
-      subtitle: "Lorem Ipsum Doler Ipsut",
-    },
-    {
-      id: 10,
-      title: "Lorem Ipsum Doler Ipsut",
-      subtitle: "Lorem Ipsum Doler Ipsut",
-    },
-    {
-      id: 11,
-      title: "Lorem Ipsum Doler Ipsut",
-      subtitle: "Lorem Ipsum Doler Ipsut",
-    },
-    {
-      id: 12,
-      title: "Lorem Ipsum Doler Ipsut",
-      subtitle: "Lorem Ipsum Doler Ipsut",
-    },
-  ];
+  // UseEffects
+  useDebounce(search, [text], 400);
+  useEffect(() => {
+    formatSearchData();
+  }, [getSearchIngredientData]);
+
   return (
-    <View
-      style={{
-        ...styles.searchWrapper,
-        flex: sampleData || isSearchActive ? 1 : 0,
-      }}>
+    <View style={{ ...styles.searchWrapper, flex: isOptionsShown ? 1 : 0 }}>
       {/* Search Results */}
-      {(isSearchActive || sampleData) && (
+      {isOptionsShown && (
         <View style={{ ...styles.rowContainer, height: scrollHeight }}>
           <ScrollView ref={scrollViewRef} onContentSizeChange={scrollDown}>
-            {sampleData.map((item) => (
+            {searchResult.map((item) => (
               <SearchResultCard
                 key={item.id}
                 title={item.title}
-                subtitle={item.id}
+                subtitle={item.subtitle}
               />
             ))}
           </ScrollView>
         </View>
       )}
-      <View onLayout={handleBottomLayout}>
-        {(isSearchActive || sampleData) && (
+      <View onLayout={isOptionsShown && handleBottomLayout}>
+        {isOptionsShown && (
           <View style={styles.rowContainer}>
             <Button style={{ marginRight: SPACING.Small }}>Generic</Button>
             <Button variant={BTN_VARIANTS.outlined}>Branded</Button>
@@ -140,8 +108,6 @@ export default function AddIntakeSearchbar() {
               onChangeText={onChangeText}
               value={text}
               placeholder='Search for a food...'
-              onFocus={handleFocus}
-              onBlur={handleBlur}
               startIcon={
                 <SearchIcon
                   height={SPACING.Medium}
