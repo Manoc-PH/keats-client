@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { View } from "react-native";
 import themeColors from "@app/common/theme";
 import { useNavigation } from "@react-navigation/native";
@@ -11,6 +12,7 @@ import { BTN_VARIANTS, SIZES, SPACING } from "@app/common/constants/styles";
 // Assets
 import { SearchIcon } from "@app/assets/icons";
 
+import { styles } from "./styles";
 export default function AddIntakeSearchbar() {
   // Local State
   const [text, onChangeText] = useState("");
@@ -24,31 +26,29 @@ export default function AddIntakeSearchbar() {
   }
 
   return (
-    <View style={styles.boilerplate}>
-      <View style={styles.searchWrapper}>
-        <View style={styles.searchInputContainer}>
-          <TextInput
-            onChangeText={onChangeText}
-            value={text}
-            placeholder='Search for a food...'
-            onStartIconPress={() => {}}
-            startIcon={
-              <SearchIcon
-                height={SPACING.Medium}
-                width={SPACING.Medium}
-                style={styles.searchIcon}
-                color={themeColors.secondary}
-              />
-            }
-          />
-        </View>
-        <Button
-          variant={BTN_VARIANTS.transparent}
-          size={SIZES.Tiny}
-          onPress={handleCancel}>
-          <Body>Cancel</Body>
-        </Button>
+    <View style={styles.searchWrapper}>
+      <View style={styles.searchInputContainer}>
+        <TextInput
+          onChangeText={onChangeText}
+          value={text}
+          placeholder='Search for a food...'
+          onStartIconPress={() => {}}
+          startIcon={
+            <SearchIcon
+              height={SPACING.Medium}
+              width={SPACING.Medium}
+              style={styles.searchIcon}
+              color={themeColors.secondary}
+            />
+          }
+        />
       </View>
+      <Button
+        variant={BTN_VARIANTS.transparent}
+        size={SIZES.Tiny}
+        onPress={handleCancel}>
+        <Body>Cancel</Body>
+      </Button>
     </View>
   );
 }
