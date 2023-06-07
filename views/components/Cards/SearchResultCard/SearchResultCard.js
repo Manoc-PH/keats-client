@@ -10,20 +10,9 @@ import TextSkeleton from "../../Skeleton/TextSkeleton";
 
 import { styles } from "./styles";
 
-export default function FoodCard(props) {
+export default function SearchResultCard(props) {
   // Destructure
-  const {
-    name,
-    name_ph,
-    name_brand,
-    calories,
-    amount,
-    amount_desc,
-    id,
-    thumbnail_link,
-    isLoading,
-    onPress,
-  } = props;
+  const { title, subtitle, id, thumbnail_link, isLoading, onPress } = props;
 
   function handlePress() {
     if (onPress) onPress();
@@ -57,20 +46,12 @@ export default function FoodCard(props) {
         )}
         {!isLoading && (
           <Pressable onPress={handlePress}>
-            <Caption1 style={styles.title}>
-              {name}
-              {name_ph && ` - ${name_ph}`}
-            </Caption1>
+            <Caption1 style={styles.title}> {title} </Caption1>
           </Pressable>
         )}
         {!isLoading && (
           <Pressable onPress={handlePress}>
-            <Caption2 style={styles.subtitle}>
-              {!!calories && `${calories} calories`}
-              {!!amount && ` in ${amount}`}
-              {!!amount_desc && ` ${amount_desc} - `}
-              {!!name_brand && name_brand}
-            </Caption2>
+            <Caption2 style={styles.subtitle}>{subtitle || ""}</Caption2>
           </Pressable>
         )}
       </View>

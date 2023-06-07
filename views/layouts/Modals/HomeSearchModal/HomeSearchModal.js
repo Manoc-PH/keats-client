@@ -10,7 +10,7 @@ import { DUMMY_SERACH_DATA } from "@app/common/constants/dummyData";
 import { actions } from "@app/core/store";
 
 // Components
-import { FoodCard, Txt } from "@app/views/components";
+import { SearchResultCard, Txt } from "@app/views/components";
 
 import { styles } from "./styles";
 
@@ -54,7 +54,7 @@ export default function HomeSearchModal() {
         {results &&
           !isFoodSearchLoading &&
           results.map((item) => (
-            <FoodCard
+            <SearchResultCard
               key={item.id}
               name={item.name}
               name_ph={item.name_ph}
@@ -67,7 +67,7 @@ export default function HomeSearchModal() {
           ))}
         {isFoodSearchLoading &&
           DUMMY_SERACH_DATA.map((item) => (
-            <FoodCard key={item.id} isLoading={true} />
+            <SearchResultCard key={item.id} isLoading={true} />
           ))}
       </ScrollView>
     </View>

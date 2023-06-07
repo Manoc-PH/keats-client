@@ -34,7 +34,7 @@ export { default as CarouselInput } from "./Input/CarouselInput";
 export { default as TextSkeleton } from "./Skeleton/TextSkeleton";
 
 // Cards
-export { default as FoodCard } from "./Cards/FoodCard";
+export { default as SearchResultCard } from "./Cards/SearchResultCard";
 
 // Loaders
 export { default as CircleLoader } from "./Loaders/CircleLoader";
