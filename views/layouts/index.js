@@ -35,8 +35,8 @@ export { default as LoginForm } from "./Forms/LoginForm";
 export { default as SignupForm } from "./Forms/SignupForm";
 
 // Page Wrappers
-export { default as Splash } from "./pageWrappers/Splash";
-export { default as ScrollPage } from "./pageWrappers/ScrollPage";
+export { default as Splash } from "./PageWrappers/Splash";
+export { default as ScrollPage } from "./PageWrappers/ScrollPage";
 
 // Page Divider
 export { default as PageDivider } from "./PageDivider";
