@@ -40,3 +40,6 @@ export { default as ScrollPage } from "./pageWrappers/ScrollPage";
 
 // Page Divider
 export { default as PageDivider } from "./PageDivider";
+
+// Searchbars
+export { default as AddIntakeSearchbar } from "./Searchbars/AddIntakeSearchbar";

@@ -21,14 +21,12 @@ export const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
-  searchInputContainer: { flex: 1, marginRight: SPACING.Regular },
 
   //
   titleContainer: { paddingVertical: SPACING.Regular },
 
   //
   iconContainer: { flexDirection: "row", alignItems: "center" },
-  searchIcon: { alignItems: "center", justifyContent: "flex-end" },
   activeSearchWrapper: {
     flexDirection: "row",
     alignItems: "center",
@@ -39,10 +37,5 @@ export const styles = StyleSheet.create({
     paddingHorizontal: SPACING.Small,
     marginVertical: SPACING.Small - 1,
     marginRight: SPACING.Small,
-  },
-  //
-  btnContainer: {
-    padding: SPACING.Regular,
-    paddingHorizontal: SPACING.Regular,
   },
 });

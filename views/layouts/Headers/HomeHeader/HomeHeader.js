@@ -128,15 +128,6 @@ export default function HomeHeader() {
               />
             </View>
           )}
-          {isHomeSearchActive && (
-            <Button
-              style={styles.btnContainer}
-              variant={BTN_VARIANTS.transparent}
-              size={SIZES.Tiny}
-              onPress={handleCancel}>
-              <Body>Cancel</Body>
-            </Button>
-          )}
         </View>
       </View>
     </SafeAreaView>
