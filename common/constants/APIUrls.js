@@ -7,9 +7,10 @@ export const AUTH_ENDPOINTS = {
   POST_LOGOUT: "/api/auth/logout",
 };
 
-export const FOOD_ENDPOINTS = {
-  GET_SEARCH_FOOD: "/api/food/search_food",
-  GET_FOOD_DETAILS: "/api/food",
+export const INGREDIENT_ENDPOINTS = {
+  GET_SEARCH_INGREDIENT: "/api/ingredient/search_ingredient",
+  GET_INGREDIENT_DETAILS: "/api/ingredient",
+  GET_INGREDIENT_MAPPING_DETAILS: "/api/ingredient/mapping",
 };
 
 export const TRACKER_ENDPOINTS = {

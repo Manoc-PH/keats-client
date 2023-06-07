@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { actions } from "@app/core/store";
 
 // Hooks
-import { useGetFoodDetails } from "@app/core/hooks/api";
+import { useGetIngredientDetails } from "@app/core/hooks/api";
 
 // Layouts
 import {
@@ -41,7 +41,7 @@ export default function FoodDetails() {
     getFoodDetailsData,
     isGetFoodDetailsLoading,
     isGetFoodDetailsSuccess,
-  } = useGetFoodDetails();
+  } = useGetIngredientDetails();
 
   useEffect(() => {
     if (selectedFoodID) {

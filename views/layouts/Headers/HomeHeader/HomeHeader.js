@@ -10,7 +10,7 @@ import { actions } from "@app/core/store";
 import useDebounce from "@app/common/utils/debounce";
 
 // Hooks
-import { useGetSearchFood } from "@app/core/hooks/api";
+import { useGetSearchIngredient } from "@app/core/hooks/api";
 
 import { BTN_VARIANTS, SIZES, SPACING } from "@app/common/constants/styles";
 
@@ -42,7 +42,7 @@ export default function HomeHeader() {
     getSearchFoodData,
     isGetSearchFoodSuccess,
     isGetSearchFoodLoading,
-  } = useGetSearchFood();
+  } = useGetSearchIngredient();
   const navigation = useNavigation();
 
   // Local State

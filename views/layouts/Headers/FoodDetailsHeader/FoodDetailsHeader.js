@@ -10,7 +10,7 @@ import { actions } from "@app/core/store";
 import useDebounce from "@app/common/utils/debounce";
 
 // Hooks
-import { useGetSearchFood } from "@app/core/hooks/api";
+import { useGetSearchIngredient } from "@app/core/hooks/api";
 
 // Constants
 import {
