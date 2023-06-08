@@ -1,6 +1,6 @@
 import { SPACING } from "@app/common/constants/styles";
 import themeColors from "@app/common/theme";
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   wrapper: {
@@ -13,6 +13,7 @@ export const styles = StyleSheet.create({
     marginBottom: SPACING.Huge,
     paddingHorizontal: SPACING.Medium,
     paddingTop: SPACING.Medium,
+    paddingBottom: Dimensions.get("window").height / 3,
   },
   imageWrapper: {
     aspectRatio: 1,

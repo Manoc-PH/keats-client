@@ -10,6 +10,7 @@ export { default as ArrowRightIcon } from "./arrowRight";
 export { default as ArrowLeftIcon } from "./arrowLeft";
 export { default as ArrowUpIcon } from "./arrowUp";
 export { default as TrippleArrowDownIcon } from "./trippleArrowDown";
+export { default as ArrowDownIcon } from "./arrowDown";
 
 // Header Icons
 export { default as SearchIcon } from "./search";

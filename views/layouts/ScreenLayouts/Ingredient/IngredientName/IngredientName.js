@@ -1,7 +1,12 @@
 import { View } from "react-native";
 
 import { styles } from "./styles";
-import { Caption2, TextSkeleton, Title3 } from "@app/views/components";
+import {
+  Caption2,
+  DropdownInput,
+  TextSkeleton,
+  Title3,
+} from "@app/views/components";
 import { FONT_SIZES } from "@app/common/constants/styles";
 import { useEffect, useState } from "react";
 
@@ -33,11 +38,10 @@ export default function IngredientName(props) {
           <>
             <Title3>
               {ingredient.name}
-              {ingredient?.name_ph && ` - ${ingredient.name_ph}`}
+              {ingredient?.name_ph && ` (${ingredient.name_ph})`}
+              {" - "}
+              <Title3 style={styles.brandname}>{ingredient.name_owner}</Title3>
             </Title3>
-            <Caption2 style={styles.brandname}>
-              {ingredient.name_owner}
-            </Caption2>
           </>
         )}
         {!ingredientDetails && (
@@ -53,6 +57,12 @@ export default function IngredientName(props) {
             </View>
           </>
         )}
+      </View>
+      <View style={styles.container}>
+        <DropdownInput />
+      </View>
+      <View style={styles.container}>
+        <DropdownInput />
       </View>
     </View>
   );

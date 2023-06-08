@@ -116,8 +116,12 @@ export default function AddIntakeSearchbar() {
       <View onLayout={isOptionsShown && handleBottomLayout}>
         {isOptionsShown && (
           <View style={styles.rowContainer}>
-            <Button style={{ marginRight: SPACING.Small }}>Generic</Button>
-            <Button variant={BTN_VARIANTS.outlined}>Branded</Button>
+            <Button size={SIZES.Small} style={{ marginRight: SPACING.Small }}>
+              Generic
+            </Button>
+            <Button size={SIZES.Small} variant={BTN_VARIANTS.outlined}>
+              Branded
+            </Button>
           </View>
         )}
 

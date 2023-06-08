@@ -1,18 +1,12 @@
-import { ScrollView, View } from "react-native";
+import { View } from "react-native";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
-// Store
-import { actions } from "@app/core/store";
-
+import { useSelector } from "react-redux";
 // Hooks
 import { useGetIngredientDetails } from "@app/core/hooks/api";
 
 // Layouts
 import {
   NutrientSummary,
-  CurrentDietCard,
-  CalorieGoalProgress,
   ScrollPage,
   IngredientName,
   ConsumeIngredientFooter,
@@ -26,13 +20,12 @@ import { styles } from "./styles";
 export default function IngredientDetails() {
   // Store State
   const { dailyNutrients } = useSelector((state) => state.tracker);
-  const { ingredientDetails, selectedIngredientID, selectedIngredientAmount } =
-    useSelector((state) => state.ingredient);
+  const { selectedIngredientID, selectedIngredientAmount } = useSelector(
+    (state) => state.ingredient
+  );
 
-  // Store Actions
-  const { setIngredientDetails: sInD } = actions;
-  const dispatch = useDispatch();
-  const setIngredientDetails = (v) => dispatch(sInD(v));
+  // Local State
+  const [ingredientDetails, setIngredientDetails] = useState();
 
   // Hooks
   const {
@@ -45,12 +38,8 @@ export default function IngredientDetails() {
   // UseEffects
   useEffect(() => {
     if (selectedIngredientID) {
-      if (
-        !ingredientDetails ||
-        ingredientDetails?.id !== selectedIngredientID
-      ) {
+      if (!ingredientDetails || ingredientDetails?.id !== selectedIngredientID)
         getIngredientDetails(selectedIngredientID);
-      }
     }
   }, [selectedIngredientID]);
   useEffect(() => {
