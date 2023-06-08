@@ -36,8 +36,8 @@ export default function FoodDetailsHeader() {
 
   // Store Actions
   const {
-    setSelectedFoodID: setselectedfoodid,
-    setFoodDetails: setfooddetails,
+    setSelectedIngredientID: setselectedfoodid,
+    setIngredientDetails: setfooddetails,
   } = actions;
   const dispatch = useDispatch();
   const setSelectedFoodID = (v) => dispatch(setselectedfoodid(v));

@@ -28,7 +28,6 @@ export { default as MyIntakesHeader } from "./Headers/MyIntakesHeader";
 export { default as ConsumeFoodFooter } from "./Footers/ConsumeFoodFooter";
 
 // Modals
-export { default as HomeSearchModal } from "./Modals/HomeSearchModal";
 
 // Forms
 export { default as LoginForm } from "./Forms/LoginForm";

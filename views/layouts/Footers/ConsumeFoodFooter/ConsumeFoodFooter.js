@@ -25,7 +25,7 @@ export default function ConsumeFoodFooter() {
   );
   // Store Actions
   const {
-    setSelectedFoodAmount: sfa,
+    setSelectedIngredientAmount: sfa,
     setDailyNutrients: sdn,
     setIsHomeSearchActive: sihsa,
     setDailyIntakes: sdi,

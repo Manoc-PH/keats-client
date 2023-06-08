@@ -31,7 +31,7 @@ export default function FoodDetails() {
   );
 
   // Store Actions
-  const { setFoodDetails: setFoodDetail } = actions;
+  const { setIngredientDetails: setFoodDetail } = actions;
   const dispatch = useDispatch();
   const setFoodDetails = (v) => dispatch(setFoodDetail(v));
 

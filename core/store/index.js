@@ -4,14 +4,14 @@ import Search from "./Search";
 import Auth from "./Auth";
 import Tracker from "./Tracker";
 import Account from "./Account";
-import Food from "./Food";
+import Ingredient from "./Ingredient";
 
 const actionList = {
   ...Search.actions,
   ...Auth.actions,
   ...Tracker.actions,
   ...Account.actions,
-  ...Food.actions,
+  ...Ingredient.actions,
 };
 
 const reducerList = {
@@ -19,7 +19,7 @@ const reducerList = {
   auth: Auth.reducer,
   tracker: Tracker.reducer,
   account: Account.reducer,
-  food: Food.reducer,
+  ingredient: Ingredient.reducer,
 };
 
 export const reducers = combineReducers(reducerList);

@@ -11,7 +11,6 @@ import {
   CalorieSummary,
   CurrentDietCard,
   CalorieGoalProgress,
-  HomeSearchModal,
   Loader,
   ScrollPage,
   PageDivider,
@@ -94,7 +93,6 @@ export default function Home() {
         </View>
       </ScrollPage>
       {/* MODALS */}
-      <HomeSearchModal />
     </>
   );
 }
