@@ -13,13 +13,13 @@ import {
   Insights,
   Recipes,
   Account,
-  FoodDetails,
+  IngredientDetails,
   IntakeList,
   AddIntake,
 } from "@app/views/screens";
 
 import {
-  FoodDetailsHeader,
+  IngredientDetailsHeader,
   HomeHeader,
   MyIntakesHeader,
 } from "@app/views/layouts";
@@ -39,7 +39,7 @@ const HomeNavigator = ({ navigation, route }) => {
       elevation: 0,
       shadowColor: "#00000000",
     };
-    if (routeName === "FoodDetails") {
+    if (routeName === "IngredientDetails") {
       navigation.setOptions({
         tabBarStyle: hidden,
       });
@@ -56,12 +56,12 @@ const HomeNavigator = ({ navigation, route }) => {
       screenOptions={() => ({ header: HomeHeader, headerMode: "screen" })}>
       <Stack.Screen name='HomeDefault' component={Home} />
       <Stack.Screen
-        name='FoodDetails'
-        component={FoodDetails}
+        name='IngredientDetails'
+        component={IngredientDetails}
         options={{
           gestureDirection: "vertical",
           gestureEnabled: true,
-          header: FoodDetailsHeader,
+          header: IngredientDetailsHeader,
           headerMode: "screen",
         }}
       />

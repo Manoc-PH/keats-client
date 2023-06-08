@@ -17,9 +17,9 @@ import { Button, CircleLoader, NumberInput } from "@app/views/components";
 import { styles } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 
-export default function ConsumeFoodFooter() {
+export default function ConsumeIngredientFooter() {
   // Store State
-  const { foodDetails } = useSelector((state) => state.food);
+  const { ingredientDetails } = useSelector((state) => state.ingredient);
   const { dailyNutrients, dailyIntakes } = useSelector(
     (state) => state.tracker
   );
@@ -31,7 +31,7 @@ export default function ConsumeFoodFooter() {
     setDailyIntakes: sdi,
   } = actions;
   const dispatch = useDispatch();
-  const setSelectedFoodAmount = (value) => dispatch(sfa(value));
+  const setSelectedIngredientAmount = (value) => dispatch(sfa(value));
   const setDailyNutrients = (value) => dispatch(sdn(value));
   const setIsHomeSearchActive = (value) => dispatch(sihsa(value));
   const setDailyIntakes = (v) => dispatch(sdi(v));
@@ -63,7 +63,7 @@ export default function ConsumeFoodFooter() {
   // Functions
   function handleSubmit() {
     const data = {
-      food_id: foodDetails.id,
+      food_id: ingredientDetails.id,
       amount: parseFloat(amount),
       amount_unit: measureUnit.value,
       amount_unit_desc: measureUnit.desc,
@@ -108,7 +108,7 @@ export default function ConsumeFoodFooter() {
   }
   // UseEffects
   useEffect(() => {
-    setSelectedFoodAmount(amount);
+    setSelectedIngredientAmount(amount);
   }, [amount]);
   useEffect(() => {
     if (postIntakeData && isPostIntakeSuccess) handleIntake();
@@ -131,10 +131,7 @@ export default function ConsumeFoodFooter() {
                 optionPlaceholder={measureUnit.shortLabel}
               />
             </View>
-            <Button
-              style={styles.btnContainer}
-              size={SIZES.Small}
-              onPress={handleSubmit}>
+            <Button size={SIZES.Small} onPress={handleSubmit}>
               Consume
             </Button>
           </View>

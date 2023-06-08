@@ -1,7 +1,17 @@
 import { useEffect, useRef, useState } from "react";
-import { Dimensions, FlatList, ScrollView, View } from "react-native";
+import { Dimensions, ScrollView, View } from "react-native";
 import themeColors from "@app/common/theme";
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch } from "react-redux";
+
+// Store
+import { actions } from "@app/core/store";
+
+// Hooks
+import { useGetSearchIngredient } from "@app/core/hooks/api";
+
+// Utils
+import useDebounce from "@app/common/utils/debounce";
 
 // Components
 import {
@@ -18,10 +28,13 @@ import { BTN_VARIANTS, SIZES, SPACING } from "@app/common/constants/styles";
 import { SearchIcon } from "@app/assets/icons";
 
 import { styles } from "./styles";
-import { useGetSearchIngredient } from "@app/core/hooks/api";
-import useDebounce from "@app/common/utils/debounce";
 
 export default function AddIntakeSearchbar() {
+  // Store Actions
+  const { setSelectedIngredientID: sId } = actions;
+  const dispatch = useDispatch();
+  const setSelectedIngredientID = (v) => dispatch(sId(v));
+
   // Refs
   const scrollViewRef = useRef();
 
@@ -58,6 +71,10 @@ export default function AddIntakeSearchbar() {
     var { height } = event.nativeEvent.layout;
     setScrollHeight(Dimensions.get("window").height - height);
   }
+  function handleSelect(id) {
+    setSelectedIngredientID(id);
+    navigation.navigate("Home", { screen: "IngredientDetails" });
+  }
   function formatSearchData() {
     if (getSearchIngredientData) {
       const newData = [];
@@ -77,7 +94,6 @@ export default function AddIntakeSearchbar() {
   useEffect(() => {
     formatSearchData();
   }, [getSearchIngredientData]);
-
   return (
     <View style={{ ...styles.searchWrapper, flex: isOptionsShown ? 1 : 0 }}>
       {/* Search Results */}
@@ -89,6 +105,9 @@ export default function AddIntakeSearchbar() {
                 key={item.id}
                 title={item.title}
                 subtitle={item.subtitle}
+                onPress={() => {
+                  handleSelect(item.id);
+                }}
               />
             ))}
           </ScrollView>

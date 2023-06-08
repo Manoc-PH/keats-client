@@ -6,6 +6,7 @@ export const styles = StyleSheet.create({
   wrapper: {
     width: "100%",
     justifyContent: "flex-start",
+    paddingTop: SPACING.Regular,
   },
   container: {},
   title: { color: themeColors.secondary },

@@ -1,53 +1,33 @@
-import { useEffect, useState } from "react";
-import { View, SafeAreaView, StyleSheet } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { View, SafeAreaView } from "react-native";
+import { useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 
 // Store
 import { actions } from "@app/core/store";
-
-// Utils
-import useDebounce from "@app/common/utils/debounce";
-
-// Hooks
-import { useGetSearchIngredient } from "@app/core/hooks/api";
-
 // Constants
-import {
-  BTN_VARIANTS,
-  FONT_SIZES,
-  FONT_WEIGHTS,
-  SIZES,
-  SPACING,
-} from "@app/common/constants/styles";
+import { BTN_VARIANTS, SIZES } from "@app/common/constants/styles";
 
-import { Button, Title3, Body, TextInput } from "@app/views/components";
+import { Button, Title3 } from "@app/views/components";
 import { ArrowLeftIcon } from "@app/assets/icons";
 import themeColors from "@app/common/theme";
 
 import { styles } from "./styles";
 
-export default function FoodDetailsHeader() {
+export default function IngredientDetailsHeader() {
   // Hooks
   const navigation = useNavigation();
 
-  // Store State
-  const { foodDetails } = useSelector((state) => state.food);
-
   // Store Actions
-  const {
-    setSelectedIngredientID: setselectedfoodid,
-    setIngredientDetails: setfooddetails,
-  } = actions;
+  const { setSelectedIngredientID: sId, setIngredientDetails: sD } = actions;
   const dispatch = useDispatch();
-  const setSelectedFoodID = (v) => dispatch(setselectedfoodid(v));
-  const setFoodDetails = (v) => dispatch(setfooddetails(v));
+  const setSelectedFoodID = (v) => dispatch(sId(v));
+  const setFoodDetails = (v) => dispatch(sD(v));
 
   // Functions
   function handleBack() {
     setSelectedFoodID();
     setFoodDetails();
-    navigation.navigate("Home", { screen: "HomeDefault" });
+    navigation.navigate("Home", { screen: "AddIntake" });
   }
 
   // UseEffects
@@ -64,14 +44,13 @@ export default function FoodDetailsHeader() {
             <ArrowLeftIcon
               height={22}
               width={22}
-              style={styles.searchIcon}
               color={themeColors.secondary}
             />
           </Button>
         </View>
         <View style={styles.navContainer}>
           <View style={styles.titleContainer}>
-            <Title3>Food Details</Title3>
+            <Title3>Ingredient Details</Title3>
           </View>
         </View>
       </View>

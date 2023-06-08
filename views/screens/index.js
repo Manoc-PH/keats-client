@@ -10,6 +10,6 @@ export { default as Login } from "./authScreens/Login";
 export { default as Signup } from "./authScreens/Signup";
 
 // Common Screens
-export { default as FoodDetails } from "./commonScreens/FoodDetails";
+export { default as IngredientDetails } from "./commonScreens/IngredientDetails";
 export { default as IntakeList } from "./commonScreens/IntakeList";
 export { default as AddIntake } from "./commonScreens/AddIntake";

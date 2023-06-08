@@ -9,9 +9,9 @@ export { default as MacroSummary } from "./ScreenLayouts/Home/MacroSummary";
 export { default as CalorieSummary } from "./ScreenLayouts/Home/CalorieSummary";
 export { default as CalorieGoalProgress } from "./ScreenLayouts/Home/CalorieGoalProgress";
 
-// Food
-export { default as NutrientSummary } from "./ScreenLayouts/Food/NutrientSummary";
-export { default as FoodName } from "./ScreenLayouts/Food/FoodName";
+// Ingredient
+export { default as NutrientSummary } from "./ScreenLayouts/Ingredient/NutrientSummary";
+export { default as IngredientName } from "./ScreenLayouts/Ingredient/IngredientName";
 
 // Cards
 export { default as CurrentDietCard } from "./Cards/CurrentDietCard";
@@ -21,11 +21,11 @@ export { default as CalorieGraph } from "./Graphs/CalorieGraph";
 
 // Headers
 export { default as HomeHeader } from "./Headers/HomeHeader";
-export { default as FoodDetailsHeader } from "./Headers/FoodDetailsHeader";
+export { default as IngredientDetailsHeader } from "./Headers/IngredientDetailsHeader";
 export { default as MyIntakesHeader } from "./Headers/MyIntakesHeader";
 
 // Footers
-export { default as ConsumeFoodFooter } from "./Footers/ConsumeFoodFooter";
+export { default as ConsumeIngredientFooter } from "./Footers/ConsumeIngredientFooter";
 
 // Modals
 

@@ -7,36 +7,36 @@ import { styles } from "./styles";
 
 export default function NutrientSummary(props) {
   // Props
-  const { foodDetails, selectedFoodAmount, dailyNutrients } = props;
+  const { ingredientDetails, selectedIngredientAmount, dailyNutrients } = props;
 
   // Local State
   const [nutrientSummary, setNutrientSummary] = useState();
 
   // Functions
   function formatMacros() {
-    const multiplier = selectedFoodAmount * 0.01;
+    const multiplier = selectedIngredientAmount * 0.01;
     const macros = [];
     let calTotal, proTotal, fatTotal, carTotal;
-    if (selectedFoodAmount) {
+    if (selectedIngredientAmount) {
       calTotal =
-        multiplier * foodDetails.food_nutrients.calories +
+        multiplier * ingredientDetails.nutrient.calories +
         dailyNutrients.calories;
       proTotal =
-        multiplier * foodDetails.food_nutrients.protein +
+        multiplier * ingredientDetails.nutrient.protein +
         dailyNutrients.protein;
       fatTotal =
-        multiplier * foodDetails.food_nutrients.fats + dailyNutrients.fats;
+        multiplier * ingredientDetails.nutrient.fats + dailyNutrients.fats;
       carTotal =
-        multiplier * foodDetails.food_nutrients.carbs + dailyNutrients.carbs;
+        multiplier * ingredientDetails.nutrient.carbs + dailyNutrients.carbs;
     } else {
-      calTotal = foodDetails.food_nutrients.calories + dailyNutrients.calories;
-      proTotal = foodDetails.food_nutrients.protein + dailyNutrients.protein;
-      fatTotal = foodDetails.food_nutrients.fats + dailyNutrients.fats;
-      carTotal = foodDetails.food_nutrients.carbs + dailyNutrients.carbs;
+      calTotal = ingredientDetails.nutrient.calories + dailyNutrients.calories;
+      proTotal = ingredientDetails.nutrient.protein + dailyNutrients.protein;
+      fatTotal = ingredientDetails.nutrient.fats + dailyNutrients.fats;
+      carTotal = ingredientDetails.nutrient.carbs + dailyNutrients.carbs;
     }
     macros.push({
       label: "calories",
-      value: multiplier * foodDetails.food_nutrients.calories,
+      value: multiplier * ingredientDetails.nutrient.calories,
       total: calTotal,
       valueMax: Math.floor(dailyNutrients.max_calories),
       amountUnit: "",
@@ -44,21 +44,21 @@ export default function NutrientSummary(props) {
     macros.push({
       label: "carbs",
       total: carTotal,
-      value: multiplier * foodDetails.food_nutrients.carbs,
+      value: multiplier * ingredientDetails.nutrient.carbs,
       valueMax: Math.floor(dailyNutrients.max_carbs),
       amountUnit: "g",
     });
     macros.push({
       label: "fats",
       total: fatTotal,
-      value: multiplier * foodDetails.food_nutrients.fats,
+      value: multiplier * ingredientDetails.nutrient.fats,
       valueMax: Math.floor(dailyNutrients.max_fats),
       amountUnit: "g",
     });
     macros.push({
       label: "protein",
       total: proTotal,
-      value: multiplier * foodDetails.food_nutrients.protein,
+      value: multiplier * ingredientDetails.nutrient.protein,
       valueMax: Math.floor(dailyNutrients.max_protein),
       amountUnit: "g",
     });
@@ -67,8 +67,8 @@ export default function NutrientSummary(props) {
 
   // UseEffects
   useEffect(() => {
-    if (foodDetails) formatMacros();
-  }, [foodDetails, selectedFoodAmount]);
+    if (ingredientDetails) formatMacros();
+  }, [ingredientDetails, selectedIngredientAmount]);
   return (
     <View style={styles.wrapper}>
       <View style={styles.container}>
