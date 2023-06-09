@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     position: "absolute",
     bottom: 0,
     left: 0,
-    height: SPACING.Large * 3 * PixelRatio.getFontScale(),
+    // height: SPACING.Large * 3 * PixelRatio.getFontScale(),
     width: "100%",
     backgroundColor: themeColors.background,
     zIndex: ZINDEX.header,

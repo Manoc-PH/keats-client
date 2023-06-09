@@ -12,7 +12,12 @@ import { usePostIntake } from "@app/core/hooks/api";
 import { SIZES } from "@app/common/constants/styles";
 
 // Components
-import { Button, CircleLoader, NumberInput } from "@app/views/components";
+import {
+  Button,
+  CircleLoader,
+  NumberInput,
+  SliderInput,
+} from "@app/views/components";
 
 import { styles } from "./styles";
 import { useNavigation } from "@react-navigation/native";
@@ -117,6 +122,7 @@ export default function ConsumeIngredientFooter() {
   // TODO add support for servings
   return (
     <SafeAreaView style={styles.wrapper}>
+      {/* <SliderInput /> */}
       {!isPostIntakeLoading && (
         <View style={styles.container}>
           <View style={styles.navContainer}>
