@@ -1,131 +1,120 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   View,
-  Text,
-  Pressable,
   StyleSheet,
-  Dimensions,
+  TouchableOpacity,
   ScrollView,
+  Animated,
+  Dimensions,
 } from "react-native";
-import Button from "../../Basic/Button";
-import Body from "../../Basic/Texts/Body";
-import {
-  FONT_SIZES,
-  FONT_WEIGHTS,
-  SPACING,
-  ZINDEX,
-} from "@app/common/constants/styles";
+
+// Theme
 import themeColors from "@app/common/theme";
+
+// Constants
+import { FONT_SIZES, SPACING, ZINDEX } from "@app/common/constants/styles";
+
+// Assets
 import { ArrowDownIcon } from "@app/assets/icons";
 
-function DropdownInput(props) {
-  // Props
-  const {
-    style,
-    placeholder,
-    variant,
-    size,
-    color,
-    backgroundColor,
-    borderColor,
-    ...rest
-  } = props;
+import TextSkeleton from "../../Skeleton/TextSkeleton";
+import Body from "../../Basic/Texts/Body";
+
+const SelectList = (props) => {
+  const { setSelected, value, data, isLoading } = props;
 
   // Local States
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
-  const options = [
-    "Option 1",
-    "Option 2",
-    "Option 3",
-    "Option 4",
-    "Option 5",
-    "Option 6",
-    "Option 7",
-  ];
+  const [dropdown, setDropdown] = useState(false);
+  const [height] = useState(Dimensions.get("window").height / 3);
+
+  // Refs
+  const animatedvalue = useRef(new Animated.Value(0)).current;
 
   // Functions
-  const toggleDropdown = () => setIsOpen(!isOpen);
-  const selectItem = (item) => {
-    setSelectedItem(item);
-    setIsOpen(false);
+  const open = () => {
+    setDropdown(true);
+    Animated.timing(animatedvalue, {
+      toValue: height,
+      duration: 200,
+      useNativeDriver: false,
+    }).start();
   };
-
-  const buttonStyle = StyleSheet.create({
-    defaults: {
-      zIndex: 0,
-      flexDirection: "row",
-      justifyContent: "space-between",
-      alignItems: "center",
-      paddingHorizontal: size ? SPACING[size] * 2 : SPACING.Regular * 2,
-      paddingVertical: size ? SPACING[size] * 0.82 : SPACING.Regular * 0.82,
-      borderRadius: size ? SPACING[size] : SPACING.Regular,
-      fontSize: size ? FONT_SIZES[size] : FONT_SIZES.Regular,
-      fontWeight: FONT_WEIGHTS.SemiBold,
-    },
-    primary: {
-      color: color || themeColors.background,
-      backgroundColor: backgroundColor || themeColors.primary,
-    },
-    outlined: {
-      backgroundColor: backgroundColor || themeColors.background,
-      color: color || themeColors.primary,
-      borderWidth: 1,
-      borderColor: borderColor || themeColors.backgroundLight,
-    },
-    transparent: {
-      backgroundColor: backgroundColor || `${themeColors.background}00`,
-      color: color || themeColors.secondary,
-      borderWidth: 0,
-    },
-  });
-  const styles = StyleSheet.create({
-    wrapper: { position: "relative" },
-    container: {
-      zIndex: ZINDEX.basicComponent,
-      height: Dimensions.get("window").height / 4,
-      position: "absolute",
-      width: "100%",
-      top: "100%",
-      borderRadius: size ? SPACING[size] : SPACING.Regular,
-      backgroundColor: themeColors.background,
-      borderWidth: 1,
-      borderColor: themeColors.backgroundLight,
-      paddingVertical: size ? SPACING[size] * 0.82 : SPACING.Regular * 0.82,
-    },
-    text: {
-      paddingHorizontal: size ? SPACING[size] * 2 : SPACING.Regular * 2,
-      paddingVertical: size ? SPACING[size] * 0.82 : SPACING.Regular * 0.82,
-    },
-  });
-
-  const currentStyle = buttonStyle[variant] || buttonStyle.outlined;
+  const close = () => {
+    Animated.timing(animatedvalue, {
+      toValue: 0,
+      duration: 200,
+      useNativeDriver: false,
+    }).start(() => setDropdown(false));
+  };
   return (
-    <View style={styles.wrapper}>
-      <Pressable
-        onPress={toggleDropdown}
-        style={{
-          ...buttonStyle.defaults,
-          ...currentStyle,
-          ...style,
+    <View style={{ position: "relative" }}>
+      <TouchableOpacity
+        style={[styles.wrapper]}
+        onPress={() => {
+          if (!dropdown) open();
+          else close();
         }}>
-        <Body>{selectedItem || placeholder || "Select an option"}</Body>
+        {isLoading ? (
+          <View style={styles.titleSkeleton}>
+            <TextSkeleton fontSize={FONT_SIZES.Regular} />
+          </View>
+        ) : (
+          <Body>{value || ""}</Body>
+        )}
         <ArrowDownIcon />
-      </Pressable>
-      {isOpen && (
-        <ScrollView style={styles.container}>
-          {options.map((option) => (
-            <Pressable
-              style={styles.text}
-              key={option}
-              onPress={() => selectItem(option)}>
-              <Body>{option}</Body>
-            </Pressable>
-          ))}
-        </ScrollView>
-      )}
+      </TouchableOpacity>
+
+      {dropdown ? (
+        <Animated.View style={[{ maxHeight: animatedvalue }, styles.container]}>
+          <ScrollView
+            contentContainerStyle={{ paddingVertical: 10, overflow: "hidden" }}
+            nestedScrollEnabled={true}>
+            {data.length >= 1 &&
+              data.map((item) => {
+                return (
+                  <TouchableOpacity
+                    style={[styles.option]}
+                    key={item.value}
+                    onPress={() => {
+                      setSelected(item);
+                      close();
+                    }}>
+                    <Body>{item.label}</Body>
+                  </TouchableOpacity>
+                );
+              })}
+          </ScrollView>
+        </Animated.View>
+      ) : null}
     </View>
   );
-}
+};
 
-export default DropdownInput;
+export default SelectList;
+
+const styles = StyleSheet.create({
+  wrapper: {
+    borderWidth: 1,
+    borderRadius: 10,
+    borderColor: themeColors.backgroundLight,
+    paddingHorizontal: 20,
+    paddingVertical: 12,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  container: {
+    position: "absolute",
+    zIndex: ZINDEX.basicComponent,
+    width: "100%",
+    top: "100%",
+    borderWidth: 1,
+    borderRadius: 10,
+    borderColor: themeColors.backgroundLight,
+    backgroundColor: themeColors.background,
+    marginTop: 10,
+    overflow: "hidden",
+  },
+  option: { paddingHorizontal: 20, paddingVertical: 8, overflow: "hidden" },
+  titleSkeleton: { width: Dimensions.get("window").width / 1.5 },
+});

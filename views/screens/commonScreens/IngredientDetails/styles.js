@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     marginBottom: SPACING.Huge,
     paddingHorizontal: SPACING.Medium,
     paddingTop: SPACING.Medium,
-    paddingBottom: Dimensions.get("window").height / 3,
+    paddingBottom: Dimensions.get("window").height / 2.5,
   },
   imageWrapper: {
     aspectRatio: 1,
