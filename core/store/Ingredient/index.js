@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   ingredientDetails: null,
   selectedIngredientID: null,
+  selectedIngredientMappingID: null,
   selectedIngredientAmount: null,
 };
 
@@ -17,6 +18,10 @@ const store = createSlice({
     setSelectedIngredientID: (state, { payload }) => {
       if (payload) state.selectedIngredientID = payload;
       else state.selectedIngredientID = null;
+    },
+    setSelectedIngredientMappingID: (state, { payload }) => {
+      if (payload) state.selectedIngredientMappingID = payload;
+      else state.selectedIngredientMappingID = null;
     },
     setSelectedIngredientAmount: (state, { payload }) => {
       if (payload) state.selectedIngredientAmount = payload;

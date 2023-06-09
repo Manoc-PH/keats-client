@@ -7,7 +7,12 @@ import { styles } from "./styles";
 
 export default function NutrientSummary(props) {
   // Props
-  const { ingredientDetails, selectedIngredientAmount, dailyNutrients } = props;
+  const {
+    ingredientDetails,
+    selectedIngredientAmount,
+    dailyNutrients,
+    isLoading,
+  } = props;
 
   // Local State
   const [nutrientSummary, setNutrientSummary] = useState();
@@ -72,10 +77,7 @@ export default function NutrientSummary(props) {
   return (
     <View style={styles.wrapper}>
       <View style={styles.container}>
-        <NutrientSummaryBar
-          loading={!nutrientSummary}
-          macros={nutrientSummary}
-        />
+        <NutrientSummaryBar loading={isLoading} macros={nutrientSummary} />
       </View>
     </View>
   );

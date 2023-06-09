@@ -1,8 +1,15 @@
 import { View } from "react-native";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
+// Store
+import { actions } from "@app/core/store";
+
 // Hooks
-import { useGetIngredientDetails } from "@app/core/hooks/api";
+import {
+  useGetIngredientDetails,
+  useGetIngredientMappingDetails,
+} from "@app/core/hooks/api";
 
 // Layouts
 import {
@@ -18,11 +25,18 @@ import { Image } from "@app/views/components";
 import { styles } from "./styles";
 
 export default function IngredientDetails() {
+  // Store Actions
+  const { setSelectedIngredientMappingID: sMId } = actions;
+  const dispatch = useDispatch();
+  const setSelectedIngredientMappingID = (v) => dispatch(sMId(v));
+
   // Store State
   const { dailyNutrients } = useSelector((state) => state.tracker);
-  const { selectedIngredientID, selectedIngredientAmount } = useSelector(
-    (state) => state.ingredient
-  );
+  const {
+    selectedIngredientID,
+    selectedIngredientMappingID,
+    selectedIngredientAmount,
+  } = useSelector((state) => state.ingredient);
 
   // Local State
   const [ingredientDetails, setIngredientDetails] = useState();
@@ -32,8 +46,24 @@ export default function IngredientDetails() {
     getIngredientDetails,
     getIngredientDetailsData,
     isGetIngredientDetailsLoading,
-    isGetIngredientDetailsSuccess,
   } = useGetIngredientDetails();
+  const {
+    getIngredientMappingDetails,
+    getIngredientMappingDetailsData,
+    isGetIngredientMappingDetailsLoading,
+  } = useGetIngredientMappingDetails();
+
+  // Functions
+  function fetchIngredientMapping() {
+    getIngredientMappingDetails(selectedIngredientMappingID);
+  }
+  function handleIngredientMappingData() {
+    setIngredientDetails((prevValue) => ({
+      ...prevValue,
+      ...getIngredientMappingDetailsData,
+    }));
+    setSelectedIngredientMappingID();
+  }
 
   // UseEffects
   useEffect(() => {
@@ -43,9 +73,15 @@ export default function IngredientDetails() {
     }
   }, [selectedIngredientID]);
   useEffect(() => {
-    if (isGetIngredientDetailsSuccess)
+    if (getIngredientDetailsData)
       setIngredientDetails(getIngredientDetailsData);
   }, [getIngredientDetailsData]);
+  useEffect(() => {
+    if (selectedIngredientMappingID) fetchIngredientMapping();
+  }, [selectedIngredientMappingID]);
+  useEffect(() => {
+    if (getIngredientMappingDetailsData) handleIngredientMappingData();
+  }, [getIngredientMappingDetailsData]);
   return (
     <>
       <ScrollPage style={styles.wrapper}>
@@ -58,8 +94,18 @@ export default function IngredientDetails() {
             dailyNutrients={dailyNutrients}
             ingredientDetails={ingredientDetails}
             selectedIngredientAmount={selectedIngredientAmount}
+            isLoading={
+              isGetIngredientDetailsLoading ||
+              isGetIngredientMappingDetailsLoading
+            }
           />
-          <IngredientName ingredientDetails={ingredientDetails} />
+          <IngredientName
+            ingredientDetails={ingredientDetails}
+            isLoading={
+              isGetIngredientDetailsLoading ||
+              isGetIngredientMappingDetailsLoading
+            }
+          />
         </View>
       </ScrollPage>
       <ConsumeIngredientFooter />
