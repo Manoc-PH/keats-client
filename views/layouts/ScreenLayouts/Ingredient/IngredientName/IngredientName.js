@@ -15,7 +15,7 @@ import { styles } from "./styles";
 
 export default function IngredientName(props) {
   // Props
-  const { ingredientDetails, isLoading } = props;
+  const { ingredientDetails, isLoading, style } = props;
 
   // Store Actions
   const { setSelectedIngredientMappingID: sMId } = actions;
@@ -123,8 +123,8 @@ export default function IngredientName(props) {
     }
   }, [ingredientDetails]);
   return (
-    <View style={styles.wrapper}>
-      <View style={styles.container}>
+    <View style={{ ...styles.wrapper, ...style }}>
+      <View>
         {!isLoading && ingredient && (
           <>
             <Title3>

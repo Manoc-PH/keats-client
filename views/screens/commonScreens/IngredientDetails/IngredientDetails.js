@@ -17,6 +17,7 @@ import {
   ScrollPage,
   IngredientName,
   ConsumeIngredientFooter,
+  PageDivider,
 } from "@app/views/layouts";
 
 // Components
@@ -99,7 +100,9 @@ export default function IngredientDetails() {
               isGetIngredientMappingDetailsLoading
             }
           />
+          <PageDivider style={styles.spacer} />
           <IngredientName
+            style={styles.spacer}
             ingredientDetails={ingredientDetails}
             isLoading={
               isGetIngredientDetailsLoading ||

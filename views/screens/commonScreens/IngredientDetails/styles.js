@@ -15,6 +15,7 @@ export const styles = StyleSheet.create({
     paddingTop: SPACING.Medium,
     paddingBottom: Dimensions.get("window").height / 2.5,
   },
+  spacer: { paddingTop: SPACING.Medium },
   imageWrapper: {
     aspectRatio: 1,
     width: "100%",

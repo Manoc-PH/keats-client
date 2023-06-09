@@ -3,9 +3,9 @@ import { View } from "react-native";
 
 import { styles } from "./styles";
 
-export default function PageDivider() {
+export default function PageDivider(props) {
   return (
-    <View>
+    <View {...props}>
       <View style={styles.wrapper}></View>
     </View>
   );
