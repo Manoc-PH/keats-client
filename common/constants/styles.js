@@ -52,11 +52,11 @@ export const ZINDEX = {
 };
 
 export const RADIUS = {
-  Tiny: 4,
-  Small: 8,
-  Regular: 12,
-  Medium: 16,
-  Large: 20,
-  ExtraLarge: 24,
-  Huge: 32,
+  Tiny: 2,
+  Small: 4,
+  Regular: 8,
+  Medium: 12,
+  Large: 16,
+  ExtraLarge: 20,
+  Huge: 24,
 };

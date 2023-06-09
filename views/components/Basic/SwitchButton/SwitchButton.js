@@ -1,4 +1,4 @@
-import { SPACING } from "@app/common/constants/styles";
+import { RADIUS, SPACING } from "@app/common/constants/styles";
 import themeColors from "@app/common/theme";
 import React, { useState, useRef } from "react";
 import {
@@ -146,7 +146,7 @@ const switchStyles = StyleSheet.create({
     flexDirection: "row",
   },
   wayBtnActive: {
-    borderRadius: SPACING.Small,
+    borderRadius: RADIUS.Regular,
     borderColor: themeColors.background,
     backgroundColor: themeColors.background,
     borderWidth: 1,

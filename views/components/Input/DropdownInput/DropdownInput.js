@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import {
   View,
   StyleSheet,
@@ -19,6 +19,7 @@ import { ArrowDownIcon } from "@app/assets/icons";
 
 import TextSkeleton from "../../Skeleton/TextSkeleton";
 import Body from "../../Basic/Texts/Body";
+import { RADIUS } from "@app/common/constants/styles";
 
 const SelectList = (props) => {
   const { setSelected, value, data, isLoading } = props;
@@ -94,14 +95,14 @@ export default SelectList;
 
 const styles = StyleSheet.create({
   wrapper: {
-    borderWidth: 1,
-    borderRadius: 10,
-    borderColor: themeColors.backgroundLight,
-    paddingHorizontal: 20,
-    paddingVertical: 12,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    borderWidth: 1,
+    borderRadius: RADIUS.Regular,
+    borderColor: themeColors.backgroundLight,
+    paddingHorizontal: SPACING.Large,
+    paddingVertical: SPACING.Regular,
   },
   container: {
     position: "absolute",
@@ -109,12 +110,16 @@ const styles = StyleSheet.create({
     width: "100%",
     top: "100%",
     borderWidth: 1,
-    borderRadius: 10,
+    borderRadius: RADIUS.Regular,
+    marginTop: SPACING.Small,
+    overflow: "hidden",
     borderColor: themeColors.backgroundLight,
     backgroundColor: themeColors.background,
-    marginTop: 10,
+  },
+  option: {
+    paddingHorizontal: SPACING.Large,
+    paddingVertical: SPACING.Small,
     overflow: "hidden",
   },
-  option: { paddingHorizontal: 20, paddingVertical: 8, overflow: "hidden" },
   titleSkeleton: { width: Dimensions.get("window").width / 1.5 },
 });
