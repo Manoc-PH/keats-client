@@ -50,7 +50,7 @@ const SelectList = (props) => {
   return (
     <View style={{ position: "relative" }}>
       <TouchableOpacity
-        style={[styles.wrapper]}
+        style={styles.wrapper}
         onPress={() => {
           if (!dropdown) open();
           else close();
@@ -66,7 +66,8 @@ const SelectList = (props) => {
       </TouchableOpacity>
 
       {dropdown ? (
-        <Animated.View style={[{ maxHeight: animatedvalue }, styles.container]}>
+        <Animated.View
+          style={{ maxHeight: animatedvalue, ...styles.container }}>
           <ScrollView
             contentContainerStyle={{ paddingVertical: 10, overflow: "hidden" }}
             nestedScrollEnabled={true}>

@@ -125,10 +125,10 @@ export default function IngredientName(props) {
   return (
     <View style={styles.wrapper}>
       <View style={styles.container}>
-        {!isLoading && (
+        {!isLoading && ingredient && (
           <>
             <Title3>
-              {ingredient.name}
+              {ingredient?.name}
               {ingredient?.name_ph && ` (${ingredient.name_ph})`}
               {" - "}
               <Title3 style={styles.brandname}>{ingredient.name_owner}</Title3>
