@@ -31,24 +31,4 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   searchInputContainer: { flex: 1, marginRight: SPACING.Regular },
-
-  //
-  iconContainer: { flexDirection: "row", alignItems: "center" },
-  searchIcon: { alignItems: "center", justifyContent: "flex-end" },
-  activeSearchWrapper: {
-    flexDirection: "row",
-    alignItems: "center",
-    flex: 1,
-    borderWidth: 1,
-    borderColor: themeColors.backgroundLight,
-    borderRadius: 50,
-    paddingHorizontal: SPACING.Small,
-    marginVertical: SPACING.Small - 1,
-    marginRight: SPACING.Small,
-  },
-  //
-  btnContainer: {
-    height: "100%",
-    alignItems: "center",
-  },
 });

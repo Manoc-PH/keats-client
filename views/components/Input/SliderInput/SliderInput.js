@@ -1,10 +1,10 @@
 import { TriangleUpIcon } from "@app/assets/icons";
 import { SPACING } from "@app/common/constants/styles";
 import themeColors from "@app/common/theme";
+import { debounce } from "@app/common/utils/debounce";
 import React, { useEffect, useRef, useState } from "react";
 import {
   SafeAreaView,
-  ScrollView,
   Animated,
   Dimensions,
   StyleSheet,
@@ -13,16 +13,16 @@ import {
 
 const { width } = Dimensions.get("screen");
 const _minNum = 1;
-const _segmentsLength = 101;
+const _segmentsLength = 500;
 const _segmentWidth = 3;
 const _segmentSpacing = SPACING.Tiny + 1;
 const _snapSegment = _segmentWidth + _segmentSpacing;
 const _spacerWidth = (width - _segmentWidth) / 2;
-const _rulerWidth = _spacerWidth * 2 + (_segmentsLength - 5) * _snapSegment;
+const _rulerWidth = _spacerWidth * 2 + (_segmentsLength - 1) * _snapSegment;
 const data = [...Array(_segmentsLength).keys()].map((i) => i + _minNum);
 
 const SliderInput = (props) => {
-  const { value, setValue } = props;
+  const { value, onChangeValue } = props;
 
   // Local States
   const [currentValue] = useState(value || 25);
@@ -31,14 +31,14 @@ const SliderInput = (props) => {
   const scrollViewRef = useRef();
   const scrollX = useRef(new Animated.Value(0)).current;
 
+  // Debounced Function
+  const debouncedFunction = debounce(onChangeValue, 100);
+
   // UseEffects
   useEffect(() => {
     const listener = scrollX.addListener(({ value: v }) => {
       const newValue = Math.round(v / _snapSegment) + _minNum;
-      console.log(newValue);
-      if (v !== newValue && setValue) {
-        setValue(newValue);
-      }
+      debouncedFunction(newValue);
     });
     return () => scrollX.removeListener(listener);
   }, [scrollX]);

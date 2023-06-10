@@ -21,7 +21,7 @@ import {
 } from "@app/views/layouts";
 
 // Components
-import { Image, SliderInput } from "@app/views/components";
+import { Image } from "@app/views/components";
 
 import { styles } from "./styles";
 
@@ -109,7 +109,6 @@ export default function IngredientDetails() {
               isGetIngredientMappingDetailsLoading
             }
           />
-          <SliderInput />
         </View>
       </ScrollPage>
       <ConsumeIngredientFooter />

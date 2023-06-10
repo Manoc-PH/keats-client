@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { View, SafeAreaView, StyleSheet } from "react-native";
+import { useEffect, useRef, useState } from "react";
+import { View, SafeAreaView, StyleSheet, TextInput } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 // Store
@@ -13,6 +13,7 @@ import { SIZES } from "@app/common/constants/styles";
 
 // Components
 import {
+  Body,
   Button,
   CircleLoader,
   NumberInput,
@@ -111,6 +112,10 @@ export default function ConsumeIngredientFooter() {
     setIsHomeSearchActive(false);
     navigation.navigate("Home", { screen: "HomeDefault" });
   }
+  function handleChange(v) {
+    setAmount(v);
+  }
+
   // UseEffects
   useEffect(() => {
     setSelectedIngredientAmount(amount);
@@ -122,22 +127,14 @@ export default function ConsumeIngredientFooter() {
   // TODO add support for servings
   return (
     <SafeAreaView style={styles.wrapper}>
-      {/* <SliderInput /> */}
+      <SliderInput value={amount} onChangeValue={handleChange} />
       {!isPostIntakeLoading && (
         <View style={styles.container}>
           <View style={styles.navContainer}>
             <View style={styles.searchInputContainer}>
-              <NumberInput
-                value={amount}
-                onChange={setAmount}
-                incrementValue={incrementValue}
-                maxValue={maxAmount}
-                options={options}
-                onOptionChange={setMeasureUnit}
-                optionPlaceholder={measureUnit.shortLabel}
-              />
+              <Body>{amount}</Body>
             </View>
-            <Button size={SIZES.Small} onPress={handleSubmit}>
+            <Button size={SIZES.Regular} onPress={handleSubmit}>
               Consume
             </Button>
           </View>
