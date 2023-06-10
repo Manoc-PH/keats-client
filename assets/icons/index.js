@@ -12,6 +12,9 @@ export { default as ArrowUpIcon } from "./arrowUp";
 export { default as TrippleArrowDownIcon } from "./trippleArrowDown";
 export { default as ArrowDownIcon } from "./arrowDown";
 
+// Triangles
+export { default as TriangleUpIcon } from "./triangleUp";
+
 // Header Icons
 export { default as SearchIcon } from "./search";
 export { default as IntakeIcon } from "./intake";

@@ -1,3 +1,4 @@
+import { TriangleUpIcon } from "@app/assets/icons";
 import { SPACING } from "@app/common/constants/styles";
 import themeColors from "@app/common/theme";
 import React, { useEffect, useRef, useState } from "react";
@@ -12,12 +13,12 @@ import {
 
 const { width } = Dimensions.get("screen");
 const _minNum = 1;
-const _segmentsLength = 499;
-const _segmentWidth = 2;
-const _segmentSpacing = SPACING.Large;
+const _segmentsLength = 101;
+const _segmentWidth = 3;
+const _segmentSpacing = SPACING.Tiny + 1;
 const _snapSegment = _segmentWidth + _segmentSpacing;
 const _spacerWidth = (width - _segmentWidth) / 2;
-const _rulerWidth = _spacerWidth * 2 + (_segmentsLength - 1) * _snapSegment;
+const _rulerWidth = _spacerWidth * 2 + (_segmentsLength - 5) * _snapSegment;
 const data = [...Array(_segmentsLength).keys()].map((i) => i + _minNum);
 
 const SliderInput = (props) => {
@@ -32,12 +33,12 @@ const SliderInput = (props) => {
 
   // UseEffects
   useEffect(() => {
-    const listener = scrollX.addListener(({ v }) => {
+    const listener = scrollX.addListener(({ value: v }) => {
       const newValue = Math.round(v / _snapSegment) + _minNum;
-      console.log(Math.round(v / _snapSegment) + _minNum);
-      // if (v !== newValue) {
-      //   setValue(newValue);
-      // }
+      console.log(newValue);
+      if (v !== newValue && setValue) {
+        setValue(newValue);
+      }
     });
     return () => scrollX.removeListener(listener);
   }, [scrollX]);
@@ -88,6 +89,10 @@ const SliderInput = (props) => {
           <View style={styles.spacer} />
         </View>
       </Animated.ScrollView>
+
+      <View style={styles.iconContainer}>
+        <TriangleUpIcon />
+      </View>
     </SafeAreaView>
   );
 };
@@ -97,7 +102,6 @@ export default SliderInput;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 30,
   },
   scrollViewContainerStyle: {
     width: _rulerWidth,
@@ -111,5 +115,13 @@ const styles = StyleSheet.create({
   },
   segment: {
     width: _segmentWidth,
+  },
+  iconContainer: {
+    position: "absolute",
+    left: (width - SPACING.Huge) / 2,
+    bottom: "-100%",
+    alignItems: "center",
+    justifyContent: "center",
+    width: SPACING.Huge,
   },
 });
