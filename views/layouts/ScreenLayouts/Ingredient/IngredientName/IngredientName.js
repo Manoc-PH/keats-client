@@ -143,14 +143,16 @@ export default function IngredientName(props) {
           </>
         )}
       </View>
-      <View style={styles.container}>
-        <DropdownInput
-          data={variants}
-          value={selectedVariant?.name}
-          setSelected={handleSelectVariant}
-          isLoading={isLoading}
-        />
-      </View>
+      {selectedVariant?.name && (
+        <View style={styles.container}>
+          <DropdownInput
+            data={variants}
+            value={selectedVariant?.name}
+            setSelected={handleSelectVariant}
+            isLoading={isLoading}
+          />
+        </View>
+      )}
       {selectedSubvariant?.name && (
         <View style={styles.container}>
           <DropdownInput
