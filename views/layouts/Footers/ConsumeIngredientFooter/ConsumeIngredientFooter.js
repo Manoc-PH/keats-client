@@ -2,6 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { View, SafeAreaView, StyleSheet, TextInput } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
+// Utils
+import { debounce } from "@app/common/utils/debounce";
+
 // Store
 import { actions } from "@app/core/store";
 
@@ -29,6 +32,7 @@ export default function ConsumeIngredientFooter() {
   const { dailyNutrients, dailyIntakes } = useSelector(
     (state) => state.tracker
   );
+
   // Store Actions
   const {
     setSelectedIngredientAmount: sfa,
@@ -57,6 +61,9 @@ export default function ConsumeIngredientFooter() {
     { value: "srvs", desc: "servings", label: "Servings", shortLabel: "SRVS" },
   ];
 
+  // Refs
+  const valueRef = useRef();
+
   // Hooks
   const {
     postIntake,
@@ -65,6 +72,9 @@ export default function ConsumeIngredientFooter() {
     isPostIntakeSuccess,
   } = usePostIntake();
   const navigation = useNavigation();
+
+  // Debounced Functions
+  const debouncedSetAmount = debounce(setAmount, 100);
 
   // Functions
   function handleSubmit() {
@@ -113,7 +123,10 @@ export default function ConsumeIngredientFooter() {
     navigation.navigate("Home", { screen: "HomeDefault" });
   }
   function handleChange(v) {
-    setAmount(v);
+    if (valueRef && valueRef.current) {
+      valueRef.current.setNativeProps({ text: `${v}` });
+      debouncedSetAmount(v);
+    }
   }
 
   // UseEffects
@@ -128,11 +141,17 @@ export default function ConsumeIngredientFooter() {
   return (
     <SafeAreaView style={styles.wrapper}>
       <SliderInput value={amount} onChangeValue={handleChange} />
+      <View style={styles.spacer} />
       {!isPostIntakeLoading && (
         <View style={styles.container}>
-          <View style={styles.navContainer}>
-            <View style={styles.searchInputContainer}>
-              <Body>{amount}</Body>
+          <View style={styles.rowContainer}>
+            <View style={styles.valueContainer}>
+              <TextInput
+                style={styles.value}
+                ref={valueRef}
+                defaultValue={amount.toString()}
+              />
+              <Body>{measureUnit.label}</Body>
             </View>
             <Button size={SIZES.Regular} onPress={handleSubmit}>
               Consume

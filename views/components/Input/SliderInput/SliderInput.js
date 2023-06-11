@@ -1,7 +1,3 @@
-import { TriangleUpIcon } from "@app/assets/icons";
-import { SPACING } from "@app/common/constants/styles";
-import themeColors from "@app/common/theme";
-import { debounce } from "@app/common/utils/debounce";
 import React, { useEffect, useRef, useState } from "react";
 import {
   SafeAreaView,
@@ -11,6 +7,15 @@ import {
   View,
 } from "react-native";
 
+// Constants
+import { SPACING } from "@app/common/constants/styles";
+import themeColors from "@app/common/theme";
+
+// import { debounce } from "@app/common/utils/debounce";
+
+// Assets
+import { TriangleUpIcon } from "@app/assets/icons";
+
 const { width } = Dimensions.get("screen");
 const _minNum = 1;
 const _segmentsLength = 500;
@@ -18,11 +23,11 @@ const _segmentWidth = 3;
 const _segmentSpacing = SPACING.Tiny + 1;
 const _snapSegment = _segmentWidth + _segmentSpacing;
 const _spacerWidth = (width - _segmentWidth) / 2;
-const _rulerWidth = _spacerWidth * 2 + (_segmentsLength - 1) * _snapSegment;
+const _rulerWidth = _spacerWidth * 2 + (_segmentsLength - 5) * _snapSegment;
 const data = [...Array(_segmentsLength).keys()].map((i) => i + _minNum);
 
 const SliderInput = (props) => {
-  const { value, onChangeValue } = props;
+  const { value, onChangeValue, ...rest } = props;
 
   // Local States
   const [currentValue] = useState(value || 25);
@@ -32,13 +37,13 @@ const SliderInput = (props) => {
   const scrollX = useRef(new Animated.Value(0)).current;
 
   // Debounced Function
-  const debouncedFunction = debounce(onChangeValue, 100);
+  // const debouncedFunction = debounce(onChangeValue, 100);
 
   // UseEffects
   useEffect(() => {
     const listener = scrollX.addListener(({ value: v }) => {
       const newValue = Math.round(v / _snapSegment) + _minNum;
-      debouncedFunction(newValue);
+      onChangeValue(newValue);
     });
     return () => scrollX.removeListener(listener);
   }, [scrollX]);
@@ -55,7 +60,7 @@ const SliderInput = (props) => {
     return () => clearTimeout(timeout);
   }, []);
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={{ ...styles.container, ...props.style }} {...rest}>
       <Animated.ScrollView
         ref={scrollViewRef}
         horizontal
@@ -102,6 +107,7 @@ export default SliderInput;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    // backgroundColor: themeColors.red,
   },
   scrollViewContainerStyle: {
     width: _rulerWidth,
