@@ -1,9 +1,6 @@
 import { View } from "react-native";
 import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-
-// Store
-import { actions } from "@app/core/store";
+import { useSelector } from "react-redux";
 
 // Hooks
 import {
@@ -26,11 +23,6 @@ import { Image } from "@app/views/components";
 import { styles } from "./styles";
 
 export default function IngredientDetails() {
-  // Store Actions
-  const { setSelectedIngredientMappingID: sMId } = actions;
-  const dispatch = useDispatch();
-  const setSelectedIngredientMappingID = (v) => dispatch(sMId(v));
-
   // Store State
   const { dailyNutrients } = useSelector((state) => state.tracker);
   const {
@@ -63,7 +55,6 @@ export default function IngredientDetails() {
       ...prevValue,
       ...getIngredientMappingDetailsData,
     }));
-    setSelectedIngredientMappingID();
   }
 
   // UseEffects
@@ -111,7 +102,11 @@ export default function IngredientDetails() {
           />
         </View>
       </ScrollPage>
-      <ConsumeIngredientFooter />
+      {ingredientDetails && (
+        <ConsumeIngredientFooter
+          ingredient_mapping_id={ingredientDetails.ingredient_mapping_id}
+        />
+      )}
     </>
   );
 }

@@ -26,9 +26,9 @@ import {
 import { styles } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 
-export default function ConsumeIngredientFooter() {
+export default function ConsumeIngredientFooter(props) {
+  const { ingredient_mapping_id } = props;
   // Store State
-  const { ingredientDetails } = useSelector((state) => state.ingredient);
   const { dailyNutrients, dailyIntakes } = useSelector(
     (state) => state.tracker
   );
@@ -79,12 +79,13 @@ export default function ConsumeIngredientFooter() {
   // Functions
   function handleSubmit() {
     const data = {
-      food_id: ingredientDetails.id,
+      ingredient_mapping_id: ingredient_mapping_id,
       amount: parseFloat(amount),
       amount_unit: measureUnit.value,
       amount_unit_desc: measureUnit.desc,
     };
-    postIntake(data);
+    // postIntake(data);
+    console.log(data);
   }
   function handleIntake() {
     const newData = {

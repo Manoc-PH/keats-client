@@ -18,15 +18,21 @@ export default function IngredientDetailsHeader() {
   const navigation = useNavigation();
 
   // Store Actions
-  const { setSelectedIngredientID: sId, setIngredientDetails: sD } = actions;
+  const {
+    setSelectedIngredientID: sId,
+    setSelectedIngredientMappingID: sMId,
+    setIngredientDetails: sD,
+  } = actions;
   const dispatch = useDispatch();
-  const setSelectedFoodID = (v) => dispatch(sId(v));
-  const setFoodDetails = (v) => dispatch(sD(v));
+  const setSelectedIngredientID = (v) => dispatch(sId(v));
+  const setIngredientDetails = (v) => dispatch(sD(v));
+  const setSelectedIngredientMappingID = (v) => dispatch(sMId(v));
 
   // Functions
   function handleBack() {
-    setSelectedFoodID();
-    setFoodDetails();
+    setIngredientDetails();
+    setSelectedIngredientID();
+    setSelectedIngredientMappingID();
     navigation.navigate("Home", { screen: "AddIntake" });
   }
 
