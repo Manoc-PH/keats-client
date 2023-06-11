@@ -125,7 +125,7 @@ export default function AddIntakeSearchbar() {
           </View>
         )}
 
-        <View style={styles.rowContainer}>
+        <View style={{ ...styles.rowContainer, alignItems: "center" }}>
           <View style={styles.searchInputContainer}>
             <TextInput
               onChangeText={onChangeText}

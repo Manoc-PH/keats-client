@@ -3,6 +3,7 @@ import themeColors from "@app/common/theme";
 import { PixelRatio, StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
+  wrapper: { padding: SPACING.Regular },
   spacer: {
     paddingBottom: SPACING.Large * 3 * PixelRatio.getFontScale(),
   },

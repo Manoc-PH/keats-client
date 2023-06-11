@@ -6,12 +6,12 @@ export default function ArrowLeftIcon(props) {
   return (
     <Svg
       width={props.width || 9}
-      height={props.height || 17}
-      viewBox='0 0 9 17'
+      height={props.height || 16}
+      viewBox='0 0 9 16'
       fill='none'
       {...props}>
       <Path
-        d='M8 15.263l-6.52-5.76c-.77-.68-.77-1.793 0-2.473L8 1.27'
+        d='M8 15L1.57 9.237c-.76-.68-.76-1.794 0-2.474L8 1'
         stroke={props.color || themeColors.secondary}
         strokeWidth={1.5}
         strokeMiterlimit={10}

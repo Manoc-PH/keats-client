@@ -15,7 +15,7 @@ import { useGetIntakes } from "@app/core/hooks/api";
 import { ScrollPage } from "@app/views/layouts";
 
 // Components
-import { FoodCard, Image } from "@app/views/components";
+import { SearchResultCard, Image } from "@app/views/components";
 
 import { styles } from "./styles";
 
@@ -55,22 +55,30 @@ export default function IntakeList() {
     <ScrollPage style={styles.wrapper}>
       {isGetIntakesLoading &&
         DUMMY_SERACH_DATA.map((dummy) => (
-          <FoodCard key={dummy.id} isLoading={true} />
+          <SearchResultCard key={dummy.id} isLoading={true} />
         ))}
       {!isGetIntakesLoading &&
         dailyIntakes &&
         dailyIntakes.map((item) => (
-          <FoodCard
-            key={item.id}
-            name={item.food_name || item.recipe_name}
-            name_ph={item.food_name_ph}
-            name_brand={item.food_name_brand || item.recipe_name_owner}
-            calories={Math.floor(item.calories)}
-            amount={item.amount}
-            amount_desc={item.amount_unit}
-            thumbnail_link={item.thumbnail_link}
-            onPress={() => {}}
-          />
+          <>
+            {item?.ingredient_mapping_id ? (
+              <SearchResultCard
+                key={item.id}
+                title={`${item.ingredient_name} ${item.ingredient_variant_name} ${item.ingredient_subvariant_name}`}
+                subtitle={item.ingredient_name_owner}
+                thumbnail_link={item.thumbnail_image_link}
+                onPress={() => {}}
+              />
+            ) : (
+              <SearchResultCard
+                key={item.id}
+                title={item.food_name}
+                subtitle={item.food_name_ph}
+                thumbnail_link={item.food_name_owner}
+                onPress={() => {}}
+              />
+            )}
+          </>
         ))}
       <View style={styles.spacer} />
     </ScrollPage>

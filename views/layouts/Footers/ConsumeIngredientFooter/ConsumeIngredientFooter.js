@@ -101,8 +101,8 @@ export default function ConsumeIngredientFooter(props) {
     const newIntake = {
       id: postIntakeData.intake.id,
       account_id: postIntakeData.intake.account_id,
-      food_id: postIntakeData.intake.food_id,
-      recipe_id: postIntakeData.intake.recipe_id,
+      ingredient_mapping_id: postIntakeData.intake.ingredient_mapping_id,
+      // food_id: postIntakeData.intake.food_id,
       date_created: postIntakeData.intake.date_created,
       calories: postIntakeData.added_daily_nutrients.calories,
       amount: postIntakeData.intake.amount,
@@ -110,14 +110,23 @@ export default function ConsumeIngredientFooter(props) {
       amount_unit_desc: postIntakeData.intake.amount_unit_desc,
       serving_size: postIntakeData.intake.serving_size,
 
-      food_name: postIntakeData.food.name,
-      food_name_ph: postIntakeData.food.name_ph,
-      food_name_brand: postIntakeData.food.name_brand,
-      food_nutrient_id: postIntakeData.food.food_nutrient_id,
-      food_nutrient_calories: postIntakeData.added_daily_nutrients.calories,
+      ingredient_name: postIntakeData?.ingredient.ingredient.name,
+      ingredient_name_ph: postIntakeData?.ingredient.ingredient.name_ph,
+      ingredient_name_owner: postIntakeData?.ingredient.ingredient.name_owner,
+      ingredient_variant_name:
+        postIntakeData?.ingredient.ingredient_variant_name.name,
+      ingredient_variant_name_ph:
+        postIntakeData?.ingredient.ingredient_variant_name.name_ph,
+      ingredient_subvariant_name:
+        postIntakeData?.ingredient.ingredient_subvariant_name.name,
+      ingredient_subvariant_name_ph:
+        postIntakeData?.ingredient.ingredient_subvariant_name.name_ph,
+      thumbnail_image_link:
+        postIntakeData?.ingredient.ingredient.thumbnail_image_link,
 
-      recipe_name: postIntakeData.recipe_name,
-      recipe_name_owner: postIntakeData.recipe_name_owner,
+      // food_name: postIntakeData.food_name,
+      // food_name_ph: postIntakeData.food_name_ph,
+      // food_name_owner: postIntakeData.food_name_owner,
     };
     setDailyIntakes([newIntake, ...dailyIntakes]);
     setDailyNutrients(newData);

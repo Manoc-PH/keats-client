@@ -31,13 +31,13 @@ export const styles = StyleSheet.create({
   },
   nameContainer: {
     justifyContent: "center",
+    alignItems: "flex-start",
     flex: 1,
     marginLeft: SPACING.Regular,
   },
-  title: { fontWeight: FONT_WEIGHTS.Medium },
-  subtitle: {
-    color: themeColors.secondaryLight,
-    fontWeight: FONT_WEIGHTS.Medium,
+  title: {
+    color: themeColors.secondary,
+    fontSize: FONT_SIZES.Regular,
   },
   titleSkeleton: { marginBottom: SPACING.Small, width: "90%" },
   skeleton: { borderRadius: 5 },

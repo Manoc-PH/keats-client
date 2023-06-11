@@ -9,10 +9,13 @@ import Caption2 from "../../Basic/Texts/Caption2";
 import TextSkeleton from "../../Skeleton/TextSkeleton";
 
 import { styles } from "./styles";
+import Title3 from "../../Basic/Texts/Title3";
+import SubHeadline1 from "../../Basic/Texts/SubHeadline1/SubHeadline1";
+import SubHeadline2 from "../../Basic/Texts/SubHeadline2/SubHeadline2";
 
 export default function SearchResultCard(props) {
   // Destructure
-  const { title, subtitle, id, thumbnail_link, isLoading, onPress } = props;
+  const { title, subtitle, thumbnail_link, isLoading, onPress } = props;
 
   function handlePress() {
     if (onPress) onPress();
@@ -30,31 +33,24 @@ export default function SearchResultCard(props) {
       )}
       {isLoading && <View style={styles.imageContainer} />}
 
-      <View style={styles.nameContainer}>
+      <Pressable style={styles.nameContainer}>
         {isLoading && (
-          <View style={styles.titleSkeleton}>
+          <View style={styles.subHeadlineSkeleton}>
             <TextSkeleton
               style={styles.skeleton}
               fontSize={FONT_SIZES.Medium}
             />
-          </View>
-        )}
-        {isLoading && (
-          <View style={styles.subHeadlineSkeleton}>
             <TextSkeleton fontSize={FONT_SIZES.Small} />
           </View>
         )}
         {!isLoading && (
           <Pressable onPress={handlePress}>
-            <Caption1 style={styles.title}> {title} </Caption1>
+            <SubHeadline1 style={styles.title}>
+              {title} <Caption2>{subtitle || ""}</Caption2>
+            </SubHeadline1>
           </Pressable>
         )}
-        {!isLoading && (
-          <Pressable onPress={handlePress}>
-            <Caption2 style={styles.subtitle}>{subtitle || ""}</Caption2>
-          </Pressable>
-        )}
-      </View>
+      </Pressable>
     </View>
   );
 }
