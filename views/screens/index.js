@@ -13,3 +13,4 @@ export { default as Signup } from "./authScreens/Signup";
 export { default as IngredientDetails } from "./commonScreens/IngredientDetails";
 export { default as IntakeList } from "./commonScreens/IntakeList";
 export { default as AddIntake } from "./commonScreens/AddIntake";
+export { default as IntakeDetails } from "./commonScreens/IntakeDetails";

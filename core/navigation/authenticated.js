@@ -16,6 +16,7 @@ import {
   IngredientDetails,
   IntakeList,
   AddIntake,
+  IntakeDetails,
 } from "@app/views/screens";
 
 import {
@@ -76,6 +77,11 @@ const HomeNavigator = ({ navigation, route }) => {
       <Stack.Screen
         name='AddIntake'
         component={AddIntake}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name='IntakeDetails'
+        component={IntakeDetails}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

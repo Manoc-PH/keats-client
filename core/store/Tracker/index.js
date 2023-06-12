@@ -18,6 +18,26 @@ const initialState = {
   //   protein: 0,
   // },
   dailyIntakes: null,
+  selectedIntake: null,
+  // "id": 13,
+  // "account_id": "4767bca7-4911-4496-9de2-fb6b2d318c6c",
+  // "ingredient_mapping_id": 1631,
+  // "food_id": 0,
+  // "date_created": "2023-06-12T09:27:12.540807Z",
+  // "amount": 100,
+  // "amount_unit": "g",
+  // "amount_unit_desc": "gram",
+  // "serving_size": 0,
+  // "ingredient_name": "Rice",
+  // "ingredient_name_ph": "",
+  // "ingredient_variant_name": "brown",
+  // "ingredient_variant_name_ph": "",
+  // "ingredient_subvariant_name": "long-grain, cooked (Includes foods for USDA's Food Distribution Program)",
+  // "ingredient_subvariant_name_ph": "",
+  // "ingredient_name_owner": "USDA",
+  // "food_name": "",
+  // "food_name_ph": "",
+  // "food_name_owner": ""
 };
 
 const store = createSlice({
@@ -31,6 +51,10 @@ const store = createSlice({
     setDailyIntakes: (state, { payload }) => {
       if (payload) state.dailyIntakes = payload;
       else state.dailyIntakes = null;
+    },
+    setSelectedIntake: (state, { payload }) => {
+      if (payload) state.selectedIntake = payload;
+      else state.selectedIntake = null;
     },
   },
 });
