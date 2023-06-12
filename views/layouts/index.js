@@ -27,6 +27,7 @@ export { default as IntakeDetailsHeader } from "./Headers/IntakeDetailsHeader";
 
 // Footers
 export { default as ConsumeIngredientFooter } from "./Footers/ConsumeIngredientFooter";
+export { default as UpdateIntakeFooter } from "./Footers/UpdateIntakeFooter";
 
 // Modals
 

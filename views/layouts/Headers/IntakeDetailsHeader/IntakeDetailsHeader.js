@@ -24,7 +24,7 @@ export default function IntakeDetailsHeader() {
   // Functions
   function handleBack() {
     setSelectedIntake();
-    navigation.navigate("Home", { screen: "AddIntake" });
+    navigation.navigate("Home", { screen: "MyIntakes" });
   }
 
   return (

@@ -13,7 +13,7 @@ import {
   NutrientSummary,
   ScrollPage,
   IngredientName,
-  ConsumeIngredientFooter,
+  UpdateIntakeFooter,
   PageDivider,
 } from "@app/views/layouts";
 
@@ -107,11 +107,13 @@ export default function IntakeDetails() {
           />
         </View>
       </ScrollPage>
-      {/* {ingredientDetails && (
-        <ConsumeIngredientFooter
+      {ingredientDetails && (
+        <UpdateIntakeFooter
+          selectedIntake={selectedIntake}
+          intake_id={selectedIntake.id}
           ingredient_mapping_id={ingredientDetails.ingredient_mapping_id}
         />
-      )} */}
+      )}
     </>
   );
 }
