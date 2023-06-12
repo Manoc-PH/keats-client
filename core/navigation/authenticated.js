@@ -48,6 +48,10 @@ const HomeNavigator = ({ navigation, route }) => {
       navigation.setOptions({
         tabBarStyle: hidden,
       });
+    } else if (routeName === "IntakeDetails") {
+      navigation.setOptions({
+        tabBarStyle: hidden,
+      });
     } else {
       navigation.setOptions({ tabBarStyle: {} });
     }
@@ -59,29 +63,21 @@ const HomeNavigator = ({ navigation, route }) => {
       <Stack.Screen
         name='IngredientDetails'
         component={IngredientDetails}
-        options={{
-          gestureDirection: "vertical",
-          gestureEnabled: true,
-          header: IngredientDetailsHeader,
-        }}
-      />
-      <Stack.Screen
-        name='MyIntakes'
-        component={IntakeList}
-        options={{
-          gestureDirection: "vertical",
-          gestureEnabled: true,
-          header: MyIntakesHeader,
-        }}
-      />
-      <Stack.Screen
-        name='AddIntake'
-        component={AddIntake}
-        options={{ headerShown: false }}
+        options={{ header: IngredientDetailsHeader }}
       />
       <Stack.Screen
         name='IntakeDetails'
         component={IntakeDetails}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name='MyIntakes'
+        component={IntakeList}
+        options={{ header: MyIntakesHeader }}
+      />
+      <Stack.Screen
+        name='AddIntake'
+        component={AddIntake}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
