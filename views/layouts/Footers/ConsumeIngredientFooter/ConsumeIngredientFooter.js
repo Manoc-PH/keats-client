@@ -84,8 +84,7 @@ export default function ConsumeIngredientFooter(props) {
       amount_unit: measureUnit.value,
       amount_unit_desc: measureUnit.desc,
     };
-    // postIntake(data);
-    console.log(data);
+    postIntake(data);
   }
   //TODO Handle data
   function handleIntake() {
@@ -114,13 +113,13 @@ export default function ConsumeIngredientFooter(props) {
       ingredient_name_ph: postIntakeData?.ingredient.ingredient.name_ph,
       ingredient_name_owner: postIntakeData?.ingredient.ingredient.name_owner,
       ingredient_variant_name:
-        postIntakeData?.ingredient.ingredient_variant_name.name,
+        postIntakeData?.ingredient.ingredient_variant.name,
       ingredient_variant_name_ph:
-        postIntakeData?.ingredient.ingredient_variant_name.name_ph,
+        postIntakeData?.ingredient.ingredient_variant.name_ph,
       ingredient_subvariant_name:
-        postIntakeData?.ingredient.ingredient_subvariant_name.name,
+        postIntakeData?.ingredient.ingredient_subvariant.name,
       ingredient_subvariant_name_ph:
-        postIntakeData?.ingredient.ingredient_subvariant_name.name_ph,
+        postIntakeData?.ingredient.ingredient_subvariant.name_ph,
       thumbnail_image_link:
         postIntakeData?.ingredient.ingredient.thumbnail_image_link,
 
@@ -151,24 +150,26 @@ export default function ConsumeIngredientFooter(props) {
   // TODO add support for servings
   return (
     <SafeAreaView style={styles.wrapper}>
-      <SliderInput value={amount} onChangeValue={handleChange} />
-      <View style={styles.spacer} />
       {!isPostIntakeLoading && (
-        <View style={styles.container}>
-          <View style={styles.rowContainer}>
-            <View style={styles.valueContainer}>
-              <TextInput
-                style={styles.value}
-                ref={valueRef}
-                defaultValue={amount.toString()}
-              />
-              <Body>{measureUnit.label}</Body>
+        <>
+          <SliderInput value={amount} onChangeValue={handleChange} />
+          <View style={styles.spacer} />
+          <View style={styles.container}>
+            <View style={styles.rowContainer}>
+              <View style={styles.valueContainer}>
+                <TextInput
+                  style={styles.value}
+                  ref={valueRef}
+                  defaultValue={amount.toString()}
+                />
+                <Body>{measureUnit.label}</Body>
+              </View>
+              <Button size={SIZES.Regular} onPress={handleSubmit}>
+                Consume
+              </Button>
             </View>
-            <Button size={SIZES.Regular} onPress={handleSubmit}>
-              Consume
-            </Button>
           </View>
-        </View>
+        </>
       )}
       {isPostIntakeLoading && <CircleLoader />}
     </SafeAreaView>
