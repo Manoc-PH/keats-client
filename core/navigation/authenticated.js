@@ -62,7 +62,6 @@ const HomeNavigator = ({ navigation, route }) => {
           gestureDirection: "vertical",
           gestureEnabled: true,
           header: IngredientDetailsHeader,
-          headerMode: "screen",
         }}
       />
       <Stack.Screen
@@ -72,7 +71,6 @@ const HomeNavigator = ({ navigation, route }) => {
           gestureDirection: "vertical",
           gestureEnabled: true,
           header: MyIntakesHeader,
-          headerMode: "screen",
         }}
       />
       <Stack.Screen

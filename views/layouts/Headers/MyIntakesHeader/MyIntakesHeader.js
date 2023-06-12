@@ -24,16 +24,10 @@ export default function MyIntakesHeader() {
       <View style={styles.container}>
         <View style={styles.btnContainer}>
           <Button
-            style={styles.btn}
             variant={BTN_VARIANTS.transparent}
             size={SIZES.Tiny}
             onPress={handleBack}>
-            <ArrowLeftIcon
-              height={22}
-              width={22}
-              style={styles.searchIcon}
-              color={themeColors.secondary}
-            />
+            <ArrowLeftIcon />
           </Button>
         </View>
         <View style={styles.navContainer}>

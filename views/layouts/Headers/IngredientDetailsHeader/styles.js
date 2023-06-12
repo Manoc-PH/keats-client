@@ -4,9 +4,12 @@ import { PixelRatio, StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   wrapper: {
+    position: "relative",
     height: SPACING.Large * 3 * PixelRatio.getFontScale(),
     width: "100%",
     backgroundColor: themeColors.background,
+    borderBottomColor: themeColors.backgroundLight,
+    borderBottomWidth: 1,
     zIndex: ZINDEX.header,
     elevation: ZINDEX.header,
     shadowColor: "#00000000",
@@ -14,12 +17,13 @@ export const styles = StyleSheet.create({
   },
   container: {
     width: "100%",
-    paddingHorizontal: SPACING.Medium,
     alignItems: "stretch",
     justifyContent: "center",
     position: "relative",
   },
   navContainer: {
+    position: "absolute",
+    left: 0,
     width: "100%",
     flexDirection: "row",
     justifyContent: "center",
@@ -28,18 +32,13 @@ export const styles = StyleSheet.create({
 
   //
   titleContainer: { paddingVertical: SPACING.Regular },
-
-  //
-  searchIcon: { alignItems: "center", justifyContent: "center" },
-  //
   btnContainer: {
-    position: "absolute",
-    left: 0,
     height: "100%",
-    justifyContent: "center",
-  },
-  btn: {
-    paddingHorizontal: SPACING.Regular,
-    paddingVertical: SPACING.Regular,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    paddingLeft: SPACING.Regular,
+    paddingRight: SPACING.Large,
+    paddingVertical: SPACING.Large,
   },
 });
