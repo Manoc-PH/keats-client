@@ -1,6 +1,7 @@
-import { ScrollView, View } from "react-native";
+import { View } from "react-native";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
 
 // Store
 import { actions } from "@app/core/store";
@@ -24,11 +25,13 @@ export default function IntakeList() {
   const { dailyIntakes } = useSelector((state) => state.tracker);
 
   // Store Actions
-  const { setDailyIntakes: sdi } = actions;
+  const { setDailyIntakes: sdi, setSelectedIntake: ssi } = actions;
   const dispatch = useDispatch();
   const setDailyIntakes = (v) => dispatch(sdi(v));
+  const setSelectedIntake = (v) => dispatch(ssi(v));
 
   // Hooks
+  const navigation = useNavigation();
   const {
     getIntakes,
     getIntakesData,
@@ -37,17 +40,17 @@ export default function IntakeList() {
   } = useGetIntakes();
 
   // Functions
+  function handlePress(item) {
+    setSelectedIntake(item);
+    navigation.navigate("Home", { screen: "IntakeDetails" });
+  }
 
   // UseEffects
   useEffect(() => {
-    if (!dailyIntakes) {
-      getIntakes();
-    }
+    if (!dailyIntakes) getIntakes();
   }, []);
   useEffect(() => {
-    if (isGetIntakesSuccess) {
-      setDailyIntakes(getIntakesData);
-    }
+    if (isGetIntakesSuccess) setDailyIntakes(getIntakesData);
   }, [getIntakesData]);
 
   // TODO Add intake to daily intakes when consuming food
@@ -69,7 +72,7 @@ export default function IntakeList() {
                   item.amount
                 } ${item.amount_unit.toUpperCase()}`}
                 thumbnail_link={item.thumbnail_image_link}
-                onPress={() => {}}
+                onPress={() => handlePress(item)}
               />
             ) : (
               <SearchResultCard
@@ -79,7 +82,7 @@ export default function IntakeList() {
                   item.amount
                 } ${item.amount_unit.toUpperCase()}`}
                 thumbnail_link={item.food_name_owner}
-                onPress={() => {}}
+                onPress={() => handlePress(item)}
               />
             )}
           </>

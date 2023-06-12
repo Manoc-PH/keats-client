@@ -23,6 +23,7 @@ import {
   IngredientDetailsHeader,
   HomeHeader,
   MyIntakesHeader,
+  IntakeDetailsHeader,
 } from "@app/views/layouts";
 import { BTN_VARIANTS } from "@app/common/constants/styles";
 
@@ -68,7 +69,7 @@ const HomeNavigator = ({ navigation, route }) => {
       <Stack.Screen
         name='IntakeDetails'
         component={IntakeDetails}
-        options={{ headerShown: false }}
+        options={{ header: IntakeDetailsHeader }}
       />
       <Stack.Screen
         name='MyIntakes'

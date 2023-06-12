@@ -3,7 +3,10 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 // Hooks
-import { useGetIngredientMappingDetails } from "@app/core/hooks/api";
+import {
+  useGetIngredientMappingDetails,
+  useGetIngredientDetails,
+} from "@app/core/hooks/api";
 
 // Layouts
 import {
@@ -31,6 +34,11 @@ export default function IntakeDetails() {
 
   // Hooks
   const {
+    getIngredientDetails,
+    getIngredientDetailsData,
+    isGetIngredientDetailsLoading,
+  } = useGetIngredientDetails();
+  const {
     getIngredientMappingDetails,
     getIngredientMappingDetailsData,
     isGetIngredientMappingDetailsLoading,
@@ -42,16 +50,34 @@ export default function IntakeDetails() {
       getIngredientMappingDetails(selectedIntake?.ingredient_mapping_id);
     }
   }
-  function handleIngredientMappingData() {
-    setIngredientDetails(getIngredientMappingDetailsData);
+  function fetchIngredient() {
+    if (selectedIntake && selectedIntake?.ingredient_id) {
+      getIngredientDetails(selectedIntake?.ingredient_id);
+    }
+  }
+  function handleIngredientDetailsData() {
+    if (ingredientDetails?.ingredient_mappings) {
+      setIngredientDetails((prevValue) => ({
+        ...prevValue,
+        ...getIngredientMappingDetailsData,
+      }));
+    } else setIngredientDetails(getIngredientMappingDetailsData);
   }
 
   // UseEffects
   useEffect(() => {
+    fetchIngredient();
     fetchIngredientMapping();
   }, [selectedIntake]);
   useEffect(() => {
-    if (getIngredientMappingDetailsData) handleIngredientMappingData();
+    if (getIngredientDetailsData)
+      setIngredientDetails(getIngredientDetailsData);
+  }, [getIngredientDetailsData]);
+  useEffect(() => {
+    if (getIngredientMappingDetailsData) handleIngredientDetailsData();
+  }, [getIngredientMappingDetailsData]);
+  useEffect(() => {
+    if (getIngredientMappingDetailsData) handleIngredientDetailsData();
   }, [getIngredientMappingDetailsData]);
   return (
     <>
@@ -65,21 +91,27 @@ export default function IntakeDetails() {
             dailyNutrients={dailyNutrients}
             ingredientDetails={ingredientDetails}
             selectedIngredientAmount={selectedIntake?.amount}
-            isLoading={isGetIngredientMappingDetailsLoading}
+            isLoading={
+              isGetIngredientDetailsLoading ||
+              isGetIngredientMappingDetailsLoading
+            }
           />
           <PageDivider style={styles.spacer} />
           <IngredientName
             style={styles.spacer}
             ingredientDetails={ingredientDetails}
-            isLoading={isGetIngredientMappingDetailsLoading}
+            isLoading={
+              isGetIngredientDetailsLoading ||
+              isGetIngredientMappingDetailsLoading
+            }
           />
         </View>
       </ScrollPage>
-      {ingredientDetails && (
+      {/* {ingredientDetails && (
         <ConsumeIngredientFooter
           ingredient_mapping_id={ingredientDetails.ingredient_mapping_id}
         />
-      )}
+      )} */}
     </>
   );
 }

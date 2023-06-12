@@ -23,6 +23,7 @@ export { default as CalorieGraph } from "./Graphs/CalorieGraph";
 export { default as HomeHeader } from "./Headers/HomeHeader";
 export { default as IngredientDetailsHeader } from "./Headers/IngredientDetailsHeader";
 export { default as MyIntakesHeader } from "./Headers/MyIntakesHeader";
+export { default as IntakeDetailsHeader } from "./Headers/IntakeDetailsHeader";
 
 // Footers
 export { default as ConsumeIngredientFooter } from "./Footers/ConsumeIngredientFooter";
