@@ -81,13 +81,13 @@ export default function Home() {
             <View style={styles.spacer} />
             <MacroSummary dailyNutrients={dailyNutrients} />
             <View style={styles.spacer} />
-            <SubHeadline2>My current selected options</SubHeadline2>
-            <View style={styles.spacerSubheadline} />
-            <CurrentDietCard accountVitals={accountVitals} />
-            <View style={styles.spacer} />
             <SubHeadline2>How much I've tracked</SubHeadline2>
             <View style={styles.spacerSubheadline} />
             <CalorieGoalProgress />
+            <View style={styles.spacer} />
+            <SubHeadline2>My current selected options</SubHeadline2>
+            <View style={styles.spacerSubheadline} />
+            <CurrentDietCard accountVitals={accountVitals} />
           </View>
           <PageDivider />
         </View>

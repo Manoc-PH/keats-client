@@ -59,7 +59,7 @@ export default function IntakeList() {
         ))}
       {!isGetIntakesLoading &&
         dailyIntakes &&
-        dailyIntakes.map((item, i) => (
+        dailyIntakes.map((item) => (
           <>
             {item?.ingredient_mapping_id ? (
               <SearchResultCard
