@@ -48,16 +48,12 @@ const SliderInput = (props) => {
     return () => scrollX.removeListener(listener);
   }, [scrollX]);
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      if (scrollViewRef && scrollViewRef.current) {
-        scrollViewRef.current.scrollTo({
-          x: (currentValue - _minNum) * _snapSegment,
-          y: 0,
-          animated: true,
-        });
-      }
-    }, 1000);
-    return () => clearTimeout(timeout);
+    if (scrollViewRef && scrollViewRef.current) {
+      scrollViewRef.current.scrollTo({
+        x: (currentValue - _minNum) * _snapSegment,
+        y: 0,
+      });
+    }
   }, []);
   return (
     <SafeAreaView style={{ ...styles.container, ...props.style }} {...rest}>
