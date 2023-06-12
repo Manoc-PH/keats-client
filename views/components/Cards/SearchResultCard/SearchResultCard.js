@@ -12,25 +12,27 @@ import { styles } from "./styles";
 
 export default function SearchResultCard(props) {
   // Destructure
-  const { title, subtitle, thumbnail_link, isLoading, onPress } = props;
+  const { title, subtitle, thumbnail_link, isLoading, onPress, ...rest } =
+    props;
 
   function handlePress() {
     if (onPress) onPress();
+    console.log("Pressed");
   }
 
   return (
-    <View style={styles.wrapper}>
+    <Pressable onPress={handlePress} style={styles.wrapper} {...rest}>
       {!isLoading && (
-        <Pressable onPress={handlePress} style={styles.imageContainer}>
+        <View style={styles.imageContainer}>
           {!thumbnail_link && <ImageIcon width={20} />}
           {thumbnail_link && (
             <Image style={styles.image} source={{ uri: thumbnail_link }} />
           )}
-        </Pressable>
+        </View>
       )}
       {isLoading && <View style={styles.imageContainer} />}
 
-      <Pressable style={styles.nameContainer}>
+      <View style={styles.nameContainer}>
         {isLoading && (
           <View style={styles.subHeadlineSkeleton}>
             <TextSkeleton
@@ -41,14 +43,17 @@ export default function SearchResultCard(props) {
           </View>
         )}
         {!isLoading && (
-          <Pressable onPress={handlePress}>
-            <SubHeadline1 style={styles.title}>
-              {title}{" "}
-              <Caption1 style={styles.subtitle}>{subtitle || ""}</Caption1>
+          <View>
+            <SubHeadline1
+              numberOfLines={1}
+              ellipsizeMode='tail'
+              style={styles.title}>
+              {title}
             </SubHeadline1>
-          </Pressable>
+            <Caption1 style={styles.subtitle}>{subtitle || ""}</Caption1>
+          </View>
         )}
-      </Pressable>
-    </View>
+      </View>
+    </Pressable>
   );
 }
