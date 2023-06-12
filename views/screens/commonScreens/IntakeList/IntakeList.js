@@ -64,8 +64,10 @@ export default function IntakeList() {
             {item?.ingredient_mapping_id ? (
               <SearchResultCard
                 key={item.id}
-                title={`${item.ingredient_name} ${item.ingredient_variant_name} ${item.ingredient_subvariant_name}`}
-                subtitle={item.ingredient_name_owner}
+                title={`${item.ingredient_name} ${item.ingredient_variant_name}`}
+                subtitle={`${item.ingredient_name_owner} - ${
+                  item.amount
+                } ${item.amount_unit.toUpperCase()}`}
                 thumbnail_link={item.thumbnail_image_link}
                 onPress={() => {}}
               />
@@ -73,7 +75,9 @@ export default function IntakeList() {
               <SearchResultCard
                 key={item.id}
                 title={item.food_name}
-                subtitle={item.food_name_ph}
+                subtitle={`${item.food_name_owner} - ${
+                  item.amount
+                } ${item.amount_unit.toUpperCase()}`}
                 thumbnail_link={item.food_name_owner}
                 onPress={() => {}}
               />

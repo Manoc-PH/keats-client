@@ -35,10 +35,8 @@ export const styles = StyleSheet.create({
     flex: 1,
     marginLeft: SPACING.Regular,
   },
-  title: {
-    color: themeColors.secondary,
-    fontSize: FONT_SIZES.Regular,
-  },
+  title: { color: themeColors.secondary, fontSize: FONT_SIZES.Regular },
+  subtitle: { color: themeColors.secondaryLight },
   titleSkeleton: { marginBottom: SPACING.Small, width: "90%" },
   skeleton: { borderRadius: 5 },
   subHeadlineSkeleton: { width: "40%" },

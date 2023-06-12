@@ -5,13 +5,10 @@ import { Image, Pressable, View } from "react-native";
 
 // Basic
 import Caption1 from "../../Basic/Texts/Caption1";
-import Caption2 from "../../Basic/Texts/Caption2";
+import SubHeadline1 from "../../Basic/Texts/SubHeadline1/SubHeadline1";
 import TextSkeleton from "../../Skeleton/TextSkeleton";
 
 import { styles } from "./styles";
-import Title3 from "../../Basic/Texts/Title3";
-import SubHeadline1 from "../../Basic/Texts/SubHeadline1/SubHeadline1";
-import SubHeadline2 from "../../Basic/Texts/SubHeadline2/SubHeadline2";
 
 export default function SearchResultCard(props) {
   // Destructure
@@ -46,7 +43,8 @@ export default function SearchResultCard(props) {
         {!isLoading && (
           <Pressable onPress={handlePress}>
             <SubHeadline1 style={styles.title}>
-              {title} <Caption2>{subtitle || ""}</Caption2>
+              {title}{" "}
+              <Caption1 style={styles.subtitle}>{subtitle || ""}</Caption1>
             </SubHeadline1>
           </Pressable>
         )}
