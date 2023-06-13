@@ -104,7 +104,11 @@ export default function IngredientDetails() {
       </ScrollPage>
       {ingredientDetails && (
         <ConsumeIngredientFooter
-          ingredient_mapping_id={ingredientDetails.ingredient_mapping_id}
+          key={selectedIngredientMappingID}
+          ingredient_mapping_id={
+            selectedIngredientMappingID ||
+            ingredientDetails.ingredient_mapping_id
+          }
         />
       )}
     </>

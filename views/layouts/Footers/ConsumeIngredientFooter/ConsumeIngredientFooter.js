@@ -15,13 +15,7 @@ import { usePostIntake } from "@app/core/hooks/api";
 import { SIZES } from "@app/common/constants/styles";
 
 // Components
-import {
-  Body,
-  Button,
-  CircleLoader,
-  NumberInput,
-  SliderInput,
-} from "@app/views/components";
+import { Body, Button, CircleLoader, SliderInput } from "@app/views/components";
 
 import { styles } from "./styles";
 import { useNavigation } from "@react-navigation/native";
@@ -37,13 +31,11 @@ export default function ConsumeIngredientFooter(props) {
   const {
     setSelectedIngredientAmount: sfa,
     setDailyNutrients: sdn,
-    setIsHomeSearchActive: sihsa,
     setDailyIntakes: sdi,
   } = actions;
   const dispatch = useDispatch();
   const setSelectedIngredientAmount = (value) => dispatch(sfa(value));
   const setDailyNutrients = (value) => dispatch(sdn(value));
-  const setIsHomeSearchActive = (value) => dispatch(sihsa(value));
   const setDailyIntakes = (v) => dispatch(sdi(v));
 
   // Local State
@@ -129,7 +121,6 @@ export default function ConsumeIngredientFooter(props) {
     };
     setDailyIntakes([newIntake, ...dailyIntakes]);
     setDailyNutrients(newData);
-    setIsHomeSearchActive(false);
     navigation.navigate("Home", { screen: "HomeDefault" });
   }
   function handleChange(v) {
