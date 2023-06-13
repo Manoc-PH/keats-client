@@ -84,8 +84,8 @@ export default function IngredientDetails() {
         <View style={styles.container}>
           <NutrientSummary
             dailyNutrients={dailyNutrients}
-            ingredientDetails={ingredientDetails}
-            selectedIngredientAmount={selectedIngredientAmount}
+            details={ingredientDetails}
+            amount={selectedIngredientAmount}
             isLoading={
               isGetIngredientDetailsLoading ||
               isGetIngredientMappingDetailsLoading

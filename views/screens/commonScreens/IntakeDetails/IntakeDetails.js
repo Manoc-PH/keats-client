@@ -25,8 +25,11 @@ import { styles } from "./styles";
 export default function IntakeDetails() {
   // TODO ADD SUPPORT FOR FOOD
   // Store State
-  const { dailyNutrients, selectedIntake } = useSelector(
+  const { dailyNutrients, selectedIntake, selectedIntakeAmount } = useSelector(
     (state) => state.tracker
+  );
+  const { selectedIngredientMappingID } = useSelector(
+    (state) => state.ingredient
   );
 
   // Local State
@@ -46,6 +49,9 @@ export default function IntakeDetails() {
 
   // Functions
   function fetchIngredientMapping() {
+    getIngredientMappingDetails(selectedIngredientMappingID);
+  }
+  function fetchIngredientMappingFromIntake() {
     if (selectedIntake && selectedIntake?.ingredient_mapping_id) {
       getIngredientMappingDetails(selectedIntake?.ingredient_mapping_id);
     }
@@ -66,9 +72,13 @@ export default function IntakeDetails() {
 
   // UseEffects
   useEffect(() => {
-    fetchIngredient();
-    fetchIngredientMapping();
-  }, [selectedIntake]);
+    if (selectedIntake) {
+      fetchIngredient();
+      fetchIngredientMappingFromIntake();
+    } else if (selectedIngredientMappingID) {
+      fetchIngredientMapping();
+    }
+  }, [selectedIntake, selectedIngredientMappingID]);
   useEffect(() => {
     if (getIngredientDetailsData)
       setIngredientDetails(getIngredientDetailsData);
@@ -89,8 +99,8 @@ export default function IntakeDetails() {
         <View style={styles.container}>
           <NutrientSummary
             dailyNutrients={dailyNutrients}
-            ingredientDetails={ingredientDetails}
-            selectedIngredientAmount={selectedIntake?.amount}
+            details={ingredientDetails}
+            amount={selectedIntakeAmount}
             isLoading={
               isGetIngredientDetailsLoading ||
               isGetIngredientMappingDetailsLoading
@@ -111,7 +121,12 @@ export default function IntakeDetails() {
         <UpdateIntakeFooter
           selectedIntake={selectedIntake}
           intake_id={selectedIntake.id}
-          ingredient_mapping_id={ingredientDetails.ingredient_mapping_id}
+          key={selectedIngredientMappingID}
+          ingredient_mapping_id={
+            selectedIngredientMappingID
+              ? selectedIngredientMappingID
+              : ingredientDetails.ingredient_mapping_id
+          }
         />
       )}
     </>

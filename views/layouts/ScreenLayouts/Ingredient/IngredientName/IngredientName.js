@@ -114,7 +114,9 @@ export default function IngredientName(props) {
       setIngredient(ingredientDetails.ingredient);
       setSelectedVariant(ingredientDetails.ingredient_variant);
       setSelectedSubvariant(ingredientDetails.ingredient_subvariant);
-      formatIngredientMapping(ingredientDetails.ingredient_mappings);
+      if (ingredientDetails?.ingredient_mappings) {
+        formatIngredientMapping(ingredientDetails.ingredient_mappings);
+      }
     } else {
       setIngredient("");
       setSelectedVariant("");

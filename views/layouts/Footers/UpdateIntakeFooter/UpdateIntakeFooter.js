@@ -1,30 +1,20 @@
 import { useEffect, useRef, useState } from "react";
-import { View, SafeAreaView, StyleSheet, TextInput } from "react-native";
+import { View, SafeAreaView, TextInput } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
 
 // Utils
 import { debounce } from "@app/common/utils/debounce";
-
 // Store
 import { actions } from "@app/core/store";
-
 // Hooks
-import { usePostIntake, usePutIntake } from "@app/core/hooks/api";
-
+import { usePutIntake } from "@app/core/hooks/api";
 // Constants
 import { SIZES } from "@app/common/constants/styles";
-
 // Components
-import {
-  Body,
-  Button,
-  CircleLoader,
-  NumberInput,
-  SliderInput,
-} from "@app/views/components";
+import { Body, Button, CircleLoader, SliderInput } from "@app/views/components";
 
 import { styles } from "./styles";
-import { useNavigation } from "@react-navigation/native";
 
 export default function UpdateIntakeFooter(props) {
   const { ingredient_mapping_id, intake_id, selectedIntake } = props;
@@ -35,12 +25,12 @@ export default function UpdateIntakeFooter(props) {
 
   // Store Actions
   const {
-    setSelectedIntake: ssi,
+    setSelectedIntakeAmount: ssia,
     setDailyNutrients: sdn,
     setDailyIntakes: sdi,
   } = actions;
   const dispatch = useDispatch();
-  const setSelectedIntake = (value) => dispatch(ssi(value));
+  const setSelectedIntakeAmount = (value) => dispatch(ssia(value));
   const setDailyNutrients = (value) => dispatch(sdn(value));
   const setDailyIntakes = (v) => dispatch(sdi(v));
 
@@ -81,7 +71,7 @@ export default function UpdateIntakeFooter(props) {
     };
     putIntake(data);
   }
-  //TODO Handle data
+
   function handleIntake() {
     const newData = {
       ...dailyNutrients,
@@ -122,8 +112,15 @@ export default function UpdateIntakeFooter(props) {
       // food_name_ph: putIntakeData.food_name_ph,
       // food_name_owner: putIntakeData.food_name_owner,
     };
-    setDailyIntakes((prevValue) => {
-      [newIntake, ...dailyIntakes];
+    setDailyIntakes(() => {
+      if (dailyNutrients && dailyNutrients?.length > 0) {
+        dailyIntakes.map((item) => {
+          if (item?.id === newIntake.id) {
+            return newIntake;
+          } else return item;
+        });
+        return dailyIntakes;
+      } else return [newIntake];
     });
     setDailyNutrients(newData);
     navigation.navigate("Home", { screen: "HomeDefault" });
@@ -138,9 +135,7 @@ export default function UpdateIntakeFooter(props) {
   // UseEffects
   useEffect(() => {
     if (valueRef.current && amount) {
-      // TODO FIX THIS
-      console.log({ ...selectedIntake, amount: amount + 10 });
-      // setSelectedIntake({ ...selectedIntake, amount: amount });
+      setSelectedIntakeAmount(amount);
     }
   }, [amount]);
   useEffect(() => {

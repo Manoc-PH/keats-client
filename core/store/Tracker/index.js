@@ -19,6 +19,7 @@ const initialState = {
   // },
   dailyIntakes: null,
   selectedIntake: null,
+  selectedIntakeAmount: 0,
   // "id": 13,
   // "account_id": "4767bca7-4911-4496-9de2-fb6b2d318c6c",
   // "ingredient_mapping_id": 1631,
@@ -55,6 +56,10 @@ const store = createSlice({
     setSelectedIntake: (state, { payload }) => {
       if (payload) state.selectedIntake = payload;
       else state.selectedIntake = null;
+    },
+    setSelectedIntakeAmount: (state, { payload }) => {
+      if (payload) state.selectedIntakeAmount = payload;
+      else state.selectedIntakeAmount = 0;
     },
   },
 });

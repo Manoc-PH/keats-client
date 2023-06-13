@@ -52,8 +52,6 @@ export default function IntakeList() {
   useEffect(() => {
     if (isGetIntakesSuccess) setDailyIntakes(getIntakesData);
   }, [getIntakesData]);
-
-  // TODO Add intake to daily intakes when consuming food
   return (
     <ScrollPage style={styles.wrapper}>
       {isGetIntakesLoading &&
