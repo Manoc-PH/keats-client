@@ -1,11 +1,19 @@
 import { Dimensions, ScrollView, View } from "react-native";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import moment from "moment";
 
 // Store
 import { actions } from "@app/core/store";
-
-import { styles } from "./styles";
+// Hooks
+import {
+  useGetDailyNutrients,
+  useGetAccountVitals,
+  useGetIntakes,
+} from "@app/core/hooks/api";
+// Constants
+import { SPACING } from "@app/common/constants/styles";
+// Layouts
 import {
   MacroSummary,
   CalorieSummary,
@@ -15,21 +23,26 @@ import {
   ScrollPage,
   PageDivider,
 } from "@app/views/layouts";
-
-// Hooks
-import { useGetDailyNutrients, useGetAccountVitals } from "@app/core/hooks/api";
-import moment from "moment";
+// Components
 import { SubHeadline2, SwitchButton } from "@app/views/components";
-import { SPACING } from "@app/common/constants/styles";
+
+import { styles } from "./styles";
 
 export default function Home() {
   // Store State
-  const { dailyNutrients } = useSelector((state) => state.tracker);
+  const { dailyNutrients, dailyIntakes } = useSelector(
+    (state) => state.tracker
+  );
   const { accountVitals } = useSelector((state) => state.account);
 
   // Store Actions
-  const { setDailyNutrients: sdns, setAccountVitals: savs } = actions;
+  const {
+    setDailyIntakes: sdi,
+    setDailyNutrients: sdns,
+    setAccountVitals: savs,
+  } = actions;
   const dispatch = useDispatch();
+  const setDailyIntakes = (v) => dispatch(sdi(v));
   const setDailyNutrients = (v) => dispatch(sdns(v));
   const setAccountVitals = (v) => dispatch(savs(v));
 
@@ -37,18 +50,25 @@ export default function Home() {
   const {
     getDailyNutrients,
     getDailyNutrientsData,
-    isGetDailyNutrientsLoading,
     isGetDailyNutrientsSuccess,
+    // isGetDailyNutrientsLoading,
   } = useGetDailyNutrients();
   const {
     getAccountVitals,
     getAccountVitalsData,
-    isGetAccountVitalsLoading,
     isGetAccountVitalsSuccess,
+    // isGetAccountVitalsLoading,
   } = useGetAccountVitals();
+  const {
+    getIntakes,
+    getIntakesData,
+    isGetIntakesSuccess,
+    // isGetIntakesLoading,
+  } = useGetIntakes();
 
   useEffect(() => {
     if (!accountVitals) getAccountVitals();
+    if (!dailyIntakes) getIntakes();
     if (!dailyNutrients) {
       getDailyNutrients();
     } else if (dailyNutrients?.date_created) {
@@ -60,7 +80,8 @@ export default function Home() {
   useEffect(() => {
     if (isGetDailyNutrientsSuccess) setDailyNutrients(getDailyNutrientsData);
     if (isGetAccountVitalsSuccess) setAccountVitals(getAccountVitalsData);
-  }, [getDailyNutrientsData, getAccountVitalsData]);
+    if (isGetIntakesSuccess) setDailyIntakes(getIntakesData);
+  }, [getDailyNutrientsData, getAccountVitalsData, getIntakesData]);
   return (
     <>
       <ScrollPage>
