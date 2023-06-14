@@ -32,11 +32,17 @@ export default function ConsumeIngredientFooter(props) {
     setSelectedIngredientAmount: sfa,
     setDailyNutrients: sdn,
     setDailyIntakes: sdi,
+    setSelectedIngredientID: sId,
+    setSelectedIngredientMappingID: sMId,
+    setIngredientDetails: sD,
   } = actions;
   const dispatch = useDispatch();
   const setSelectedIngredientAmount = (value) => dispatch(sfa(value));
   const setDailyNutrients = (value) => dispatch(sdn(value));
   const setDailyIntakes = (v) => dispatch(sdi(v));
+  const setSelectedIngredientID = (v) => dispatch(sId(v));
+  const setIngredientDetails = (v) => dispatch(sD(v));
+  const setSelectedIngredientMappingID = (v) => dispatch(sMId(v));
 
   // Local State
   const [amount, setAmount] = useState(100);
@@ -121,6 +127,9 @@ export default function ConsumeIngredientFooter(props) {
     };
     setDailyIntakes([newIntake, ...dailyIntakes]);
     setDailyNutrients(newData);
+    setIngredientDetails();
+    setSelectedIngredientID();
+    setSelectedIngredientMappingID();
     navigation.navigate("Home", { screen: "HomeDefault" });
   }
   function handleChange(v) {

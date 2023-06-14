@@ -28,11 +28,17 @@ export default function UpdateIntakeFooter(props) {
     setSelectedIntakeAmount: ssia,
     setDailyNutrients: sdn,
     setDailyIntakes: sdi,
+    setSelectedIngredientID: sId,
+    setSelectedIngredientMappingID: sMId,
+    setIngredientDetails: sD,
   } = actions;
   const dispatch = useDispatch();
   const setSelectedIntakeAmount = (value) => dispatch(ssia(value));
   const setDailyNutrients = (value) => dispatch(sdn(value));
   const setDailyIntakes = (v) => dispatch(sdi(v));
+  const setSelectedIngredientID = (v) => dispatch(sId(v));
+  const setIngredientDetails = (v) => dispatch(sD(v));
+  const setSelectedIngredientMappingID = (v) => dispatch(sMId(v));
 
   // Local State
   const [amount, setAmount] = useState(selectedIntake?.amount || 100);
@@ -123,6 +129,9 @@ export default function UpdateIntakeFooter(props) {
       } else return [newIntake];
     });
     setDailyNutrients(newData);
+    setIngredientDetails();
+    setSelectedIngredientID();
+    setSelectedIngredientMappingID();
     navigation.navigate("Home", { screen: "HomeDefault" });
   }
   function handleChange(v) {
