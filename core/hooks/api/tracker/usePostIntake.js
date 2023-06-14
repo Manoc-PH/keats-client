@@ -1,7 +1,7 @@
 import { useMutation } from "react-query";
 
 // Services
-import { PostIntake } from "@app/services/api/Tracker";
+import { PostIntake } from "@app/services/api/Consumer/Tracker";
 
 export default () => {
   const {

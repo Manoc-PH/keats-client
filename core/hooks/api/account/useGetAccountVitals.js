@@ -1,24 +1,24 @@
 import { useMutation } from "react-query";
 
 // Services
-import { GetAccountVitals } from "@app/services/api/Account";
+import { GetConsumerVitals } from "@app/services/api/Consumer/Account";
 
 export default () => {
   const {
-    mutate: getAccountVitals,
-    data: getAccountVitalsData,
-    error: getAccountVitalsError,
-    isLoading: isGetAccountVitalsLoading,
-    isSuccess: isGetAccountVitalsSuccess,
-    isError: isGetAccountVitalsError,
-  } = useMutation(GetAccountVitals);
+    mutate: getConsumerVitals,
+    data: getConsumerVitalsData,
+    error: getConsumerVitalsError,
+    isLoading: isGetConsumerVitalsLoading,
+    isSuccess: isGetConsumerVitalsSuccess,
+    isError: isGetConsumerVitalsError,
+  } = useMutation(GetConsumerVitals);
 
   return {
-    getAccountVitals,
-    getAccountVitalsData,
-    getAccountVitalsError,
-    isGetAccountVitalsLoading,
-    isGetAccountVitalsSuccess,
-    isGetAccountVitalsError,
+    getConsumerVitals,
+    getConsumerVitalsData,
+    getConsumerVitalsError,
+    isGetConsumerVitalsLoading,
+    isGetConsumerVitalsSuccess,
+    isGetConsumerVitalsError,
   };
 };

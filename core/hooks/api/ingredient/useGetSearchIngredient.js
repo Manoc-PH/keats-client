@@ -1,7 +1,7 @@
 import { useMutation } from "react-query";
 
 // Services
-import { GetSearchIngredient } from "@app/services/api/Ingredient";
+import { GetSearchIngredient } from "@app/services/api/Consumer/Ingredient";
 
 export default () => {
   const {

@@ -8,7 +8,7 @@ import { actions } from "@app/core/store";
 // Hooks
 import {
   useGetDailyNutrients,
-  useGetAccountVitals,
+  useGetAccountVitals as useGetConsumerVitals,
   useGetIntakes,
 } from "@app/core/hooks/api";
 // Constants
@@ -33,7 +33,7 @@ export default function Home() {
   const { dailyNutrients, dailyIntakes } = useSelector(
     (state) => state.tracker
   );
-  const { accountVitals } = useSelector((state) => state.account);
+  const { consumerVitals } = useSelector((state) => state.account);
 
   // Store Actions
   const {
@@ -54,11 +54,11 @@ export default function Home() {
     // isGetDailyNutrientsLoading,
   } = useGetDailyNutrients();
   const {
-    getAccountVitals,
-    getAccountVitalsData,
-    isGetAccountVitalsSuccess,
-    // isGetAccountVitalsLoading,
-  } = useGetAccountVitals();
+    getConsumerVitals,
+    getConsumerVitalsData,
+    isGetConsumerVitalsSuccess,
+    // isGetConsumerVitalsLoading,
+  } = useGetConsumerVitals();
   const {
     getIntakes,
     getIntakesData,
@@ -67,7 +67,7 @@ export default function Home() {
   } = useGetIntakes();
 
   useEffect(() => {
-    if (!accountVitals) getAccountVitals();
+    if (!consumerVitals) getConsumerVitals();
     if (!dailyIntakes) getIntakes();
     if (!dailyNutrients) {
       getDailyNutrients();
@@ -79,9 +79,9 @@ export default function Home() {
   }, []);
   useEffect(() => {
     if (isGetDailyNutrientsSuccess) setDailyNutrients(getDailyNutrientsData);
-    if (isGetAccountVitalsSuccess) setAccountVitals(getAccountVitalsData);
+    if (isGetConsumerVitalsSuccess) setAccountVitals(getConsumerVitalsData);
     if (isGetIntakesSuccess) setDailyIntakes(getIntakesData);
-  }, [getDailyNutrientsData, getAccountVitalsData, getIntakesData]);
+  }, [getDailyNutrientsData, getConsumerVitalsData, getIntakesData]);
   return (
     <>
       <ScrollPage>
@@ -108,7 +108,7 @@ export default function Home() {
             <View style={styles.spacer} />
             <SubHeadline2>My current selected options</SubHeadline2>
             <View style={styles.spacerSubheadline} />
-            <CurrentDietCard accountVitals={accountVitals} />
+            <CurrentDietCard consumerVitals={consumerVitals} />
           </View>
           <PageDivider />
         </View>

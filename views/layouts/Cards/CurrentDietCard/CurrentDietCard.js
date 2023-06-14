@@ -15,28 +15,28 @@ import { styles } from "./styles";
 
 export default function CurrentDietCard(props) {
   // Props
-  const { accountVitals } = props;
+  const { consumerVitals } = props;
 
   // Functions
   function handlePress() {
-    if (!accountVitals) return;
-    console.log(accountVitals);
+    if (!consumerVitals) return;
+    console.log(consumerVitals);
   }
   return (
     <View style={styles.wrapper}>
       <Card>
         <View style={styles.container}>
-          {!accountVitals ? (
+          {!consumerVitals ? (
             <View style={styles.skeleton}>
               <TextSkeleton fontSize={FONT_SIZES.Medium} />
             </View>
           ) : (
             <Body style={styles.title}>
-              {accountVitals?.diet_plan_name || ""}
+              {consumerVitals?.diet_plan_name || ""}
             </Body>
           )}
           <View style={styles.rowContainer}>
-            {accountVitals ? (
+            {consumerVitals ? (
               <SubHeadline2>Current Diet Plan</SubHeadline2>
             ) : (
               <View style={styles.smallSkeleton}>
@@ -47,17 +47,17 @@ export default function CurrentDietCard(props) {
 
           <View style={styles.spacerLine} />
 
-          {!accountVitals ? (
+          {!consumerVitals ? (
             <View style={styles.skeleton}>
               <TextSkeleton fontSize={FONT_SIZES.Medium} />
             </View>
           ) : (
             <Body style={styles.title}>
-              {accountVitals?.activity_lvl_name || ""}
+              {consumerVitals?.activity_lvl_name || ""}
             </Body>
           )}
           <View style={styles.rowContainer}>
-            {accountVitals ? (
+            {consumerVitals ? (
               <SubHeadline2>Current Activity Level</SubHeadline2>
             ) : (
               <View style={styles.smallSkeleton}>

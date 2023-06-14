@@ -1,7 +1,7 @@
 import { useMutation } from "react-query";
 
 // Services
-import { GetDailyNutrients } from "@app/services/api/Tracker";
+import { GetDailyNutrients } from "@app/services/api/Consumer/Tracker";
 
 export default () => {
   const {

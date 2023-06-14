@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  accountVitals: null,
+  consumerVitals: null,
   // {
   //   account_id: '',
   //   weight: '',
@@ -22,8 +22,8 @@ const store = createSlice({
   initialState,
   reducers: {
     setAccountVitals: (state, { payload }) => {
-      if (payload) state.accountVitals = payload;
-      else state.accountVitals = null;
+      if (payload) state.consumerVitals = payload;
+      else state.consumerVitals = null;
     },
   },
 });
