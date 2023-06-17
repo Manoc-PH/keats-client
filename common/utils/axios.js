@@ -3,7 +3,6 @@ import axios from "axios";
 // TODO Set back to production url
 import { BASE_URL, LOCAL_URL } from "@app/common/constants/APIUrls";
 import { ClearCredentials } from "@app/services/db";
-import { reloadScreen } from "./reload";
 
 const authAxios = axios.create({
   baseURL: BASE_URL,
@@ -19,7 +18,6 @@ authAxios.interceptors.response.use(
       const status = error.response.status;
       if (status === 401) {
         ClearCredentials();
-        reloadScreen();
       }
     }
     return Promise.reject(error);
