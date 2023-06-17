@@ -30,6 +30,7 @@ export default function IngredientName(props) {
   const [variants, setVariants] = useState();
   const [subvariants, setSubvariants] = useState();
 
+  console.log(selectedVariant?.name);
   // Functions
   function formatIngredientMapping(ingredientMappings) {
     const newData = {};

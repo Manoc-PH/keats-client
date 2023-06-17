@@ -61,6 +61,14 @@ export default function IntakeDetails() {
       getIngredientDetails(selectedIntake?.ingredient_id);
     }
   }
+  function handleIniditalLoad() {
+    if (getIngredientDetailsData && getIngredientMappingDetailsData) {
+      setIngredientDetails({
+        ...getIngredientDetailsData,
+        ...getIngredientMappingDetailsData,
+      });
+    }
+  }
   function handleIngredientDetailsData() {
     if (ingredientDetails?.ingredient_mappings) {
       setIngredientDetails((prevValue) => ({
@@ -75,17 +83,14 @@ export default function IntakeDetails() {
     if (selectedIntake) {
       fetchIngredient();
       fetchIngredientMappingFromIntake();
-    } else if (selectedIngredientMappingID) {
-      fetchIngredientMapping();
     }
-  }, [selectedIntake, selectedIngredientMappingID]);
+  }, []);
   useEffect(() => {
-    if (getIngredientDetailsData)
-      setIngredientDetails(getIngredientDetailsData);
-  }, [getIngredientDetailsData]);
+    if (selectedIngredientMappingID) fetchIngredientMapping();
+  }, [selectedIngredientMappingID]);
   useEffect(() => {
-    if (getIngredientMappingDetailsData) handleIngredientDetailsData();
-  }, [getIngredientMappingDetailsData]);
+    handleIniditalLoad(getIngredientDetailsData);
+  }, [getIngredientDetailsData, getIngredientMappingDetailsData]);
   useEffect(() => {
     if (getIngredientMappingDetailsData) handleIngredientDetailsData();
   }, [getIngredientMappingDetailsData]);

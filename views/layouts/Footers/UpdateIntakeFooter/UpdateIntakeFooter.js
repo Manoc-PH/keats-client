@@ -119,7 +119,7 @@ export default function UpdateIntakeFooter(props) {
       // food_name_owner: putIntakeData.food_name_owner,
     };
     setDailyIntakes(() => {
-      if (dailyNutrients && dailyNutrients?.length > 0) {
+      if (dailyIntakes && dailyIntakes?.length > 0) {
         dailyIntakes.map((item) => {
           if (item?.id === newIntake.id) {
             return newIntake;
