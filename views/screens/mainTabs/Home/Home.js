@@ -6,18 +6,14 @@ import moment from "moment";
 // Store
 import { actions } from "@app/core/store";
 // Hooks
-import {
-  useGetDailyNutrients,
-  useGetAccountVitals as useGetConsumerVitals,
-  useGetIntakes,
-} from "@app/core/hooks/api";
+import { useGetDailyNutrients, useGetIntakes } from "@app/core/hooks/api";
 // Constants
 import { SPACING } from "@app/common/constants/styles";
 // Layouts
 import {
   MacroSummary,
   CalorieSummary,
-  CurrentDietCard,
+  VitalsDietCard,
   CalorieGoalProgress,
   Loader,
   ScrollPage,
@@ -36,15 +32,10 @@ export default function Home() {
   const { consumerVitals } = useSelector((state) => state.account);
 
   // Store Actions
-  const {
-    setDailyIntakes: sdi,
-    setDailyNutrients: sdns,
-    setAccountVitals: savs,
-  } = actions;
+  const { setDailyIntakes: sdi, setDailyNutrients: sdns } = actions;
   const dispatch = useDispatch();
   const setDailyIntakes = (v) => dispatch(sdi(v));
   const setDailyNutrients = (v) => dispatch(sdns(v));
-  const setAccountVitals = (v) => dispatch(savs(v));
 
   // Hooks
   const {
@@ -54,12 +45,6 @@ export default function Home() {
     // isGetDailyNutrientsLoading,
   } = useGetDailyNutrients();
   const {
-    getConsumerVitals,
-    getConsumerVitalsData,
-    isGetConsumerVitalsSuccess,
-    // isGetConsumerVitalsLoading,
-  } = useGetConsumerVitals();
-  const {
     getIntakes,
     getIntakesData,
     isGetIntakesSuccess,
@@ -67,7 +52,6 @@ export default function Home() {
   } = useGetIntakes();
 
   useEffect(() => {
-    if (!consumerVitals) getConsumerVitals();
     if (!dailyIntakes) getIntakes();
     if (!dailyNutrients) {
       getDailyNutrients();
@@ -79,9 +63,8 @@ export default function Home() {
   }, []);
   useEffect(() => {
     if (isGetDailyNutrientsSuccess) setDailyNutrients(getDailyNutrientsData);
-    if (isGetConsumerVitalsSuccess) setAccountVitals(getConsumerVitalsData);
     if (isGetIntakesSuccess) setDailyIntakes(getIntakesData);
-  }, [getDailyNutrientsData, getConsumerVitalsData, getIntakesData]);
+  }, [getDailyNutrientsData, getIntakesData]);
   return (
     <>
       <ScrollPage>
@@ -105,10 +88,6 @@ export default function Home() {
             <SubHeadline2>How much I've tracked</SubHeadline2>
             <View style={styles.spacerSubheadline} />
             <CalorieGoalProgress />
-            <View style={styles.spacer} />
-            <SubHeadline2>My current selected options</SubHeadline2>
-            <View style={styles.spacerSubheadline} />
-            <CurrentDietCard consumerVitals={consumerVitals} />
           </View>
           <PageDivider />
         </View>

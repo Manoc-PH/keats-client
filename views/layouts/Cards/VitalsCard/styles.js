@@ -32,5 +32,4 @@ export const styles = StyleSheet.create({
     marginVertical: SPACING.Regular,
   },
   spacer: { width: "100%", marginTop: SPACING.Large },
-  btn: { alignSelf: "flex-start" },
 });

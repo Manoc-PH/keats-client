@@ -24,7 +24,7 @@ export default function AccountVitals() {
   const { accountVitals } = useSelector((state) => state.account);
 
   // Store Actions
-  const { setAccountVitals: savs } = actions;
+  const { setConsumerVitals: savs } = actions;
   const dispatch = useDispatch();
   const setAccountVitals = (v) => dispatch(savs(v));
 

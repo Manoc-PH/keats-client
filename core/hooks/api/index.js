@@ -13,7 +13,7 @@ export { default as usePostIntake } from "./tracker/usePostIntake";
 export { default as usePutIntake } from "./tracker/usePutIntake";
 
 // ACCOUNTS
-export { default as useGetAccountVitals } from "./account/useGetAccountVitals";
+export { default as useGetConsumerVitals } from "./account/useGetConsumerVitals";
 
 // INGREDIENTS
 export { default as useGetIngredientDetails } from "./ingredient/useGetIngredientDetails";

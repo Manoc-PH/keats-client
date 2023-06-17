@@ -13,7 +13,7 @@ import {
 } from "@app/views/components";
 import { styles } from "./styles";
 
-export default function CurrentDietCard(props) {
+export default function VitalsCard(props) {
   // Props
   const { consumerVitals } = props;
 
@@ -68,9 +68,7 @@ export default function CurrentDietCard(props) {
         </View>
       </Card>
       <View style={styles.spacer} />
-      <Button style={styles.btn} onPress={handlePress}>
-        Change
-      </Button>
+      <Button onPress={handlePress}>Change</Button>
     </View>
   );
 }

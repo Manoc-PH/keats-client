@@ -1,10 +1,16 @@
+import { SPACING } from "@app/common/constants/styles";
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  container: {
+  wrapper: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    width: "100%",
+    marginBottom: SPACING.Huge,
+    paddingVertical: SPACING.Medium,
   },
+  container: {
+    paddingHorizontal: SPACING.Medium,
+    paddingVertical: SPACING.Huge,
+  },
+  spacer: { height: SPACING.Huge, width: "100%" },
 });

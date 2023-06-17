@@ -14,7 +14,7 @@ export { default as NutrientSummary } from "./ScreenLayouts/Ingredient/NutrientS
 export { default as IngredientName } from "./ScreenLayouts/Ingredient/IngredientName";
 
 // Cards
-export { default as CurrentDietCard } from "./Cards/CurrentDietCard";
+export { default as VitalsCard } from "./Cards/VitalsCard";
 
 // Graphs
 export { default as CalorieGraph } from "./Graphs/CalorieGraph";

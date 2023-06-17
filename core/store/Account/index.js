@@ -21,7 +21,7 @@ const store = createSlice({
   name: "account",
   initialState,
   reducers: {
-    setAccountVitals: (state, { payload }) => {
+    setConsumerVitals: (state, { payload }) => {
       if (payload) state.consumerVitals = payload;
       else state.consumerVitals = null;
     },
