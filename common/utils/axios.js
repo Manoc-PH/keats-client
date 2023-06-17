@@ -2,13 +2,32 @@ import axios from "axios";
 
 // TODO Set back to production url
 import { BASE_URL, LOCAL_URL } from "@app/common/constants/APIUrls";
+import { ClearCredentials } from "@app/services/db";
+import { reloadScreen } from "./reload";
 
-export const authAxios = axios.create({
-  baseURL: LOCAL_URL,
+const authAxios = axios.create({
+  baseURL: BASE_URL,
   withCredentials: true,
 });
 
+authAxios.interceptors.response.use(
+  function (response) {
+    return response;
+  },
+  async function (error) {
+    if (error?.response) {
+      const status = error.response.status;
+      if (status === 401) {
+        ClearCredentials();
+        reloadScreen();
+      }
+    }
+    return Promise.reject(error);
+  }
+);
 // TODO: REVERT THIS BACK TO THE REAL SERVER
-export const publicAxios = axios.create({
-  baseURL: LOCAL_URL,
+const publicAxios = axios.create({
+  baseURL: BASE_URL,
 });
+
+export { authAxios, publicAxios };

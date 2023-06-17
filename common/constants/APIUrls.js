@@ -1,4 +1,4 @@
-export const BASE_URL = "";
+export const BASE_URL = "https://api.keats.app";
 export const LOCAL_URL = "http://10.0.2.2:8080";
 //! REVERT BACK TO NEW URL BEFORE DEPLOYING TO PROD
 export const AUTH_ENDPOINTS = {
