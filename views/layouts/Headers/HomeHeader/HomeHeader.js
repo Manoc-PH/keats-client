@@ -8,7 +8,7 @@ import { BTN_VARIANTS, SIZES } from "@app/common/constants/styles";
 // Components
 import { Button, Title1 } from "@app/views/components";
 // Assets
-import { IntakeIcon } from "@app/assets/icons";
+import { IntakeIcon, LogoIcon } from "@app/assets/icons";
 
 import { styles } from "./styles";
 
@@ -29,7 +29,7 @@ export default function HomeHeader() {
       <View style={styles.container}>
         <View style={styles.navContainer}>
           <View style={styles.titleContainer}>
-            <Title1>KEATS</Title1>
+            <LogoIcon />
           </View>
 
           <View style={styles.iconContainer}>

@@ -18,6 +18,7 @@ export { default as TriangleUpIcon } from "./triangleUp";
 // Header Icons
 export { default as SearchIcon } from "./search";
 export { default as IntakeIcon } from "./intake";
+export { default as LogoIcon } from "./logo";
 
 //
 export { default as ImageIcon } from "./image";

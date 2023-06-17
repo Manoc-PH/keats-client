@@ -17,25 +17,27 @@ function IntakeIcon(props) {
           fill={props.color || themeColors.secondary}
         />
       </Svg>
-      <View
-        style={{
-          position: "absolute",
-          bottom: -SPACING.Tiny,
-          right: -SPACING.Tiny,
-          paddingHorizontal: SPACING.Tiny,
-          borderRadius: SPACING.Tiny,
-          backgroundColor: themeColors.red,
-        }}>
-        {/* ! Do not use components to avoid circular dependency */}
-        <Text
+      {(props?.count !== null || props?.count !== undefined) && (
+        <View
           style={{
-            color: themeColors.background,
-            fontFamily: FONT_WEIGHTS.Medium,
-            fontSize: FONT_SIZES.Tiny,
+            position: "absolute",
+            bottom: -SPACING.Tiny,
+            right: -SPACING.Tiny,
+            paddingHorizontal: SPACING.Tiny,
+            borderRadius: SPACING.Tiny,
+            backgroundColor: themeColors.primaryDark,
           }}>
-          {props?.count || 0}
-        </Text>
-      </View>
+          {/* ! Do not use components to avoid circular dependency */}
+          <Text
+            style={{
+              color: themeColors.background,
+              fontFamily: FONT_WEIGHTS.Medium,
+              fontSize: FONT_SIZES.Tiny,
+            }}>
+            {props?.count || 0}
+          </Text>
+        </View>
+      )}
     </View>
   );
 }
