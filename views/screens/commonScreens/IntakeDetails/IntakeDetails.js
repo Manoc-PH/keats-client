@@ -127,11 +127,10 @@ export default function IntakeDetails() {
           selectedIntake={selectedIntake}
           intake_id={selectedIntake.id}
           key={selectedIngredientMappingID}
-          ingredient_mapping_id={
-            selectedIngredientMappingID
-              ? selectedIngredientMappingID
-              : ingredientDetails.ingredient_mapping_id
+          initial_ingredient_mapping_id={
+            ingredientDetails.ingredient_mapping_id
           }
+          ingredient_mapping_id={selectedIngredientMappingID}
         />
       )}
     </>

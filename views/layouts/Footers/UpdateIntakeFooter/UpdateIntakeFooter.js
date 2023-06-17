@@ -17,7 +17,12 @@ import { Body, Button, CircleLoader, SliderInput } from "@app/views/components";
 import { styles } from "./styles";
 
 export default function UpdateIntakeFooter(props) {
-  const { ingredient_mapping_id, intake_id, selectedIntake } = props;
+  const {
+    initial_ingredient_mapping_id,
+    ingredient_mapping_id,
+    intake_id,
+    selectedIntake,
+  } = props;
   // Store State
   const { dailyNutrients, dailyIntakes } = useSelector(
     (state) => state.tracker
@@ -70,7 +75,8 @@ export default function UpdateIntakeFooter(props) {
   function handleSubmit() {
     const data = {
       intake_id: intake_id,
-      ingredient_mapping_id: ingredient_mapping_id,
+      ingredient_mapping_id:
+        initial_ingredient_mapping_id || ingredient_mapping_id,
       amount: parseFloat(amount),
       amount_unit: measureUnit.value,
       amount_unit_desc: measureUnit.desc,
@@ -79,60 +85,61 @@ export default function UpdateIntakeFooter(props) {
   }
 
   function handleIntake() {
-    const newData = {
-      ...dailyNutrients,
-      calories:
-        dailyNutrients.calories + putIntakeData.added_daily_nutrients.calories,
-      protein:
-        dailyNutrients.protein + putIntakeData.added_daily_nutrients.protein,
-      carbs: dailyNutrients.carbs + putIntakeData.added_daily_nutrients.carbs,
-      fats: dailyNutrients.fats + putIntakeData.added_daily_nutrients.fats,
-    };
-    const newIntake = {
-      id: putIntakeData.intake.id,
-      account_id: putIntakeData.intake.account_id,
-      ingredient_mapping_id: putIntakeData.intake.ingredient_mapping_id,
-      // food_id: putIntakeData.intake.food_id,
-      date_created: putIntakeData.intake.date_created,
-      calories: putIntakeData.added_daily_nutrients.calories,
-      amount: putIntakeData.intake.amount,
-      amount_unit: putIntakeData.intake.amount_unit,
-      amount_unit_desc: putIntakeData.intake.amount_unit_desc,
-      serving_size: putIntakeData.intake.serving_size,
+    console.log(dailyIntakes);
+    // const newData = {
+    //   ...dailyNutrients,
+    //   calories:
+    //     dailyNutrients.calories + putIntakeData.added_daily_nutrients.calories,
+    //   protein:
+    //     dailyNutrients.protein + putIntakeData.added_daily_nutrients.protein,
+    //   carbs: dailyNutrients.carbs + putIntakeData.added_daily_nutrients.carbs,
+    //   fats: dailyNutrients.fats + putIntakeData.added_daily_nutrients.fats,
+    // };
+    // const newIntake = {
+    //   id: putIntakeData.intake.id,
+    //   account_id: putIntakeData.intake.account_id,
+    //   ingredient_mapping_id: putIntakeData.intake.ingredient_mapping_id,
+    //   // food_id: putIntakeData.intake.food_id,
+    //   date_created: putIntakeData.intake.date_created,
+    //   calories: putIntakeData.added_daily_nutrients.calories,
+    //   amount: putIntakeData.intake.amount,
+    //   amount_unit: putIntakeData.intake.amount_unit,
+    //   amount_unit_desc: putIntakeData.intake.amount_unit_desc,
+    //   serving_size: putIntakeData.intake.serving_size,
 
-      ingredient_name: putIntakeData?.ingredient.ingredient.name,
-      ingredient_name_ph: putIntakeData?.ingredient.ingredient.name_ph,
-      ingredient_name_owner: putIntakeData?.ingredient.ingredient.name_owner,
-      ingredient_variant_name:
-        putIntakeData?.ingredient.ingredient_variant.name,
-      ingredient_variant_name_ph:
-        putIntakeData?.ingredient.ingredient_variant.name_ph,
-      ingredient_subvariant_name:
-        putIntakeData?.ingredient.ingredient_subvariant.name,
-      ingredient_subvariant_name_ph:
-        putIntakeData?.ingredient.ingredient_subvariant.name_ph,
-      thumbnail_image_link:
-        putIntakeData?.ingredient.ingredient.thumbnail_image_link,
+    //   ingredient_name: putIntakeData?.ingredient.ingredient.name,
+    //   ingredient_name_ph: putIntakeData?.ingredient.ingredient.name_ph,
+    //   ingredient_name_owner: putIntakeData?.ingredient.ingredient.name_owner,
+    //   ingredient_variant_name:
+    //     putIntakeData?.ingredient.ingredient_variant.name,
+    //   ingredient_variant_name_ph:
+    //     putIntakeData?.ingredient.ingredient_variant.name_ph,
+    //   ingredient_subvariant_name:
+    //     putIntakeData?.ingredient.ingredient_subvariant.name,
+    //   ingredient_subvariant_name_ph:
+    //     putIntakeData?.ingredient.ingredient_subvariant.name_ph,
+    //   thumbnail_image_link:
+    //     putIntakeData?.ingredient.ingredient.thumbnail_image_link,
 
-      // food_name: putIntakeData.food_name,
-      // food_name_ph: putIntakeData.food_name_ph,
-      // food_name_owner: putIntakeData.food_name_owner,
-    };
-    setDailyIntakes(() => {
-      if (dailyIntakes && dailyIntakes?.length > 0) {
-        dailyIntakes.map((item) => {
-          if (item?.id === newIntake.id) {
-            return newIntake;
-          } else return item;
-        });
-        return dailyIntakes;
-      } else return [newIntake];
-    });
-    setDailyNutrients(newData);
-    setIngredientDetails();
-    setSelectedIngredientID();
-    setSelectedIngredientMappingID();
-    navigation.navigate("Home", { screen: "HomeDefault" });
+    //   // food_name: putIntakeData.food_name,
+    //   // food_name_ph: putIntakeData.food_name_ph,
+    //   // food_name_owner: putIntakeData.food_name_owner,
+    // };
+    // setDailyIntakes(() => {
+    //   if (dailyIntakes && dailyIntakes?.length > 0) {
+    //     dailyIntakes.map((item) => {
+    //       if (item?.id === newIntake.id) {
+    //         return newIntake;
+    //       } else return item;
+    //     });
+    //     return dailyIntakes;
+    //   } else return [newIntake];
+    // });
+    // setDailyNutrients(newData);
+    // setIngredientDetails();
+    // setSelectedIngredientID();
+    // setSelectedIngredientMappingID();
+    // navigation.navigate("Home", { screen: "HomeDefault" });
   }
   function handleChange(v) {
     if (valueRef && valueRef.current) {
