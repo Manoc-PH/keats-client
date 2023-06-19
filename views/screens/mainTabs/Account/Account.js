@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import RNRestart from "react-native-restart";
 // Store
 import { actions } from "@app/core/store";
 // Hooks
@@ -27,9 +26,10 @@ export default function Account() {
   const { consumerVitals } = useSelector((state) => state.account);
 
   // Store Actions
-  const { setConsumerVitals: savs } = actions;
+  const { setConsumerVitals: savs, setIsLoggedIn: sili } = actions;
   const dispatch = useDispatch();
   const setConsumerVitals = (v) => dispatch(savs(v));
+  const setIsLoggedIn = (v) => dispatch(sili(v));
 
   // Local State
   const [username, setUsername] = useState();
@@ -52,8 +52,7 @@ export default function Account() {
     clearCredentials();
   }
   function logout() {
-    // TODO USE A BETTER ALTERNATIVE FOR THIS
-    RNRestart.restart();
+    setIsLoggedIn(false);
   }
 
   // UseEffects

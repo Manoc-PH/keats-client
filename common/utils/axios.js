@@ -1,4 +1,5 @@
 import axios from "axios";
+import RNRestart from "react-native-restart";
 
 // TODO Set back to production url
 import { BASE_URL, LOCAL_URL } from "@app/common/constants/APIUrls";
@@ -18,6 +19,8 @@ authAxios.interceptors.response.use(
       const status = error.response.status;
       if (status === 401) {
         ClearCredentials();
+        // TODO USE A BETTER ALTERNATIVE FOR THIS
+        RNRestart.restart();
       }
     }
     return Promise.reject(error);
