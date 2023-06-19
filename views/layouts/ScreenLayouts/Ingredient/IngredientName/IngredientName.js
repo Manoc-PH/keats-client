@@ -76,7 +76,6 @@ export default function IngredientName(props) {
     setSubvariants(newSubvariants);
   }
   function handleSelectVariant(item) {
-    console.log(item);
     setSelectedVariant(item);
     const subVars = ingredientMapping[item.name].subvariants;
     if (subVars) {

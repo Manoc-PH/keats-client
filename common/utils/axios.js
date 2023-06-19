@@ -5,7 +5,7 @@ import { BASE_URL, LOCAL_URL } from "@app/common/constants/APIUrls";
 import { ClearCredentials } from "@app/services/db";
 
 const authAxios = axios.create({
-  baseURL: BASE_URL,
+  baseURL: LOCAL_URL,
   withCredentials: true,
 });
 
@@ -25,7 +25,7 @@ authAxios.interceptors.response.use(
 );
 // TODO: REVERT THIS BACK TO THE REAL SERVER
 const publicAxios = axios.create({
-  baseURL: BASE_URL,
+  baseURL: LOCAL_URL,
 });
 
 export { authAxios, publicAxios };
