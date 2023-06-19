@@ -30,7 +30,7 @@ export default function Button(props) {
       alignItems: "center",
       paddingHorizontal: size ? SPACING[size] * 2 : SPACING.Regular * 2,
       paddingVertical: size ? SPACING[size] * 0.82 : SPACING.Regular * 0.82,
-      borderRadius: size ? SPACING[size] : SPACING.Regular,
+      borderRadius: size ? SPACING[size] : SPACING.Small,
       fontSize: size ? FONT_SIZES[size] : FONT_SIZES.Regular,
       fontWeight: FONT_WEIGHTS.SemiBold,
     },

@@ -146,7 +146,7 @@ const switchStyles = StyleSheet.create({
     flexDirection: "row",
   },
   wayBtnActive: {
-    borderRadius: RADIUS.Regular,
+    borderRadius: SPACING.Small,
     borderColor: themeColors.background,
     backgroundColor: themeColors.background,
     borderWidth: 1,
