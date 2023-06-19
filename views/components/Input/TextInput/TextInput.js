@@ -23,6 +23,7 @@ export default function TextInput(props) {
     suffix,
     label,
     secureTextEntry,
+    autoCapitalize,
     ...rest
   } = props;
 
@@ -53,6 +54,7 @@ export default function TextInput(props) {
             }}
             autoCorrect={false}
             secureTextEntry={secureTextEntry || false}
+            autoCapitalize={autoCapitalize || "none"}
             {...rest}
           />
           {suffix && suffix}
