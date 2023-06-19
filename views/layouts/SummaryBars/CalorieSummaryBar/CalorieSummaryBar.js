@@ -28,7 +28,7 @@ export default function CalorieSummaryBar(props) {
     <View style={{ width: "100%" }}>
       <CircularProgressBar
         size={width}
-        progress={(calories / maxCalories) * 100}
+        progress={(calories / maxCalories) * 100 || 0}
         foregroundColor={themeColors.primary}
         backgroundColor={themeColors.backgroundLight}
         isViewSimple={isViewSimple}>

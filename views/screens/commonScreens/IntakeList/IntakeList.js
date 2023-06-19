@@ -61,29 +61,23 @@ export default function IntakeList() {
       {!isGetIntakesLoading &&
         dailyIntakes &&
         dailyIntakes.map((item) => (
-          <>
-            {item?.ingredient_mapping_id ? (
-              <SearchResultCard
-                key={item.id}
-                title={`${item.ingredient_name} ${item.ingredient_variant_name}`}
-                subtitle={`${item.ingredient_name_owner} - ${
-                  item.amount
-                } ${item.amount_unit.toUpperCase()}`}
-                thumbnail_link={item.thumbnail_image_link}
-                onPress={() => handlePress(item)}
-              />
-            ) : (
-              <SearchResultCard
-                key={item.id}
-                title={item.food_name}
-                subtitle={`${item.food_name_owner} - ${
-                  item.amount
-                } ${item.amount_unit.toUpperCase()}`}
-                thumbnail_link={item.food_name_owner}
-                onPress={() => handlePress(item)}
-              />
-            )}
-          </>
+          <SearchResultCard
+            key={item.id}
+            title={
+              item?.ingredient_mapping_id
+                ? `${item.ingredient_name} ${item.ingredient_variant_name}`
+                : "``"
+            }
+            subtitle={
+              item?.ingredient_mapping_id
+                ? `${item.ingredient_name_owner} - ${
+                    item.amount
+                  } ${item.amount_unit.toUpperCase()}`
+                : ""
+            }
+            thumbnail_link={item.thumbnail_image_link}
+            onPress={() => handlePress(item)}
+          />
         ))}
       <View style={styles.spacer} />
     </ScrollPage>
