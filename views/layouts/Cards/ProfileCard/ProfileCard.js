@@ -2,9 +2,10 @@ import { Dimensions, View } from "react-native";
 // Icons
 import { ImageIcon } from "@app/assets/icons";
 // Components
-import { Title1 } from "@app/views/components";
+import { TextSkeleton, Title1 } from "@app/views/components";
 
 import { styles } from "./styles";
+import { FONT_SIZES } from "@app/common/constants/styles";
 
 export default function ProfileCard(props) {
   // Props
@@ -17,7 +18,11 @@ export default function ProfileCard(props) {
         <ImageIcon height={size} width={size} />
       </View>
       <View style={styles.spacer} />
-      <Title1>{username || ""}</Title1>
+      {username ? (
+        <Title1>{username}</Title1>
+      ) : (
+        <TextSkeleton fontSize={FONT_SIZES.ExtraLarge} />
+      )}
     </View>
   );
 }

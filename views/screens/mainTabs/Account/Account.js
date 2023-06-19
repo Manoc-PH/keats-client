@@ -1,22 +1,26 @@
-import { Text, View } from "react-native";
+import { useState, useEffect } from "react";
+import { View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-
+import RNRestart from "react-native-restart";
 // Store
 import { actions } from "@app/core/store";
 // Hooks
 import { useGetConsumerVitals } from "@app/core/hooks/api";
 // Layouts
 import {
+  Loader,
   PageDivider,
   ProfileCard,
   ScrollPage,
   VitalsCard,
 } from "@app/views/layouts";
-
+// Components
+import { Button } from "@app/views/components";
+// Constants
+import { BTN_VARIANTS } from "@app/common/constants/styles";
+// Hooks
+import { useClearCredentials, useReadCredentials } from "@app/core/hooks/db";
 import { styles } from "./styles";
-import { useEffect } from "react";
-import { useReadCredentials } from "@app/core/hooks/db";
-import { useState } from "react";
 
 export default function Account() {
   // Store State
@@ -36,7 +40,21 @@ export default function Account() {
     getConsumerVitalsData,
     isGetConsumerVitalsSuccess,
   } = useGetConsumerVitals();
+  const {
+    clearCredentials,
+    isClearCredentialsSuccess,
+    isClearCredentialsLoading,
+  } = useClearCredentials();
   const { readCredentials, readCredentialsData } = useReadCredentials();
+
+  // Functions
+  function handleLogout() {
+    clearCredentials();
+  }
+  function logout() {
+    // TODO USE A BETTER ALTERNATIVE FOR THIS
+    RNRestart.restart();
+  }
 
   // UseEffects
   useEffect(() => {
@@ -53,17 +71,32 @@ export default function Account() {
       setUsername(readCredentialsData[0]?.username);
     }
   }, [readCredentialsData]);
+  useEffect(() => {
+    if (isClearCredentialsSuccess) logout();
+  }, [isClearCredentialsSuccess]);
   return (
     <ScrollPage>
-      <View style={styles.wrapper}>
-        <View style={styles.spacer} />
-        <ProfileCard username={username} />
-        <View style={styles.spacer} />
-        <PageDivider />
-        <View style={styles.container}>
-          <VitalsCard consumerVitals={consumerVitals} />
+      {isClearCredentialsLoading ? (
+        <View style={styles.loadingWrapper}>
+          <View style={styles.container}>
+            <Loader />
+          </View>
         </View>
-      </View>
+      ) : (
+        <View style={styles.wrapper}>
+          <View style={styles.spacer} />
+          <ProfileCard username={username} />
+          <View style={styles.container}>
+            <Button variant={BTN_VARIANTS.outlined} onPress={handleLogout}>
+              Logout
+            </Button>
+          </View>
+          <PageDivider />
+          <View style={styles.container}>
+            <VitalsCard consumerVitals={consumerVitals} />
+          </View>
+        </View>
+      )}
     </ScrollPage>
   );
 }
