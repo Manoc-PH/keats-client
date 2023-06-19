@@ -17,12 +17,7 @@ import { Body, Button, CircleLoader, SliderInput } from "@app/views/components";
 import { styles } from "./styles";
 
 export default function UpdateIntakeFooter(props) {
-  const {
-    initial_ingredient_mapping_id,
-    ingredient_mapping_id,
-    intake_id,
-    selectedIntake,
-  } = props;
+  const { ingredient_mapping_id, intake_id, selectedIntake } = props;
   // Store State
   const { dailyNutrients, dailyIntakes } = useSelector(
     (state) => state.tracker
@@ -75,12 +70,12 @@ export default function UpdateIntakeFooter(props) {
   function handleSubmit() {
     const data = {
       intake_id: intake_id,
-      ingredient_mapping_id:
-        initial_ingredient_mapping_id || ingredient_mapping_id,
+      ingredient_mapping_id: ingredient_mapping_id,
       amount: parseFloat(amount),
       amount_unit: measureUnit.value,
       amount_unit_desc: measureUnit.desc,
     };
+    console.log(data);
     putIntake(data);
   }
 

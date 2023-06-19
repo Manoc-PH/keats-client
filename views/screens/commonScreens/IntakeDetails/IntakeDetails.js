@@ -3,10 +3,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 // Hooks
-import {
-  useGetIngredientMappingDetails,
-  useGetIngredientDetails,
-} from "@app/core/hooks/api";
+import { useGetIngredientMappingDetails } from "@app/core/hooks/api";
 
 // Layouts
 import {
@@ -37,11 +34,6 @@ export default function IntakeDetails() {
 
   // Hooks
   const {
-    getIngredientDetails,
-    getIngredientDetailsData,
-    isGetIngredientDetailsLoading,
-  } = useGetIngredientDetails();
-  const {
     getIngredientMappingDetails,
     getIngredientMappingDetailsData,
     isGetIngredientMappingDetailsLoading,
@@ -49,50 +41,39 @@ export default function IntakeDetails() {
 
   // Functions
   function fetchIngredientMapping() {
-    getIngredientMappingDetails(selectedIngredientMappingID);
+    getIngredientMappingDetails({
+      ingredient_mapping_id: selectedIngredientMappingID,
+    });
   }
   function fetchIngredientMappingFromIntake() {
     if (selectedIntake && selectedIntake?.ingredient_mapping_id) {
-      getIngredientMappingDetails(selectedIntake?.ingredient_mapping_id);
-    }
-  }
-  function fetchIngredient() {
-    if (selectedIntake && selectedIntake?.ingredient_id) {
-      getIngredientDetails(selectedIntake?.ingredient_id);
-    }
-  }
-  function handleIniditalLoad() {
-    if (getIngredientDetailsData && getIngredientMappingDetailsData) {
-      setIngredientDetails({
-        ...getIngredientDetailsData,
-        ...getIngredientMappingDetailsData,
+      getIngredientMappingDetails({
+        ingredient_mapping_id: selectedIntake?.ingredient_mapping_id,
+        return_mappings: true,
       });
     }
   }
   function handleIngredientDetailsData() {
-    if (ingredientDetails?.ingredient_mappings) {
-      setIngredientDetails((prevValue) => ({
-        ...prevValue,
+    if (!getIngredientMappingDetailsData) return;
+    if (getIngredientMappingDetailsData?.ingredient_mappings) {
+      setIngredientDetails(getIngredientMappingDetailsData);
+    } else {
+      setIngredientDetails({
         ...getIngredientMappingDetailsData,
-      }));
-    } else setIngredientDetails(getIngredientMappingDetailsData);
+        ingredient_mappings: ingredientDetails?.ingredient_mappings,
+      });
+    }
   }
 
   // UseEffects
   useEffect(() => {
-    if (selectedIntake) {
-      fetchIngredient();
-      fetchIngredientMappingFromIntake();
-    }
+    if (selectedIntake) fetchIngredientMappingFromIntake();
   }, []);
   useEffect(() => {
     if (selectedIngredientMappingID) fetchIngredientMapping();
   }, [selectedIngredientMappingID]);
   useEffect(() => {
-    handleIniditalLoad(getIngredientDetailsData);
-  }, [getIngredientDetailsData, getIngredientMappingDetailsData]);
-  useEffect(() => {
-    if (getIngredientMappingDetailsData) handleIngredientDetailsData();
+    handleIngredientDetailsData();
   }, [getIngredientMappingDetailsData]);
   return (
     <>
@@ -106,19 +87,13 @@ export default function IntakeDetails() {
             dailyNutrients={dailyNutrients}
             details={ingredientDetails}
             amount={selectedIntakeAmount}
-            isLoading={
-              isGetIngredientDetailsLoading ||
-              isGetIngredientMappingDetailsLoading
-            }
+            isLoading={isGetIngredientMappingDetailsLoading}
           />
           <PageDivider style={styles.spacer} />
           <IngredientName
             style={styles.spacer}
             ingredientDetails={ingredientDetails}
-            isLoading={
-              isGetIngredientDetailsLoading ||
-              isGetIngredientMappingDetailsLoading
-            }
+            isLoading={isGetIngredientMappingDetailsLoading}
           />
         </View>
       </ScrollPage>
@@ -127,10 +102,7 @@ export default function IntakeDetails() {
           selectedIntake={selectedIntake}
           intake_id={selectedIntake.id}
           key={selectedIngredientMappingID}
-          initial_ingredient_mapping_id={
-            ingredientDetails.ingredient_mapping_id
-          }
-          ingredient_mapping_id={selectedIngredientMappingID}
+          ingredient_mapping_id={ingredientDetails.ingredient_mapping_id}
         />
       )}
     </>

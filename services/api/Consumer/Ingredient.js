@@ -24,11 +24,14 @@ export const GetIngredientDetails = async (ingredient_id) => {
   return response?.data;
 };
 
-export const GetIngredientMappingDetails = async (ingredient_mapping_id) => {
+export const GetIngredientMappingDetails = async ({
+  ingredient_mapping_id,
+  return_mappings,
+}) => {
   const response = await authAxios.get(
     INGREDIENT_ENDPOINTS.GET_INGREDIENT_MAPPING_DETAILS,
     {
-      params: { ingredient_mapping_id },
+      params: { ingredient_mapping_id, return_mappings },
     }
   );
   return response?.data;

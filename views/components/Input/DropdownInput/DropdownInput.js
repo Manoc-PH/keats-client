@@ -71,7 +71,7 @@ const SelectList = (props) => {
           <ScrollView
             contentContainerStyle={{ paddingVertical: 10, overflow: "hidden" }}
             nestedScrollEnabled={true}>
-            {data.length >= 1 &&
+            {data?.length >= 1 &&
               data.map((item) => {
                 return (
                   <TouchableOpacity

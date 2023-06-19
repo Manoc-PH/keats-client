@@ -48,7 +48,9 @@ export default function IngredientDetails() {
 
   // Functions
   function fetchIngredientMapping() {
-    getIngredientMappingDetails(selectedIngredientMappingID);
+    getIngredientMappingDetails({
+      ingredient_mapping_id: selectedIngredientMappingID,
+    });
   }
   function handleIngredientMappingData() {
     setIngredientDetails((prevValue) => ({
