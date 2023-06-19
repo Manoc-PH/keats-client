@@ -15,6 +15,7 @@ export { default as IngredientName } from "./ScreenLayouts/Ingredient/Ingredient
 
 // Cards
 export { default as VitalsCard } from "./Cards/VitalsCard";
+export { default as ProfileCard } from "./Cards/ProfileCard";
 
 // Graphs
 export { default as CalorieGraph } from "./Graphs/CalorieGraph";

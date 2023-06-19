@@ -1,26 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-  View,
-  ScrollView,
-  KeyboardAvoidingView,
-  Platform,
-  ActivityIndicator,
-} from "react-native";
-
+import { View, ScrollView } from "react-native";
+// Utils
+import { authAxios } from "@app/common/utils/axios";
 // Store
 import { actions } from "@app/core/store";
-
 // Hooks
 import { useLogin } from "@app/core/hooks/api";
-
+// Constants
 import themeColors from "@app/common/theme";
+// Hooks
 import { useCreateCredentials } from "@app/core/hooks/db";
+// Components
 import { Button, Body, TextInput, Title1 } from "@app/views/components";
+// Layouts
 import { Loader, LoginForm } from "@app/views/layouts";
+
 import { BTN_VARIANTS, SIZES, SPACING } from "@app/common/constants/styles";
 import { styles } from "./styles";
-import { authAxios } from "@app/common/utils/axios";
 
 export default function Login(props) {
   // Props
