@@ -14,7 +14,7 @@ const SwitchButton = ({
   switchHeight,
   text1,
   text2,
-  switchdirection,
+
   onValueChange,
   children,
 }) => {
@@ -44,7 +44,7 @@ const SwitchButton = ({
 
     if (activeSwitch === 1) {
       setActiveSwitch(2);
-      onValueChange(activeSwitch);
+      onValueChange(2);
 
       Animated.timing(offsetX, {
         toValue: ((switchWidth || sbWidth) / 2 - 6) * dirsign,
@@ -53,7 +53,7 @@ const SwitchButton = ({
       }).start();
     } else {
       setActiveSwitch(1);
-      onValueChange(activeSwitch);
+      onValueChange(1);
 
       Animated.timing(offsetX, {
         toValue: 0,
@@ -68,7 +68,7 @@ const SwitchButton = ({
       <TouchableOpacity
         activeOpacity={1}
         onPress={() => {
-          switchThump(switchdirection || direction);
+          switchThump(direction);
         }}>
         <View
           style={[
@@ -83,7 +83,7 @@ const SwitchButton = ({
           ]}>
           <View
             style={{
-              flexDirection: switchDirection(switchdirection || direction),
+              flexDirection: switchDirection(direction),
             }}>
             <Animated.View style={{ transform: [{ translateX: offsetX }] }}>
               <View

@@ -5,6 +5,7 @@ import Auth from "./Auth";
 import Tracker from "./Tracker";
 import Account from "./Account";
 import Ingredient from "./Ingredient";
+import Ui from "./Ui";
 
 const actionList = {
   ...Search.actions,
@@ -12,6 +13,7 @@ const actionList = {
   ...Tracker.actions,
   ...Account.actions,
   ...Ingredient.actions,
+  ...Ui.actions,
 };
 
 const reducerList = {
@@ -20,6 +22,7 @@ const reducerList = {
   tracker: Tracker.reducer,
   account: Account.reducer,
   ingredient: Ingredient.reducer,
+  ui: Ui.reducer,
 };
 
 export const reducers = combineReducers(reducerList);

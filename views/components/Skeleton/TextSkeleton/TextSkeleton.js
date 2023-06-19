@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { View, StyleSheet, PixelRatio } from "react-native";
-
-import LinearGradient from "react-native-linear-gradient";
+import { LinearGradient } from "expo-linear-gradient";
 
 import { FONT_SIZES, SPACING } from "@app/common/constants/styles";
 import themeColors from "@app/common/theme";

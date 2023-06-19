@@ -29,13 +29,18 @@ export default function Home() {
   const { dailyNutrients, dailyIntakes } = useSelector(
     (state) => state.tracker
   );
-  const { consumerVitals } = useSelector((state) => state.account);
+  const { isViewSimple } = useSelector((state) => state.ui);
 
   // Store Actions
-  const { setDailyIntakes: sdi, setDailyNutrients: sdns } = actions;
+  const {
+    setDailyIntakes: sdi,
+    setDailyNutrients: sdns,
+    setIsViewSimple: sivs,
+  } = actions;
   const dispatch = useDispatch();
   const setDailyIntakes = (v) => dispatch(sdi(v));
   const setDailyNutrients = (v) => dispatch(sdns(v));
+  const setIsViewSimple = (v) => dispatch(sivs(v));
 
   // Hooks
   const {
@@ -51,6 +56,13 @@ export default function Home() {
     // isGetIntakesLoading,
   } = useGetIntakes();
 
+  // Functions
+  function handleSwitchView(value) {
+    if (value === 1) setIsViewSimple(true);
+    if (value === 2) setIsViewSimple(false);
+  }
+
+  // Useffects
   useEffect(() => {
     if (!dailyIntakes) getIntakes();
     if (!dailyNutrients) {
@@ -70,12 +82,15 @@ export default function Home() {
       <ScrollPage>
         <View style={styles.wrapper}>
           <View style={styles.container}>
-            <CalorieSummary dailyNutrients={dailyNutrients} />
+            <CalorieSummary
+              isViewSimple={isViewSimple}
+              dailyNutrients={dailyNutrients}
+            />
           </View>
           <PageDivider />
           <View style={styles.container}>
             <SwitchButton
-              onValueChange={() => {}}
+              onValueChange={handleSwitchView}
               switchWidth={
                 Dimensions.get("window").width - SPACING.Medium - SPACING.Medium
               }

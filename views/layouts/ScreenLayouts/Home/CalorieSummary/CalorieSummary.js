@@ -14,7 +14,7 @@ import { TrippleArrowDownIcon } from "@app/assets/icons";
 
 export default function CalorieSummary(props) {
   // Props
-  const { dailyNutrients } = props;
+  const { dailyNutrients, isViewSimple } = props;
 
   // Hooks
   const headerHeight = useHeaderHeight();
@@ -43,6 +43,7 @@ export default function CalorieSummary(props) {
         </View>
         <View style={styles.itemContainer}>
           <CalorieSummaryBar
+            isViewSimple={isViewSimple}
             loading={!dailyNutrients}
             calories={Math.floor(dailyNutrients?.calories) || 0}
             maxCalories={Math.floor(dailyNutrients?.max_calories) || 0}

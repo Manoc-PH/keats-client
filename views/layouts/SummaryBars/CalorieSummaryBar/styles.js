@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { SPACING, ZINDEX } from "@app/common/constants/styles";
+import themeColors from "@app/common/theme";
 
 export const styles = StyleSheet.create({
   container: {
@@ -16,6 +17,11 @@ export const styles = StyleSheet.create({
   addBtnContainer: {
     position: "absolute",
     top: "220%",
+    zIndex: ZINDEX.basicComponent,
+    elevation: ZINDEX.basicComponent,
+    shadowColor: "#00000000",
+  },
+  addSimpleBtnContainer: {
     zIndex: ZINDEX.basicComponent,
     elevation: ZINDEX.basicComponent,
     shadowColor: "#00000000",
