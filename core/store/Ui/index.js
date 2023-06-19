@@ -10,7 +10,7 @@ const store = createSlice({
   reducers: {
     setIsViewSimple: (state, { payload }) => {
       if (payload) state.isViewSimple = payload;
-      else state.isViewSimple = true;
+      else state.isViewSimple = false;
     },
   },
 });
