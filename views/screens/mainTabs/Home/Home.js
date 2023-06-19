@@ -97,8 +97,12 @@ export default function Home() {
               text1={"Simple View"}
               text2={"Advanced View"}
             />
-            <View style={styles.spacer} />
-            <MacroSummary dailyNutrients={dailyNutrients} />
+            {!isViewSimple && (
+              <>
+                <View style={styles.spacer} />
+                <MacroSummary dailyNutrients={dailyNutrients} />
+              </>
+            )}
             <View style={styles.spacer} />
             <SubHeadline2>How much I've tracked</SubHeadline2>
             <View style={styles.spacerSubheadline} />
