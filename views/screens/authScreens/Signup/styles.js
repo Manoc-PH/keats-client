@@ -8,11 +8,11 @@ export const styles = StyleSheet.create({
     alignItems: "flex-start",
     width: "100%",
     backgroundColor: themeColors.background,
-    padding: SPACING.Medium,
   },
   bottomWrapper: {
     width: "100%",
     justifyContent: "space-between",
+    padding: SPACING.Medium,
   },
   bottomContentWrapper: {
     marginTop: SPACING.Large,

@@ -39,3 +39,6 @@ export { default as SearchResultCard } from "./Cards/SearchResultCard";
 
 // Loaders
 export { default as CircleLoader } from "./Loaders/CircleLoader";
+
+// Carousel
+export { default as Carousel } from "./Carousel";

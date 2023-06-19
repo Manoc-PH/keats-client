@@ -3,7 +3,7 @@ import { Dimensions, KeyboardAvoidingView, View } from "react-native";
 
 import { styles } from "./styles";
 import {
-  CarouselInput,
+  Carousel,
   DateInput,
   ImageButton,
   NumberInput,
@@ -13,7 +13,7 @@ import {
   Title3,
 } from "@app/views/components";
 import themeColors from "@app/common/theme";
-import { BTN_VARIANTS } from "@app/common/constants/styles";
+import { BTN_VARIANTS, SPACING } from "@app/common/constants/styles";
 import {
   MaleSvg,
   FemaleSvg,
@@ -89,10 +89,12 @@ export default function SignupForm(props) {
       behavior={Platform.OS === "ios" ? "padding" : ""}
       style={styles.container}>
       <View style={styles.contentWrapper}>
-        <Title3 style={styles.title}>{titles[activePage]}</Title3>
-        {errorMsg && (
-          <SubHeadline2 style={styles.error}>{errorMsg}</SubHeadline2>
-        )}
+        <View style={styles.contentTitle}>
+          <Title3 style={styles.title}>{titles[activePage]}</Title3>
+          {errorMsg && (
+            <SubHeadline2 style={styles.error}>{errorMsg}</SubHeadline2>
+          )}
+        </View>
         {components[activePage]}
       </View>
     </KeyboardAvoidingView>
@@ -115,7 +117,7 @@ function UsernamePassword(props) {
     }
   }, [confirmPassword, password]);
   return (
-    <>
+    <View style={styles.itemWrapper}>
       <TextInput
         value={username}
         onChangeText={setUsername}
@@ -133,7 +135,7 @@ function UsernamePassword(props) {
         placeholder={"Confirm Password"}
         secureTextEntry={true}
       />
-    </>
+    </View>
   );
 }
 function Sex(props) {
@@ -184,14 +186,16 @@ function Birthday(props) {
 function Weight(props) {
   const { weight, setWeight } = props;
   return (
-    <NumberInput
-      incrementValue={1}
-      maxValue={635}
-      optionPlaceholder={"Kilograms"}
-      options={[]}
-      value={weight}
-      onChange={setWeight}
-    />
+    <View style={styles.itemWrapper}>
+      <NumberInput
+        incrementValue={1}
+        maxValue={635}
+        optionPlaceholder={"Kilograms"}
+        options={[]}
+        value={weight}
+        onChange={setWeight}
+      />
+    </View>
   );
 }
 function Height(props) {
@@ -245,7 +249,35 @@ function Height(props) {
 }
 function ActivityLevel(props) {
   const {} = props;
-  return <CarouselInput style={{ height: "80%" }} />;
+  const data = [
+    { key: "1", title: "One", children: "" },
+    { key: "2", title: "Two", children: "" },
+    { key: "3", title: "Three", children: "" },
+    { key: "4", title: "Four", children: "" },
+    { key: "5", title: "Five", children: "" },
+    { key: "6", title: "Six", children: "" },
+  ];
+  const newData = [];
+  data.map((item) => {
+    newData.push({
+      ...item,
+      children: (
+        <View
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+            height: "100%",
+            borderRadius: SPACING.Regular,
+            borderWidth: 1,
+            borderColor: themeColors.backgroundLight,
+          }}>
+          <Title3>{item.title}</Title3>
+        </View>
+      ),
+    });
+  });
+  return <Carousel data={newData} style={{ height: "80%" }} />;
 }
 function FitnessGoal(props) {
   const {} = props;

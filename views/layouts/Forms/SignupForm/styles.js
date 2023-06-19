@@ -15,9 +15,16 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  contentTitle: {
+    padding: SPACING.Medium,
+    position: "absolute",
+    top: SPACING.Regular,
+  },
+  itemWrapper: { padding: SPACING.Medium, width: "100%" },
   title: { marginBottom: SPACING.Large },
   error: { color: themeColors.red, textAlign: "center" },
   sexContainer: {
+    padding: SPACING.Medium,
     width: "100%",
     height: "60%",
     flexDirection: "row",
@@ -28,6 +35,7 @@ export const styles = StyleSheet.create({
     padding: SPACING.Small,
   },
   heightWrapper: {
+    padding: SPACING.Medium,
     height: "70%",
     width: "100%",
     justifyContent: "flex-end",
