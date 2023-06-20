@@ -28,6 +28,7 @@ import {
   MaleDarkSvg,
 } from "@app/assets/imageSvg";
 import { useGetActivityLevels, useGetDietPlans } from "@app/core/hooks/api";
+import { ImageIcon } from "@app/assets/icons";
 
 export default function SignupForm(props) {
   // Destructure
@@ -67,7 +68,7 @@ export default function SignupForm(props) {
     "Enter your weight",
     "Enter your height",
     "Select your activity level",
-    "Select your fitness goal",
+    "Select your diet plan",
   ];
 
   // Components
@@ -88,7 +89,11 @@ export default function SignupForm(props) {
       setActivityLvlId={setActivityLvlId}
       activityLevels={activityLevels}
     />,
-    <DietPlan dietPlans={dietPlans} />,
+    <DietPlan
+      dietPlans={dietPlans}
+      diet_plan_id={diet_plan_id}
+      setDietPlanId={setDietPlanId}
+    />,
   ];
 
   // Functions
@@ -349,6 +354,75 @@ function ActivityLevel(props) {
   return <Carousel data={newData} style={{ height: "80%" }} />;
 }
 function DietPlan(props) {
-  const { dietPlans } = props;
-  return <View></View>;
+  const { dietPlans, diet_plan_id, setDietPlanId } = props;
+  if (!dietPlans) return;
+  const newData = [];
+  dietPlans.map((item) => {
+    newData.push({
+      key: item.id,
+      ...item,
+      children: (
+        <Pressable
+          onPress={() => {
+            setDietPlanId(item.id);
+          }}
+          style={{
+            width: "100%",
+            height: "100%",
+            borderRadius: SPACING.Large,
+            borderWidth: 2,
+            borderColor:
+              diet_plan_id === item.id
+                ? themeColors.primary
+                : themeColors.backgroundLight,
+            backgroundColor: themeColors.background,
+          }}>
+          <View
+            style={{
+              flex: 2,
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: item?.background_color
+                ? item.background_color
+                : themeColors.backgroundLight,
+              borderTopLeftRadius: SPACING.Medium,
+              borderTopRightRadius: SPACING.Medium,
+              padding: SPACING.Medium,
+            }}>
+            {item?.main_image_link ? (
+              <Image
+                style={{ width: "100%", height: "100%" }}
+                source={{
+                  uri: item.main_image_link,
+                }}
+              />
+            ) : (
+              <View
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}>
+                <ImageIcon width={SPACING.Huge * 2} height={SPACING.Huge * 2} />
+              </View>
+            )}
+          </View>
+          <View
+            style={{
+              flex: 1,
+              padding: SPACING.Medium,
+            }}>
+            <Title3>{item.name}</Title3>
+            <View style={{ width: "100%", height: SPACING.Regular }} />
+            <Body>{item.diet_plan_desc}</Body>
+          </View>
+        </Pressable>
+      ),
+    });
+  });
+  useEffect(() => {
+    setDietPlanId(newData[0].id);
+  }, []);
+  return <Carousel data={newData} style={{ height: "80%" }} />;
 }
