@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Dimensions, KeyboardAvoidingView, View } from "react-native";
+import {
+  Dimensions,
+  Image,
+  KeyboardAvoidingView,
+  Pressable,
+  View,
+} from "react-native";
 
 import { styles } from "./styles";
 import {
+  Body,
   Carousel,
   DateInput,
   ImageButton,
@@ -20,6 +27,7 @@ import {
   FemaleDarkSvg,
   MaleDarkSvg,
 } from "@app/assets/imageSvg";
+import { useGetActivityLevels, useGetDietPlans } from "@app/core/hooks/api";
 
 export default function SignupForm(props) {
   // Destructure
@@ -35,6 +43,22 @@ export default function SignupForm(props) {
   const [activity_lvl_id, setActivityLvlId] = useState(data?.activity_lvl_id);
   const [diet_plan_id, setDietPlanId] = useState(data?.diet_plan_id);
 
+  const [activityLevels, setActivityLevels] = useState();
+  const [dietPlans, setDietPlans] = useState();
+  // Hooks
+  const {
+    getActivityLevels,
+    getActivityLevelsData,
+    // isGetActivityLevelsLoading,
+    // isGetActivityLevelsSuccess
+  } = useGetActivityLevels();
+  const {
+    getDietPlans,
+    getDietPlansData,
+    // isGetDietPlansLoading,
+    // isGetDietPlansSuccess,
+  } = useGetDietPlans();
+
   // Variables
   const titles = [
     "Enter username and password",
@@ -45,6 +69,8 @@ export default function SignupForm(props) {
     "Select your activity level",
     "Select your fitness goal",
   ];
+
+  // Components
   const components = [
     <UsernamePassword
       username={username}
@@ -57,9 +83,15 @@ export default function SignupForm(props) {
     <Birthday birthday={birthday} setBirthday={setBirthday} />,
     <Weight weight={weight} setWeight={setWeight} />,
     <Height height={height} setHeight={setHeight} sex={sex} />,
-    <ActivityLevel />,
-    <FitnessGoal />,
+    <ActivityLevel
+      activity_lvl_id={activity_lvl_id}
+      setActivityLvlId={setActivityLvlId}
+      activityLevels={activityLevels}
+    />,
+    <DietPlan dietPlans={dietPlans} />,
   ];
+
+  // Functions
   function updateData() {
     setData({
       username,
@@ -72,6 +104,16 @@ export default function SignupForm(props) {
       diet_plan_id,
     });
   }
+
+  // UseEffects
+  useEffect(() => {
+    getActivityLevels();
+    getDietPlans();
+  }, []);
+  useEffect(() => {
+    if (getDietPlansData) setDietPlans(getDietPlansData);
+    if (getActivityLevelsData) setActivityLevels(getActivityLevelsData);
+  }, [getDietPlansData, getActivityLevelsData]);
   useEffect(() => {
     updateData();
   }, [
@@ -248,38 +290,65 @@ function Height(props) {
   );
 }
 function ActivityLevel(props) {
-  const {} = props;
-  const data = [
-    { key: "1", title: "One", children: "" },
-    { key: "2", title: "Two", children: "" },
-    { key: "3", title: "Three", children: "" },
-    { key: "4", title: "Four", children: "" },
-    { key: "5", title: "Five", children: "" },
-    { key: "6", title: "Six", children: "" },
-  ];
+  const { activityLevels, activity_lvl_id, setActivityLvlId } = props;
+  if (!activityLevels) return;
   const newData = [];
-  data.map((item) => {
+  activityLevels.map((item) => {
     newData.push({
+      key: item.id,
       ...item,
       children: (
-        <View
+        <Pressable
+          onPress={() => {
+            setActivityLvlId(item.id);
+          }}
           style={{
-            justifyContent: "center",
-            alignItems: "center",
             width: "100%",
             height: "100%",
-            borderRadius: SPACING.Regular,
-            borderWidth: 1,
-            borderColor: themeColors.backgroundLight,
+            borderRadius: SPACING.Large,
+            borderWidth: 2,
+            borderColor:
+              activity_lvl_id === item.id
+                ? themeColors.primary
+                : themeColors.backgroundLight,
+            backgroundColor: themeColors.background,
           }}>
-          <Title3>{item.title}</Title3>
-        </View>
+          <View
+            style={{
+              flex: 2,
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: item.background_color,
+              borderTopLeftRadius: SPACING.Medium,
+              borderTopRightRadius: SPACING.Medium,
+              padding: SPACING.Medium,
+            }}>
+            <Image
+              style={{ width: "100%", height: "100%" }}
+              source={{
+                uri: item.main_image_link,
+              }}
+            />
+          </View>
+          <View
+            style={{
+              flex: 1,
+              padding: SPACING.Medium,
+            }}>
+            <Title3>{item.name}</Title3>
+            <View style={{ width: "100%", height: SPACING.Regular }} />
+            <Body>{item.activity_lvl_desc}</Body>
+          </View>
+        </Pressable>
       ),
     });
   });
+  useEffect(() => {
+    setActivityLvlId(newData[0].id);
+  }, []);
   return <Carousel data={newData} style={{ height: "80%" }} />;
 }
-function FitnessGoal(props) {
-  const {} = props;
+function DietPlan(props) {
+  const { dietPlans } = props;
   return <View></View>;
 }

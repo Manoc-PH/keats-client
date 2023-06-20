@@ -27,3 +27,8 @@ export const CONSUMER_ENDPOINTS = {
   GET_CONSUMER_VITALS: "/api/account/consumer_vitals",
   UPDATE_CONSUMER_VITALS: "/api/account/consumer_vitals",
 };
+
+export const COMMON_ENDPOINTS = {
+  GET_ACTIVITY_LEVELS: "/api/common/activity_levels",
+  GET_DIET_PLANS: "/api/common/diet_plans",
+};

@@ -19,3 +19,7 @@ export { default as useGetConsumerVitals } from "./account/useGetConsumerVitals"
 export { default as useGetIngredientDetails } from "./ingredient/useGetIngredientDetails";
 export { default as useGetSearchIngredient } from "./ingredient/useGetSearchIngredient";
 export { default as useGetIngredientMappingDetails } from "./ingredient/useGetIngredientMappingDetails";
+
+// COMMON
+export { default as useGetActivityLevels } from "./common/useGetActivityLevels";
+export { default as useGetDietPlans } from "./common/useGetDietPlans";
