@@ -31,4 +31,5 @@ export const CONSUMER_ENDPOINTS = {
 export const COMMON_ENDPOINTS = {
   GET_ACTIVITY_LEVELS: "/api/common/activity_levels",
   GET_DIET_PLANS: "/api/common/diet_plans",
+  GET_NAME_AVAILABILITY: "/api/common/name_availability",
 };

@@ -27,8 +27,13 @@ import {
   FemaleDarkSvg,
   MaleDarkSvg,
 } from "@app/assets/imageSvg";
-import { useGetActivityLevels, useGetDietPlans } from "@app/core/hooks/api";
+import {
+  useGetActivityLevels,
+  useGetDietPlans,
+  useGetNameAvailability,
+} from "@app/core/hooks/api";
 import { ImageIcon } from "@app/assets/icons";
+import useDebounce from "@app/common/utils/debounce";
 
 export default function SignupForm(props) {
   // Destructure
@@ -47,18 +52,8 @@ export default function SignupForm(props) {
   const [activityLevels, setActivityLevels] = useState();
   const [dietPlans, setDietPlans] = useState();
   // Hooks
-  const {
-    getActivityLevels,
-    getActivityLevelsData,
-    // isGetActivityLevelsLoading,
-    // isGetActivityLevelsSuccess
-  } = useGetActivityLevels();
-  const {
-    getDietPlans,
-    getDietPlansData,
-    // isGetDietPlansLoading,
-    // isGetDietPlansSuccess,
-  } = useGetDietPlans();
+  const { getActivityLevels, getActivityLevelsData } = useGetActivityLevels();
+  const { getDietPlans, getDietPlansData } = useGetDietPlans();
 
   // Variables
   const titles = [
@@ -151,6 +146,15 @@ function UsernamePassword(props) {
   const { username, setUsername, password, setPassword, setErrorMsg } = props;
   const [confirmPassword, setConfirmPassword] = useState();
 
+  const { getNameAvailability, getNameAvailabilityData } =
+    useGetNameAvailability();
+
+  useDebounce(() => getNameAvailability(username), [username], 400);
+  useEffect(() => {
+    if (getNameAvailabilityData === true) setErrorMsg("");
+    if (getNameAvailabilityData === false)
+      setErrorMsg("Username is taken already, try a different one");
+  }, [getNameAvailabilityData]);
   useEffect(() => {
     setErrorMsg("");
   }, [username]);

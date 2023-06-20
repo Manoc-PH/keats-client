@@ -12,3 +12,9 @@ export const GetDietPlans = async () => {
   const response = await authAxios.get(COMMON_ENDPOINTS.GET_DIET_PLANS);
   return response?.data;
 };
+export const GetNameAvailability = async (username) => {
+  const response = await authAxios.get(COMMON_ENDPOINTS.GET_NAME_AVAILABILITY, {
+    params: { username },
+  });
+  return response?.data;
+};

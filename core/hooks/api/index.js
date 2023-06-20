@@ -23,3 +23,4 @@ export { default as useGetIngredientMappingDetails } from "./ingredient/useGetIn
 // COMMON
 export { default as useGetActivityLevels } from "./common/useGetActivityLevels";
 export { default as useGetDietPlans } from "./common/useGetDietPlans";
+export { default as useGetNameAvailability } from "./common/useGetNameAvailability";
