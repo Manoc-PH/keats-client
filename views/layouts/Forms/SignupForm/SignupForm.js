@@ -349,7 +349,7 @@ function ActivityLevel(props) {
     });
   });
   useEffect(() => {
-    setActivityLvlId(newData[0].id);
+    if (!activity_lvl_id) setActivityLvlId(newData[0].id);
   }, []);
   return <Carousel data={newData} style={{ height: "80%" }} />;
 }
@@ -422,7 +422,7 @@ function DietPlan(props) {
     });
   });
   useEffect(() => {
-    setDietPlanId(newData[0].id);
+    if (!diet_plan_id) setDietPlanId(newData[0].id);
   }, []);
   return <Carousel data={newData} style={{ height: "80%" }} />;
 }
