@@ -292,18 +292,39 @@ function Weight(props) {
 }
 function Height(props) {
   const { sex, height, setHeight } = props;
+  const heightScreen = Dimensions.get("window").height;
+  const width = Dimensions.get("window").width;
+  // Debounced Functions
+  const debouncedSetAmount = debounce(setHeight, 100);
+  // Refs
+  const valueRef = useRef();
+  // Functions
+  function handleChange(v) {
+    if (valueRef && valueRef.current) {
+      valueRef.current.setNativeProps({ text: `${v}` });
+      debouncedSetAmount(v);
+    }
+  }
   const maxHeight = 272;
-  const usableScreen = Dimensions.get("window").height * 0.6;
+  const usableScreen = Dimensions.get("window").height * 0.85;
+  const defaultHeight = sex === "m" ? 163 : 149;
 
   function convertToFt(v) {
     if (v) {
       const inches = v / 2.54;
       const feet = Math.floor(inches / 12);
-      return `${feet}'${Math.floor(inches % 12)} ft`;
+      return `${feet}'${Math.floor(inches % 12)} FT`;
     }
   }
   return (
-    <View style={styles.heightWrapper}>
+    <View
+      style={{
+        width: width,
+        height: heightScreen - SPACING.Huge * 2,
+        alignItems: "center",
+        justifyContent: "flex-end",
+        padding: SPACING.Medium,
+      }}>
       <View style={styles.heightContentWrapper}>
         <View style={styles.heightContentContainer}>
           <SubHeadline2 style={styles.subtitle}>
@@ -317,10 +338,6 @@ function Height(props) {
           )}
         </View>
         <View style={styles.heightContentContainer}>
-          <SubHeadline2 style={styles.subtitle}>
-            Your height{" "}
-            {height ? `(${convertToFt(height)} or ${height} cm)` : ""}
-          </SubHeadline2>
           {sex === "F" ? (
             <FemaleSvg height={(usableScreen / maxHeight) * (height || 149)} />
           ) : (
@@ -328,14 +345,34 @@ function Height(props) {
           )}
         </View>
       </View>
-      <NumberInput
-        incrementValue={1}
-        maxValue={maxHeight}
-        optionPlaceholder={"CM"}
-        options={[]}
-        value={height || (sex === "F" ? 149 : 163)}
-        onChange={setHeight}
-      />
+      <View
+        style={{
+          width: width,
+          height: SPACING.Large,
+        }}>
+        <SliderInput
+          value={height || defaultHeight}
+          onChangeValue={handleChange}
+        />
+      </View>
+
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          paddingTop: SPACING.Huge,
+        }}>
+        <TextInputRN
+          style={{
+            fontFamily: FONT_WEIGHTS.Regular,
+            fontSize: FONT_SIZES.Regular,
+            color: themeColors.secondary,
+          }}
+          ref={valueRef}
+          defaultValue={height.toString() || defaultHeight}
+        />
+        <Body> CM | {convertToFt(height || defaultHeight)}</Body>
+      </View>
     </View>
   );
 }
