@@ -7,7 +7,8 @@ import { View } from "react-native";
 
 import { styles } from "./styles";
 
-export default function Signup() {
+export default function Signup(props) {
+  const { navigation } = props;
   // Local States
   const [activePage, setActivePage] = useState(0);
   const [errorMsg, setErrorMsg] = useState();
@@ -60,6 +61,7 @@ export default function Signup() {
   }
   function handleBack() {
     if (activePage > 0) setActivePage((prev) => prev - 1);
+    if (activePage === 0) navigation.navigate("Login");
   }
 
   return (
