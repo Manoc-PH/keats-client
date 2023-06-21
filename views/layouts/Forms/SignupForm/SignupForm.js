@@ -153,7 +153,11 @@ function UsernamePassword(props) {
   const { getNameAvailability, getNameAvailabilityData } =
     useGetNameAvailability();
 
-  useDebounce(() => getNameAvailability(username), [username], 400);
+  function fetchNameAvailability() {
+    if (username) getNameAvailability(username);
+  }
+
+  useDebounce(() => fetchNameAvailability, [username], 400);
   useEffect(() => {
     if (getNameAvailabilityData === true) setErrorMsg("");
     if (getNameAvailabilityData === false)
