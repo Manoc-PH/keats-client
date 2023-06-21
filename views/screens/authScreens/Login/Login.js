@@ -14,7 +14,7 @@ import { useCreateCredentials } from "@app/core/hooks/db";
 // Components
 import { Button, Body, TextInput, Title1 } from "@app/views/components";
 // Layouts
-import { Loader, LoginForm } from "@app/views/layouts";
+import { Loader, LoginForm, Splash } from "@app/views/layouts";
 
 import { BTN_VARIANTS, SIZES, SPACING } from "@app/common/constants/styles";
 import { styles } from "./styles";
@@ -26,6 +26,7 @@ export default function Login(props) {
   // Local States
   const [data, setData] = useState({ username: "", password: "" });
   const [errMsg, setErrMsg] = useState("");
+  const [loading, setLoading] = useState(false);
 
   // Store Actions
   const { setIsLoggedIn: setIsLoggedInState } = actions;
@@ -49,11 +50,10 @@ export default function Login(props) {
     // TODO improve error handling
     if (loginUserError) {
       setErrMsg(loginUserError?.response?.data?.message || "An error occured");
+      setLoading(false);
     }
   }
   function handleLoginSuccess() {
-    // TODO PROPERLY HANDLE LOGIN SUCCESS
-    // !THIS DOES NOT WORK CURRENTLY
     const cred = {
       id: loginUserData.data.id,
       username: loginUserData.data.username,
@@ -74,11 +74,14 @@ export default function Login(props) {
   useEffect(() => {
     if (isCreateCredentialsSuccess) setIsLoggedIn(true);
   }, [isCreateCredentialsSuccess]);
+  useEffect(() => {
+    if (isLoginUserLoading) setLoading(true);
+  }, [isLoginUserLoading]);
 
   return (
     <View style={styles.wrapper}>
-      {isLoginUserLoading && <Loader />}
-      {!isLoginUserLoading && (
+      {loading && <Splash />}
+      {!loading && (
         <ScrollView
           contentContainerStyle={{
             flexGrow: 1,
