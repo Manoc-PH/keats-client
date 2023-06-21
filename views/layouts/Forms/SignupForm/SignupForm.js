@@ -37,7 +37,6 @@ import { ImageIcon } from "@app/assets/icons";
 import useDebounce, { debounce } from "@app/common/utils/debounce";
 import { FONT_WEIGHTS } from "@app/common/constants/styles";
 import { FONT_SIZES } from "@app/common/constants/styles";
-import { KgToLbsStr } from "@app/common/utils/converter";
 
 export default function SignupForm(props) {
   // Destructure
@@ -78,6 +77,7 @@ export default function SignupForm(props) {
       password={password}
       setPassword={setPassword}
       setErrorMsg={setErrorMsg}
+      errorMsg={errorMsg}
     />,
     <Sex sex={sex} setSex={setSex} />,
     <Birthday birthday={birthday} setBirthday={setBirthday} />,
@@ -147,7 +147,14 @@ export default function SignupForm(props) {
   );
 }
 function UsernamePassword(props) {
-  const { username, setUsername, password, setPassword, setErrorMsg } = props;
+  const {
+    username,
+    setUsername,
+    password,
+    setPassword,
+    setErrorMsg,
+    errorMsg,
+  } = props;
   const [confirmPassword, setConfirmPassword] = useState();
 
   const { getNameAvailability, getNameAvailabilityData } =
@@ -158,23 +165,30 @@ function UsernamePassword(props) {
   }
 
   useDebounce(fetchNameAvailability, [username], 400);
+  // Bruh this is confusing
+  // TODO Fix it
   useEffect(() => {
-    if (getNameAvailabilityData === true) setErrorMsg("");
+    if (getNameAvailabilityData === true) {
+      if (confirmPassword !== password) {
+        setErrorMsg("Password does not match");
+        return;
+      }
+      setErrorMsg("");
+    }
     if (getNameAvailabilityData === false)
       setErrorMsg("Username is taken already, try a different one");
   }, [getNameAvailabilityData]);
+  useEffect(() => {}, []);
   useEffect(() => {
-    setErrorMsg("");
-  }, [username]);
-  useEffect(() => {
-    if (!confirmPassword || !password) return;
+    if (errorMsg === "Username is taken already, try a different one") return;
+    if (!confirmPassword && !password) return;
     if (confirmPassword === password) {
       setErrorMsg("");
       return;
     } else if (confirmPassword !== password) {
       setErrorMsg("Password does not match");
-    }
-  }, [confirmPassword, password]);
+    } else setErrorMsg("");
+  }, [confirmPassword, password, username]);
   return (
     <View style={styles.itemWrapper}>
       <TextInput
