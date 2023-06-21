@@ -26,10 +26,10 @@ export default function Account() {
   const { consumerVitals } = useSelector((state) => state.account);
 
   // Store Actions
-  const { setConsumerVitals: savs, setIsLoggedIn: sili } = actions;
+  const { setConsumerVitals: savs, clearstore: cl } = actions;
   const dispatch = useDispatch();
   const setConsumerVitals = (v) => dispatch(savs(v));
-  const setIsLoggedIn = (v) => dispatch(sili(v));
+  const clearstore = (v) => dispatch(cl(v));
 
   // Local State
   const [username, setUsername] = useState();
@@ -52,7 +52,7 @@ export default function Account() {
     clearCredentials();
   }
   function logout() {
-    setIsLoggedIn(false);
+    clearstore();
   }
 
   // UseEffects

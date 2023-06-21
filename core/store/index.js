@@ -7,6 +7,10 @@ import Account from "./Account";
 import Ingredient from "./Ingredient";
 import Ui from "./Ui";
 
+const clearstore = () => ({
+  type: "USER_LOGOUT",
+});
+
 const actionList = {
   ...Search.actions,
   ...Auth.actions,
@@ -14,17 +18,23 @@ const actionList = {
   ...Account.actions,
   ...Ingredient.actions,
   ...Ui.actions,
+  clearstore,
 };
 
-const reducerList = {
+const appReducer = combineReducers({
   search: Search.reducer,
   auth: Auth.reducer,
   tracker: Tracker.reducer,
   account: Account.reducer,
   ingredient: Ingredient.reducer,
   ui: Ui.reducer,
-};
+});
 
-export const reducers = combineReducers(reducerList);
+export const reducers = (state, action) => {
+  if (action.type === "USER_LOGOUT") {
+    return appReducer(undefined, action);
+  }
+  return appReducer(state, action);
+};
 
 export const actions = actionList;
