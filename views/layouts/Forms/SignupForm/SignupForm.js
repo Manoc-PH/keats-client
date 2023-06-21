@@ -242,6 +242,7 @@ function Weight(props) {
   const { weight, setWeight } = props;
   const height = Dimensions.get("window").height;
   const width = Dimensions.get("window").width;
+  const defaultHeight = 55;
   // Debounced Functions
   const debouncedSetAmount = debounce(setWeight, 100);
   // Refs
@@ -267,7 +268,10 @@ function Weight(props) {
           width: width,
           height: SPACING.Large,
         }}>
-        <SliderInput value={weight} onChangeValue={handleChange} />
+        <SliderInput
+          value={weight || defaultHeight}
+          onChangeValue={handleChange}
+        />
       </View>
 
       <View
@@ -283,9 +287,12 @@ function Weight(props) {
             color: themeColors.secondary,
           }}
           ref={valueRef}
-          defaultValue={weight.toString()}
+          defaultValue={weight.toString() || defaultHeight}
         />
-        <Body> KG {`| ${Math.round(weight * 2.205)} LBS`}</Body>
+        <Body>
+          {" "}
+          KG {`| ${Math.round((weight || defaultHeight) * 2.205)} LBS`}
+        </Body>
       </View>
     </View>
   );
@@ -307,7 +314,7 @@ function Height(props) {
   }
   const maxHeight = 272;
   const usableScreen = Dimensions.get("window").height * 0.85;
-  const defaultHeight = sex === "m" ? 163 : 149;
+  const defaultHeight = sex === "F" ? 149 : 163;
 
   function convertToFt(v) {
     if (v) {
