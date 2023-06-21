@@ -157,7 +157,7 @@ function UsernamePassword(props) {
     if (username) getNameAvailability(username);
   }
 
-  useDebounce(() => fetchNameAvailability, [username], 400);
+  useDebounce(fetchNameAvailability, [username], 400);
   useEffect(() => {
     if (getNameAvailabilityData === true) setErrorMsg("");
     if (getNameAvailabilityData === false)
