@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Dimensions,
   Image,
   KeyboardAvoidingView,
   Pressable,
   View,
+  TextInput as TextInputRN,
 } from "react-native";
 
 import { styles } from "./styles";
@@ -33,7 +34,10 @@ import {
   useGetNameAvailability,
 } from "@app/core/hooks/api";
 import { ImageIcon } from "@app/assets/icons";
-import useDebounce from "@app/common/utils/debounce";
+import useDebounce, { debounce } from "@app/common/utils/debounce";
+import { FONT_WEIGHTS } from "@app/common/constants/styles";
+import { FONT_SIZES } from "@app/common/constants/styles";
+import { KgToLbsStr } from "@app/common/utils/converter";
 
 export default function SignupForm(props) {
   // Destructure
@@ -236,16 +240,53 @@ function Birthday(props) {
 }
 function Weight(props) {
   const { weight, setWeight } = props;
+  const height = Dimensions.get("window").height;
+  const width = Dimensions.get("window").width;
+  // Debounced Functions
+  const debouncedSetAmount = debounce(setWeight, 100);
+  // Refs
+  const valueRef = useRef();
+  // Functions
+  function handleChange(v) {
+    if (valueRef && valueRef.current) {
+      valueRef.current.setNativeProps({ text: `${v}` });
+      debouncedSetAmount(v);
+    }
+  }
   return (
-    <View style={styles.itemWrapper}>
-      <NumberInput
-        incrementValue={1}
-        maxValue={635}
-        optionPlaceholder={"Kilograms"}
-        options={[]}
-        value={weight}
-        onChange={setWeight}
-      />
+    <View
+      style={{
+        width: width,
+        height: height - SPACING.Huge * 2,
+        alignItems: "center",
+        justifyContent: "flex-end",
+        padding: SPACING.Medium,
+      }}>
+      <View
+        style={{
+          width: width,
+          height: SPACING.Large,
+        }}>
+        <SliderInput value={weight} onChangeValue={handleChange} />
+      </View>
+
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          paddingTop: SPACING.Huge,
+        }}>
+        <TextInputRN
+          style={{
+            fontFamily: FONT_WEIGHTS.Regular,
+            fontSize: FONT_SIZES.Regular,
+            color: themeColors.secondary,
+          }}
+          ref={valueRef}
+          defaultValue={weight.toString()}
+        />
+        <Body> KG {`| ${Math.round(weight * 2.205)} LBS`}</Body>
+      </View>
     </View>
   );
 }
