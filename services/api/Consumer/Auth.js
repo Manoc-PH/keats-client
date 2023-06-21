@@ -37,5 +37,5 @@ export const Signup = async ({
     diet_plan_id,
     measure_unit_id,
   });
-  return response?.data;
+  return response;
 };

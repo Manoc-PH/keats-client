@@ -7,7 +7,6 @@ import {
   View,
   TextInput as TextInputRN,
 } from "react-native";
-
 import { styles } from "./styles";
 import {
   Body,
@@ -37,6 +36,7 @@ import { ImageIcon } from "@app/assets/icons";
 import useDebounce, { debounce } from "@app/common/utils/debounce";
 import { FONT_WEIGHTS } from "@app/common/constants/styles";
 import { FONT_SIZES } from "@app/common/constants/styles";
+import { SEX } from "@app/common/constants/options";
 
 export default function SignupForm(props) {
   // Destructure
@@ -217,13 +217,17 @@ function Sex(props) {
     <View style={styles.sexContainer}>
       <ImageButton
         variant={BTN_VARIANTS.outlined}
-        color={sex === "M" ? themeColors.primary : themeColors.secondaryLight}
+        color={
+          sex === SEX.male ? themeColors.primary : themeColors.secondaryLight
+        }
         style={{
           borderColor:
-            sex === "M" ? themeColors.primary : themeColors.backgroundLight,
+            sex === SEX.male
+              ? themeColors.primary
+              : themeColors.backgroundLight,
         }}
         onPress={() => {
-          setSex("M");
+          setSex(SEX.male);
         }}
         image={
           <View style={styles.imageButtonImageContainer}>
@@ -234,13 +238,17 @@ function Sex(props) {
       </ImageButton>
       <ImageButton
         variant={BTN_VARIANTS.outlined}
-        color={sex === "F" ? themeColors.primary : themeColors.secondaryLight}
+        color={
+          sex === SEX.female ? themeColors.primary : themeColors.secondaryLight
+        }
         style={{
           borderColor:
-            sex === "F" ? themeColors.primary : themeColors.backgroundLight,
+            sex === SEX.female
+              ? themeColors.primary
+              : themeColors.backgroundLight,
         }}
         onPress={() => {
-          setSex("F");
+          setSex(SEX.female);
         }}
         image={
           <View style={styles.imageButtonImageContainer}>
@@ -332,7 +340,7 @@ function Height(props) {
   }
   const maxHeight = 272;
   const usableScreen = Dimensions.get("window").height * 0.85;
-  const defaultHeight = sex === "F" ? 149 : 163;
+  const defaultHeight = sex === SEX.female ? 149 : 163;
 
   function convertToFt(v) {
     if (v) {
@@ -353,17 +361,17 @@ function Height(props) {
       <View style={styles.heightContentWrapper}>
         <View style={styles.heightContentContainer}>
           <SubHeadline2 style={styles.subtitle}>
-            Avg {sex === "F" ? "Female" : "Male"} Filipino{" "}
-            {sex === "F" ? "(4'11 ft or 149 cm)" : "(5'4 ft or 163 cm)"}
+            Avg {sex === SEX.female ? "Female" : "Male"} Filipino{" "}
+            {sex === SEX.female ? "(4'11 ft or 149 cm)" : "(5'4 ft or 163 cm)"}
           </SubHeadline2>
-          {sex === "F" ? (
+          {sex === SEX.female ? (
             <FemaleDarkSvg height={(usableScreen / maxHeight) * 149} />
           ) : (
             <MaleDarkSvg height={(usableScreen / maxHeight) * 163} />
           )}
         </View>
         <View style={styles.heightContentContainer}>
-          {sex === "F" ? (
+          {sex === SEX.female ? (
             <FemaleSvg height={(usableScreen / maxHeight) * (height || 149)} />
           ) : (
             <MaleSvg height={(usableScreen / maxHeight) * (height || 191)} />

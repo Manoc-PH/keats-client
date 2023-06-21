@@ -1,15 +1,32 @@
-import { BTN_VARIANTS } from "@app/common/constants/styles";
-import themeColors from "@app/common/theme";
-import { Button, HorizontalProgressBar, Title3 } from "@app/views/components";
-import { SignupForm } from "@app/views/layouts";
-import React, { useState } from "react";
 import { View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+// Store
+import { actions } from "@app/core/store";
+// Hooks
+import { useSignup } from "@app/core/hooks/api";
+import { useCreateCredentials } from "@app/core/hooks/db";
+// Constants
+import { BTN_VARIANTS } from "@app/common/constants/styles";
+// Utils
+import { authAxios } from "@app/common/utils/axios";
+// Theme
+import themeColors from "@app/common/theme";
+// Components
+import { Button, HorizontalProgressBar } from "@app/views/components";
+// Layouts
+import { SignupForm, Splash } from "@app/views/layouts";
 
 import { styles } from "./styles";
 
 export default function Signup(props) {
   const { navigation } = props;
+  // Store Actions
+  const { setIsLoggedIn: sili } = actions;
+  const dispatch = useDispatch();
+  const setIsLoggedIn = (v) => dispatch(sili(v));
   // Local States
+  const [loading, setIsLoading] = useState(false);
   const [activePage, setActivePage] = useState(0);
   const [errorMsg, setErrorMsg] = useState();
   const [data, setData] = useState({
@@ -25,9 +42,26 @@ export default function Signup(props) {
 
   // Variables
   const numOfPages = 7;
+  const genericSignupErrMsg =
+    "An error occured in signing up, please try again later";
 
+  // Hooks
+  const {
+    createCredentials,
+    isCreateCredentialsSuccess,
+    isCreateCredentialsError,
+  } = useCreateCredentials();
+  const {
+    signup,
+    signupData,
+    isSignupLoading,
+    isSignupError,
+    isSignupSuccess,
+  } = useSignup();
+
+  // Functions
   function handleNext() {
-    if (errorMsg) return;
+    if (errorMsg && errorMsg !== genericSignupErrMsg) return;
     if (activePage === 0 && (!data.username || !data.password)) {
       setErrorMsg("Missing fields, please enter both username and password");
       return;
@@ -56,6 +90,19 @@ export default function Signup(props) {
       setErrorMsg("Please select your diet plan");
       return;
     }
+    if (
+      activePage === 6 &&
+      data.username &&
+      data.password &&
+      data.sex &&
+      data.birthday &&
+      data.weight &&
+      data.height &&
+      data.activity_lvl_id &&
+      data.diet_plan_id
+    ) {
+      signup(data);
+    }
     if (activePage < numOfPages - 1) setActivePage((prev) => prev + 1);
     setErrorMsg();
   }
@@ -63,31 +110,74 @@ export default function Signup(props) {
     if (activePage > 0) setActivePage((prev) => prev - 1);
     if (activePage === 0) navigation.navigate("Login");
   }
+  function handleSuccess() {
+    const cred = {
+      id: signupData.data.id,
+      username: signupData.data.username,
+      account_type_id: signupData.data.account_type_id,
+      token: signupData.headers["set-cookie"][0],
+    };
+    authAxios.defaults.headers.common["Cookie"] =
+      signupData.headers["set-cookie"][0];
+    createCredentials(cred);
+  }
+
+  // UseEffects
+  useEffect(() => {
+    if (isSignupLoading) setIsLoading(true);
+  }, [isSignupLoading]);
+  useEffect(() => {
+    if (isSignupError) {
+      setIsLoading(false);
+      setErrorMsg(genericSignupErrMsg);
+    }
+  }, [isSignupError]);
+  useEffect(() => {
+    if (isCreateCredentialsError) {
+      setIsLoading(false);
+      setErrorMsg(genericSignupErrMsg);
+    }
+  }, [isCreateCredentialsError]);
+  useEffect(() => {
+    if (isSignupSuccess) handleSuccess();
+  }, [isSignupSuccess]);
+  useEffect(() => {
+    if (isCreateCredentialsSuccess) setIsLoggedIn(true);
+  }, [isCreateCredentialsSuccess]);
 
   return (
-    <View style={styles.wrapper}>
-      <SignupForm
-        activePage={activePage}
-        data={data}
-        setData={setData}
-        errorMsg={errorMsg}
-        setErrorMsg={setErrorMsg}
-      />
-      <View style={styles.bottomWrapper}>
-        <HorizontalProgressBar
-          progress={((activePage + 1) / numOfPages) * 100}
-          foregroundColor={themeColors.primary}
-          backgroundColor={`${themeColors.primary}25`}
-        />
-        <View style={styles.bottomContentWrapper}>
-          <Button variant={BTN_VARIANTS.outlined} onPress={handleBack}>
-            Back
-          </Button>
-          <Button variant={BTN_VARIANTS.outlined} onPress={handleNext}>
-            Next
-          </Button>
-        </View>
-      </View>
+    <View
+      style={{
+        ...styles.wrapper,
+        alignItems: loading ? "center" : "flex-start",
+      }}>
+      {loading && <Splash />}
+      {!loading && (
+        <>
+          <SignupForm
+            activePage={activePage}
+            data={data}
+            setData={setData}
+            errorMsg={errorMsg}
+            setErrorMsg={setErrorMsg}
+          />
+          <View style={styles.bottomWrapper}>
+            <HorizontalProgressBar
+              progress={((activePage + 1) / numOfPages) * 100}
+              foregroundColor={themeColors.primary}
+              backgroundColor={`${themeColors.primary}25`}
+            />
+            <View style={styles.bottomContentWrapper}>
+              <Button variant={BTN_VARIANTS.outlined} onPress={handleBack}>
+                Back
+              </Button>
+              <Button variant={BTN_VARIANTS.outlined} onPress={handleNext}>
+                Next
+              </Button>
+            </View>
+          </View>
+        </>
+      )}
     </View>
   );
 }
