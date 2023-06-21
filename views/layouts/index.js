@@ -13,6 +13,15 @@ export { default as CalorieGoalProgress } from "./ScreenLayouts/Home/CalorieGoal
 export { default as NutrientSummary } from "./ScreenLayouts/Ingredient/NutrientSummary";
 export { default as IngredientName } from "./ScreenLayouts/Ingredient/IngredientName";
 
+// Signup
+export { default as UsernamePassword } from "./ScreenLayouts/Signup/UsernamePassword";
+export { default as ActivityLevel } from "./ScreenLayouts/Signup/ActivityLevel";
+export { default as Birthday } from "./ScreenLayouts/Signup/Birthday";
+export { default as DietPlan } from "./ScreenLayouts/Signup/DietPlan";
+export { default as Height } from "./ScreenLayouts/Signup/Height";
+export { default as Weight } from "./ScreenLayouts/Signup/Weight";
+export { default as Sex } from "./ScreenLayouts/Signup/Sex";
+
 // Cards
 export { default as VitalsCard } from "./Cards/VitalsCard";
 export { default as ProfileCard } from "./Cards/ProfileCard";
