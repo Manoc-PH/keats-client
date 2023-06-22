@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Image, Pressable, View } from "react-native";
 // Components
-import { Body, Carousel, Title3 } from "@app/views/components";
+import { Body, CarouselSelect, Title3 } from "@app/views/components";
 // Theme
 import themeColors from "@app/common/theme";
 // Constants
@@ -64,5 +64,5 @@ export default function ActivityLevel(props) {
   useEffect(() => {
     if (!activity_lvl_id) setActivityLvlId(newData[0].id);
   }, []);
-  return <Carousel data={newData} style={{ height: "80%" }} />;
+  return <CarouselSelect data={newData} style={{ height: "80%" }} />;
 }

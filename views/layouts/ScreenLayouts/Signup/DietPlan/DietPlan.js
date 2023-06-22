@@ -7,7 +7,7 @@ import { SPACING } from "@app/common/constants/styles";
 // Asssets
 import { ImageIcon } from "@app/assets/icons";
 // Components
-import { Body, Carousel, Title3 } from "@app/views/components";
+import { Body, CarouselSelect, Title3 } from "@app/views/components";
 
 export default function DietPlan(props) {
   const { dietPlans, diet_plan_id, setDietPlanId } = props;
@@ -80,5 +80,5 @@ export default function DietPlan(props) {
   useEffect(() => {
     if (!diet_plan_id) setDietPlanId(newData[0].id);
   }, []);
-  return <Carousel data={newData} style={{ height: "80%" }} />;
+  return <CarouselSelect data={newData} style={{ height: "80%" }} />;
 }

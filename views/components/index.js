@@ -41,4 +41,5 @@ export { default as SearchResultCard } from "./Cards/SearchResultCard";
 export { default as CircleLoader } from "./Loaders/CircleLoader";
 
 // Carousel
-export { default as Carousel } from "./Carousel";
+export { default as CarouselSelect } from "./Carousels/CarouselSelect";
+export { default as CarouselImage } from "./Carousels/CarouselImage";

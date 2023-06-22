@@ -1,27 +1,25 @@
 import { SPACING } from "@app/common/constants/styles";
-import themeColors from "@app/common/theme";
 import { useEffect, useRef, useState } from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  Dimensions,
-  Animated,
-  Platform,
-} from "react-native";
+import { View, StyleSheet, Dimensions, Animated, Platform } from "react-native";
 const { width } = Dimensions.get("window");
 
-const ITEM_SIZE = Platform.OS === "ios" ? width * 0.82 : width * 0.84;
-const EMPTY_ITEM_SIZE = (width - ITEM_SIZE) / 2;
+const ITEM_SIZE = width;
 
-export default function Carousel(props) {
+export default function CarouselImage(props) {
   const { data, height } = props;
   const [dataState, setDataState] = useState([]);
   const scrollX = useRef(new Animated.Value(0)).current;
 
+  // Functions
+  const calculateCurrentIndex = (event) => {
+    const { contentOffset, layoutMeasurement } = event.nativeEvent;
+    const index = Math.round(contentOffset.x / layoutMeasurement.width);
+    console.log(index);
+  };
+
   // UseEffects
   useEffect(() => {
-    setDataState([{ key: "empty-left" }, ...data, { key: "empty-right" }]);
+    setDataState(data);
   }, [data]);
   return (
     <View style={styles.container}>
@@ -38,37 +36,25 @@ export default function Carousel(props) {
         snapToAlignment='start'
         onScroll={Animated.event(
           [{ nativeEvent: { contentOffset: { x: scrollX } } }],
-          { useNativeDriver: false }
+          { useNativeDriver: false, listener: calculateCurrentIndex }
         )}
         scrollEventThrottle={16}
         renderItem={({ item, index }) => {
-          if (!item?.children) {
-            return <View style={{ width: EMPTY_ITEM_SIZE }} />;
-          }
-          const inputRange = [
-            (index - 2) * ITEM_SIZE,
-            (index - 1) * ITEM_SIZE,
-            index * ITEM_SIZE,
-          ];
-          const translateY = scrollX.interpolate({
-            inputRange,
-            outputRange: [30, 10, 30],
-            extrapolate: "clamp",
-          });
           return (
             <View style={{ width: ITEM_SIZE }}>
               <Animated.View
                 style={{
                   width: ITEM_SIZE,
-                  height: height || ITEM_SIZE * 1.5,
+                  maxHeight: width,
+                  height: height || width,
                   alignItems: "center",
                   justifyContent: "center",
-                  transform: [{ translateY }],
                 }}>
                 <View
                   style={{
                     width: ITEM_SIZE - SPACING.Large,
-                    height: height || ITEM_SIZE * 1.5 - SPACING.Large,
+                    maxHeight: width,
+                    height: height || width,
                     alignItems: "center",
                     justifyContent: "center",
                   }}>
