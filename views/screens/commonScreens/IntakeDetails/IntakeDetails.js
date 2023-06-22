@@ -12,6 +12,7 @@ import {
   IngredientName,
   UpdateIntakeFooter,
   PageDivider,
+  IngredientCarousel,
 } from "@app/views/layouts";
 
 // Components
@@ -79,8 +80,11 @@ export default function IntakeDetails() {
     <>
       <ScrollPage style={styles.wrapper}>
         <View style={styles.imageWrapper}>
-          {/* TODO Add proper images, not just the thumbnail */}
-          <Image src={ingredientDetails?.thumbnail_image_link} />
+          {ingredientDetails?.ingredient_images ? (
+            <IngredientCarousel data={ingredientDetails.ingredient_images} />
+          ) : (
+            <Image src={ingredientDetails?.thumbnail_image_link} />
+          )}
         </View>
         <View style={styles.container}>
           <NutrientSummary

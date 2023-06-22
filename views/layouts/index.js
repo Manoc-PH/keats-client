@@ -54,3 +54,6 @@ export { default as PageDivider } from "./PageDivider";
 
 // Searchbars
 export { default as AddIntakeSearchbar } from "./Searchbars/AddIntakeSearchbar";
+
+// Carousels
+export { default as IngredientCarousel } from "./Carousels/IngredientCarousel";
