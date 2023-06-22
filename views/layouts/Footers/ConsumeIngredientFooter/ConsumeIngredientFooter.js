@@ -164,9 +164,7 @@ export default function ConsumeIngredientFooter(props) {
                 />
                 <Body>{measureUnit.label}</Body>
               </View>
-              <Button size={SIZES.Regular} onPress={handleSubmit}>
-                Consume
-              </Button>
+              <Button onPress={handleSubmit}>Consume</Button>
             </View>
           </View>
         </>

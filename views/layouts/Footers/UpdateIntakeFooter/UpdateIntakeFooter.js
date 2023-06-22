@@ -170,9 +170,7 @@ export default function UpdateIntakeFooter(props) {
                 />
                 <Body>{measureUnit.label}</Body>
               </View>
-              <Button size={SIZES.Regular} onPress={handleSubmit}>
-                Save
-              </Button>
+              <Button onPress={handleSubmit}>Save</Button>
             </View>
           </View>
         </>
