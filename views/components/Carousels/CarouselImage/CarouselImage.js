@@ -38,7 +38,7 @@ export default function CarouselImage(props) {
           [{ nativeEvent: { contentOffset: { x: scrollX } } }],
           { useNativeDriver: false, listener: calculateCurrentIndex }
         )}
-        scrollEventThrottle={16}
+        scrollEventThrottle={26}
         renderItem={({ item, index }) => {
           return (
             <View style={{ width: ITEM_SIZE }}>
@@ -77,5 +77,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    position: "relative",
   },
 });
