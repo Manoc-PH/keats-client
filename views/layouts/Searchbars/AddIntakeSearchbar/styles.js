@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     width: "100%",
     position: "absolute",
     bottom: SPACING.Regular,
-    paddingHorizontal: SPACING.Large,
+    paddingHorizontal: SPACING.Regular,
   },
   rowContainer: {
     flex: 1,
