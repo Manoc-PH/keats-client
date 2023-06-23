@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "client-mobile",
-    "slug": "client-mobile",
+    "name": "keats",
+    "slug": "keats",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -29,6 +29,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "580c7986-1e8b-4489-be65-f2b55c13878f"
+      }
     }
   }
 }
