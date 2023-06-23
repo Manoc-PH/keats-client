@@ -81,7 +81,8 @@ export default function IngredientDetails() {
     <>
       <ScrollPage style={styles.wrapper}>
         <View style={styles.imageWrapper}>
-          {ingredientDetails?.ingredient_images ? (
+          {ingredientDetails?.ingredient_images &&
+          ingredientDetails?.ingredient_images?.length > 0 ? (
             <IngredientCarousel data={ingredientDetails.ingredient_images} />
           ) : (
             <Image src={ingredientDetails?.thumbnail_image_link} />
