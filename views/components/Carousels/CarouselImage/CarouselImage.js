@@ -1,20 +1,39 @@
-import { SPACING } from "@app/common/constants/styles";
 import { useEffect, useRef, useState } from "react";
-import { View, StyleSheet, Dimensions, Animated, Platform } from "react-native";
-const { width } = Dimensions.get("window");
+import {
+  View,
+  StyleSheet,
+  Dimensions,
+  Animated,
+  Platform,
+  TextInput,
+} from "react-native";
+// Constants
+import { FONT_SIZES, SPACING, ZINDEX } from "@app/common/constants/styles";
+// Utils
+import { debounce } from "@app/common/utils/debounce";
+// Theme
+import themeColors from "@app/common/theme";
 
+const { width } = Dimensions.get("window");
 const ITEM_SIZE = width;
 
 export default function CarouselImage(props) {
   const { data, height } = props;
   const [dataState, setDataState] = useState([]);
+  const [index, setIndex] = useState(1);
   const scrollX = useRef(new Animated.Value(0)).current;
 
+  // Refs
+  const valueRef = useRef();
   // Functions
   const calculateCurrentIndex = (event) => {
     const { contentOffset, layoutMeasurement } = event.nativeEvent;
-    const index = Math.round(contentOffset.x / layoutMeasurement.width);
-    console.log(index);
+    const i = Math.round(contentOffset.x / layoutMeasurement.width);
+    if (valueRef && valueRef.current) {
+      valueRef.current.setNativeProps({
+        text: `${i + 1}/${data?.length || 0}`,
+      });
+    }
   };
 
   // UseEffects
@@ -23,6 +42,15 @@ export default function CarouselImage(props) {
   }, [data]);
   return (
     <View style={styles.container}>
+      <View style={styles.indexWrapper}>
+        <View style={styles.indexContainer}>
+          <TextInput
+            style={styles.text}
+            ref={valueRef}
+            defaultValue={`${index.toString()}/${data?.length || 0}`}
+          />
+        </View>
+      </View>
       <Animated.FlatList
         showsHorizontalScrollIndicator={false}
         data={dataState}
@@ -78,5 +106,24 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     position: "relative",
+  },
+  indexWrapper: {
+    position: "absolute",
+    bottom: SPACING.Regular,
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  indexContainer: {
+    zIndex: ZINDEX.basicComponent,
+    elevation: ZINDEX.basicComponent,
+    shadowColor: "#00000000",
+    backgroundColor: `${themeColors.secondary}50`,
+    paddingHorizontal: SPACING.Small,
+    borderRadius: SPACING.Tiny,
+  },
+  text: {
+    color: themeColors.background,
+    fontSize: FONT_SIZES.Small,
   },
 });
