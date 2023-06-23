@@ -68,8 +68,14 @@ export default function Home() {
     if (!dailyNutrients) {
       getDailyNutrients();
     } else if (dailyNutrients?.date_created) {
-      if (!moment().isSame(moment(dailyNutrients?.date_created), "day")) {
+      if (
+        !moment().isSame(
+          moment(dailyNutrients?.date_created).format("YYYY-MM-DD"),
+          moment().format("YYYY-MM-DD")
+        )
+      ) {
         getDailyNutrients();
+        getIntakes();
       }
     }
   }, []);

@@ -13,7 +13,6 @@ export default function IngredientCarousel(props) {
 
   const { width } = Dimensions.get("window");
   const newData = [];
-  console.log(data[0]);
   data.map((item) => {
     newData.push({
       key: item.id,
