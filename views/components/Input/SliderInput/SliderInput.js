@@ -80,7 +80,7 @@ const SliderInput = (props) => {
                   styles.segment,
                   {
                     backgroundColor: themeColors.secondaryLight,
-                    height: tenth ? SPACING.Large : SPACING.Regular,
+                    height: tenth ? SPACING.ExtraLarge : SPACING.Medium,
                     marginRight: i === data.length - 1 ? 0 : _segmentSpacing,
                   },
                 ]}
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
   iconContainer: {
     position: "absolute",
     left: (width - SPACING.Huge) / 2,
-    bottom: "-100%",
+    bottom: "-55%",
     alignItems: "center",
     justifyContent: "center",
     width: SPACING.Huge,

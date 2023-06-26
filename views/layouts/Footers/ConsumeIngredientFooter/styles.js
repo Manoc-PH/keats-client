@@ -28,7 +28,7 @@ export const styles = StyleSheet.create({
     height: "100%",
     alignItems: "stretch",
   },
-  spacer: { paddingVertical: SPACING.Regular, height: 1, width: "100%" },
+  spacer: { paddingVertical: SPACING.Tiny, height: 1, width: "100%" },
   rowContainer: {
     width: "100%",
     flexDirection: "row",
