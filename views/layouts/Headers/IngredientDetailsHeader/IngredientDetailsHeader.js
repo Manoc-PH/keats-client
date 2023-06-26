@@ -44,7 +44,7 @@ export default function IngredientDetailsHeader() {
         <View style={styles.btnContainer}>
           <Button
             variant={BTN_VARIANTS.transparent}
-            size={SIZES.Tiny}
+            size={SIZES.Large}
             onPress={handleBack}>
             <ArrowLeftIcon />
           </Button>

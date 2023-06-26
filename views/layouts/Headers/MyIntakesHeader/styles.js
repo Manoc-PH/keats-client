@@ -37,8 +37,6 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "flex-start",
-    paddingLeft: SPACING.Regular,
-    paddingRight: SPACING.Large,
-    paddingVertical: SPACING.Large,
+    marginLeft: SPACING.Large * -1,
   },
 });

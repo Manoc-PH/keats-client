@@ -35,7 +35,7 @@ export default function HomeHeader() {
           <View style={styles.iconContainer}>
             <Button
               variant={BTN_VARIANTS.transparent}
-              size={SIZES.Tiny}
+              size={SIZES.Large}
               onPress={openIntakesPage}>
               <IntakeIcon
                 color={themeColors.secondary}
