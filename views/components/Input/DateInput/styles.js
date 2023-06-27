@@ -20,6 +20,7 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    paddingHorizontal: SPACING.Regular,
   },
   inputWrapper: {
     width: "100%",
@@ -33,17 +34,5 @@ export const styles = StyleSheet.create({
     marginTop: SPACING.Tiny,
   },
   // CONTENT
-  inputContainer: {
-    flex: 1,
-    borderWidth: 1,
-    borderRadius: 50,
-    borderColor: themeColors.backgroundLight,
-    paddingHorizontal: SPACING.Small,
-    marginHorizontal: SPACING.Small,
-  },
-  txtInput: {
-    fontSize: FONT_SIZES.Medium,
-    paddingVertical: SPACING.Small,
-    paddingHorizontal: SPACING.Regular,
-  },
+  spacer: { width: SPACING.Small },
 });
