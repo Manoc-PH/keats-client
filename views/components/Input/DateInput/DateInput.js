@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { View, TextInput as TextInputRN } from "react-native";
-import DatePicker from "react-native-date-picker";
+import { View } from "react-native";
 
 import { styles } from "./styles";
 import SubHeadline1 from "../../Basic/Texts/SubHeadline1/SubHeadline1";
