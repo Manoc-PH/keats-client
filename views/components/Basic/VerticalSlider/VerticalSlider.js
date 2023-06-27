@@ -5,7 +5,6 @@ import { SafeAreaView, Animated, StyleSheet, View } from "react-native";
 import { SPACING } from "@app/common/constants/styles";
 import themeColors from "@app/common/theme";
 import Body from "../../Basic/Texts/Body";
-import { debounce } from "@app/common/utils/debounce";
 
 const _height = SPACING.Huge * 7;
 const _minNum = 1;
@@ -37,7 +36,7 @@ const VerticaSlider = (props) => {
   useEffect(() => {
     const listener = scrollY.addListener(({ value: v }) => {
       const newValue = Math.round(v / _snapSegment) + _minNum;
-      if (onChangeValue) debounce(onChangeValue(newValue), 300);
+      onChangeValue(newValue);
     });
     return () => scrollY.removeListener(listener);
   }, [scrollY]);

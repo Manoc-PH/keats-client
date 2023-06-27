@@ -6,6 +6,7 @@ import { styles } from "./styles";
 import SubHeadline1 from "../../Basic/Texts/SubHeadline1/SubHeadline1";
 import moment from "moment";
 import VerticalSlider from "../../Basic/VerticalSlider";
+import { debounce } from "@app/common/utils/debounce";
 
 export default function DateInput(props) {
   // Destructure
@@ -20,6 +21,7 @@ export default function DateInput(props) {
     ...rest
   } = props;
 
+  // Local States
   const [month, setMonth] = useState("0");
   const [day, setDay] = useState("1");
   const [year, setYear] = useState("2001");
@@ -30,6 +32,7 @@ export default function DateInput(props) {
       day: parseInt(day, 10),
     })
   );
+  // Memos
   const Months = useMemo(
     () =>
       moment.months().map((m, index) => {
@@ -54,24 +57,25 @@ export default function DateInput(props) {
     return Array.from({ length: 120 }, (v, i) => `${year - 120 + i + 1}`);
   }, []);
 
+  // Debounced Functions
+  const debounceMonth = debounce(setMonth, 300);
+  const debounceYear = debounce(setYear, 300);
+  const debounceDay = debounce(setDay, 300);
+  // Functions
+  const handleMonth = (v) => debounceMonth(`${v - 1}`);
+  const handleYear = (v) => debounceYear(`${Years[v - 1]}`);
+  const handleDay = (v) => debounceDay(`${v}`);
+
+  // UseEffects
   useEffect(() => onChangeText(date), [date]);
   useEffect(() => {
     if (day && month && year) {
-      // console.log(
-      //   moment({
-      //     year: parseInt(year, 10),
-      //     month: parseInt(month, 10),
-      //     day: parseInt(day, 10),
-      //   })
-      //     .subtract(1, "day")
-      //     .format("MMMM DD YYYY")
-      // );
       setDate(
         moment({
           year: parseInt(year, 10),
           month: parseInt(month, 10),
           day: parseInt(day, 10),
-        }).subtract(1, "day")
+        })
       );
     }
   }, [day, month, year]);
@@ -85,27 +89,13 @@ export default function DateInput(props) {
       <View style={styles.container}>
         <VerticalSlider
           value={month}
-          onChangeValue={(v) => {
-            setMonth(`${v - 1}`);
-          }}
+          onChangeValue={handleMonth}
           data={Months}
         />
         <View style={styles.spacer} />
-        <VerticalSlider
-          value={day}
-          onChangeValue={(v) => {
-            setDay(`${v}`);
-          }}
-          data={Days}
-        />
+        <VerticalSlider value={day} onChangeValue={handleDay} data={Days} />
         <View style={styles.spacer} />
-        <VerticalSlider
-          value={year}
-          onChangeValue={(v) => {
-            setYear(`${Years[v - 1]}`);
-          }}
-          data={Years}
-        />
+        <VerticalSlider value={year} onChangeValue={handleYear} data={Years} />
       </View>
     </View>
   );
