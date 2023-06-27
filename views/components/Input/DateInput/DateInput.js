@@ -75,7 +75,7 @@ export default function DateInput(props) {
           year: parseInt(year, 10),
           month: parseInt(month, 10),
           day: parseInt(day, 10),
-        })
+        }).format()
       );
     }
   }, [day, month, year]);
