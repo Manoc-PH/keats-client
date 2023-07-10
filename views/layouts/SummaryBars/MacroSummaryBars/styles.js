@@ -15,7 +15,6 @@ export const styles = StyleSheet.create({
     textTransform: "capitalize",
     color: themeColors.secondaryLight,
   },
-  // TODO USE GAP WHEN IT FINALLY WORKS
   rowContainer: { flex: 1 },
   valueContainer: { flexDirection: "row", alignItems: "flex-end" },
   barContainer: { paddingTop: SPACING.Tiny, paddingBottom: SPACING.Small },

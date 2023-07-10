@@ -84,7 +84,7 @@ export default function ConsumeIngredientFooter(props) {
     };
     postIntake(data);
   }
-  //TODO Handle data
+  //TODO Handle food data
   function handleIntake() {
     const newData = {
       ...dailyNutrients,

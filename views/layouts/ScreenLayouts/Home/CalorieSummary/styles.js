@@ -9,7 +9,6 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  // TODO MAKE THIS RESPONSIVE WHEN THE SCREEN SIZE CHANGES
   itemContainer: { marginBottom: SPACING.Huge },
   skeleton: {
     width: Dimensions.get("window").width * 0.6,

@@ -1,7 +1,6 @@
 import axios from "axios";
 import RNRestart from "react-native-restart";
 
-// TODO Set back to production url
 import { BASE_URL, LOCAL_URL } from "@app/common/constants/APIUrls";
 import { ClearCredentials } from "@app/services/db";
 
@@ -26,7 +25,6 @@ authAxios.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-// TODO: REVERT THIS BACK TO THE REAL SERVER
 const publicAxios = axios.create({
   baseURL: BASE_URL,
 });

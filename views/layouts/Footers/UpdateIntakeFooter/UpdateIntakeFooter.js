@@ -78,7 +78,7 @@ export default function UpdateIntakeFooter(props) {
     console.log(data);
     putIntake(data);
   }
-
+  // TODO handle food data
   function handleIntake() {
     const newData = {
       ...dailyNutrients,

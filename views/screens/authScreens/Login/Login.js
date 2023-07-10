@@ -47,7 +47,6 @@ export default function Login(props) {
     loginUser(inputData);
   }
   function handleLoginErr() {
-    // TODO improve error handling
     if (loginUserError) {
       setErrMsg(loginUserError?.response?.data?.message || "An error occured");
       setLoading(false);
