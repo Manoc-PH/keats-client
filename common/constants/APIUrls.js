@@ -17,6 +17,7 @@ export const TRACKER_ENDPOINTS = {
   GET_DAILY_NUTRIENTS: "/api/tracker/daily_nutrients",
   GET_DAILY_NUTRIENTS_LIST: "/api/tracker/daily_nutrients_list",
   GET_INTAKES: "/api/tracker/intakes",
+  GET_COMMON_INTAKES: "/api/tracker/common_intakes",
   GET_INTAKE: "/api/tracker/intake",
   POST_INTAKE: "/api/tracker/intake",
   PUT_INTAKE: "/api/tracker/intake",

@@ -21,6 +21,13 @@ export const GetIntakes = async () => {
   return response?.data;
 };
 
+export const GetCommonIntakes = async ({ start_date, end_date }) => {
+  const response = await authAxios.get(TRACKER_ENDPOINTS.GET_COMMON_INTAKES, {
+    params: { start_date, end_date },
+  });
+  return response?.data;
+};
+
 export const GetIntake = async ({ intake_id }) => {
   const response = await authAxios.get(TRACKER_ENDPOINTS.GET_INTAKE, {
     params: { intake_id: intake_id },

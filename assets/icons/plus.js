@@ -5,7 +5,9 @@ import Svg, { Path } from "react-native-svg";
 
 export default function PlusIcon(props) {
   return (
-    <View {...props}>
+    <View
+      style={{ aspectRatio: 1, justifyContent: "center", alignItems: "center" }}
+      {...props}>
       <Svg
         width={props.width || 15}
         height={props.height || 15}
