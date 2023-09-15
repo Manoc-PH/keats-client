@@ -9,6 +9,7 @@ export { default as useGetDailyNutrients } from "./tracker/useGetDailyNutrients"
 export { default as useGetDailyNutrientsList } from "./tracker/useGetDailyNutrientsList";
 export { default as useGetIntake } from "./tracker/useGetIntake";
 export { default as useGetIntakes } from "./tracker/useGetIntakes";
+export { default as useGetCommonIntakes } from "./tracker/useGetCommonIntakes";
 export { default as usePostIntake } from "./tracker/usePostIntake";
 export { default as usePutIntake } from "./tracker/usePutIntake";
 
@@ -19,6 +20,10 @@ export { default as useGetConsumerVitals } from "./account/useGetConsumerVitals"
 export { default as useGetIngredientDetails } from "./ingredient/useGetIngredientDetails";
 export { default as useGetSearchIngredient } from "./ingredient/useGetSearchIngredient";
 export { default as useGetIngredientMappingDetails } from "./ingredient/useGetIngredientMappingDetails";
+
+// FOOD
+export { default as useGetFoodDetails } from "./ingredient/useGetFoodDetails";
+export { default as useGetSearchFood } from "./ingredient/useGetSearchFood";
 
 // COMMON
 export { default as useGetActivityLevels } from "./common/useGetActivityLevels";
