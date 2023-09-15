@@ -22,8 +22,8 @@ export { default as useGetSearchIngredient } from "./ingredient/useGetSearchIngr
 export { default as useGetIngredientMappingDetails } from "./ingredient/useGetIngredientMappingDetails";
 
 // FOOD
-export { default as useGetFoodDetails } from "./ingredient/useGetFoodDetails";
-export { default as useGetSearchFood } from "./ingredient/useGetSearchFood";
+export { default as useGetFoodDetails } from "./food/useGetFoodDetails";
+export { default as useGetSearchFood } from "./food/useGetSearchFood";
 
 // COMMON
 export { default as useGetActivityLevels } from "./common/useGetActivityLevels";
