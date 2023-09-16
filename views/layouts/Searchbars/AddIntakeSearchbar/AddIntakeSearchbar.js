@@ -11,7 +11,7 @@ import { actions } from "@app/core/store";
 import { INTAKE_TYPES } from "@app/common/constants/options";
 
 // Hooks
-import { useGetSearchIngredient } from "@app/core/hooks/api";
+import { useGetSearchFood, useGetSearchIngredient } from "@app/core/hooks/api";
 
 // Utils
 import useDebounce from "@app/common/utils/debounce";
@@ -56,14 +56,21 @@ export default function AddIntakeSearchbar(props) {
   const {
     getSearchIngredient,
     getSearchIngredientData,
-    isGetSearchIngredientLoading,
-    getSearchIngredientError,
+    // isGetSearchIngredientLoading,
+    // getSearchIngredientError,
   } = useGetSearchIngredient();
+  const {
+    getSearchFood,
+    getSearchFoodData,
+    // isGetSearchFoodLoading,
+    // getSearchFoodError,
+  } = useGetSearchFood();
 
   // Functions
   function search() {
-    if (text) getSearchIngredient(text);
-    else {
+    if (text && searchType === INTAKE_TYPES.generic) getSearchIngredient(text);
+    if (text && searchType === INTAKE_TYPES.branded) getSearchFood(text);
+    if (!text) {
       setSearchResult([]);
       onChangeText("");
     }
@@ -79,13 +86,26 @@ export default function AddIntakeSearchbar(props) {
     setScrollHeight(Dimensions.get("window").height - height);
   }
   function handleSelect(id) {
-    setSelectedIngredientID(id);
-    navigation.navigate("Home", { screen: "IngredientDetails" });
+    if (searchType === INTAKE_TYPES.generic) {
+      setSelectedIngredientID(id);
+      navigation.navigate("Home", { screen: "IngredientDetails" });
+    }
   }
   function formatSearchData() {
-    if (getSearchIngredientData) {
+    if (getSearchIngredientData && searchType === INTAKE_TYPES.generic) {
       const newData = [];
       getSearchIngredientData.reverse().map((item) =>
+        newData.push({
+          id: item.id,
+          title: `${item.name}${item?.name_ph && " - " + item?.name_ph}`,
+          subtitle: item.name_owner,
+        })
+      );
+      setSearchResult(newData);
+    }
+    if (getSearchFoodData && searchType === INTAKE_TYPES.branded) {
+      const newData = [];
+      getSearchFoodData.reverse().map((item) =>
         newData.push({
           id: item.id,
           title: `${item.name}${item?.name_ph && " - " + item?.name_ph}`,
@@ -101,10 +121,10 @@ export default function AddIntakeSearchbar(props) {
   }
 
   // UseEffects
-  useDebounce(search, [text], 400);
+  useDebounce(search, [text, searchType], 400);
   useEffect(() => {
     formatSearchData();
-  }, [getSearchIngredientData]);
+  }, [getSearchIngredientData, getSearchFoodData]);
 
   useEffect(() => {
     const keyboardDidShowListener = Keyboard.addListener(
