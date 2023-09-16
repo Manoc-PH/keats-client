@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Dimensions, ScrollView, View } from "react-native";
+import { Dimensions, Keyboard, ScrollView, View } from "react-native";
 import themeColors from "@app/common/theme";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
@@ -45,6 +45,7 @@ export default function AddIntakeSearchbar(props) {
   const [scrollHeight, setScrollHeight] = useState(0);
   const [text, onChangeText] = useState("");
   const [searchResult, setSearchResult] = useState([]);
+  const [keyboardIsVisible, setKeyboardVisible] = useState();
 
   // Hooks
   const navigation = useNavigation();
@@ -54,9 +55,6 @@ export default function AddIntakeSearchbar(props) {
     isGetSearchIngredientLoading,
     getSearchIngredientError,
   } = useGetSearchIngredient();
-
-  // Constants
-  const isOptionsShown = text || searchResult?.length > 0;
 
   // Functions
   function search() {
@@ -93,14 +91,9 @@ export default function AddIntakeSearchbar(props) {
       setSearchResult(newData);
     }
   }
-  function handleFocus() {
-    setIsSearchActive(true);
-  }
-  function handleBlur() {
-    if (!text) setIsSearchActive(false);
-  }
   function handleTextClear() {
     onChangeText("");
+    if (!keyboardIsVisible) setIsSearchActive(false);
   }
 
   // UseEffects
@@ -108,10 +101,31 @@ export default function AddIntakeSearchbar(props) {
   useEffect(() => {
     formatSearchData();
   }, [getSearchIngredientData]);
+
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      "keyboardDidShow",
+      () => setKeyboardVisible(true)
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      "keyboardDidHide",
+      () => setKeyboardVisible(false)
+    );
+
+    return () => {
+      keyboardDidHideListener.remove();
+      keyboardDidShowListener.remove();
+    };
+  }, []);
+  useEffect(() => {
+    if (!text && !keyboardIsVisible) setIsSearchActive(false);
+    if (keyboardIsVisible) setIsSearchActive(true);
+  }, [keyboardIsVisible]);
+
   return (
-    <View style={{ ...styles.searchWrapper, flex: isOptionsShown ? 1 : 0 }}>
+    <View style={{ ...styles.searchWrapper, flex: isSearchActive ? 1 : 0 }}>
       {/* Search Results */}
-      {isOptionsShown && (
+      {isSearchActive && (
         <View style={{ ...styles.rowContainer, height: scrollHeight }}>
           <ScrollView ref={scrollViewRef} onContentSizeChange={scrollDown}>
             {searchResult.map((item) => (
@@ -127,8 +141,8 @@ export default function AddIntakeSearchbar(props) {
           </ScrollView>
         </View>
       )}
-      <View onLayout={isOptionsShown && handleBottomLayout}>
-        {isOptionsShown && (
+      <View onLayout={isSearchActive && handleBottomLayout}>
+        {isSearchActive && (
           <View style={styles.rowContainer}>
             <Button size={SIZES.Small} style={{ marginRight: SPACING.Small }}>
               Generic
@@ -145,8 +159,6 @@ export default function AddIntakeSearchbar(props) {
               onChangeText={onChangeText}
               value={text}
               placeholder='Search for a food...'
-              onFocus={handleFocus}
-              onBlur={handleBlur}
               onClearPress={handleTextClear}
               startIcon={
                 <SearchIcon
