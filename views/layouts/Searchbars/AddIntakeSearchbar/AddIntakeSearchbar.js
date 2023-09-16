@@ -7,6 +7,9 @@ import { useDispatch } from "react-redux";
 // Store
 import { actions } from "@app/core/store";
 
+// Constants
+import { INTAKE_TYPES } from "@app/common/constants/options";
+
 // Hooks
 import { useGetSearchIngredient } from "@app/core/hooks/api";
 
@@ -46,6 +49,7 @@ export default function AddIntakeSearchbar(props) {
   const [text, onChangeText] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [keyboardIsVisible, setKeyboardVisible] = useState();
+  const [searchType, setSearchType] = useState(INTAKE_TYPES.generic);
 
   // Hooks
   const navigation = useNavigation();
@@ -144,10 +148,21 @@ export default function AddIntakeSearchbar(props) {
       <View onLayout={isSearchActive && handleBottomLayout}>
         {isSearchActive && (
           <View style={styles.rowContainer}>
-            <Button size={SIZES.Small} style={{ marginRight: SPACING.Small }}>
+            <Button
+              onPress={() => setSearchType(INTAKE_TYPES.generic)}
+              size={SIZES.Small}
+              style={{ marginRight: SPACING.Small }}
+              variant={
+                searchType !== INTAKE_TYPES.generic && BTN_VARIANTS.outlined
+              }>
               Generic
             </Button>
-            <Button size={SIZES.Small} variant={BTN_VARIANTS.outlined}>
+            <Button
+              onPress={() => setSearchType(INTAKE_TYPES.branded)}
+              size={SIZES.Small}
+              variant={
+                searchType !== INTAKE_TYPES.branded && BTN_VARIANTS.outlined
+              }>
               Branded
             </Button>
           </View>
