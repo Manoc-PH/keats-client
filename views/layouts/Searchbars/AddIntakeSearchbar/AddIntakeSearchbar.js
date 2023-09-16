@@ -66,10 +66,12 @@ export default function AddIntakeSearchbar(props) {
       onChangeText("");
     }
   }
-  const handleCancel = () =>
+  function handleCancel() {
     navigation.navigate("Home", { screen: "HomeDefault" });
-  const scrollDown = () =>
+  }
+  function scrollDown() {
     scrollViewRef.current.scrollToEnd({ animated: true });
+  }
   function handleBottomLayout(event) {
     var { height } = event.nativeEvent.layout;
     setScrollHeight(Dimensions.get("window").height - height);
@@ -96,6 +98,9 @@ export default function AddIntakeSearchbar(props) {
   }
   function handleBlur() {
     if (!text) setIsSearchActive(false);
+  }
+  function handleTextClear() {
+    onChangeText("");
   }
 
   // UseEffects
@@ -142,6 +147,7 @@ export default function AddIntakeSearchbar(props) {
               placeholder='Search for a food...'
               onFocus={handleFocus}
               onBlur={handleBlur}
+              onClearPress={handleTextClear}
               startIcon={
                 <SearchIcon
                   height={SPACING.Medium}

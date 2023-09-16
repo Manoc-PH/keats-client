@@ -11,6 +11,7 @@ import {
 import { styles } from "./styles";
 import Button from "../../Basic/Button";
 import SubHeadline1 from "../../Basic/Texts/SubHeadline1/SubHeadline1";
+import { CloseIcon } from "@app/assets/icons";
 
 export default function TextInput(props) {
   // Destructure
@@ -24,6 +25,7 @@ export default function TextInput(props) {
     label,
     secureTextEntry,
     autoCapitalize,
+    onClearPress,
     ...rest
   } = props;
 
@@ -59,6 +61,12 @@ export default function TextInput(props) {
           />
           {suffix && suffix}
         </View>
+        <Button
+          variant={BTN_VARIANTS.transparent}
+          size={SIZES.Tiny}
+          onPress={onClearPress}>
+          <CloseIcon />
+        </Button>
       </View>
     </View>
   );

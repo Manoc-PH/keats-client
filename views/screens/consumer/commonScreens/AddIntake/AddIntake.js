@@ -19,7 +19,7 @@ export default function AddIntake() {
       {!isSearchActive && (
         <View
           style={{
-            backgroundColor: themeColors.secondaryLight,
+            backgroundColor: themeColors.background,
             height: "100%",
             width: "100%",
           }}>
