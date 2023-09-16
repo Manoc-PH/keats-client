@@ -29,7 +29,10 @@ import { SearchIcon } from "@app/assets/icons";
 
 import { styles } from "./styles";
 
-export default function AddIntakeSearchbar() {
+export default function AddIntakeSearchbar(props) {
+  // Props
+  const { isSearchActive, setIsSearchActive } = props;
+
   // Store Actions
   const { setSelectedIngredientID: sId } = actions;
   const dispatch = useDispatch();
@@ -88,6 +91,12 @@ export default function AddIntakeSearchbar() {
       setSearchResult(newData);
     }
   }
+  function handleFocus() {
+    setIsSearchActive(true);
+  }
+  function handleBlur() {
+    if (!text) setIsSearchActive(false);
+  }
 
   // UseEffects
   useDebounce(search, [text], 400);
@@ -131,6 +140,8 @@ export default function AddIntakeSearchbar() {
               onChangeText={onChangeText}
               value={text}
               placeholder='Search for a food...'
+              onFocus={handleFocus}
+              onBlur={handleBlur}
               startIcon={
                 <SearchIcon
                   height={SPACING.Medium}
