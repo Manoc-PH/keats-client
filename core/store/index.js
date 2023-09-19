@@ -5,6 +5,7 @@ import Auth from "./Auth";
 import Tracker from "./Tracker";
 import Account from "./Account";
 import Ingredient from "./Ingredient";
+import Food from "./Food";
 import Ui from "./Ui";
 
 const clearstore = () => ({
@@ -17,6 +18,7 @@ const actionList = {
   ...Tracker.actions,
   ...Account.actions,
   ...Ingredient.actions,
+  ...Food.actions,
   ...Ui.actions,
   clearstore,
 };
@@ -27,6 +29,7 @@ const appReducer = combineReducers({
   tracker: Tracker.reducer,
   account: Account.reducer,
   ingredient: Ingredient.reducer,
+  food: Food.reducer,
   ui: Ui.reducer,
 });
 

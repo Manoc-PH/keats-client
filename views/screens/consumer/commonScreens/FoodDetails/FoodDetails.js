@@ -23,11 +23,8 @@ import { styles } from "./styles";
 export default function FoodDetails() {
   // Store State
   const { dailyNutrients } = useSelector((state) => state.tracker);
-  const {
-    selectedIngredientID,
-    selectedIngredientMappingID,
-    selectedIngredientAmount,
-  } = useSelector((state) => state.ingredient);
+  const { selectedFoodID, setSelectedFoodBarcode, selectedFoodAmount } =
+    useSelector((state) => state.food);
 
   // Local State
   const [foodDetails, setFoodDetails] = useState();
@@ -37,28 +34,16 @@ export default function FoodDetails() {
     useGetFoodDetails();
 
   // Functions
-  function fetchFood() {
-    // food_id, barcode
-    getFoodDetails(
-      selectedIngredientMappingID
-        ? { food_id: selectedIngredientMappingID }
-        : { barcode: selectedIngredientMappingID }
-    );
-  }
   function handleFoodData() {
     setFoodDetails(getFoodDetailsData);
   }
 
   // UseEffects
   useEffect(() => {
-    if (selectedIngredientID) {
-      if (!foodDetails || foodDetails?.id !== selectedIngredientID)
-        getIngredientDetails(selectedIngredientID);
-    }
-  }, [selectedIngredientID]);
-  useEffect(() => {
-    if (selectedIngredientMappingID) fetchFood();
-  }, [selectedIngredientMappingID]);
+    if (selectedFoodID) getFoodDetails({ food_id: selectedFoodID });
+    if (setSelectedFoodBarcode)
+      getFoodDetails({ barcode: setSelectedFoodBarcode });
+  }, [selectedFoodID, setSelectedFoodBarcode]);
   useEffect(() => {
     if (getFoodDetailsData) handleFoodData();
   }, [getFoodDetailsData]);
@@ -66,9 +51,8 @@ export default function FoodDetails() {
     <>
       <ScrollPage style={styles.wrapper}>
         <View style={styles.imageWrapper}>
-          {foodDetails?.ingredient_images &&
-          foodDetails?.ingredient_images?.length > 0 ? (
-            <IngredientCarousel data={foodDetails.ingredient_images} />
+          {foodDetails?.food_images && foodDetails?.food_images?.length > 0 ? (
+            <IngredientCarousel data={foodDetails.food_images} />
           ) : (
             <Image src={foodDetails?.thumbnail_image_link} />
           )}
@@ -77,7 +61,7 @@ export default function FoodDetails() {
           <NutrientSummary
             dailyNutrients={dailyNutrients}
             details={foodDetails}
-            amount={selectedIngredientAmount}
+            amount={selectedFoodAmount}
             isLoading={isGetFoodDetailsLoading}
           />
           <PageDivider style={styles.spacer} />
@@ -88,14 +72,12 @@ export default function FoodDetails() {
           />
         </View>
       </ScrollPage>
-      {foodDetails && (
+      {/* {foodDetails && (
         <ConsumeIngredientFooter
           key={selectedIngredientMappingID}
-          ingredient_mapping_id={
-            selectedIngredientMappingID || foodDetails.ingredient_mapping_id
-          }
+          ingredient_mapping_id={selectedIngredientMappingID}
         />
-      )}
+      )} */}
     </>
   );
 }
