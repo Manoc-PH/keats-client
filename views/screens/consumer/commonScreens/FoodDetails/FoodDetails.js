@@ -26,6 +26,7 @@ export default function FoodDetails() {
   const { selectedFoodID, setSelectedFoodBarcode, selectedFoodAmount } =
     useSelector((state) => state.food);
 
+  console.log(selectedFoodID);
   // Local State
   const [foodDetails, setFoodDetails] = useState();
 
@@ -45,6 +46,7 @@ export default function FoodDetails() {
       getFoodDetails({ barcode: setSelectedFoodBarcode });
   }, [selectedFoodID, setSelectedFoodBarcode]);
   useEffect(() => {
+    console.log(getFoodDetailsData);
     if (getFoodDetailsData) handleFoodData();
   }, [getFoodDetailsData]);
   return (

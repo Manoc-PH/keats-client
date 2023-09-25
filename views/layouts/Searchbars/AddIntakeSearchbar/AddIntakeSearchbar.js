@@ -37,9 +37,10 @@ export default function AddIntakeSearchbar(props) {
   const { isSearchActive, setIsSearchActive } = props;
 
   // Store Actions
-  const { setSelectedIngredientID: sId } = actions;
+  const { setSelectedIngredientID: sId, setSelectedFoodID: ssf } = actions;
   const dispatch = useDispatch();
   const setSelectedIngredientID = (v) => dispatch(sId(v));
+  const setSelectedFoodID = (v) => dispatch(ssf(v));
 
   // Refs
   const scrollViewRef = useRef();
@@ -89,6 +90,10 @@ export default function AddIntakeSearchbar(props) {
     if (searchType === INTAKE_TYPES.generic) {
       setSelectedIngredientID(id);
       navigation.navigate("Home", { screen: "IngredientDetails" });
+    }
+    if (searchType === INTAKE_TYPES.branded) {
+      setSelectedFoodID(id);
+      navigation.navigate("Home", { screen: "FoodDetails" });
     }
   }
   function formatSearchData() {
