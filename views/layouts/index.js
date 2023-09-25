@@ -13,6 +13,9 @@ export { default as CalorieGoalProgress } from "./ScreenLayouts/Home/CalorieGoal
 export { default as NutrientSummary } from "./ScreenLayouts/Ingredient/NutrientSummary";
 export { default as IngredientName } from "./ScreenLayouts/Ingredient/IngredientName";
 
+// Food
+export { default as FoodName } from "./ScreenLayouts/Food/FoodName";
+
 // Signup
 export { default as UsernamePassword } from "./ScreenLayouts/Signup/UsernamePassword";
 export { default as ActivityLevel } from "./ScreenLayouts/Signup/ActivityLevel";

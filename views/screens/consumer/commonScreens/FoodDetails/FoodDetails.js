@@ -9,7 +9,7 @@ import { useGetFoodDetails } from "@app/core/hooks/api";
 import {
   NutrientSummary,
   ScrollPage,
-  IngredientName,
+  FoodName,
   ConsumeIngredientFooter,
   PageDivider,
   IngredientCarousel,
@@ -67,9 +67,9 @@ export default function FoodDetails() {
             isLoading={isGetFoodDetailsLoading}
           />
           <PageDivider style={styles.spacer} />
-          <IngredientName
+          <FoodName
             style={styles.spacer}
-            ingredientDetails={foodDetails}
+            food={foodDetails?.food}
             isLoading={isGetFoodDetailsLoading}
           />
         </View>
