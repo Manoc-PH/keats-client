@@ -50,7 +50,9 @@ export default function SearchResultCard(props) {
               style={styles.title}>
               {title}
             </SubHeadline1>
-            <Caption1 style={styles.subtitle}>{subtitle || ""}</Caption1>
+            {subtitle && (
+              <Caption1 style={styles.subtitle}>{subtitle || ""}</Caption1>
+            )}
           </View>
         )}
       </View>

@@ -67,14 +67,14 @@ export default function IntakeList() {
             title={
               item?.ingredient_mapping_id
                 ? `${item.ingredient_name} ${item.ingredient_variant_name}`
-                : "``"
+                : `${item?.food_name} ${item?.food_name_ph}`
             }
             subtitle={
               item?.ingredient_mapping_id
                 ? `${item.ingredient_name_owner} - ${
                     item.amount
                   } ${item.amount_unit.toUpperCase()}`
-                : ""
+                : `${item?.food_name_owner}` 
             }
             thumbnail_link={item.thumbnail_image_link}
             onPress={() => handlePress(item)}
