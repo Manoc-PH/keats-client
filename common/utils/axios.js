@@ -9,6 +9,7 @@ const authAxios = axios.create({
   withCredentials: true,
 });
 
+// TODO create an interceptor for request and check for cookie or bearer token before passing
 authAxios.interceptors.response.use(
   function (response) {
     return response;

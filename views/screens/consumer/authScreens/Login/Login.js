@@ -71,6 +71,7 @@ export default function Login(props) {
   }, [loginUserData]);
   useEffect(() => handleLoginErr(), [loginUserError]);
   useEffect(() => {
+    // TODO Read credentials again after create credentials
     if (isCreateCredentialsSuccess) setIsLoggedIn(true);
   }, [isCreateCredentialsSuccess]);
   useEffect(() => {
