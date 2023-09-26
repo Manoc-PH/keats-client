@@ -37,7 +37,7 @@ export const GetIntake = async ({ intake_id }) => {
 
 export const PostIntake = async ({
   ingredient_mapping_id,
-  // recipe_id,
+  food_id,
   amount,
   amount_unit,
   amount_unit_desc,
@@ -45,7 +45,7 @@ export const PostIntake = async ({
 }) => {
   const response = await authAxios.post(TRACKER_ENDPOINTS.POST_INTAKE, {
     ingredient_mapping_id: ingredient_mapping_id,
-    // recipe_id: recipe_id,
+    food_id: food_id,
     amount: amount,
     amount_unit: amount_unit,
     amount_unit_desc: amount_unit_desc,

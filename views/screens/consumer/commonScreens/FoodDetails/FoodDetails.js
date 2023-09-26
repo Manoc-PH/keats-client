@@ -10,7 +10,7 @@ import {
   NutrientSummary,
   ScrollPage,
   FoodName,
-  ConsumeIngredientFooter,
+  ConsumeFoodFooter,
   PageDivider,
   IngredientCarousel,
 } from "@app/views/layouts";
@@ -26,7 +26,6 @@ export default function FoodDetails() {
   const { selectedFoodID, setSelectedFoodBarcode, selectedFoodAmount } =
     useSelector((state) => state.food);
 
-  console.log(selectedFoodID);
   // Local State
   const [foodDetails, setFoodDetails] = useState();
 
@@ -46,7 +45,6 @@ export default function FoodDetails() {
       getFoodDetails({ barcode: setSelectedFoodBarcode });
   }, [selectedFoodID, setSelectedFoodBarcode]);
   useEffect(() => {
-    console.log(getFoodDetailsData);
     if (getFoodDetailsData) handleFoodData();
   }, [getFoodDetailsData]);
   return (
@@ -74,12 +72,13 @@ export default function FoodDetails() {
           />
         </View>
       </ScrollPage>
-      {/* {foodDetails && (
-        <ConsumeIngredientFooter
-          key={selectedIngredientMappingID}
-          ingredient_mapping_id={selectedIngredientMappingID}
+      {foodDetails && (
+        <ConsumeFoodFooter
+          key={selectedFoodID}
+          food_id={selectedFoodID}
+          details={foodDetails}
         />
-      )} */}
+      )}
     </>
   );
 }

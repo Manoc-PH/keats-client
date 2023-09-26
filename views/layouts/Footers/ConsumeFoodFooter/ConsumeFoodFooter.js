@@ -11,17 +11,14 @@ import { actions } from "@app/core/store";
 // Hooks
 import { usePostIntake } from "@app/core/hooks/api";
 
-// Constants
-import { SIZES } from "@app/common/constants/styles";
-
 // Components
 import { Body, Button, CircleLoader, SliderInput } from "@app/views/components";
 
 import { styles } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 
-export default function ConsumeIngredientFooter(props) {
-  const { ingredient_mapping_id } = props;
+export default function ConsumeFoodFooter(props) {
+  const { food_id, details } = props;
   // Store State
   const { dailyNutrients, dailyIntakes } = useSelector(
     (state) => state.tracker
@@ -29,24 +26,26 @@ export default function ConsumeIngredientFooter(props) {
 
   // Store Actions
   const {
-    setSelectedIngredientAmount: sfa,
+    setSelectedFoodAmount: sfa,
     setDailyNutrients: sdn,
     setDailyIntakes: sdi,
-    setSelectedIngredientID: sId,
-    setSelectedIngredientMappingID: sMId,
-    setIngredientDetails: sD,
+    setSelectedFoodID: sId,
+    setSelectedFoodBarcode: sfb,
   } = actions;
   const dispatch = useDispatch();
-  const setSelectedIngredientAmount = (value) => dispatch(sfa(value));
+  const setSelectedFoodAmount = (value) => dispatch(sfa(value));
   const setDailyNutrients = (value) => dispatch(sdn(value));
   const setDailyIntakes = (v) => dispatch(sdi(v));
-  const setSelectedIngredientID = (v) => dispatch(sId(v));
-  const setIngredientDetails = (v) => dispatch(sD(v));
-  const setSelectedIngredientMappingID = (v) => dispatch(sMId(v));
+  const setSelectedFoodID = (v) => dispatch(sId(v));
+  const setSelectedFoodBarcode = (v) => dispatch(sfb(v));
 
   // Local State
-  const [amount, setAmount] = useState(100);
-  const [maxAmount, setMaxAmount] = useState(1000);
+  const [amount, setAmount] = useState(
+    details?.nutrient?.serving_size
+      ? details?.nutrient?.serving_size
+      : details?.nutrient?.amount
+  );
+  const [maxAmount, setMaxAmount] = useState(0);
   const [incrementValue, setIncrementValue] = useState(50);
   const [measureUnit, setMeasureUnit] = useState({
     value: "g",
@@ -77,14 +76,14 @@ export default function ConsumeIngredientFooter(props) {
   // Functions
   function handleSubmit() {
     const data = {
-      ingredient_mapping_id: ingredient_mapping_id,
+      food_id: food_id,
       amount: parseFloat(amount),
+      // TODO change the amount unit
       amount_unit: measureUnit.value,
       amount_unit_desc: measureUnit.desc,
     };
     postIntake(data);
   }
-
   function handleIntake() {
     const newData = {
       ...dailyNutrients,
@@ -98,33 +97,22 @@ export default function ConsumeIngredientFooter(props) {
     const newIntake = {
       id: postIntakeData.intake.id,
       account_id: postIntakeData.intake.account_id,
-      ingredient_mapping_id: postIntakeData.intake.ingredient_mapping_id,
+      food_id: postIntakeData.intake.food_id,
       date_created: postIntakeData.intake.date_created,
       calories: postIntakeData.added_daily_nutrients.calories,
       amount: postIntakeData.intake.amount,
       amount_unit: postIntakeData.intake.amount_unit,
       amount_unit_desc: postIntakeData.intake.amount_unit_desc,
       serving_size: postIntakeData.intake.serving_size,
-
-      ingredient_name: postIntakeData?.ingredient.ingredient.name,
-      ingredient_name_ph: postIntakeData?.ingredient.ingredient.name_ph,
-      ingredient_name_owner: postIntakeData?.ingredient.ingredient.name_owner,
-      ingredient_variant_name:
-        postIntakeData?.ingredient.ingredient_variant.name,
-      ingredient_variant_name_ph:
-        postIntakeData?.ingredient.ingredient_variant.name_ph,
-      ingredient_subvariant_name:
-        postIntakeData?.ingredient.ingredient_subvariant.name,
-      ingredient_subvariant_name_ph:
-        postIntakeData?.ingredient.ingredient_subvariant.name_ph,
-      thumbnail_image_link:
-        postIntakeData?.ingredient.ingredient.thumbnail_image_link,
+      thumbnail_image_link: postIntakeData?.food.thumbnail_image_link,
+      food_name: postIntakeData?.food?.name,
+      food_name_ph: postIntakeData?.food?.name_ph,
+      food_name_owner: postIntakeData?.food?.name_owner,
     };
     setDailyIntakes([newIntake, ...dailyIntakes]);
     setDailyNutrients(newData);
-    setIngredientDetails();
-    setSelectedIngredientID();
-    setSelectedIngredientMappingID();
+    setSelectedFoodID();
+    setSelectedFoodBarcode();
     navigation.navigate("Home", { screen: "HomeDefault" });
   }
   function handleChange(v) {
@@ -136,12 +124,24 @@ export default function ConsumeIngredientFooter(props) {
 
   // UseEffects
   useEffect(() => {
-    setSelectedIngredientAmount(amount);
+    if (details?.nutrient?.serving_size) {
+      setIncrementValue(details?.nutrient?.serving_size);
+      setAmount(details?.nutrient?.serving_size);
+    } else {
+      setAmount(details?.nutrient?.amount);
+    }
+    if (details?.nutrient?.serving_total) {
+      setMaxAmount(details?.nutrient?.serving_total);
+    }
+  }, [details]);
+  useEffect(() => {
+    setSelectedFoodAmount(amount);
   }, [amount]);
   useEffect(() => {
     if (postIntakeData && isPostIntakeSuccess) handleIntake();
   }, [postIntakeData]);
 
+  // TODO add support for servings
   return (
     <SafeAreaView style={styles.wrapper}>
       {!isPostIntakeLoading && (

@@ -23,7 +23,7 @@ const store = createSlice({
       if (payload) state.selectedFoodBarcode = payload;
       else state.selectedFoodBarcode = null;
     },
-    setSelecFoodentAmount: (state, { payload }) => {
+    setSelectedFoodAmount: (state, { payload }) => {
       if (payload) state.selectedFoodAmount = payload;
       else state.selectedFoodAmount = null;
     },
