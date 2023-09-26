@@ -42,7 +42,7 @@ export default function IntakeList() {
   // Functions
   function handlePress(item) {
     setSelectedIntake(item);
-    navigation.navigate("Home", { screen: "IntakeDetails" });
+    navigation.navigate("Home", { screen: "IntakeIngredientDetails" });
   }
 
   // UseEffects
@@ -52,7 +52,7 @@ export default function IntakeList() {
   useEffect(() => {
     if (isGetIntakesSuccess) setDailyIntakes(getIntakesData);
   }, [getIntakesData]);
-  // TODO create another search result card for food
+
   return (
     <ScrollPage style={styles.wrapper}>
       {isGetIntakesLoading &&
@@ -74,7 +74,7 @@ export default function IntakeList() {
                 ? `${item.ingredient_name_owner} - ${
                     item.amount
                   } ${item.amount_unit.toUpperCase()}`
-                : `${item?.food_name_owner}` 
+                : `${item?.food_name_owner}`
             }
             thumbnail_link={item.thumbnail_image_link}
             onPress={() => handlePress(item)}

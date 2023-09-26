@@ -13,5 +13,5 @@ export { default as Recipes } from "./consumer/mainTabs/Recipes";
 export { default as IngredientDetails } from "./consumer/commonScreens/IngredientDetails";
 export { default as IntakeList } from "./consumer/commonScreens/IntakeList";
 export { default as AddIntake } from "./consumer/commonScreens/AddIntake";
-export { default as IntakeDetails } from "./consumer/commonScreens/IntakeDetails";
+export { default as IntakeIngredientDetails } from "./consumer/commonScreens/IntakeIngredientDetails";
 export { default as FoodDetails } from "./consumer/commonScreens/FoodDetails";

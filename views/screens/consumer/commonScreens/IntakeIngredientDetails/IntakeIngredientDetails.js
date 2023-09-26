@@ -20,7 +20,7 @@ import { Image } from "@app/views/components";
 
 import { styles } from "./styles";
 
-export default function IntakeDetails() {
+export default function IntakeIngredientDetails() {
   // TODO ADD SUPPORT FOR FOOD
   // Store State
   const { dailyNutrients, selectedIntake, selectedIntakeAmount } = useSelector(
