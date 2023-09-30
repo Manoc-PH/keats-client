@@ -18,6 +18,7 @@ import {
   AddIntake,
   IntakeIngredientDetails,
   FoodDetails,
+  IntakeFoodDetails,
 } from "@app/views/screens";
 
 import {
@@ -58,6 +59,10 @@ const HomeNavigator = ({ navigation, route }) => {
       navigation.setOptions({
         tabBarStyle: hidden,
       });
+    } else if (routeName === "IntakeFoodDetails") {
+      navigation.setOptions({
+        tabBarStyle: hidden,
+      });
     } else {
       navigation.setOptions({ tabBarStyle: {} });
     }
@@ -79,6 +84,11 @@ const HomeNavigator = ({ navigation, route }) => {
       <Stack.Screen
         name='IntakeIngredientDetails'
         component={IntakeIngredientDetails}
+        options={{ header: IntakeDetailsHeader }}
+      />
+      <Stack.Screen
+        name='IntakeFoodDetails'
+        component={IntakeFoodDetails}
         options={{ header: IntakeDetailsHeader }}
       />
       <Stack.Screen

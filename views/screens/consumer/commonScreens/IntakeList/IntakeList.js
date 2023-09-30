@@ -42,7 +42,12 @@ export default function IntakeList() {
   // Functions
   function handlePress(item) {
     setSelectedIntake(item);
-    navigation.navigate("Home", { screen: "IntakeIngredientDetails" });
+    if (item?.ingredient_mapping_id) {
+      navigation.navigate("Home", { screen: "IntakeIngredientDetails" });
+    }
+    if (item?.food_id) {
+      navigation.navigate("Home", { screen: "IntakeFoodDetails" });
+    }
   }
 
   // UseEffects

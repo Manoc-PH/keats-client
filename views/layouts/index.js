@@ -40,8 +40,9 @@ export { default as IntakeDetailsHeader } from "./Headers/IntakeDetailsHeader";
 
 // Footers
 export { default as ConsumeIngredientFooter } from "./Footers/ConsumeIngredientFooter";
-export { default as UpdateIntakeFooter } from "./Footers/UpdateIntakeFooter";
 export { default as ConsumeFoodFooter } from "./Footers/ConsumeFoodFooter";
+export { default as UpdateIntakeFooter } from "./Footers/UpdateIntakeFooter";
+export { default as UpdateFoodIntakeFooter } from "./Footers/UpdateFoodIntakeFooter";
 
 // Modals
 
