@@ -12,11 +12,16 @@ export const INGREDIENT_ENDPOINTS = {
   GET_INGREDIENT_DETAILS: "/api/ingredient",
   GET_INGREDIENT_MAPPING_DETAILS: "/api/ingredient/mapping",
 };
+export const FOOD_ENDPOINTS = {
+  GET_SEARCH_FOOD: "/api/food/search_food",
+  GET_FOOD_DETAILS: "/api/food",
+};
 
 export const TRACKER_ENDPOINTS = {
   GET_DAILY_NUTRIENTS: "/api/tracker/daily_nutrients",
   GET_DAILY_NUTRIENTS_LIST: "/api/tracker/daily_nutrients_list",
   GET_INTAKES: "/api/tracker/intakes",
+  GET_COMMON_INTAKES: "/api/tracker/common_intakes",
   GET_INTAKE: "/api/tracker/intake",
   POST_INTAKE: "/api/tracker/intake",
   PUT_INTAKE: "/api/tracker/intake",

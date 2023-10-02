@@ -20,8 +20,7 @@ import { Image } from "@app/views/components";
 
 import { styles } from "./styles";
 
-export default function IntakeDetails() {
-  // TODO ADD SUPPORT FOR FOOD
+export default function IntakeIngredientDetails() {
   // Store State
   const { dailyNutrients, selectedIntake, selectedIntakeAmount } = useSelector(
     (state) => state.tracker

@@ -21,6 +21,13 @@ export const GetIntakes = async () => {
   return response?.data;
 };
 
+export const GetCommonIntakes = async ({ start_date, end_date }) => {
+  const response = await authAxios.get(TRACKER_ENDPOINTS.GET_COMMON_INTAKES, {
+    params: { start_date, end_date },
+  });
+  return response?.data;
+};
+
 export const GetIntake = async ({ intake_id }) => {
   const response = await authAxios.get(TRACKER_ENDPOINTS.GET_INTAKE, {
     params: { intake_id: intake_id },
@@ -30,7 +37,7 @@ export const GetIntake = async ({ intake_id }) => {
 
 export const PostIntake = async ({
   ingredient_mapping_id,
-  // recipe_id,
+  food_id,
   amount,
   amount_unit,
   amount_unit_desc,
@@ -38,7 +45,7 @@ export const PostIntake = async ({
 }) => {
   const response = await authAxios.post(TRACKER_ENDPOINTS.POST_INTAKE, {
     ingredient_mapping_id: ingredient_mapping_id,
-    // recipe_id: recipe_id,
+    food_id: food_id,
     amount: amount,
     amount_unit: amount_unit,
     amount_unit_desc: amount_unit_desc,
@@ -50,7 +57,7 @@ export const PostIntake = async ({
 export const PutIntake = async ({
   intake_id,
   ingredient_mapping_id,
-  // recipe_id,
+  food_id,
   amount,
   amount_unit,
   amount_unit_desc,
@@ -59,7 +66,7 @@ export const PutIntake = async ({
   const response = await authAxios.put(TRACKER_ENDPOINTS.PUT_INTAKE, {
     intake_id: intake_id,
     ingredient_mapping_id: ingredient_mapping_id,
-    // recipe_id: recipe_id,
+    food_id: food_id,
     amount: amount,
     amount_unit: amount_unit,
     amount_unit_desc: amount_unit_desc,

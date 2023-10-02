@@ -13,6 +13,9 @@ export { default as CalorieGoalProgress } from "./ScreenLayouts/Home/CalorieGoal
 export { default as NutrientSummary } from "./ScreenLayouts/Ingredient/NutrientSummary";
 export { default as IngredientName } from "./ScreenLayouts/Ingredient/IngredientName";
 
+// Food
+export { default as FoodName } from "./ScreenLayouts/Food/FoodName";
+
 // Signup
 export { default as UsernamePassword } from "./ScreenLayouts/Signup/UsernamePassword";
 export { default as ActivityLevel } from "./ScreenLayouts/Signup/ActivityLevel";
@@ -37,7 +40,9 @@ export { default as IntakeDetailsHeader } from "./Headers/IntakeDetailsHeader";
 
 // Footers
 export { default as ConsumeIngredientFooter } from "./Footers/ConsumeIngredientFooter";
+export { default as ConsumeFoodFooter } from "./Footers/ConsumeFoodFooter";
 export { default as UpdateIntakeFooter } from "./Footers/UpdateIntakeFooter";
+export { default as UpdateFoodIntakeFooter } from "./Footers/UpdateFoodIntakeFooter";
 
 // Modals
 
