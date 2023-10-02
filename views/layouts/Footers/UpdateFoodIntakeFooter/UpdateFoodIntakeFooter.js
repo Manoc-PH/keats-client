@@ -75,6 +75,7 @@ export default function UpdateFoodIntakeFooter(props) {
       amount_unit: measureUnit.value,
       amount_unit_desc: measureUnit.desc,
     };
+    console.log(data);
     putIntake(data);
   }
   function handleIntake() {
@@ -102,7 +103,16 @@ export default function UpdateFoodIntakeFooter(props) {
       food_name_ph: putIntakeData?.food?.food?.name_ph,
       food_name_owner: putIntakeData?.food?.food?.name_owner,
     };
-    setDailyIntakes([newIntake, ...dailyIntakes]);
+    const newIntakes = [];
+    if (dailyIntakes && dailyIntakes?.length > 0) {
+      dailyIntakes.forEach((item) => {
+        if (item?.id === newIntake.id) {
+          newIntakes.push(newIntake);
+        } else newIntakes.push(item);
+      });
+      newIntakes;
+    } else newIntakes.push(newIntake);
+    setDailyIntakes(newIntakes);
     setDailyNutrients(newData);
     setSelectedFoodID();
     setSelectedFoodBarcode();

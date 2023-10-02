@@ -82,6 +82,7 @@ export default function IntakeFoodDetails() {
         <UpdateFoodIntakeFooter
           details={intakeDetails?.food?.details}
           intake_id={selectedIntake.id}
+          food_id={selectedIntake.food_id}
           key={selectedIntake}
           selectedIntake={selectedIntake}
         />
