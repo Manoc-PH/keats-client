@@ -46,6 +46,7 @@ export { default as UpdateFoodIntakeFooter } from "./Footers/UpdateFoodIntakeFoo
 
 // Modals
 export { default as DeleteIntakeModal } from "./Modals/DeleteIntakeModal";
+export { default as ProgressInfoModal } from "./Modals/ProgressInfoModal";
 
 // Forms
 export { default as LoginForm } from "./Forms/LoginForm";

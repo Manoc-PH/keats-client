@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   isViewSimple: true,
   isDeleteIntakeModalVisible: false,
+  isProgressInfoModalVisible: false,
 };
 
 const store = createSlice({
@@ -16,6 +17,10 @@ const store = createSlice({
     setIsDeleteIntakeModalVisible: (state, { payload }) => {
       if (payload) state.isDeleteIntakeModalVisible = payload;
       else state.isDeleteIntakeModalVisible = false;
+    },
+    setIsProgressInfoModalVisible: (state, { payload }) => {
+      if (payload) state.isProgressInfoModalVisible = payload;
+      else state.isProgressInfoModalVisible = false;
     },
   },
 });
