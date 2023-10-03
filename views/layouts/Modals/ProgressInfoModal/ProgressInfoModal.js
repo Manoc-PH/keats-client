@@ -61,8 +61,6 @@ function ProgressInfoModal() {
           </View>
         </View>
 
-        <View style={styles.spacer} />
-
         <View style={styles.infoWrapper}>
           <View style={styles.blobContainer}>
             <LinearGradient
@@ -76,8 +74,6 @@ function ProgressInfoModal() {
             <Body>You have eaten the exact amount needed.</Body>
           </View>
         </View>
-
-        <View style={styles.spacer} />
 
         <View style={styles.infoWrapper}>
           <View style={styles.blobContainer}>
