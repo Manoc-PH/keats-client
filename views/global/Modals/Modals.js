@@ -1,16 +1,21 @@
-import React, { useState } from "react";
 import { View } from "react-native";
-import styles from "./styles";
-import Modal from "@app/views/components/Modal";
+import React from "react";
+import { useSelector } from "react-redux";
 
+// Layouts
+import { DeleteIntakeModal } from "@app/views/layouts";
+
+import styles from "./styles";
 function Modals() {
-  const [defaultModalVisible, setDefaultModalVisible] = useState(true);
+  // Store State
+  const { isDeleteIntakeModalVisible } = useSelector((state) => state.ui);
+  const isVisible = isDeleteIntakeModalVisible;
+
+  if (!isVisible) return;
+
   return (
     <View style={styles.wrapper}>
-      <Modal
-        isVisible={defaultModalVisible}
-        setIsVisible={setDefaultModalVisible}
-      />
+      <DeleteIntakeModal />
     </View>
   );
 }

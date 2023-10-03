@@ -1,9 +1,12 @@
 import { View } from "react-native";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 // Hooks
 import { useGetIntake } from "@app/core/hooks/api";
+
+// Store
+import { actions } from "@app/core/store";
 
 // Layouts
 import {
@@ -25,6 +28,10 @@ export default function IntakeFoodDetails() {
   const { dailyNutrients, selectedIntake, selectedIntakeAmount } = useSelector(
     (state) => state.tracker
   );
+  // Store Actions
+  const { setIsDeleteIntakeModalVisible: sid } = actions;
+  const dispatch = useDispatch();
+  const setIsDeleteIntakeModalVisible = (value) => dispatch(sid(value));
 
   // Local State
   const [intakeDetails, setIntakeDetails] = useState();
