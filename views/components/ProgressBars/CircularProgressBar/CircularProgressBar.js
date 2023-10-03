@@ -152,8 +152,9 @@ function CircularProgressBar(props) {
                 circumference -
                 (circumference *
                   0.7 *
-                  ((progress > 150 && progress < 201 ? progress - 150 : 0) ||
-                    0)) /
+                  ((progress > 150 && progress < 201
+                    ? progress - 150
+                    : progress > 200 && 100) || 0)) /
                   100
               }
               strokeLinecap='round'
