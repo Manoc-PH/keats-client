@@ -77,7 +77,7 @@ export const PutIntake = async ({
 
 export const DeleteIntake = async ({ intake_id }) => {
   const response = await authAxios.delete(TRACKER_ENDPOINTS.DELETE_INTAKE, {
-    intake_id: intake_id,
+    data: { intake_id: intake_id },
   });
   return response?.data;
 };

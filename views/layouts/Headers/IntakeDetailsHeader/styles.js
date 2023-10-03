@@ -17,8 +17,9 @@ export const styles = StyleSheet.create({
   },
   container: {
     width: "100%",
-    alignItems: "stretch",
-    justifyContent: "center",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     position: "relative",
   },
   navContainer: {
@@ -39,4 +40,5 @@ export const styles = StyleSheet.create({
     justifyContent: "flex-start",
     marginLeft: SPACING.Large * -1,
   },
+  btnRight: { marginRight: SPACING.Regular * -1 },
 });

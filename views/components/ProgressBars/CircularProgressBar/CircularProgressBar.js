@@ -113,7 +113,49 @@ function CircularProgressBar(props) {
               strokeWidth={strokeWidth}
               strokeDasharray={circumference}
               strokeDashoffset={
-                circumference - (circumference * 0.7 * (progress || 0)) / 100
+                circumference -
+                (circumference *
+                  0.7 *
+                  ((progress > 100 ? 100 : progress) || 0)) /
+                  100
+              }
+              strokeLinecap='round'
+              strokeLinejoin='round'
+            />
+            <Circle
+              stroke={themeColors.yellow}
+              cx={center}
+              cy={center}
+              r={radius}
+              strokeWidth={strokeWidth}
+              strokeDasharray={circumference}
+              strokeDashoffset={
+                circumference -
+                (circumference *
+                  0.7 *
+                  ((progress > 100 && progress < 151
+                    ? progress - 100
+                    : progress > 151 && 100) || 0)) /
+                  100
+              }
+              strokeLinecap='round'
+              strokeLinejoin='round'
+            />
+            <Circle
+              stroke={themeColors.red}
+              cx={center}
+              cy={center}
+              r={radius}
+              strokeWidth={strokeWidth}
+              strokeDasharray={circumference}
+              strokeDashoffset={
+                circumference -
+                (circumference *
+                  0.7 *
+                  ((progress > 150 && progress < 201
+                    ? progress - 150
+                    : progress > 200 && 100) || 0)) /
+                  100
               }
               strokeLinecap='round'
               strokeLinejoin='round'

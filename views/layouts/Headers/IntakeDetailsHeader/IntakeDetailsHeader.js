@@ -7,8 +7,14 @@ import { actions } from "@app/core/store";
 // Constants
 import { BTN_VARIANTS, SIZES } from "@app/common/constants/styles";
 
+// Theme
+import themeColors from "@app/common/theme";
+
+// Components
 import { Button, Title3 } from "@app/views/components";
-import { ArrowLeftIcon } from "@app/assets/icons";
+
+// Icons
+import { ArrowLeftIcon, DeleteIcon } from "@app/assets/icons";
 
 import { styles } from "./styles";
 
@@ -22,12 +28,14 @@ export default function IntakeDetailsHeader() {
     setSelectedIngredientID: sId,
     setSelectedIngredientMappingID: sMId,
     setIngredientDetails: sD,
+    setIsDeleteIntakeModalVisible: sidiv,
   } = actions;
   const dispatch = useDispatch();
   const setSelectedIntake = (v) => dispatch(ssi(v));
   const setSelectedIngredientID = (v) => dispatch(sId(v));
   const setIngredientDetails = (v) => dispatch(sD(v));
   const setSelectedIngredientMappingID = (v) => dispatch(sMId(v));
+  const setIsDeleteIntakeModalVisible = (v) => dispatch(sidiv(v));
 
   // Functions
   function handleBack() {
@@ -41,6 +49,11 @@ export default function IntakeDetailsHeader() {
   return (
     <SafeAreaView style={styles.wrapper}>
       <View style={styles.container}>
+        <View style={styles.navContainer}>
+          <View style={styles.titleContainer}>
+            <Title3>Intake Details</Title3>
+          </View>
+        </View>
         <View style={styles.btnContainer}>
           <Button
             variant={BTN_VARIANTS.transparent}
@@ -49,11 +62,13 @@ export default function IntakeDetailsHeader() {
             <ArrowLeftIcon />
           </Button>
         </View>
-        <View style={styles.navContainer}>
-          <View style={styles.titleContainer}>
-            <Title3>Intake Details</Title3>
-          </View>
-        </View>
+        <Button
+          variant={BTN_VARIANTS.transparent}
+          size={SIZES.Large}
+          style={styles.btnRight}
+          onPress={() => setIsDeleteIntakeModalVisible(true)}>
+          <DeleteIcon color={themeColors.red} />
+        </Button>
       </View>
     </SafeAreaView>
   );

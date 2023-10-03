@@ -8,7 +8,7 @@ import { actions } from "@app/core/store";
 // Hooks
 import { useGetDailyNutrients, useGetIntakes } from "@app/core/hooks/api";
 // Constants
-import { SPACING } from "@app/common/constants/styles";
+import { BTN_VARIANTS, SIZES, SPACING } from "@app/common/constants/styles";
 // Layouts
 import {
   MacroSummary,
@@ -20,7 +20,7 @@ import {
   PageDivider,
 } from "@app/views/layouts";
 // Components
-import { SubHeadline2, SwitchButton } from "@app/views/components";
+import { Button, SubHeadline2, SwitchButton } from "@app/views/components";
 
 import { styles } from "./styles";
 
@@ -36,11 +36,13 @@ export default function Home() {
     setDailyIntakes: sdi,
     setDailyNutrients: sdns,
     setIsViewSimple: sivs,
+    setIsProgressInfoModalVisible: sid,
   } = actions;
   const dispatch = useDispatch();
   const setDailyIntakes = (v) => dispatch(sdi(v));
   const setDailyNutrients = (v) => dispatch(sdns(v));
   const setIsViewSimple = (v) => dispatch(sivs(v));
+  const setIsProgressInfoModalVisible = (value) => dispatch(sid(value));
 
   // Hooks
   const {
@@ -92,6 +94,15 @@ export default function Home() {
               isViewSimple={isViewSimple}
               dailyNutrients={dailyNutrients}
             />
+            {isViewSimple && (
+              <Button
+                style={styles.btn}
+                variant={BTN_VARIANTS.outlined}
+                size={SIZES.Large}
+                onPress={() => setIsProgressInfoModalVisible(true)}>
+                ?
+              </Button>
+            )}
           </View>
           <PageDivider />
           <View style={styles.container}>

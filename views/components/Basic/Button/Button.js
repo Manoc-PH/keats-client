@@ -38,6 +38,10 @@ export default function Button(props) {
       color: color || themeColors.background,
       backgroundColor: backgroundColor || themeColors.primary,
     },
+    tertiary: {
+      color: color || themeColors.background,
+      backgroundColor: backgroundColor || themeColors.red,
+    },
     outlined: {
       backgroundColor: backgroundColor || themeColors.background,
       color: color || themeColors.primary,

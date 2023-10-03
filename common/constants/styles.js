@@ -29,6 +29,7 @@ export const BTN_VARIANTS = {
   primary: "primary",
   outlined: "outlined",
   transparent: "transparent",
+  tertiary: "tertiary",
 };
 export const NUTRIENT_COLOR_MAPPING = {
   calories: themeColors.primary,
@@ -47,7 +48,7 @@ export const SPACING = {
 };
 export const ZINDEX = {
   basicComponent: 1,
-  modal: 2,
+  modal: 11,
   header: 10,
 };
 

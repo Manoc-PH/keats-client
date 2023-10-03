@@ -23,6 +23,7 @@ export default function CalorieSummaryBar(props) {
   // Hooks
   const navigation = useNavigation();
 
+  // TODO HANDLE OVEREATING FOR SUMMARY BAR
   const width = Math.floor(Dimensions.get("screen").width * 0.8);
   return (
     <View style={{ width: "100%" }}>

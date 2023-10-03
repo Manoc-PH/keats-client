@@ -27,3 +27,6 @@ export { default as ImageIcon } from "./image";
 export { default as PlusIcon } from "./plus";
 export { default as MinusIcon } from "./minus";
 export { default as CloseIcon } from "./close";
+
+//
+export { default as DeleteIcon } from "./delete";
