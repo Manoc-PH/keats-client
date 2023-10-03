@@ -3,9 +3,6 @@ import { View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 
-// Components
-import Modal from "@app/views/components/Modal";
-
 // Store
 import { actions } from "@app/core/store";
 
@@ -21,7 +18,6 @@ import { BTN_VARIANTS } from "@app/common/constants/styles";
 
 function DeleteIntakeModal() {
   // Store State
-  const { isDeleteIntakeModalVisible } = useSelector((state) => state.ui);
   const { selectedIntake, dailyIntakes, dailyNutrients } = useSelector(
     (state) => state.tracker
   );
@@ -88,59 +84,51 @@ function DeleteIntakeModal() {
     }
   }, [deleteIntakeData]);
   return (
-    <View style={styles.wrapper}>
-      <Modal
-        isVisible={isDeleteIntakeModalVisible}
-        setIsVisible={setIsDeleteIntakeModalVisible}
-        content={
-          <View style={styles.modalWrapper}>
-            <View style={styles.modalContainer}>
-              {isDeleteIntakeLoading && <CircleLoader />}
-              {!isDeleteIntakeLoading && !isDeleteIntakeError && (
-                <>
-                  <Title2 style={styles.text}>
-                    Are you sure you want to delete this intake?
-                  </Title2>
-                  <View style={styles.spacer} />
-                  <Body style={styles.text}>
-                    This action cannot be reversed and will permanently delete
-                    this intake.
-                  </Body>
-                  <View style={styles.spacer} />
-                  <View style={styles.spacer} />
-                  <Button
-                    style={styles.btn}
-                    variant={BTN_VARIANTS.tertiary}
-                    onPress={handleDelete}>
-                    Confirm
-                  </Button>
-                  <View style={styles.smallSpacer} />
-                  <Button
-                    style={styles.btn}
-                    variant={BTN_VARIANTS.outlined}
-                    onPress={handleCancel}>
-                    Cancel
-                  </Button>
-                </>
-              )}
-              {!isDeleteIntakeLoading && isDeleteIntakeError && (
-                <>
-                  <Title2 style={styles.errorMsg}>
-                    An error occured in trying to delete intake
-                  </Title2>
-                  <View style={styles.spacer} />
-                  <Button
-                    style={styles.btn}
-                    variant={BTN_VARIANTS.outlined}
-                    onPress={handleCancel}>
-                    Cancel
-                  </Button>
-                </>
-              )}
-            </View>
-          </View>
-        }
-      />
+    <View style={styles.modalWrapper}>
+      <View style={styles.modalContainer}>
+        {isDeleteIntakeLoading && <CircleLoader />}
+        {!isDeleteIntakeLoading && !isDeleteIntakeError && (
+          <>
+            <Title2 style={styles.text}>
+              Are you sure you want to delete this intake?
+            </Title2>
+            <View style={styles.spacer} />
+            <Body style={styles.text}>
+              This action cannot be reversed and will permanently delete this
+              intake.
+            </Body>
+            <View style={styles.spacer} />
+            <View style={styles.spacer} />
+            <Button
+              style={styles.btn}
+              variant={BTN_VARIANTS.tertiary}
+              onPress={handleDelete}>
+              Confirm
+            </Button>
+            <View style={styles.smallSpacer} />
+            <Button
+              style={styles.btn}
+              variant={BTN_VARIANTS.outlined}
+              onPress={handleCancel}>
+              Cancel
+            </Button>
+          </>
+        )}
+        {!isDeleteIntakeLoading && isDeleteIntakeError && (
+          <>
+            <Title2 style={styles.errorMsg}>
+              An error occured in trying to delete intake
+            </Title2>
+            <View style={styles.spacer} />
+            <Button
+              style={styles.btn}
+              variant={BTN_VARIANTS.outlined}
+              onPress={handleCancel}>
+              Cancel
+            </Button>
+          </>
+        )}
+      </View>
     </View>
   );
 }

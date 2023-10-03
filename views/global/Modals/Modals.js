@@ -1,24 +1,42 @@
 import { View } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 // Layouts
 import { DeleteIntakeModal, ProgressInfoModal } from "@app/views/layouts";
+
+// Components
+import Modal from "@app/views/components/Modal";
 
 import styles from "./styles";
 function Modals() {
   // Store State
   const { isDeleteIntakeModalVisible, isProgressInfoModalVisible } =
     useSelector((state) => state.ui);
-  const isVisible = isDeleteIntakeModalVisible || isProgressInfoModalVisible;
+  const [isVisible, setIsVisible] = useState(
+    isDeleteIntakeModalVisible || isProgressInfoModalVisible
+  );
 
-  if (!isVisible) return;
-
-  // TODO OPTIMIZE THIS BY MOVING THE MODAL COMPONENT HERE
+  useEffect(() => {
+    if (isDeleteIntakeModalVisible || isProgressInfoModalVisible) {
+      setIsVisible(true);
+    }
+    if (!isDeleteIntakeModalVisible && !isProgressInfoModalVisible) {
+      setIsVisible(false);
+    }
+  }, [isDeleteIntakeModalVisible, isProgressInfoModalVisible]);
   return (
     <View style={styles.wrapper}>
-      <DeleteIntakeModal />
-      <ProgressInfoModal />
+      <Modal
+        isVisible={isVisible}
+        setIsVisible={setIsVisible}
+        content={
+          <>
+            {isDeleteIntakeModalVisible && <DeleteIntakeModal />}
+            {isProgressInfoModalVisible && <ProgressInfoModal />}
+          </>
+        }
+      />
     </View>
   );
 }
