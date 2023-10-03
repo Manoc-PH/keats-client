@@ -7,7 +7,7 @@ import { styles } from "./styles";
 export default function CircleLoader() {
   return (
     <View style={styles.wrapper}>
-      <ActivityIndicator size='small' color={themeColors.primary} />
+      <ActivityIndicator size='large' color={themeColors.primary} />
     </View>
   );
 }

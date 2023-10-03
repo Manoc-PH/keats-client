@@ -1,5 +1,5 @@
 import { View, SafeAreaView } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 
 // Store
@@ -21,8 +21,6 @@ import { styles } from "./styles";
 export default function IntakeDetailsHeader() {
   // Hooks
   const navigation = useNavigation();
-  // Store State
-  const { selectedIntake } = useSelector((state) => state.tracker);
 
   // Store Actions
   const {
