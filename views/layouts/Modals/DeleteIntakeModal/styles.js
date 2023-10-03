@@ -14,12 +14,14 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   modalContainer: {
-    borderRadius: RADIUS.Regular,
-    padding: SPACING.Regular,
+    borderRadius: RADIUS.Large,
+    padding: SPACING.Large,
     backgroundColor: themeColors.background,
+    alignItems: "center",
   },
-  spacer: {
-    paddingBottom: SPACING.Regular,
-  },
+  spacer: { paddingBottom: SPACING.Large },
+  smallSpacer: { paddingBottom: SPACING.Regular },
+  text: { textAlign: "center" },
+  btn: { width: "100%" },
 });
 export default styles;

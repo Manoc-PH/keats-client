@@ -11,9 +11,12 @@ import { actions } from "@app/core/store";
 // Hooks
 import { useDeleteIntake } from "@app/core/hooks/api";
 
+// Components
+import { Body, Button, Title2 } from "@app/views/components";
+
 // styles
 import styles from "./styles";
-import { Body, Title3 } from "@app/views/components";
+import { BTN_VARIANTS } from "@app/common/constants/styles";
 
 function DeleteIntakeModal() {
   // Store State
@@ -29,7 +32,9 @@ function DeleteIntakeModal() {
   const { deleteIntake, deleteIntakeData, isDeleteIntakeLoading } =
     useDeleteIntake();
 
-  deleteIntake;
+  function handleCancel() {
+    setIsDeleteIntakeModalVisible(false);
+  }
   return (
     <View style={styles.wrapper}>
       <Modal
@@ -38,12 +43,26 @@ function DeleteIntakeModal() {
         content={
           <View style={styles.modalWrapper}>
             <View style={styles.modalContainer}>
-              <Title3>Are you sure you want to delete this intake?</Title3>
+              <Title2 style={styles.text}>
+                Are you sure you want to delete this intake?
+              </Title2>
               <View style={styles.spacer} />
-              <Body>
+              <Body style={styles.text}>
                 This action cannot be reversed and will permanently delete this
                 intake.
               </Body>
+              <View style={styles.spacer} />
+              <View style={styles.spacer} />
+              <Button style={styles.btn} variant={BTN_VARIANTS.tertiary}>
+                Confirm
+              </Button>
+              <View style={styles.smallSpacer} />
+              <Button
+                style={styles.btn}
+                variant={BTN_VARIANTS.outlined}
+                onPress={handleCancel}>
+                Cancel
+              </Button>
             </View>
           </View>
         }
