@@ -22,7 +22,7 @@ import { BTN_VARIANTS } from "@app/common/constants/styles";
 function DeleteIntakeModal() {
   // Store State
   const { isDeleteIntakeModalVisible } = useSelector((state) => state.ui);
-  const { selectedIntake, dailyIntakes } = useSelector(
+  const { selectedIntake, dailyIntakes, dailyNutrients } = useSelector(
     (state) => state.tracker
   );
 
@@ -31,16 +31,19 @@ function DeleteIntakeModal() {
     setIsDeleteIntakeModalVisible: sid,
     setDailyIntakes: sd,
     setSelectedIntake: ssi,
+    setDailyNutrients: sdn,
   } = actions;
   const dispatch = useDispatch();
   const setIsDeleteIntakeModalVisible = (value) => dispatch(sid(value));
   const setDailyIntakes = (value) => dispatch(sd(value));
   const setSelectedIntake = (value) => dispatch(ssi(value));
+  const setDailyNutrients = (value) => dispatch(sdn(value));
 
   // Hooks
   const {
     deleteIntake,
     deleteIntakeData,
+    isDeleteIntakeError,
     isDeleteIntakeLoading,
     isDeleteIntakeSuccess,
   } = useDeleteIntake();
@@ -53,7 +56,18 @@ function DeleteIntakeModal() {
     deleteIntake({ intake_id: selectedIntake?.id });
   }
   function handleSuccessfulDelete() {
-    // TODO HANDLE DAILY NUTRIENT UPDATE
+    const newData = {
+      ...dailyNutrients,
+      calories:
+        dailyNutrients.calories +
+        deleteIntakeData.deleted_daily_nutrients.calories,
+      protein:
+        dailyNutrients.protein +
+        deleteIntakeData.deleted_daily_nutrients.protein,
+      carbs:
+        dailyNutrients.carbs + deleteIntakeData.deleted_daily_nutrients.carbs,
+      fats: dailyNutrients.fats + deleteIntakeData.deleted_daily_nutrients.fats,
+    };
     const newIntakes = [];
     if (dailyIntakes && dailyIntakes?.length > 0) {
       dailyIntakes.forEach((item) => {
@@ -62,7 +76,9 @@ function DeleteIntakeModal() {
       newIntakes;
     }
     setDailyIntakes(newIntakes);
+    setDailyNutrients(newData);
     setSelectedIntake();
+    setIsDeleteIntakeModalVisible(false);
     navigation.navigate("Home", { screen: "HomeDefault" });
   }
 
@@ -80,7 +96,7 @@ function DeleteIntakeModal() {
           <View style={styles.modalWrapper}>
             <View style={styles.modalContainer}>
               {isDeleteIntakeLoading && <CircleLoader />}
-              {!isDeleteIntakeLoading && (
+              {!isDeleteIntakeLoading && !isDeleteIntakeError && (
                 <>
                   <Title2 style={styles.text}>
                     Are you sure you want to delete this intake?
@@ -99,6 +115,20 @@ function DeleteIntakeModal() {
                     Confirm
                   </Button>
                   <View style={styles.smallSpacer} />
+                  <Button
+                    style={styles.btn}
+                    variant={BTN_VARIANTS.outlined}
+                    onPress={handleCancel}>
+                    Cancel
+                  </Button>
+                </>
+              )}
+              {!isDeleteIntakeLoading && isDeleteIntakeError && (
+                <>
+                  <Title2 style={styles.errorMsg}>
+                    An error occured in trying to delete intake
+                  </Title2>
+                  <View style={styles.spacer} />
                   <Button
                     style={styles.btn}
                     variant={BTN_VARIANTS.outlined}

@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
   spacer: { paddingBottom: SPACING.Large },
   smallSpacer: { paddingBottom: SPACING.Regular },
   text: { textAlign: "center" },
+  errorMsg: { textAlign: "center", color: themeColors.red },
   btn: { width: "100%" },
 });
 export default styles;
