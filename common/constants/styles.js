@@ -47,7 +47,7 @@ export const SPACING = {
 };
 export const ZINDEX = {
   basicComponent: 1,
-  modal: 2,
+  modal: 11,
   header: 10,
 };
 

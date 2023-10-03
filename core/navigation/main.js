@@ -15,6 +15,7 @@ import { authAxios } from "@app/common/utils/axios";
 import { Splash } from "@app/views/layouts";
 import AuthenticatedScreens from "./authenticated";
 import UnauthenticatedScreens from "./unauthenticated";
+import { Modals } from "@app/views/global";
 
 export default function MainNavigator() {
   // Store State
@@ -72,6 +73,7 @@ export default function MainNavigator() {
       }}>
       <NavigationContainer key={isLoggedIn}>
         {isReadCredentialsLoading && <Splash />}
+        {!isReadCredentialsLoading && <Modals />}
         {!isReadCredentialsLoading && isLoggedIn && <AuthenticatedScreens />}
         {!isReadCredentialsLoading && !isLoggedIn && <UnauthenticatedScreens />}
       </NavigationContainer>
