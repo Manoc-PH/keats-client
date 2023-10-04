@@ -7,14 +7,16 @@ const horizontalPadding = SPACING.Medium * 2;
 
 export const styles = StyleSheet.create({
   wrapper: { width: "100%" },
-  headerWrapper: {
+  headerWrapper: { flexDirection: "row", justifyContent: "space-between" },
+  itemSpace: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: (screenWidth - horizontalPadding) / 7,
+  },
+  dateContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
   },
-  itemSpace: { width: (screenWidth - horizontalPadding) / 7 },
-  headerContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-  },
   text: { textAlign: "center", color: themeColors.secondary },
+  barContainer: { paddingTop: SPACING.Regular },
 });
