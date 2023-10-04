@@ -11,3 +11,4 @@ export const INTAKE_SUMMARY_TYPES = {
   biweekly: "biweekly",
   monthly: "monthly",
 };
+export const WEEK_DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];

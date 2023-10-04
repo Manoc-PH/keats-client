@@ -2,6 +2,7 @@
 export { default as CalorieSummaryBar } from "./SummaryBars/CalorieSummaryBar";
 export { default as MacroSummaryBars } from "./SummaryBars/MacroSummaryBars";
 export { default as NutrientSummaryBar } from "./SummaryBars/NutrientSummaryBar";
+export { default as IntakeSummaryBar } from "./SummaryBars/IntakeSummaryBar";
 
 // Home
 export { default as Loader } from "./ScreenLayouts/Loader";

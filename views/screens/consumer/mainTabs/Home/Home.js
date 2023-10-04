@@ -9,15 +9,16 @@ import { actions } from "@app/core/store";
 import { useGetDailyNutrients, useGetIntakes } from "@app/core/hooks/api";
 // Constants
 import { BTN_VARIANTS, SIZES, SPACING } from "@app/common/constants/styles";
+import { INTAKE_SUMMARY_TYPES } from "@app/common/constants/options";
+
 // Layouts
 import {
   MacroSummary,
   CalorieSummary,
-  VitalsDietCard,
   CalorieGoalProgress,
-  Loader,
   ScrollPage,
   PageDivider,
+  IntakeSummaryBar,
 } from "@app/views/layouts";
 // Components
 import { Button, SubHeadline2, SwitchButton } from "@app/views/components";
@@ -123,6 +124,8 @@ export default function Home() {
             <View style={styles.spacer} />
             <SubHeadline2>How much I've tracked</SubHeadline2>
             <View style={styles.spacerSubheadline} />
+            <IntakeSummaryBar type={INTAKE_SUMMARY_TYPES.weekly} />
+            <View style={styles.spacer} />
             <CalorieGoalProgress />
           </View>
           <PageDivider />
