@@ -1,10 +1,13 @@
-import { SPACING } from "@app/common/constants/styles";
-import themeColors from "@app/common/theme";
-import { LinearGradient } from "expo-linear-gradient";
 import * as React from "react";
-import { useState } from "react";
-import { PixelRatio, StyleSheet, Text, View } from "react-native";
-import Svg, { G, Circle, Path, Defs } from "react-native-svg";
+import { LinearGradient } from "expo-linear-gradient";
+import { StyleSheet, View } from "react-native";
+import Svg, { G, Circle } from "react-native-svg";
+
+// Constants
+import { SPACING } from "@app/common/constants/styles";
+
+// Themes
+import themeColors from "@app/common/theme";
 /* SVGR has dropped some elements not supported by react-native-svg: filter */
 
 function CircularProgressBar(props) {
