@@ -71,6 +71,8 @@ export default function TextSkeleton(props) {
   const localStyles = StyleSheet.create({
     wrapper: {
       height: (fontSize || FONT_SIZES.Regular) * PixelRatio.getFontScale(),
+      justifyContent: "center",
+      alignItems: "center",
     },
     container: {
       height: "100%",

@@ -4,9 +4,13 @@ import moment from "moment";
 
 // Constants
 import { INTAKE_SUMMARY_TYPES, WEEK_DAYS } from "@app/common/constants/options";
+import { FONT_SIZES } from "@app/common/constants/styles";
+
+// Hooks
+import { useGetDailyNutrientsList } from "@app/core/hooks/api";
 
 // Components
-import { CircleBar, SubHeadline2 } from "@app/views/components";
+import { CircleBar, SubHeadline2, TextSkeleton } from "@app/views/components";
 
 import { styles } from "./styles";
 export default function IntakeSummaryBar(props) {
@@ -15,7 +19,14 @@ export default function IntakeSummaryBar(props) {
 
   // Local states
   const [weekDates, setWeekDates] = useState();
+  const [nutrientSummary, setNutrientSummary] = useState();
 
+  // Hooks
+  const {
+    getDailyNutrientsList,
+    getDailyNutrientsListData,
+    isGetDailyNutrientsListLoading,
+  } = useGetDailyNutrientsList();
   // Functions
   function generateDatesForWeek() {
     const today = moment();
@@ -44,23 +55,45 @@ export default function IntakeSummaryBar(props) {
       <View style={styles.headerWrapper}>
         {WEEK_DAYS.map((item) => (
           <View key={item} style={styles.itemSpace}>
-            <SubHeadline2 style={styles.text}>{item}</SubHeadline2>
+            {isGetDailyNutrientsListLoading || !nutrientSummary ? (
+              <TextSkeleton
+                style={{
+                  width: styles.itemSpace.width * 0.7,
+                  height: FONT_SIZES.Tiny,
+                }}
+                fontSize={FONT_SIZES.Small}></TextSkeleton>
+            ) : (
+              <SubHeadline2 style={styles.text}>{item}</SubHeadline2>
+            )}
           </View>
         ))}
       </View>
-      <View style={styles.dateContainer}>
-        {type === INTAKE_SUMMARY_TYPES.weekly &&
-          weekDates &&
-          weekDates.map((date) => (
-            <View
-              key={date}
-              style={{ ...styles.barContainer, ...styles.itemSpace }}>
-              <CircleBar progress={0} size={styles.itemSpace.width * 0.7}>
-                <SubHeadline2>{moment(date).format("DD")}</SubHeadline2>
-              </CircleBar>
-            </View>
-          ))}
-      </View>
+      {type === INTAKE_SUMMARY_TYPES.weekly && (
+        <View style={styles.dateContainer}>
+          {weekDates &&
+            weekDates.map((date) => (
+              <View
+                key={date}
+                style={{ ...styles.barContainer, ...styles.itemSpace }}>
+                {(isGetDailyNutrientsListLoading || !nutrientSummary) && (
+                  <CircleBar progress={0} size={styles.itemSpace.width * 0.7}>
+                    <TextSkeleton
+                      style={{
+                        width: styles.itemSpace.width * 0.35,
+                        height: FONT_SIZES.Tiny * 0.7,
+                      }}
+                      fontSize={FONT_SIZES.Small}></TextSkeleton>
+                  </CircleBar>
+                )}
+                {nutrientSummary && (
+                  <CircleBar progress={0} size={styles.itemSpace.width * 0.7}>
+                    <SubHeadline2>{moment(date).format("DD")}</SubHeadline2>
+                  </CircleBar>
+                )}
+              </View>
+            ))}
+        </View>
+      )}
     </View>
   );
 }

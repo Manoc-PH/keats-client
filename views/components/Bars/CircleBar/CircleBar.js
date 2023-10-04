@@ -24,6 +24,8 @@ function CircleBar(props) {
     },
     container: {
       position: "absolute",
+      alignItems: "center",
+      justifyContent: "center",
     },
   });
   return (
