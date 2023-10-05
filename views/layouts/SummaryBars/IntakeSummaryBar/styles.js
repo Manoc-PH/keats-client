@@ -4,6 +4,8 @@ import { StyleSheet, Dimensions } from "react-native";
 
 const screenWidth = Dimensions.get("window").width;
 const horizontalPadding = SPACING.Medium * 2;
+const width = (screenWidth - horizontalPadding) / 7;
+const size = width * 0.7;
 
 export const styles = StyleSheet.create({
   wrapper: { width: "100%" },
@@ -11,7 +13,7 @@ export const styles = StyleSheet.create({
   itemSpace: {
     justifyContent: "center",
     alignItems: "center",
-    width: (screenWidth - horizontalPadding) / 7,
+    width: width,
   },
   dateContainer: {
     flexDirection: "row",
@@ -19,4 +21,12 @@ export const styles = StyleSheet.create({
   },
   text: { textAlign: "center", color: themeColors.secondary },
   barContainer: { paddingTop: SPACING.Regular },
+  checkContainer: {
+    borderRadius: width,
+    height: size,
+    width: size,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: themeColors.primary,
+  },
 });
