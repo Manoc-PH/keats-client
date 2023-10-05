@@ -6,17 +6,12 @@ import moment from "moment";
 import { INTAKE_SUMMARY_TYPES, WEEK_DAYS } from "@app/common/constants/options";
 import { FONT_SIZES } from "@app/common/constants/styles";
 
-// Theme
-import themeColors from "@app/common/theme";
-
 // Hooks
 import { useGetDailyNutrientsList } from "@app/core/hooks/api";
 
 // Components
-import { CircleBar, SubHeadline2, TextSkeleton } from "@app/views/components";
-
-// Assets
-import { CheckIcon } from "@app/assets/icons";
+import { SubHeadline2, TextSkeleton } from "@app/views/components";
+import IntakeDateSummary from "./IntakeDateSummary";
 
 import { styles } from "./styles";
 export default function IntakeSummaryBar(props) {
@@ -90,50 +85,13 @@ export default function IntakeSummaryBar(props) {
         <View style={styles.dateContainer}>
           {weekDates &&
             weekDates.map((date) => {
-              const size = styles.itemSpace.width * 0.7;
               return (
-                <View
+                <IntakeDateSummary
                   key={date}
-                  style={{ ...styles.barContainer, ...styles.itemSpace }}>
-                  {(isGetDailyNutrientsListLoading || !nutrientSummary) && (
-                    <CircleBar progress={0} size={size}>
-                      <TextSkeleton
-                        style={{
-                          width: styles.itemSpace.width * 0.35,
-                          height: FONT_SIZES.Tiny * 0.7,
-                        }}
-                        fontSize={FONT_SIZES.Small}></TextSkeleton>
-                    </CircleBar>
-                  )}
-                  {nutrientSummary && (
-                    <>
-                      {(nutrientSummary[date]?.calories /
-                        nutrientSummary[date]?.max_calories) *
-                        100 >
-                        90 &&
-                      (nutrientSummary[date]?.calories /
-                        nutrientSummary[date]?.max_calories) *
-                        100 <
-                        110 ? (
-                        <View style={styles.checkContainer}>
-                          <CheckIcon color={themeColors.background} />
-                        </View>
-                      ) : (
-                        <CircleBar
-                          progress={
-                            (nutrientSummary[date]?.calories /
-                              nutrientSummary[date]?.max_calories) *
-                              100 || 0
-                          }
-                          size={size}>
-                          <SubHeadline2>
-                            {moment(date).format("DD")}
-                          </SubHeadline2>
-                        </CircleBar>
-                      )}
-                    </>
-                  )}
-                </View>
+                  nutrientSummary={nutrientSummary[date]}
+                  isLoading={isGetDailyNutrientsListLoading}
+                  date={date}
+                />
               );
             })}
         </View>
