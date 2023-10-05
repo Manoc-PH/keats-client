@@ -121,14 +121,15 @@ export default function Home() {
                 <MacroSummary dailyNutrients={dailyNutrients} />
               </>
             )}
-            <View style={styles.spacer} />
+          </View>
+          <PageDivider />
+          <View style={styles.container}>
             <SubHeadline2>How much I've tracked</SubHeadline2>
             <View style={styles.spacerSubheadline} />
             <IntakeSummaryBar type={INTAKE_SUMMARY_TYPES.weekly} />
             <View style={styles.spacer} />
             <CalorieGoalProgress />
           </View>
-          <PageDivider />
         </View>
       </ScrollPage>
       {/* MODALS */}

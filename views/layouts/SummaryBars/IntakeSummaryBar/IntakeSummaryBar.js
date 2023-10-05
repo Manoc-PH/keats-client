@@ -88,7 +88,9 @@ export default function IntakeSummaryBar(props) {
               return (
                 <IntakeDateSummary
                   key={date}
-                  nutrientSummary={nutrientSummary[date]}
+                  nutrientSummary={
+                    nutrientSummary ? nutrientSummary[date] : null
+                  }
                   isLoading={isGetDailyNutrientsListLoading}
                   date={date}
                 />
