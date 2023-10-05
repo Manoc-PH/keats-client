@@ -24,8 +24,19 @@ export default function Insights() {
   // Local States
   const [currentDate, setCurrentDate] = useState(moment().format("YYYY-MM-DD"));
 
-  // UseEffects
-  useEffect(() => {}, []);
+  // Functions
+  function handleBack() {
+    if (currentDate) {
+      setCurrentDate(
+        moment(currentDate).startOf("M").subtract(1, "d").startOf("M")
+      );
+    } else setCurrentDate(moment().startOf("M").subtract(1, "d").startOf("M"));
+  }
+  function handleForward() {
+    if (currentDate) {
+      setCurrentDate(moment(currentDate).endOf("M").add(1, "d").endOf("M"));
+    } else setCurrentDate(moment().endOf("M").add(1, "d").endOf("M"));
+  }
   return (
     <ScrollPage>
       <View style={styles.wrapper}>
@@ -48,7 +59,8 @@ export default function Insights() {
                 size={SIZES.Small}
                 style={{ marginRight: SPACING.Small }}
                 variant={BTN_VARIANTS.outlined}
-                color={themeColors.secondary}>
+                color={themeColors.secondary}
+                onPress={handleBack}>
                 <ArrowLeftIcon
                   width={FONT_SIZES.Regular}
                   height={FONT_SIZES.Regular}
@@ -58,7 +70,8 @@ export default function Insights() {
               <Button
                 size={SIZES.Small}
                 variant={BTN_VARIANTS.outlined}
-                color={themeColors.secondary}>
+                color={themeColors.secondary}
+                onPress={handleForward}>
                 <ArrowRightIcon
                   width={FONT_SIZES.Regular}
                   height={FONT_SIZES.Regular}

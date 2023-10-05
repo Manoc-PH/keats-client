@@ -42,17 +42,18 @@ export default function IntakeSummaryBar(props) {
     }
     return datesThisWeek;
   }
-  function generateMonthWeeks(year, month) {
-    const firstDayOfMonth = moment({ year, month, day: 1 });
+  function generateMonthWeeks(date) {
+    const inputDate = moment(date);
+    const dayEnd = inputDate.clone().endOf("M").endOf("week");
+    const dayStart = inputDate.clone().startOf("M").startOf("week");
+    const day = dayStart.clone().subtract(1, "day");
     const weeks = [];
-    let currentDay = firstDayOfMonth.clone().startOf("week");
-    while (currentDay.month() === month && currentDay.year() === year) {
-      const week = [];
+    while (day.isBefore(dayEnd, "day")) {
+      const weekDays = [];
       for (let i = 0; i < 7; i++) {
-        week.push(currentDay.format("YYYY-MM-DD"));
-        currentDay.add(1, "day");
+        weekDays.push(day.add(1, "day").clone().format("YYYY-MM-DD"));
       }
-      weeks.push(week);
+      weeks.push(weekDays);
     }
     return weeks;
   }
@@ -66,14 +67,7 @@ export default function IntakeSummaryBar(props) {
 
   useEffect(() => {
     if (type === INTAKE_SUMMARY_TYPES.monthly) {
-      // const initialData = moment().startOf("M").format("YYYY-MM-DD");
-      // console.log(initialData);
-      // const another = moment().startOf("M").add(1, "M");
-      // console.log(another.format("YYYY-MM-DD"));
-      const monthWeeks = generateMonthWeeks(
-        moment(monthDate).get("year") || 2023,
-        moment(monthDate).get("M") || 10
-      );
+      const monthWeeks = generateMonthWeeks(monthDate);
       setMonthWeekDates(monthWeeks);
       getDailyNutrientsList({
         start_date: moment(monthWeeks[0][0]).toISOString(),
