@@ -68,7 +68,6 @@ function CircleBar(props) {
             strokeDashoffset={
               circumference -
               (circumference *
-                70 *
                 ((progress > 100 && progress < 151
                   ? progress - 100
                   : progress > 151 && 100) || 0)) /
@@ -87,7 +86,6 @@ function CircleBar(props) {
             strokeDashoffset={
               circumference -
               (circumference *
-                70 *
                 ((progress > 150 && progress < 201
                   ? progress - 150
                   : progress > 200 && 100) || 0)) /
