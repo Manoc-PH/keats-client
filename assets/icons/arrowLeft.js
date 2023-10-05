@@ -5,13 +5,13 @@ import Svg, { Path } from "react-native-svg";
 export default function ArrowLeftIcon(props) {
   return (
     <Svg
-      width={props.width || 9}
-      height={props.height || 16}
-      viewBox='0 0 9 16'
+      width={props.width || 7}
+      height={props.height || 12}
+      viewBox='0 0 7 12'
       fill='none'
       {...props}>
       <Path
-        d='M8 15L1.57 9.237c-.76-.68-.76-1.794 0-2.474L8 1'
+        d='M5.744 11L1.216 6.884a1.174 1.174 0 010-1.768L5.744 1'
         stroke={props.color || themeColors.secondary}
         strokeWidth={1.5}
         strokeMiterlimit={10}

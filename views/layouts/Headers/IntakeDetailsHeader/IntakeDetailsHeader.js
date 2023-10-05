@@ -5,7 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 // Store
 import { actions } from "@app/core/store";
 // Constants
-import { BTN_VARIANTS, SIZES } from "@app/common/constants/styles";
+import { BTN_VARIANTS, FONT_SIZES, SIZES } from "@app/common/constants/styles";
 
 // Theme
 import themeColors from "@app/common/theme";
@@ -59,7 +59,10 @@ export default function IntakeDetailsHeader() {
             variant={BTN_VARIANTS.transparent}
             size={SIZES.Large}
             onPress={handleBack}>
-            <ArrowLeftIcon />
+            <ArrowLeftIcon
+              height={FONT_SIZES.Regular}
+              width={FONT_SIZES.Regular}
+            />
           </Button>
         </View>
         <Button

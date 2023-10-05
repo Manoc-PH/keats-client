@@ -135,8 +135,8 @@ export default function IntakeSummaryBar(props) {
       {type === INTAKE_SUMMARY_TYPES.monthly && (
         <>
           {monthWeekDates &&
-            monthWeekDates.map((week) => (
-              <View style={styles.dateContainer}>
+            monthWeekDates.map((week, i) => (
+              <View key={i} style={styles.dateContainer}>
                 {week &&
                   week.map((date) => {
                     return (
