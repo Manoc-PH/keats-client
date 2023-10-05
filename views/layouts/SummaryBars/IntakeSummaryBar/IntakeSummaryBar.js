@@ -32,24 +32,36 @@ export default function IntakeSummaryBar(props) {
     const today = moment();
     const startOfWeek = today.clone().startOf("week");
     const endOfWeek = today.clone().endOf("week");
-
     const datesThisWeek = [];
     const currentDate = startOfWeek.clone();
-
     while (currentDate.isSameOrBefore(endOfWeek, "day")) {
       datesThisWeek.push(currentDate.format("YYYY-MM-DD"));
       currentDate.add(1, "day");
     }
-
     return datesThisWeek;
+  }
+  function formatNutrientSummary(data) {
+    const summary = {};
+    data.forEach((item) => {
+      summary[moment(item?.date_created).format("YYYY-MM-DD")] = item;
+    });
+    setNutrientSummary(summary);
   }
 
   useEffect(() => {
     if (type === INTAKE_SUMMARY_TYPES.weekly) {
       const weeks = generateDatesForWeek();
       setWeekDates(weeks);
+      getDailyNutrientsList({
+        start_date: moment(weeks[0]).toISOString(),
+        end_date: moment(weeks[weeks.length - 1]).toISOString(),
+      });
     }
   }, []);
+  useEffect(() => {
+    if (getDailyNutrientsListData)
+      formatNutrientSummary(getDailyNutrientsListData);
+  }, [getDailyNutrientsListData]);
   return (
     <View style={styles.wrapper}>
       <View style={styles.headerWrapper}>
@@ -86,7 +98,13 @@ export default function IntakeSummaryBar(props) {
                   </CircleBar>
                 )}
                 {nutrientSummary && (
-                  <CircleBar progress={0} size={styles.itemSpace.width * 0.7}>
+                  <CircleBar
+                    progress={
+                      (nutrientSummary[date]?.calories /
+                        nutrientSummary[date]?.max_calories) *
+                        100 || 0
+                    }
+                    size={styles.itemSpace.width * 0.7}>
                     <SubHeadline2>{moment(date).format("DD")}</SubHeadline2>
                   </CircleBar>
                 )}
