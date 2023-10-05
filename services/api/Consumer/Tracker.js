@@ -10,7 +10,6 @@ export const GetDailyNutrients = async () => {
 };
 
 export const GetDailyNutrientsList = async ({ start_date, end_date }) => {
-  console.log(start_date, end_date);
   const response = await authAxios.get(
     TRACKER_ENDPOINTS.GET_DAILY_NUTRIENTS_LIST,
     {

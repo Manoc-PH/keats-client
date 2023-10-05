@@ -16,10 +16,11 @@ import IntakeDateSummary from "./IntakeDateSummary";
 import { styles } from "./styles";
 export default function IntakeSummaryBar(props) {
   // Destructure
-  const { type } = props;
+  const { type, monthDate } = props;
 
   // Local states
   const [weekDates, setWeekDates] = useState();
+  const [monthWeekDates, setMonthWeekDates] = useState();
   const [nutrientSummary, setNutrientSummary] = useState();
 
   // Hooks
@@ -41,6 +42,20 @@ export default function IntakeSummaryBar(props) {
     }
     return datesThisWeek;
   }
+  function generateMonthWeeks(year, month) {
+    const firstDayOfMonth = moment({ year, month, day: 1 });
+    const weeks = [];
+    let currentDay = firstDayOfMonth.clone().startOf("week");
+    while (currentDay.month() === month && currentDay.year() === year) {
+      const week = [];
+      for (let i = 0; i < 7; i++) {
+        week.push(currentDay.format("YYYY-MM-DD"));
+        currentDay.add(1, "day");
+      }
+      weeks.push(week);
+    }
+    return weeks;
+  }
   function formatNutrientSummary(data) {
     const summary = {};
     data.forEach((item) => {
@@ -50,6 +65,25 @@ export default function IntakeSummaryBar(props) {
   }
 
   useEffect(() => {
+    if (type === INTAKE_SUMMARY_TYPES.monthly) {
+      // const initialData = moment().startOf("M").format("YYYY-MM-DD");
+      // console.log(initialData);
+      // const another = moment().startOf("M").add(1, "M");
+      // console.log(another.format("YYYY-MM-DD"));
+      const monthWeeks = generateMonthWeeks(
+        moment(monthDate).get("year") || 2023,
+        moment(monthDate).get("M") || 10
+      );
+      setMonthWeekDates(monthWeeks);
+      getDailyNutrientsList({
+        start_date: moment(monthWeeks[0][0]).toISOString(),
+        end_date: moment(
+          monthWeeks[monthWeeks.length - 1][
+            monthWeeks[monthWeeks.length - 1].length - 1
+          ]
+        ).toISOString(),
+      });
+    }
     if (type === INTAKE_SUMMARY_TYPES.weekly) {
       const weeks = generateDatesForWeek();
       setWeekDates(weeks);
@@ -58,7 +92,7 @@ export default function IntakeSummaryBar(props) {
         end_date: moment(weeks[weeks.length - 1]).toISOString(),
       });
     }
-  }, []);
+  }, [monthDate]);
   useEffect(() => {
     if (getDailyNutrientsListData)
       formatNutrientSummary(getDailyNutrientsListData);
@@ -97,6 +131,28 @@ export default function IntakeSummaryBar(props) {
               );
             })}
         </View>
+      )}
+      {type === INTAKE_SUMMARY_TYPES.monthly && (
+        <>
+          {monthWeekDates &&
+            monthWeekDates.map((week) => (
+              <View style={styles.dateContainer}>
+                {week &&
+                  week.map((date) => {
+                    return (
+                      <IntakeDateSummary
+                        key={date}
+                        nutrientSummary={
+                          nutrientSummary ? nutrientSummary[date] : null
+                        }
+                        isLoading={isGetDailyNutrientsListLoading}
+                        date={date}
+                      />
+                    );
+                  })}
+              </View>
+            ))}
+        </>
       )}
     </View>
   );
