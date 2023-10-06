@@ -30,3 +30,4 @@ export { default as CloseIcon } from "./close";
 
 //
 export { default as DeleteIcon } from "./delete";
+export { default as CheckIcon } from "./check";

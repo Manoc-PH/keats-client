@@ -1,8 +1,13 @@
 import { View } from "react-native";
 
-import { Button, Title2 } from "@app/views/components";
+import { Button } from "@app/views/components";
 
+// Constants
+import { BTN_VARIANTS } from "@app/common/constants/styles";
+
+// Layouts
 import CalorieGraph from "@app/views/layouts/Graphs/CalorieGraph";
+
 import { styles } from "./styles";
 
 export default function CalorieGoalProgress() {
@@ -11,7 +16,9 @@ export default function CalorieGoalProgress() {
     <View style={styles.wrapper}>
       <CalorieGraph />
       <View style={styles.spacer} />
-      <Button style={styles.btn}>Know More</Button>
+      <Button variant={BTN_VARIANTS.outlined} style={styles.btn}>
+        Know More
+      </Button>
     </View>
   );
 }

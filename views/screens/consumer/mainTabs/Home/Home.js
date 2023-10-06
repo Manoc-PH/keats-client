@@ -9,15 +9,16 @@ import { actions } from "@app/core/store";
 import { useGetDailyNutrients, useGetIntakes } from "@app/core/hooks/api";
 // Constants
 import { BTN_VARIANTS, SIZES, SPACING } from "@app/common/constants/styles";
+import { INTAKE_SUMMARY_TYPES } from "@app/common/constants/options";
+
 // Layouts
 import {
   MacroSummary,
   CalorieSummary,
-  VitalsDietCard,
   CalorieGoalProgress,
-  Loader,
   ScrollPage,
   PageDivider,
+  IntakeSummaryBar,
 } from "@app/views/layouts";
 // Components
 import { Button, SubHeadline2, SwitchButton } from "@app/views/components";
@@ -86,49 +87,49 @@ export default function Home() {
     if (isGetIntakesSuccess) setDailyIntakes(getIntakesData);
   }, [getDailyNutrientsData, getIntakesData]);
   return (
-    <>
-      <ScrollPage>
-        <View style={styles.wrapper}>
-          <View style={styles.container}>
-            <CalorieSummary
-              isViewSimple={isViewSimple}
-              dailyNutrients={dailyNutrients}
-            />
-            {isViewSimple && (
-              <Button
-                style={styles.btn}
-                variant={BTN_VARIANTS.outlined}
-                size={SIZES.Large}
-                onPress={() => setIsProgressInfoModalVisible(true)}>
-                ?
-              </Button>
-            )}
-          </View>
-          <PageDivider />
-          <View style={styles.container}>
-            <SwitchButton
-              onValueChange={handleSwitchView}
-              switchWidth={
-                Dimensions.get("window").width - SPACING.Medium - SPACING.Medium
-              }
-              text1={"Simple View"}
-              text2={"Advanced View"}
-            />
-            {!isViewSimple && (
-              <>
-                <View style={styles.spacer} />
-                <MacroSummary dailyNutrients={dailyNutrients} />
-              </>
-            )}
-            <View style={styles.spacer} />
-            <SubHeadline2>How much I've tracked</SubHeadline2>
-            <View style={styles.spacerSubheadline} />
-            <CalorieGoalProgress />
-          </View>
-          <PageDivider />
+    <ScrollPage>
+      <View style={styles.wrapper}>
+        <View style={styles.container}>
+          <CalorieSummary
+            isViewSimple={isViewSimple}
+            dailyNutrients={dailyNutrients}
+          />
+          {isViewSimple && (
+            <Button
+              style={styles.btn}
+              variant={BTN_VARIANTS.outlined}
+              size={SIZES.Large}
+              onPress={() => setIsProgressInfoModalVisible(true)}>
+              ?
+            </Button>
+          )}
         </View>
-      </ScrollPage>
-      {/* MODALS */}
-    </>
+        <PageDivider />
+        <View style={styles.container}>
+          <SwitchButton
+            onValueChange={handleSwitchView}
+            switchWidth={
+              Dimensions.get("window").width - SPACING.Medium - SPACING.Medium
+            }
+            text1={"Simple View"}
+            text2={"Advanced View"}
+          />
+          {!isViewSimple && (
+            <>
+              <View style={styles.spacer} />
+              <MacroSummary dailyNutrients={dailyNutrients} />
+            </>
+          )}
+        </View>
+        <PageDivider />
+        <View style={styles.container}>
+          <SubHeadline2>How much I've tracked</SubHeadline2>
+          <View style={styles.spacerSubheadline} />
+          <IntakeSummaryBar type={INTAKE_SUMMARY_TYPES.weekly} />
+          <View style={styles.spacer} />
+          <CalorieGoalProgress />
+        </View>
+      </View>
+    </ScrollPage>
   );
 }

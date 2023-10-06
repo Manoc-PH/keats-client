@@ -9,9 +9,12 @@ export const GetDailyNutrients = async () => {
   return response?.data;
 };
 
-export const GetDailyNutrientsList = async () => {
+export const GetDailyNutrientsList = async ({ start_date, end_date }) => {
   const response = await authAxios.get(
-    TRACKER_ENDPOINTS.GET_DAILY_NUTRIENTS_LIST
+    TRACKER_ENDPOINTS.GET_DAILY_NUTRIENTS_LIST,
+    {
+      params: { start_date, end_date },
+    }
   );
   return response?.data;
 };
