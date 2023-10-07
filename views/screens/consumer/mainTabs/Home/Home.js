@@ -1,6 +1,7 @@
-import { Dimensions, ScrollView, View } from "react-native";
-import { useEffect, useState } from "react";
+import { Dimensions, View } from "react-native";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
 import moment from "moment";
 
 // Store
@@ -58,11 +59,15 @@ export default function Home() {
     isGetIntakesSuccess,
     // isGetIntakesLoading,
   } = useGetIntakes();
+  const navigation = useNavigation();
 
   // Functions
   function handleSwitchView(value) {
     if (value === 1) setIsViewSimple(true);
     if (value === 2) setIsViewSimple(false);
+  }
+  function openInsightsScreen() {
+    navigation.navigate("Insights");
   }
 
   // Useffects
@@ -120,15 +125,20 @@ export default function Home() {
               <MacroSummary dailyNutrients={dailyNutrients} />
             </>
           )}
-        </View>
-        <PageDivider />
-        <View style={styles.container}>
+          {/* Insights */}
+          <View style={styles.spacer} />
           <SubHeadline2>How much I've tracked</SubHeadline2>
           <View style={styles.spacerSubheadline} />
           <IntakeSummaryBar type={INTAKE_SUMMARY_TYPES.weekly} />
           <View style={styles.spacer} />
           {/* TODO FINISH CALORIE GOAL PROGRESS */}
-          <CalorieGoalProgress />
+          {/* <CalorieGoalProgress /> */}
+          <Button
+            variant={BTN_VARIANTS.outlined}
+            style={styles.wideBtn}
+            onPress={openInsightsScreen}>
+            Know More
+          </Button>
         </View>
       </View>
     </ScrollPage>
