@@ -127,6 +127,7 @@ export default function Home() {
           <View style={styles.spacerSubheadline} />
           <IntakeSummaryBar type={INTAKE_SUMMARY_TYPES.weekly} />
           <View style={styles.spacer} />
+          {/* TODO FINISH CALORIE GOAL PROGRESS */}
           <CalorieGoalProgress />
         </View>
       </View>
