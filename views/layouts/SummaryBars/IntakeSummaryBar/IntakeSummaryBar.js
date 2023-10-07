@@ -66,7 +66,7 @@ export default function IntakeSummaryBar(props) {
   }
 
   useEffect(() => {
-    if (type === INTAKE_SUMMARY_TYPES.monthly) {
+    if (type === INTAKE_SUMMARY_TYPES.monthly && monthDate) {
       const monthWeeks = generateMonthWeeks(monthDate);
       setMonthWeekDates(monthWeeks);
       getDailyNutrientsList({
