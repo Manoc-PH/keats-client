@@ -34,6 +34,7 @@ export default function IntakeDateSummary(props) {
   }, [nutrientSummary]);
   return (
     <View key={date} style={{ ...styles.barContainer, ...styles.itemSpace }}>
+      {/* TODO SET COLOR TO GRAY IF MONTH IS NOT EQUAL TO DATE MONTH */}
       {isLoading && !nutrientSummary && (
         <CircleBar progress={0} size={size}>
           <TextSkeleton

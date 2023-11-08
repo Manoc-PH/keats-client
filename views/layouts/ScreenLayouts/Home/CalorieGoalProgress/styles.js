@@ -7,5 +7,4 @@ export const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
   spacer: { width: "100%", marginTop: SPACING.Regular },
-  btn: { justifyContent: "center" },
 });

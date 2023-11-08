@@ -4,6 +4,18 @@ import moment from "moment";
 
 // Constants
 import { INTAKE_SUMMARY_TYPES } from "@app/common/constants/options";
+import {
+  BTN_VARIANTS,
+  FONT_SIZES,
+  SIZES,
+  SPACING,
+} from "@app/common/constants/styles";
+
+// Assets
+import { ArrowLeftIcon, ArrowRightIcon } from "@app/assets/icons";
+
+// Theme
+import themeColors from "@app/common/theme";
 
 // Components
 import { Body, Button, Title1 } from "@app/views/components";
@@ -12,14 +24,6 @@ import { Body, Button, Title1 } from "@app/views/components";
 import { IntakeSummaryBar, PageDivider, ScrollPage } from "@app/views/layouts";
 
 import { styles } from "./styles";
-import {
-  BTN_VARIANTS,
-  FONT_SIZES,
-  SIZES,
-  SPACING,
-} from "@app/common/constants/styles";
-import themeColors from "@app/common/theme";
-import { ArrowLeftIcon, ArrowRightIcon } from "@app/assets/icons";
 export default function Insights() {
   // Local States
   const [currentDate, setCurrentDate] = useState(moment().format("YYYY-MM-DD"));
