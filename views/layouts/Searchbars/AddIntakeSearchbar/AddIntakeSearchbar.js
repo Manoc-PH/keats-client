@@ -102,8 +102,11 @@ export default function AddIntakeSearchbar(props) {
       getSearchIngredientData.reverse().map((item) =>
         newData.push({
           id: item.id,
-          title: `${item.name}${item?.name_ph && " - " + item?.name_ph}`,
-          subtitle: item.name_owner,
+          title: `${item.n}${item?.n_ph && " - " + item?.n_ph} - ${item.n_o}`,
+          subtitle:
+            item.c_l !== item.c_h
+              ? `${item.c_l} - ${item.c_h} kcal`
+              : `${item.c_h} kcal`,
         })
       );
       setSearchResult(newData);
@@ -113,8 +116,8 @@ export default function AddIntakeSearchbar(props) {
       getSearchFoodData.reverse().map((item) =>
         newData.push({
           id: item.id,
-          title: `${item.name}${item?.name_ph && " - " + item?.name_ph}`,
-          subtitle: item.name_owner,
+          title: `${item.n}${item?.n_ph && " - " + item?.n_ph} - ${item.n_o}`,
+          subtitle: `${item.c} kcal`,
         })
       );
       setSearchResult(newData);
