@@ -1,4 +1,5 @@
 import themeColors from "../theme";
+import { Platform } from "react-native";
 
 export const SIZES = {
   Tiny: "Tiny",
@@ -19,11 +20,11 @@ export const FONT_SIZES = {
   Huge: 34,
 };
 export const FONT_WEIGHTS = {
-  Light: "Outfit_200ExtraLight",
-  Regular: "Outfit_300Light",
-  Medium: "Outfit_400Regular",
-  SemiBold: "Outfit_500Medium",
-  Bold: "Outfit_600SemiBold",
+  Light: Platform.OS === "ios" ? "200" : "Outfit_200ExtraLight",
+  Regular: Platform.OS === "ios" ? "300" : "Outfit_300Light",
+  Medium: Platform.OS === "ios" ? "400" : "Outfit_400Regular",
+  SemiBold: Platform.OS === "ios" ? "500" : "Outfit_500Medium",
+  Bold: Platform.OS === "ios" ? "600" : "Outfit_600SemiBold",
 };
 export const BTN_VARIANTS = {
   primary: "primary",
