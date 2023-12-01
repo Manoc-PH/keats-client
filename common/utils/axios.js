@@ -8,7 +8,6 @@ const authAxios = axios.create({
   baseURL: BASE_URL,
   withCredentials: true,
 });
-
 // TODO create an interceptor for request and check for cookie or bearer token before passing
 authAxios.interceptors.response.use(
   function (response) {
@@ -18,7 +17,7 @@ authAxios.interceptors.response.use(
     if (error?.response) {
       const status = error.response.status;
       if (status === 401) {
-        ClearCredentials();
+        await ClearCredentials();
         // TODO USE A BETTER ALTERNATIVE FOR THIS
         RNRestart.restart();
       }
