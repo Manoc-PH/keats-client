@@ -38,5 +38,6 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-start",
     marginLeft: SPACING.Large * -1,
+    zIndex: ZINDEX.header + 1,
   },
 });

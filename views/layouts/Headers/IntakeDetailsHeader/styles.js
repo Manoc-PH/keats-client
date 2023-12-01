@@ -39,6 +39,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-start",
     marginLeft: SPACING.Large * -1,
+    zIndex: ZINDEX.header + 1,
   },
   btnRight: { marginRight: SPACING.Regular * -1 },
 });
