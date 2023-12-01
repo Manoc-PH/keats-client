@@ -1,5 +1,5 @@
 import themeColors from "../theme";
-import { Platform } from "react-native";
+import { Platform, PixelRatio } from "react-native";
 
 export const SIZES = {
   Tiny: "Tiny",
@@ -62,3 +62,5 @@ export const RADIUS = {
   ExtraLarge: 20,
   Huge: 24,
 };
+
+export const HEADER_SIZE = SPACING.Large * 3 * PixelRatio.getFontScale();
