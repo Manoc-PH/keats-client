@@ -85,13 +85,15 @@ function MainTabs() {
       tabBarActiveTintColor: ThemeColors.primary,
       tabBarInactiveTintColor: ThemeColors.secondaryLight,
       tabBarShowLabel: false,
-      header: HomeHeader,
-      headerMode: "screen",
     };
   }
   return (
     <Tab.Navigator screenOptions={screenOptions}>
-      <Tab.Screen name='Home' component={Home} />
+      <Tab.Screen
+        options={{ header: HomeHeader }}
+        name='Home'
+        component={Home}
+      />
       <Tab.Screen
         options={{ headerShown: false }}
         name='Help'
