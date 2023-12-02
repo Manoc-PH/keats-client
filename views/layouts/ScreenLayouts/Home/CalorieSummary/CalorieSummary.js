@@ -1,14 +1,10 @@
-import { View, Dimensions } from "react-native";
+import { View } from "react-native";
 import { useHeaderHeight } from "@react-navigation/elements";
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 
 import CalorieSummaryBar from "@app/views/layouts/SummaryBars/CalorieSummaryBar";
 import { styles } from "./styles";
-import {
-  BTN_VARIANTS,
-  FONT_SIZES,
-  SPACING,
-} from "@app/common/constants/styles";
+import { BTN_VARIANTS, FONT_SIZES } from "@app/common/constants/styles";
 import { CircleButton, TextSkeleton, Title3 } from "@app/views/components";
 import { TrippleArrowDownIcon } from "@app/assets/icons";
 
@@ -23,13 +19,8 @@ export default function CalorieSummary(props) {
     <View
       style={{
         ...styles.wrapper,
-        height:
-          Dimensions.get("window").height -
-          headerHeight -
-          tabBarHeight -
-          SPACING.Huge -
-          SPACING.Huge -
-          SPACING.Medium,
+        paddingTop: headerHeight,
+        paddingBottom: tabBarHeight,
       }}>
       <View style={styles.container}>
         <View style={styles.itemContainer}>

@@ -23,7 +23,7 @@ export default function AddIntake() {
             height: "100%",
             width: "100%",
           }}>
-          <Title1> </Title1>
+          <Title1> TESTING </Title1>
         </View>
       )}
       <AddIntakeSearchbar
