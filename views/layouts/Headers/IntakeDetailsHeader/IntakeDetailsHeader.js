@@ -43,7 +43,7 @@ export default function IntakeDetailsHeader() {
     setIngredientDetails();
     setSelectedIngredientID();
     setSelectedIngredientMappingID();
-    navigation.navigate("Home", { screen: "MyIntakes" });
+    navigation.navigate("Common", { screen: "MyIntakes" });
   }
 
   return (

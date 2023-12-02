@@ -61,11 +61,11 @@ export default function AddIntake() {
   function handleSelect(id) {
     if (searchType === INTAKE_TYPES.generic) {
       setSelectedIngredientID(id);
-      navigation.navigate("Home", { screen: "IngredientDetails" });
+      navigation.navigate("Common", { screen: "IngredientDetails" });
     }
     if (searchType === INTAKE_TYPES.branded) {
       setSelectedFoodID(id);
-      navigation.navigate("Home", { screen: "FoodDetails" });
+      navigation.navigate("Common", { screen: "FoodDetails" });
     }
   }
 

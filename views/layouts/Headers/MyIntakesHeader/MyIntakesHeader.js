@@ -15,7 +15,7 @@ export default function MyIntakesHeader() {
 
   // Functions
   function handleBack() {
-    navigation.navigate("Home", { screen: "HomeDefault" });
+    navigation.navigate("Home");
   }
 
   return (
