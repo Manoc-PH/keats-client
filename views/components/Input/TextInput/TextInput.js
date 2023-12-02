@@ -61,12 +61,14 @@ export default function TextInput(props) {
           />
           {suffix && suffix}
         </View>
-        <Button
-          variant={BTN_VARIANTS.transparent}
-          size={SIZES.Tiny}
-          onPress={onClearPress}
-          icon={<CloseIcon />}
-        />
+        {onClearPress && (
+          <Button
+            variant={BTN_VARIANTS.transparent}
+            size={SIZES.Tiny}
+            onPress={onClearPress}
+            icon={<CloseIcon />}
+          />
+        )}
       </View>
     </View>
   );
