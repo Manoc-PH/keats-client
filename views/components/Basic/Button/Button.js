@@ -20,6 +20,7 @@ export default function Button(props) {
     color,
     children,
     endIcon,
+    icon,
     ...rest
   } = props;
 
@@ -85,15 +86,18 @@ export default function Button(props) {
           ...style,
           transform: [{ scale: buttonScale }],
         }}>
-        <Txt
-          style={{
-            fontSize: styles.defaults.fontSize,
-            fontWeight: styles.defaults.fontWeight,
-            color: currentStyle.color,
-            marginRight: endIcon ? SPACING.Small : 0,
-          }}>
-          {children}
-        </Txt>
+        {icon && icon}
+        {children && (
+          <Txt
+            style={{
+              fontSize: styles.defaults.fontSize,
+              fontWeight: styles.defaults.fontWeight,
+              color: currentStyle.color,
+              marginRight: endIcon ? SPACING.Small : 0,
+            }}>
+            {children}
+          </Txt>
+        )}
         {endIcon && endIcon}
       </Animated.View>
     </Pressable>

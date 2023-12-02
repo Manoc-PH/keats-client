@@ -20,6 +20,7 @@ export default function CircleButton(props) {
     color,
     children,
     endIcon,
+    icon,
     ...rest
   } = props;
 
@@ -33,6 +34,8 @@ export default function CircleButton(props) {
       borderRadius: 300,
       fontSize: size ? FONT_SIZES[size] : FONT_SIZES.Regular,
       fontWeight: FONT_WEIGHTS.SemiBold,
+      justifyContent: "center",
+      alignItems: "center",
     },
     primary: {
       color: color || themeColors.background,
@@ -77,15 +80,18 @@ export default function CircleButton(props) {
           ...style,
           transform: [{ scale: buttonScale }],
         }}>
-        <Txt
-          style={{
-            fontSize: styles.defaults.fontSize,
-            fontWeight: styles.defaults.fontWeight,
-            color: currentStyle.color,
-            marginRight: endIcon ? SPACING.Small : 0,
-          }}>
-          {children}
-        </Txt>
+        {icon && icon}
+        {children && (
+          <Txt
+            style={{
+              fontSize: styles.defaults.fontSize,
+              fontWeight: styles.defaults.fontWeight,
+              color: currentStyle.color,
+              marginRight: endIcon ? SPACING.Small : 0,
+            }}>
+            {children}
+          </Txt>
+        )}
         {endIcon && endIcon}
       </Animated.View>
     </Pressable>
