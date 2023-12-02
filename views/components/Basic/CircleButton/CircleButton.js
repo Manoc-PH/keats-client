@@ -1,11 +1,7 @@
 import { useRef } from "react";
 import { Animated, StyleSheet, Pressable } from "react-native";
 
-import {
-  FONT_SIZES,
-  FONT_WEIGHTS,
-  SPACING,
-} from "@app/common/constants/styles";
+import { FONT_SIZES, FONT_FAMILY, SPACING } from "@app/common/constants/styles";
 import themeColors from "@app/common/theme";
 
 import Txt from "../Txt";
@@ -33,7 +29,7 @@ export default function CircleButton(props) {
       paddingVertical: size ? SPACING[size] * 1.8 : SPACING.Regular * 1.8,
       borderRadius: 300,
       fontSize: size ? FONT_SIZES[size] : FONT_SIZES.Regular,
-      fontWeight: FONT_WEIGHTS.SemiBold,
+      fontFamily: FONT_FAMILY.SemiBold,
       justifyContent: "center",
       alignItems: "center",
     },
@@ -85,7 +81,7 @@ export default function CircleButton(props) {
           <Txt
             style={{
               fontSize: styles.defaults.fontSize,
-              fontWeight: styles.defaults.fontWeight,
+              fontFamily: styles.defaults.fontFamily,
               color: currentStyle.color,
               marginRight: endIcon ? SPACING.Small : 0,
             }}>

@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     color: "white",
-    fontWeight: "bold",
+    fontFamily: "bold",
     textAlign: "center",
   },
   modalText: {

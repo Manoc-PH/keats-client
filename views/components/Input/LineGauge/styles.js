@@ -26,7 +26,7 @@ export const styles = StyleSheet.create({
   intervalValue: {
     fontSize: 12,
     marginBottom: 3,
-    fontWeight: "bold",
+    fontFamily: "bold",
   },
   small: {
     height: 13,

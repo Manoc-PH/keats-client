@@ -1,4 +1,4 @@
-import { FONT_WEIGHTS, SPACING } from "@app/common/constants/styles";
+import { FONT_FAMILY, SPACING } from "@app/common/constants/styles";
 import themeColors from "@app/common/theme";
 import { StyleSheet } from "react-native";
 
@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
     paddingBottom: SPACING.Tiny,
     paddingHorizontal: SPACING.Large,
   },
-  error: { color: themeColors.red, fontWeight: FONT_WEIGHTS.SemiBold },
+  error: { color: themeColors.red, fontFamily: FONT_FAMILY.SemiBold },
   forgotPassword: {
     width: "100%",
     alignItems: "flex-end",

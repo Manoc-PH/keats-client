@@ -1,6 +1,6 @@
 import {
   FONT_SIZES,
-  FONT_WEIGHTS,
+  FONT_FAMILY,
   SPACING,
   ZINDEX,
 } from "@app/common/constants/styles";
@@ -42,7 +42,7 @@ export const styles = StyleSheet.create({
     marginRight: SPACING.Regular,
   },
   value: {
-    fontFamily: FONT_WEIGHTS.Regular,
+    fontFamily: FONT_FAMILY.Regular,
     fontSize: FONT_SIZES.Regular,
     color: themeColors.secondary,
     paddingRight: SPACING.Regular,

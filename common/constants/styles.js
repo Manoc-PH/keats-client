@@ -19,7 +19,7 @@ export const FONT_SIZES = {
   ExtraLarge: 28,
   Huge: 34,
 };
-export const FONT_WEIGHTS = {
+export const FONT_FAMILY = {
   Light: "Outfit_200ExtraLight",
   Regular: "Outfit_300Light",
   Medium: "Outfit_400Regular",
