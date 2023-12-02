@@ -132,6 +132,7 @@ export default function AddIntake() {
       alwaysBounceHorizontal={false}
       alwaysBounceVertical={false}
       bounces={false}
+      scrollEnabled={false}
       automaticallyAdjustKeyboardInsets={true}>
       {!isSearchActive && (
         <View style={styles.container}>

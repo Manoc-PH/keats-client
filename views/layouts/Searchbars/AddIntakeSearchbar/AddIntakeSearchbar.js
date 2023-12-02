@@ -49,7 +49,7 @@ export default function AddIntakeSearchbar(props) {
       style={{
         ...styles.wrapper,
         height: isSearchActive
-          ? HEADER_SIZE + SPACING.Huge + SPACING.Regular
+          ? HEADER_SIZE + SPACING.Huge + SPACING.Medium
           : HEADER_SIZE,
       }}>
       {isSearchActive && (
@@ -79,6 +79,7 @@ export default function AddIntakeSearchbar(props) {
           ...styles.rowContainer,
           alignItems: "center",
           minHeight: HEADER_SIZE,
+          maxHeight: HEADER_SIZE,
         }}>
         <View style={styles.searchInputContainer}>
           <TextInput

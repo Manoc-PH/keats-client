@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
   wrapper: {
     padding: SPACING.Regular,
     width: "100%",
-    justifyContent: "center",
+    justifyContent: "flex-end",
   },
   rowContainer: {
     flexDirection: "row",
