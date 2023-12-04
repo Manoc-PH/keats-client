@@ -64,24 +64,28 @@ export default function Insights() {
                 style={{ marginRight: SPACING.Small }}
                 variant={BTN_VARIANTS.outlined}
                 color={themeColors.secondary}
-                onPress={handleBack}>
-                <ArrowLeftIcon
-                  width={FONT_SIZES.Regular}
-                  height={FONT_SIZES.Regular}
-                  color={themeColors.secondary}
-                />
-              </Button>
+                onPress={handleBack}
+                icon={
+                  <ArrowLeftIcon
+                    width={FONT_SIZES.Regular}
+                    height={FONT_SIZES.Regular}
+                    color={themeColors.secondary}
+                  />
+                }
+              />
               <Button
                 size={SIZES.Small}
                 variant={BTN_VARIANTS.outlined}
                 color={themeColors.secondary}
-                onPress={handleForward}>
-                <ArrowRightIcon
-                  width={FONT_SIZES.Regular}
-                  height={FONT_SIZES.Regular}
-                  color={themeColors.secondary}
-                />
-              </Button>
+                onPress={handleForward}
+                icon={
+                  <ArrowRightIcon
+                    width={FONT_SIZES.Regular}
+                    height={FONT_SIZES.Regular}
+                    color={themeColors.secondary}
+                  />
+                }
+              />
             </View>
           </View>
           <View style={styles.spacer} />

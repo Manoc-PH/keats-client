@@ -32,45 +32,9 @@ import { BTN_VARIANTS } from "@app/common/constants/styles";
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
-const HomeNavigator = ({ navigation, route }) => {
-  useLayoutEffect(() => {
-    const routeName = getFocusedRouteNameFromRoute(route);
-    const hidden = {
-      height: 0,
-      width: 0,
-      marginLeft: -5000,
-      zIndex: 0,
-      elevation: 0,
-      shadowColor: "#00000000",
-    };
-    if (routeName === "IngredientDetails") {
-      navigation.setOptions({
-        tabBarStyle: hidden,
-      });
-    } else if (routeName === "FoodDetails") {
-      navigation.setOptions({
-        tabBarStyle: hidden,
-      });
-    } else if (routeName === "AddIntake") {
-      navigation.setOptions({
-        tabBarStyle: hidden,
-      });
-    } else if (routeName === "IntakeIngredientDetails") {
-      navigation.setOptions({
-        tabBarStyle: hidden,
-      });
-    } else if (routeName === "IntakeFoodDetails") {
-      navigation.setOptions({
-        tabBarStyle: hidden,
-      });
-    } else {
-      navigation.setOptions({ tabBarStyle: {} });
-    }
-  }, [navigation, route]);
+const CommonScreens = () => {
   return (
-    <Stack.Navigator
-      screenOptions={() => ({ header: HomeHeader, headerMode: "screen" })}>
-      <Stack.Screen name='HomeDefault' component={Home} />
+    <Stack.Navigator>
       <Stack.Screen
         name='IngredientDetails'
         component={IngredientDetails}
@@ -104,7 +68,8 @@ const HomeNavigator = ({ navigation, route }) => {
     </Stack.Navigator>
   );
 };
-export default function AuthenticatedScreens() {
+
+function MainTabs() {
   function screenOptions({ route }) {
     return {
       tabBarIcon: ({ focused }) => {
@@ -123,35 +88,51 @@ export default function AuthenticatedScreens() {
     };
   }
   return (
+    <Tab.Navigator screenOptions={screenOptions}>
+      <Tab.Screen
+        options={{ header: HomeHeader }}
+        name='Home'
+        component={Home}
+      />
+      <Tab.Screen
+        options={{ headerShown: false }}
+        name='Help'
+        component={Help}
+      />
+      <Tab.Screen
+        options={{ headerShown: false }}
+        name='Insights'
+        component={Insights}
+      />
+      <Tab.Screen
+        options={{ headerShown: false }}
+        name='Recipes'
+        component={Recipes}
+      />
+      <Tab.Screen
+        options={{ headerShown: false }}
+        name='Account'
+        component={Account}
+      />
+    </Tab.Navigator>
+  );
+}
+export default function AuthenticatedScreens() {
+  return (
     <>
       <StatusBar style='auto' />
-      <Tab.Navigator screenOptions={screenOptions}>
-        <Tab.Screen
-          name='Home'
-          component={HomeNavigator}
+      <Stack.Navigator>
+        <Stack.Screen
+          name='Main'
+          component={MainTabs}
           options={{ headerShown: false }}
         />
-        <Tab.Screen
+        <Stack.Screen
+          name='Common'
+          component={CommonScreens}
           options={{ headerShown: false }}
-          name='Help'
-          component={Help}
         />
-        <Tab.Screen
-          options={{ headerShown: false }}
-          name='Insights'
-          component={Insights}
-        />
-        <Tab.Screen
-          options={{ headerShown: false }}
-          name='Recipes'
-          component={Recipes}
-        />
-        <Tab.Screen
-          options={{ headerShown: false }}
-          name='Account'
-          component={Account}
-        />
-      </Tab.Navigator>
+      </Stack.Navigator>
     </>
   );
 }

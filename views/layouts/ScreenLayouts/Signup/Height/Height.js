@@ -14,11 +14,7 @@ import {
 } from "@app/assets/imageSvg";
 import { debounce } from "@app/common/utils/debounce";
 // Constants
-import {
-  FONT_WEIGHTS,
-  FONT_SIZES,
-  SPACING,
-} from "@app/common/constants/styles";
+import { FONT_FAMILY, FONT_SIZES, SPACING } from "@app/common/constants/styles";
 import { SEX } from "@app/common/constants/options";
 
 import { styles } from "./styles";
@@ -97,7 +93,7 @@ export default function Height(props) {
         }}>
         <TextInput
           style={{
-            fontFamily: FONT_WEIGHTS.Regular,
+            fontFamily: FONT_FAMILY.Regular,
             fontSize: FONT_SIZES.Regular,
             color: themeColors.secondary,
           }}

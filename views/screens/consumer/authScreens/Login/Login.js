@@ -57,10 +57,11 @@ export default function Login(props) {
       id: loginUserData.data.id,
       username: loginUserData.data.username,
       account_type_id: loginUserData.data.account_type_id,
-      token: loginUserData.headers["set-cookie"][0],
+      token: loginUserData.data.token,
     };
-    authAxios.defaults.headers.common["Cookie"] =
-      loginUserData.headers["set-cookie"][0];
+    authAxios.defaults.headers.common[
+      "Authorization"
+    ] = `Bearer ${loginUserData.data.token}`;
     createCredentials(cred);
   }
 

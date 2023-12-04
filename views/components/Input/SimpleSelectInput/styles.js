@@ -2,7 +2,7 @@ import { StyleSheet, Platform, StatusBar } from "react-native";
 
 import {
   FONT_SIZES,
-  FONT_WEIGHTS,
+  FONT_FAMILY,
   RADIUS,
   SPACING,
   ZINDEX,

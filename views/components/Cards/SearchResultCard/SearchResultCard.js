@@ -17,7 +17,6 @@ export default function SearchResultCard(props) {
 
   function handlePress() {
     if (onPress) onPress();
-    console.log("Pressed");
   }
 
   return (

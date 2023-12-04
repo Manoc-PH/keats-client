@@ -1,19 +1,20 @@
-import { SPACING } from "@app/common/constants/styles";
+import { HEADER_SIZE, SPACING } from "@app/common/constants/styles";
+import themeColors from "@app/common/theme";
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  searchWrapper: {
+  wrapper: {
+    padding: SPACING.Regular,
     width: "100%",
-    position: "absolute",
-    bottom: SPACING.Regular,
-    paddingHorizontal: SPACING.Regular,
+    justifyContent: "flex-end",
   },
   rowContainer: {
-    flex: 1,
     flexDirection: "row",
     alignItems: "flex-end",
-    paddingTop: SPACING.Regular,
   },
-  searchInputContainer: { flex: 1, marginRight: SPACING.Regular },
+  searchInputContainer: {
+    flex: 1,
+    marginRight: SPACING.Regular,
+  },
   searchIcon: { alignItems: "center", justifyContent: "flex-end" },
 });

@@ -1,8 +1,4 @@
-import {
-  FONT_SIZES,
-  FONT_WEIGHTS,
-  SPACING,
-} from "@app/common/constants/styles";
+import { FONT_SIZES, FONT_FAMILY, SPACING } from "@app/common/constants/styles";
 import themeColors from "@app/common/theme";
 import * as React from "react";
 import { Text, View } from "react-native";
@@ -31,7 +27,7 @@ function IntakeIcon(props) {
           <Text
             style={{
               color: themeColors.background,
-              fontFamily: FONT_WEIGHTS.Medium,
+              fontFamily: FONT_FAMILY.Medium,
               fontSize: FONT_SIZES.Tiny,
             }}>
             {props?.count || 0}

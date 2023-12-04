@@ -5,11 +5,7 @@ import themeColors from "@app/common/theme";
 // Utils
 import { debounce } from "@app/common/utils/debounce";
 // Constants
-import {
-  SPACING,
-  FONT_WEIGHTS,
-  FONT_SIZES,
-} from "@app/common/constants/styles";
+import { SPACING, FONT_FAMILY, FONT_SIZES } from "@app/common/constants/styles";
 // Components
 import { Body, SliderInput } from "@app/views/components";
 
@@ -57,7 +53,7 @@ export default function Weight(props) {
         }}>
         <TextInput
           style={{
-            fontFamily: FONT_WEIGHTS.Regular,
+            fontFamily: FONT_FAMILY.Regular,
             fontSize: FONT_SIZES.Regular,
             color: themeColors.secondary,
           }}

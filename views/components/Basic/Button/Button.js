@@ -1,11 +1,7 @@
 import { useRef } from "react";
 import { Animated, StyleSheet, Pressable } from "react-native";
 
-import {
-  FONT_SIZES,
-  FONT_WEIGHTS,
-  SPACING,
-} from "@app/common/constants/styles";
+import { FONT_SIZES, FONT_FAMILY, SPACING } from "@app/common/constants/styles";
 import themeColors from "@app/common/theme";
 
 import Txt from "../Txt";
@@ -20,6 +16,7 @@ export default function Button(props) {
     color,
     children,
     endIcon,
+    icon,
     ...rest
   } = props;
 
@@ -32,7 +29,7 @@ export default function Button(props) {
       paddingVertical: size ? SPACING[size] * 0.82 : SPACING.Regular * 0.82,
       borderRadius: size ? SPACING[size] : SPACING.Small,
       fontSize: size ? FONT_SIZES[size] : FONT_SIZES.Regular,
-      fontWeight: FONT_WEIGHTS.SemiBold,
+      fontFamily: FONT_FAMILY.SemiBold,
     },
     primary: {
       color: color || themeColors.background,
@@ -85,15 +82,18 @@ export default function Button(props) {
           ...style,
           transform: [{ scale: buttonScale }],
         }}>
-        <Txt
-          style={{
-            fontSize: styles.defaults.fontSize,
-            fontWeight: styles.defaults.fontWeight,
-            color: currentStyle.color,
-            marginRight: endIcon ? SPACING.Small : 0,
-          }}>
-          {children}
-        </Txt>
+        {icon && icon}
+        {children && (
+          <Txt
+            style={{
+              fontSize: styles.defaults.fontSize,
+              fontFamily: styles.defaults.fontFamily,
+              color: currentStyle.color,
+              marginRight: endIcon ? SPACING.Small : 0,
+            }}>
+            {children}
+          </Txt>
+        )}
         {endIcon && endIcon}
       </Animated.View>
     </Pressable>

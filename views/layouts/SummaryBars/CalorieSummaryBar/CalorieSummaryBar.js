@@ -67,10 +67,12 @@ export default function CalorieSummaryBar(props) {
             <CircleButton
               variant={BTN_VARIANTS.outlined}
               onPress={() => {
-                navigation.navigate("Home", { screen: "AddIntake" });
-              }}>
-              <PlusIcon width={25} height={25} color={themeColors.primary} />
-            </CircleButton>
+                navigation.navigate("Common", { screen: "AddIntake" });
+              }}
+              icon={
+                <PlusIcon width={25} height={25} color={themeColors.primary} />
+              }
+            />
           </View>
         </View>
       </CircularProgressBar>

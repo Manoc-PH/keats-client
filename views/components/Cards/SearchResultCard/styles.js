@@ -1,8 +1,4 @@
-import {
-  FONT_SIZES,
-  FONT_WEIGHTS,
-  SPACING,
-} from "@app/common/constants/styles";
+import { FONT_SIZES, FONT_FAMILY, SPACING } from "@app/common/constants/styles";
 import themeColors from "@app/common/theme";
 import { StyleSheet } from "react-native";
 

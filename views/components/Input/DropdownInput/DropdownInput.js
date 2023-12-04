@@ -48,7 +48,7 @@ const SelectList = (props) => {
     }).start(() => setDropdown(false));
   };
   return (
-    <View style={{ position: "relative" }}>
+    <View>
       <TouchableOpacity
         style={styles.wrapper}
         onPress={() => {
@@ -69,7 +69,10 @@ const SelectList = (props) => {
         <Animated.View
           style={{ maxHeight: animatedvalue, ...styles.container }}>
           <ScrollView
-            contentContainerStyle={{ paddingVertical: 10, overflow: "hidden" }}
+            contentContainerStyle={{
+              paddingVertical: 10,
+              overflow: "hidden",
+            }}
             nestedScrollEnabled={true}>
             {data?.length >= 1 &&
               data.map((item) => {
@@ -106,10 +109,7 @@ const styles = StyleSheet.create({
     paddingVertical: SPACING.Regular,
   },
   container: {
-    position: "absolute",
-    zIndex: ZINDEX.basicComponent,
     width: "100%",
-    top: "100%",
     borderWidth: 1,
     borderRadius: RADIUS.Regular,
     marginTop: SPACING.Small,

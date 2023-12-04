@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { KeyboardAvoidingView, Platform } from "react-native";
 
 import { styles } from "./styles";
@@ -14,6 +14,10 @@ export default function LoginForm(props) {
   function updateData() {
     setData({ username, password });
   }
+
+  useEffect(() => {
+    setData({ username, password });
+  }, [username, password]);
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : ""}

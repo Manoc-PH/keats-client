@@ -40,13 +40,13 @@ export default function IntakeList() {
   } = useGetIntakes();
 
   // Functions
-  function handlePress(item) {
-    setSelectedIntake(item);
+  async function handlePress(item) {
+    await setSelectedIntake(item);
     if (item?.ingredient_mapping_id) {
-      navigation.navigate("Home", { screen: "IntakeIngredientDetails" });
+      navigation.navigate("Common", { screen: "IntakeIngredientDetails" });
     }
     if (item?.food_id) {
-      navigation.navigate("Home", { screen: "IntakeFoodDetails" });
+      navigation.navigate("Common", { screen: "IntakeFoodDetails" });
     }
   }
 

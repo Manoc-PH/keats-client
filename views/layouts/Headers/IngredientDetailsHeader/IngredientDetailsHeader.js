@@ -32,7 +32,7 @@ export default function IngredientDetailsHeader() {
     setIngredientDetails();
     setSelectedIngredientID();
     setSelectedIngredientMappingID();
-    navigation.navigate("Home", { screen: "AddIntake" });
+    navigation.navigate("Common", { screen: "AddIntake" });
   }
 
   // UseEffects

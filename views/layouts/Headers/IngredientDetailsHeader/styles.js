@@ -1,11 +1,11 @@
-import { SPACING, ZINDEX } from "@app/common/constants/styles";
+import { SPACING, ZINDEX, HEADER_SIZE } from "@app/common/constants/styles";
 import themeColors from "@app/common/theme";
 import { PixelRatio, StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   wrapper: {
     position: "relative",
-    height: SPACING.Large * 3 * PixelRatio.getFontScale(),
+    height: HEADER_SIZE,
     width: "100%",
     backgroundColor: themeColors.background,
     borderBottomColor: themeColors.backgroundLight,
@@ -38,5 +38,6 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-start",
     marginLeft: SPACING.Large * -1,
+    zIndex: ZINDEX.header + 1,
   },
 });

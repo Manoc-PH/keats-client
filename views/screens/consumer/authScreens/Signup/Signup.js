@@ -115,10 +115,11 @@ export default function Signup(props) {
       id: signupData.data.id,
       username: signupData.data.username,
       account_type_id: signupData.data.account_type_id,
-      token: signupData.headers["set-cookie"][0],
+      token: signupData.data.token,
     };
-    authAxios.defaults.headers.common["Cookie"] =
-      signupData.headers["set-cookie"][0];
+    axios.defaults.headers.common[
+      "Authorization"
+    ] = `Bearer ${signupData.data.token}`;
     createCredentials(cred);
   }
 

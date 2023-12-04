@@ -47,15 +47,17 @@ export default function MainNavigator() {
         return;
       }
       // checking if cookie expired
-      const token = readCredentialsData[0].token;
-      const expiryDate = token.split(";")[1].split("=")[1];
-      if (moment(expiryDate).diff(moment(), "milliseconds") < 1) {
-        clearCredentials();
-        setIsLoggedIn(false);
-        return;
-      }
-      authAxios.defaults.headers.common["Cookie"] =
-        readCredentialsData[0].token;
+      // const token = readCredentialsData[0].token;
+      // const expiryDate = token.split(";")[1].split("=")[1];
+      // if (moment(expiryDate).diff(moment(), "milliseconds") < 1) {
+      //   clearCredentials();
+      //   setIsLoggedIn(false);
+      //   return;
+      // }
+
+      authAxios.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${readCredentialsData[0].token}`;
       setIsLoggedIn(true);
     }
   }

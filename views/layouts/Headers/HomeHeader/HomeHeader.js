@@ -20,7 +20,7 @@ export default function HomeHeader() {
   const navigation = useNavigation();
   // Functions
   function openIntakesPage() {
-    navigation.navigate("Home", { screen: "MyIntakes" });
+    navigation.navigate("Common", { screen: "MyIntakes" });
   }
 
   // UseEffects

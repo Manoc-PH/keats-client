@@ -41,9 +41,9 @@ export default function TextInput(props) {
           <Button
             variant={BTN_VARIANTS.transparent}
             size={SIZES.Tiny}
-            onPress={onStartIconPress}>
-            {startIcon}
-          </Button>
+            onPress={onStartIconPress}
+            icon={startIcon}
+          />
         )}
         <View style={styles.inputContainer}>
           <TextInputRN
@@ -61,12 +61,14 @@ export default function TextInput(props) {
           />
           {suffix && suffix}
         </View>
-        <Button
-          variant={BTN_VARIANTS.transparent}
-          size={SIZES.Tiny}
-          onPress={onClearPress}>
-          <CloseIcon />
-        </Button>
+        {onClearPress && (
+          <Button
+            variant={BTN_VARIANTS.transparent}
+            size={SIZES.Tiny}
+            onPress={onClearPress}
+            icon={<CloseIcon />}
+          />
+        )}
       </View>
     </View>
   );
