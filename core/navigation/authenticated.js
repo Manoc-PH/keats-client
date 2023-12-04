@@ -26,6 +26,7 @@ import {
   HomeHeader,
   MyIntakesHeader,
   IntakeDetailsHeader,
+  RecipeHeader,
 } from "@app/views/layouts";
 import { BTN_VARIANTS } from "@app/common/constants/styles";
 
@@ -38,27 +39,27 @@ const CommonScreens = () => {
       <Stack.Screen
         name='IngredientDetails'
         component={IngredientDetails}
-        options={{ header: IngredientDetailsHeader }}
+        options={{ header: (props) => <IngredientDetailsHeader {...props} /> }}
       />
       <Stack.Screen
         name='FoodDetails'
         component={FoodDetails}
-        options={{ header: IngredientDetailsHeader }}
+        options={{ header: (props) => <IngredientDetailsHeader {...props} /> }}
       />
       <Stack.Screen
         name='IntakeIngredientDetails'
         component={IntakeIngredientDetails}
-        options={{ header: IntakeDetailsHeader }}
+        options={{ header: (props) => <IntakeDetailsHeader {...props} /> }}
       />
       <Stack.Screen
         name='IntakeFoodDetails'
         component={IntakeFoodDetails}
-        options={{ header: IntakeDetailsHeader }}
+        options={{ header: (props) => <IntakeDetailsHeader {...props} /> }}
       />
       <Stack.Screen
         name='MyIntakes'
         component={IntakeList}
-        options={{ header: MyIntakesHeader }}
+        options={{ header: (props) => <MyIntakesHeader {...props} /> }}
       />
       <Stack.Screen
         name='AddIntake'
@@ -90,7 +91,7 @@ function MainTabs() {
   return (
     <Tab.Navigator screenOptions={screenOptions}>
       <Tab.Screen
-        options={{ header: HomeHeader }}
+        options={{ header: (props) => <HomeHeader {...props} /> }}
         name='Home'
         component={Home}
       />
@@ -105,7 +106,7 @@ function MainTabs() {
         component={Insights}
       />
       <Tab.Screen
-        options={{ headerShown: false }}
+        options={{ header: (props) => <RecipeHeader {...props} /> }}
         name='Recipes'
         component={Recipes}
       />

@@ -38,6 +38,7 @@ export { default as HomeHeader } from "./Headers/HomeHeader";
 export { default as IngredientDetailsHeader } from "./Headers/IngredientDetailsHeader";
 export { default as MyIntakesHeader } from "./Headers/MyIntakesHeader";
 export { default as IntakeDetailsHeader } from "./Headers/IntakeDetailsHeader";
+export { default as RecipeHeader } from "./Headers/RecipeHeader";
 
 // Footers
 export { default as ConsumeIngredientFooter } from "./Footers/ConsumeIngredientFooter";
