@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     width: "100%",
-    backgroundColor: themeColors.background,
+    backgroundColor: themeColors.backgroundDark,
     position: "relative",
   },
 });
