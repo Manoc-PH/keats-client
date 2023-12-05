@@ -9,7 +9,7 @@ import { INTAKE_TYPES } from "@app/common/constants/options";
 import { actions } from "@app/core/store";
 
 // Layouts
-import { AddIntakeSearchbar } from "@app/views/layouts";
+import { AddIntakeSearchbar, ScrollPage } from "@app/views/layouts";
 
 // Utils
 import useDebounce from "@app/common/utils/debounce";
@@ -127,7 +127,7 @@ export default function AddIntake() {
     if (!text) setIsSearchActive(false);
   }, [keyboardIsVisible, text]);
   return (
-    <ScrollView
+    <ScrollPage
       contentContainerStyle={styles.wrapper}
       alwaysBounceHorizontal={false}
       alwaysBounceVertical={false}
@@ -164,6 +164,6 @@ export default function AddIntake() {
         onChangeText={onChangeText}
         text={text}
       />
-    </ScrollView>
+    </ScrollPage>
   );
 }

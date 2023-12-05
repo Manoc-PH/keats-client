@@ -48,9 +48,7 @@ export default function AddIntakeSearchbar(props) {
     <View
       style={{
         ...styles.wrapper,
-        height: isSearchActive
-          ? HEADER_SIZE + SPACING.Huge + SPACING.Medium
-          : HEADER_SIZE,
+        paddingTop: isSearchActive ? SPACING.Small : SPACING.Tiny,
       }}>
       {isSearchActive && (
         <View style={{ ...styles.rowContainer }}>

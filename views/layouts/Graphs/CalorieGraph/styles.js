@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
     height: 11,
     width: 11,
     borderRadius: 3,
-    backgroundColor: themeColors.backgroundLight,
+    backgroundColor: themeColors.backgroundDark,
     marginBottom: SPACING.Tiny,
   },
 });

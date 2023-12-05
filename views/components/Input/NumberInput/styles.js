@@ -34,7 +34,7 @@ export const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
     borderWidth: 1,
-    borderColor: themeColors.backgroundLight,
+    borderColor: themeColors.backgroundDark,
     borderRadius: SPACING.Regular,
     paddingLeft: SPACING.Tiny,
   },

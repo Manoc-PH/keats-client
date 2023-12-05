@@ -77,8 +77,8 @@ const SwitchButton = ({
               height: switchHeight || sbHeight,
               borderRadius: SPACING.Regular,
               borderWidth: 1,
-              borderColor: themeColors.backgroundLight,
-              backgroundColor: themeColors.backgroundLight,
+              borderColor: themeColors.backgroundDark,
+              backgroundColor: themeColors.backgroundDark,
             },
           ]}>
           <View

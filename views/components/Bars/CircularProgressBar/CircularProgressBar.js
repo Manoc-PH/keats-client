@@ -60,7 +60,7 @@ function CircularProgressBar(props) {
       alignItems: "center",
       justifyContent: "center",
       borderWidth: 1,
-      borderColor: themeColors.backgroundLight,
+      borderColor: themeColors.backgroundDark,
       borderRadius: sizeLocal,
     },
     container: {
@@ -102,7 +102,7 @@ function CircularProgressBar(props) {
               cy={center}
               r={radius}
               strokeWidth={strokeWidth}
-              stroke={backgroundColor || themeColors.backgroundLight}
+              stroke={backgroundColor || themeColors.backgroundDark}
               strokeDasharray={circumference}
               strokeDashoffset={circumference - (circumference * 70) / 100}
               strokeLinecap='round'

@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     width: Dimensions.get("window").width / 3,
     height: Dimensions.get("window").width / 3,
     borderRadius: Dimensions.get("window").width,
-    borderColor: themeColors.backgroundLight,
+    borderColor: themeColors.backgroundDark,
     borderWidth: 1,
     justifyContent: "center",
     alignItems: "center",

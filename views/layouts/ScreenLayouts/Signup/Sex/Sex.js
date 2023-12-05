@@ -23,9 +23,7 @@ export default function Sex(props) {
         }
         style={{
           borderColor:
-            sex === SEX.male
-              ? themeColors.primary
-              : themeColors.backgroundLight,
+            sex === SEX.male ? themeColors.primary : themeColors.backgroundDark,
         }}
         onPress={() => {
           setSex(SEX.male);
@@ -46,7 +44,7 @@ export default function Sex(props) {
           borderColor:
             sex === SEX.female
               ? themeColors.primary
-              : themeColors.backgroundLight,
+              : themeColors.backgroundDark,
         }}
         onPress={() => {
           setSex(SEX.female);

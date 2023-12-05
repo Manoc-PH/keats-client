@@ -4,7 +4,7 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   wrapper: {
     width: "100%",
-    borderTopColor: themeColors.backgroundLight,
+    borderTopColor: themeColors.backgroundDark,
     borderTopWidth: 1,
   },
 });

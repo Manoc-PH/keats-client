@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
     zIndex: ZINDEX.header,
     elevation: ZINDEX.header,
     shadowColor: "#00000000",
-    borderTopColor: themeColors.backgroundLight,
+    borderTopColor: themeColors.backgroundDark,
     borderTopWidth: 1,
     paddingHorizontal: SPACING.Medium,
     paddingVertical: SPACING.Small,

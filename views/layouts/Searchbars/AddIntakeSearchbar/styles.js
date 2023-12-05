@@ -4,9 +4,10 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   wrapper: {
-    padding: SPACING.Regular,
+    paddingHorizontal: SPACING.Regular,
     width: "100%",
     justifyContent: "flex-end",
+    backgroundColor: themeColors.background,
   },
   rowContainer: {
     flexDirection: "row",

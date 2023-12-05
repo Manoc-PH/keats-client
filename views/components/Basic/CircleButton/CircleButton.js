@@ -41,7 +41,7 @@ export default function CircleButton(props) {
       backgroundColor: backgroundColor || themeColors.background,
       color: color || themeColors.primary,
       borderWidth: 1,
-      borderColor: borderColor || themeColors.backgroundLight,
+      borderColor: borderColor || themeColors.backgroundDark,
     },
     transparent: {
       backgroundColor: backgroundColor || `${themeColors.background}00`,

@@ -14,7 +14,7 @@ export default function TrippleArrowDownIcon(props) {
         {...props}>
         <Path
           d='M42 1.5L25.535 13.587c-1.944 1.428-5.126 1.428-7.07 0L2 1.5M42 38.342L25.535 50.43c-1.944 1.428-5.126 1.428-7.07 0L2 38.342M42 19.921L25.535 32.008c-1.944 1.428-5.126 1.428-7.07 0L2 19.921'
-          stroke={props.color || themeColors.backgroundLight}
+          stroke={props.color || themeColors.backgroundDark}
           strokeWidth={3}
           strokeMiterlimit={10}
           strokeLinecap='round'

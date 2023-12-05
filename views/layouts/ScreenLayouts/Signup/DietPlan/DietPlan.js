@@ -30,7 +30,7 @@ export default function DietPlan(props) {
             borderColor:
               diet_plan_id === item.id
                 ? themeColors.primary
-                : themeColors.backgroundLight,
+                : themeColors.backgroundDark,
             backgroundColor: themeColors.background,
           }}>
           <View
@@ -40,7 +40,7 @@ export default function DietPlan(props) {
               alignItems: "center",
               backgroundColor: item?.background_color
                 ? item.background_color
-                : themeColors.backgroundLight,
+                : themeColors.backgroundDark,
               borderTopLeftRadius: SPACING.Medium,
               borderTopRightRadius: SPACING.Medium,
               padding: SPACING.Medium,

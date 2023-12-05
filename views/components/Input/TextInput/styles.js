@@ -12,16 +12,12 @@ export const styles = StyleSheet.create({
   wrapper: {
     width: "100%",
     alignSelf: "stretch",
-    marginVertical: SPACING.Small - 1,
-    marginRight: SPACING.Small,
   },
   container: {
     flexDirection: "row",
     alignItems: "center",
-    borderWidth: 1,
-    borderColor: themeColors.backgroundLight,
+    backgroundColor: themeColors.backgroundLight,
     borderRadius: SPACING.Regular,
-    paddingHorizontal: SPACING.Small,
   },
   // LABEL
   labelContainer: {

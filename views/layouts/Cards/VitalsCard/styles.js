@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
   spacerLine: {
     width: "100%",
     height: 1,
-    borderTopColor: themeColors.backgroundLight,
+    borderTopColor: themeColors.backgroundDark,
     borderTopWidth: 1,
     marginVertical: SPACING.Regular,
   },

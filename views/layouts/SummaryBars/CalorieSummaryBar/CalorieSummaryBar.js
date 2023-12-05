@@ -31,7 +31,7 @@ export default function CalorieSummaryBar(props) {
         size={width}
         progress={(calories / maxCalories) * 100 || 0}
         foregroundColor={themeColors.primary}
-        backgroundColor={themeColors.backgroundLight}
+        backgroundColor={themeColors.backgroundDark}
         isViewSimple={isViewSimple}>
         <View style={styles.container}>
           {!isViewSimple && (
