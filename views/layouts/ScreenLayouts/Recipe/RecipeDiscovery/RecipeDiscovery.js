@@ -18,7 +18,11 @@ export default function RecipeDiscovery(props) {
       <View style={styles.optionContainer}></View>
       <View style={styles.recipeWrapper}>
         <View style={styles.recipeContainer}>
-          <RecipeCard name={"This is the name of the recipe"} />
+          <RecipeCard
+            name={"This is the name of the recipe"}
+            rating={5}
+            rating_count={15}
+          />
         </View>
         <View style={styles.recipeContainer}>
           <RecipeCard />
