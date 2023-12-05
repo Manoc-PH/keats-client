@@ -10,6 +10,7 @@ export const styles = StyleSheet.create({
     gap: SPACING.Medium,
   },
   container: {
+    width: "100%",
     paddingHorizontal: SPACING.Medium,
   },
   image: {

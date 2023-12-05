@@ -3,7 +3,7 @@ import { Dimensions, View } from "react-native";
 import { useSelector } from "react-redux";
 
 // Layouts
-import { ScrollPage } from "@app/views/layouts";
+import { RecipeDiscovery, ScrollPage } from "@app/views/layouts";
 // Components
 import { Button, SubHeadline2, SwitchButton } from "@app/views/components";
 // Constants
@@ -41,6 +41,9 @@ export default function Recipes() {
             text1={"Discover"}
             text2={"My Recipes"}
           />
+        </View>
+        <View style={styles.container}>
+          <RecipeDiscovery />
         </View>
       </View>
     </ScrollPage>

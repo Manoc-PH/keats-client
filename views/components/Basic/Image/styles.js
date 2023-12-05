@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   wrapper: {
-    width: "100%",
+    flex: 1,
     aspectRatio: 1,
     justifyContent: "center",
     alignItems: "center",

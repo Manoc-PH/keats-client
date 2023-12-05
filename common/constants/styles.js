@@ -13,8 +13,8 @@ export const SIZES = {
 export const FONT_SIZES = {
   Tiny: 12,
   Small: 14,
-  Regular: 18,
-  Medium: 20,
+  Regular: 16,
+  Medium: 18,
   Large: 22,
   ExtraLarge: 28,
   Huge: 34,

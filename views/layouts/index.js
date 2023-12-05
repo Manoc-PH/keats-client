@@ -16,6 +16,8 @@ export { default as IngredientName } from "./ScreenLayouts/Ingredient/Ingredient
 
 // Food
 export { default as FoodName } from "./ScreenLayouts/Food/FoodName";
+// Recipe
+export { default as RecipeDiscovery } from "./ScreenLayouts/Recipe/RecipeDiscovery";
 
 // Signup
 export { default as UsernamePassword } from "./ScreenLayouts/Signup/UsernamePassword";
@@ -29,6 +31,7 @@ export { default as Sex } from "./ScreenLayouts/Signup/Sex";
 // Cards
 export { default as VitalsCard } from "./Cards/VitalsCard";
 export { default as ProfileCard } from "./Cards/ProfileCard";
+export { default as RecipeCard } from "./Cards/RecipeCard";
 
 // Graphs
 export { default as CalorieGraph } from "./Graphs/CalorieGraph";
