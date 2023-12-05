@@ -7,11 +7,15 @@ export const styles = StyleSheet.create({
     width: "100%",
     marginBottom: SPACING.Huge,
     paddingVertical: SPACING.Medium,
+    gap: SPACING.Medium,
   },
   container: {
-    position: "relative",
     paddingHorizontal: SPACING.Medium,
-    paddingVertical: SPACING.Huge,
+  },
+  image: {
+    width: "100%",
+    height: SPACING.Huge * 7,
+    borderRadius: SPACING.Regular,
   },
   btn: {
     position: "absolute",
