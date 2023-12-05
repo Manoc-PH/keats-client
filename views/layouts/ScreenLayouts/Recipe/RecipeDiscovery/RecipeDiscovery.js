@@ -2,16 +2,20 @@ import { View } from "react-native";
 
 // Constants
 import { FONT_SIZES } from "@app/common/constants/styles";
-
 // Components
 import { TextSkeleton, Title3 } from "@app/views/components";
+// Hooks
+import { useGetRecipeDiscovery } from "@app/core/hooks/api";
+import RecipeCard from "@app/views/layouts/Cards/RecipeCard";
 
 import { styles } from "./styles";
-import RecipeCard from "@app/views/layouts/Cards/RecipeCard";
 
 export default function RecipeDiscovery(props) {
   // Props
   const {} = props;
+
+  // Hooks
+  const {} = useGetRecipeDiscovery();
 
   return (
     <View style={styles.wrapper}>
@@ -34,7 +38,7 @@ export default function RecipeDiscovery(props) {
           <RecipeCard />
         </View>
         <View style={styles.recipeContainer}>
-          <RecipeCard name={"This is the name of the recipe"} />
+          <RecipeCard name={"Thgdg dfg dfgdf"} />
         </View>
         <View style={styles.recipeContainer}>
           <RecipeCard />

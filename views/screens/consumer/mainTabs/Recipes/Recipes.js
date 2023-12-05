@@ -38,8 +38,7 @@ export default function Recipes() {
             switchWidth={
               Dimensions.get("window").width - SPACING.Medium - SPACING.Medium
             }
-            text1={"Discover"}
-            text2={"My Recipes"}
+            options={["Discover", "My Recipes"]}
           />
         </View>
         <View style={styles.container}>
