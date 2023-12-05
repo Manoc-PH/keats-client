@@ -22,6 +22,9 @@ export default function RecipeDiscovery(props) {
             name={"This is the name of the recipe"}
             rating={5}
             rating_count={15}
+            image_url={
+              "https://static.toiimg.com/thumb/58394256.cms?imgsize=104892&width=800&height=800"
+            }
           />
         </View>
         <View style={styles.recipeContainer}>

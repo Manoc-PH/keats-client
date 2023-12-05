@@ -15,8 +15,8 @@ export const styles = StyleSheet.create({
     backgroundColor: themeColors.backgroundDark,
     borderTopLeftRadius: SPACING.Regular,
     borderTopRightRadius: SPACING.Regular,
+    overflow: "hidden",
   },
-  image: {},
   imagePlaceholder: {
     justifyContent: "center",
     alignItems: "center",
