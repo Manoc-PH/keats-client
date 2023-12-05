@@ -36,7 +36,12 @@ export default function TextInput(props) {
           <SubHeadline1>{label}</SubHeadline1>
         </View>
       )}
-      <View style={styles.container}>
+      <View
+        style={{
+          ...styles.container,
+          paddingLeft: startIcon && SPACING.Tiny,
+          paddingRight: onClearPress && SPACING.Tiny,
+        }}>
         {startIcon && (
           <Button
             variant={BTN_VARIANTS.transparent}

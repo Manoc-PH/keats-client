@@ -27,6 +27,6 @@ export const styles = StyleSheet.create({
   btnsContainer: {
     width: "100%",
     alignItems: "stretch",
+    gap: SPACING.Regular,
   },
-  login: { marginBottom: SPACING.Medium },
 });

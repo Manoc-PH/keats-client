@@ -9,6 +9,7 @@ export const styles = StyleSheet.create({
     zIndex: ZINDEX.header,
     elevation: ZINDEX.header,
     shadowColor: "#00000000",
+    paddingVertical: SPACING.Tiny - 1,
   },
   container: {
     width: "100%",

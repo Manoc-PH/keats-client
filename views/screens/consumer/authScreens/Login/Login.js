@@ -109,9 +109,7 @@ export default function Login(props) {
             </Button>
           </View>
           <View style={styles.btnsContainer}>
-            <Button style={styles.login} onPress={handleSubmit}>
-              Login
-            </Button>
+            <Button onPress={handleSubmit}>Login</Button>
             <Button
               variant={BTN_VARIANTS.outlined}
               onPress={() => navigation.navigate("Signup")}>
