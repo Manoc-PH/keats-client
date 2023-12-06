@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { useDispatch } from "react-redux";
 // Hooks
 import { useGetRecipeFiltered } from "@app/core/hooks/api";
+// Store
+import { actions } from "@app/core/store";
 // Layouts
 import RecipeCard from "@app/views/layouts/Cards/RecipeCard";
 
@@ -11,8 +15,15 @@ export default function RecipeCreated(props) {
   // Props
   const {} = props;
 
+  // Store Actions
+  const { setSelectedRecipeID: sdi } = actions;
+  const dispatch = useDispatch();
+  const setSelectedRecipeID = (v) => dispatch(sdi(v));
   // Local states
   const [recipes, setRecipes] = useState();
+
+  // Hooks
+  const navigation = useNavigation();
   const {
     getRecipeFiltered,
     getRecipeFilteredData,
@@ -22,6 +33,11 @@ export default function RecipeCreated(props) {
   // Constants
   const loading = isGetRecipeFilteredLoading;
 
+  // Functions
+  function handlePress(id) {
+    setSelectedRecipeID(id);
+    navigation.navigate("Common", { screen: "RecipeDetails" });
+  }
   // UseEffects
   useEffect(() => {
     getRecipeFiltered({ created: true });
@@ -46,6 +62,7 @@ export default function RecipeCreated(props) {
                   rating={item.rating}
                   rating_count={item.rating_count}
                   image_url={item.thumbnail_url}
+                  onPress={() => handlePress(item.id)}
                 />
               </View>
             );
