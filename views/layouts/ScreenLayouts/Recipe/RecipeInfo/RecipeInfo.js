@@ -10,6 +10,7 @@ import { SwitchButton } from "@app/views/components";
 import { useGetRecipeReviews } from "@app/core/hooks/api";
 
 import { styles } from "./styles";
+import ReviewCard from "@app/views/layouts/Cards/ReviewCard";
 
 export default function RecipeInfo(props) {
   // Props
@@ -36,6 +37,11 @@ export default function RecipeInfo(props) {
   useEffect(() => {
     handleSwitchInfo();
   }, [activeInfo]);
+  useEffect(() => {
+    if (getRecipeReviewsData?.reviews?.length > 0) {
+      setInfoSet(getRecipeReviewsData.reviews);
+    }
+  }, [getRecipeReviewsData]);
   return (
     <View style={styles.wrapper}>
       <SwitchButton
@@ -45,7 +51,19 @@ export default function RecipeInfo(props) {
         }
         options={["Reviews", "Ingredients", "Instructions"]}
       />
-      {activeInfo === "Reviews" && <View></View>}
+      {activeInfo === "Reviews" && (
+        <View>
+          {infoSet &&
+            infoSet.map((item) => (
+              <ReviewCard
+                name={item.name_owner}
+                rating={item.rating}
+                description={item.description}
+                date_created={item.date_created}
+              />
+            ))}
+        </View>
+      )}
       {activeInfo === "Ingredients" && <View></View>}
       {activeInfo === "Instructions" && <View></View>}
     </View>

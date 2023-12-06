@@ -11,6 +11,7 @@ export const styles = StyleSheet.create({
     marginVertical: SPACING.Tiny,
     borderWidth: 1,
     borderColor: themeColors.backgroundDark,
+    backgroundColor: themeColors.background,
     borderRadius: SPACING.Regular,
     padding: SPACING.Tiny,
   },
@@ -33,6 +34,6 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "flex-start",
     flex: 1,
-    marginLeft: SPACING.Regular,
+    paddingHorizontal: SPACING.Regular,
   },
 });
