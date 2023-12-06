@@ -30,32 +30,35 @@ export default function RecipeDiscovery(props) {
     getRecipeDiscovery();
   }, []);
   useEffect(() => {
-    if (getRecipeDiscoveryData) console.log(getRecipeDiscoveryData);
+    if (getRecipeDiscoveryData?.recipes)
+      setRecipes(getRecipeDiscoveryData.recipes);
   }, [getRecipeDiscoveryData]);
   return (
     <View style={styles.wrapper}>
       <View style={styles.optionContainer}></View>
       <View style={styles.recipeWrapper}>
         {recipes &&
+          !isGetRecipeDiscoveryLoading &&
           recipes?.length > 0 &&
           recipes.map((item) => {
             return (
               <View style={styles.recipeContainer}>
                 <RecipeCard
+                  key={item.id}
                   name={item.name}
-                  rating={5}
-                  rating_count={15}
-                  image_url={
-                    "https://static.toiimg.com/thumb/58394256.cms?imgsize=104892&width=800&height=800"
-                  }
+                  rating={item.rating}
+                  rating_count={item.rating_count}
+                  image_url={item.thumbnail_url}
                 />
               </View>
             );
           })}
-
-        <View style={styles.recipeContainer}>
-          <RecipeCard loading />
-        </View>
+        {isGetRecipeDiscoveryLoading &&
+          Array.from({ length: 4 }, (item, index) => (
+            <View key={index} style={styles.recipeContainer}>
+              <RecipeCard loading />
+            </View>
+          ))}
       </View>
     </View>
   );
