@@ -75,6 +75,7 @@ export default function RecipeDetails() {
           recipeDetails={recipeDetails?.recipe}
           isLoading={isGetRecipeLoading}
         />
+        <PageDivider style={styles.spacer} />
       </View>
     </ScrollPage>
   );

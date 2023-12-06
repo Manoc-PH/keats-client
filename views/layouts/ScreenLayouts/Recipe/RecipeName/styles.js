@@ -37,4 +37,8 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   body: { fontFamily: FONT_FAMILY.Regular, textAlign: "center" },
+
+  loadingTitle: { width: Dimensions.get("window").width / 1.5 },
+  loadingSubheadline1: { width: Dimensions.get("window").width / 3 },
+  loadingBody: { width: Dimensions.get("window").width / 5 },
 });

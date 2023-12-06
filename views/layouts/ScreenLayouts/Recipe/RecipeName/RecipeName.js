@@ -1,16 +1,14 @@
-import { useEffect, useState } from "react";
 import { View } from "react-native";
-import { useSelector, useDispatch } from "react-redux";
-
-// Store
-import { actions } from "@app/core/store";
-
 // Constants
-import { FONT_SIZES } from "@app/common/constants/styles";
-
+import { FONT_SIZES, SPACING } from "@app/common/constants/styles";
+// Icons
+import {
+  LargeHeartIcon,
+  LargeServingIcon,
+  LargeTimeIcon,
+} from "@app/assets/icons";
 // Components
 import {
-  DropdownInput,
   StarRating,
   SubHeadline1,
   SubHeadline2,
@@ -20,29 +18,14 @@ import {
 } from "@app/views/components";
 
 import { styles } from "./styles";
-import {
-  LargeHeartIcon,
-  LargeServingIcon,
-  LargeTimeIcon,
-} from "@app/assets/icons";
-import PageDivider from "@app/views/layouts/PageDivider";
 
 export default function RecipeName(props) {
   // Props
   const { recipeDetails, isLoading, style } = props;
-  console.log(recipeDetails);
-
-  // Local State
-  const [ingredient, setIngredient] = useState();
-  const [selectedVariant, setSelectedVariant] = useState();
-  const [selectedSubvariant, setSelectedSubvariant] = useState();
-  const [ingredientMapping, setIngredientMapping] = useState();
-  const [variants, setVariants] = useState();
-  const [subvariants, setSubvariants] = useState();
 
   return (
     <View style={{ ...styles.wrapper, ...style }}>
-      {!isLoading && recipeDetails && (
+      {!isLoading && recipeDetails ? (
         <View style={styles.container}>
           <View>
             <Title2>{recipeDetails.name}</Title2>
@@ -55,8 +38,24 @@ export default function RecipeName(props) {
             </SubHeadline2>
           </View>
         </View>
+      ) : (
+        <View style={styles.container}>
+          <View style={{ alignItems: "flex-start", gap: SPACING.Tiny }}>
+            <TextSkeleton
+              style={styles.loadingTitle}
+              fontSize={FONT_SIZES.Large}
+            />
+            <TextSkeleton
+              style={styles.loadingSubheadline1}
+              fontSize={FONT_SIZES.Medium}
+            />
+          </View>
+          <View style={styles.rowContainer}>
+            <StarRating rating={0} />
+          </View>
+        </View>
       )}
-      {!isLoading && recipeDetails && (
+      {!isLoading && recipeDetails ? (
         <View style={styles.rowWrapper}>
           <View style={styles.detailContainer}>
             <LargeServingIcon />
@@ -69,6 +68,30 @@ export default function RecipeName(props) {
           <View style={styles.detailContainer}>
             <LargeHeartIcon />
             <Body style={styles.body}>{recipeDetails.likes} Likes</Body>
+          </View>
+        </View>
+      ) : (
+        <View style={styles.rowWrapper}>
+          <View style={styles.detailContainer}>
+            <LargeServingIcon />
+            <TextSkeleton
+              style={styles.loadingBody}
+              fontSize={FONT_SIZES.Regular}
+            />
+          </View>
+          <View style={styles.detailContainer}>
+            <LargeTimeIcon />
+            <TextSkeleton
+              style={styles.loadingBody}
+              fontSize={FONT_SIZES.Regular}
+            />
+          </View>
+          <View style={styles.detailContainer}>
+            <LargeHeartIcon />
+            <TextSkeleton
+              style={styles.loadingBody}
+              fontSize={FONT_SIZES.Regular}
+            />
           </View>
         </View>
       )}
