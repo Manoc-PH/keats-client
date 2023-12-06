@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { View } from "react-native";
-
 // Constants
-import { FONT_SIZES } from "@app/common/constants/styles";
+import { RECIPE_FILTERS_OPTIONS } from "@app/common/constants/options";
 // Components
-import { SwitchOptions, TextSkeleton, Title3 } from "@app/views/components";
+import { SwitchOptions } from "@app/views/components";
 // Hooks
 import {
   useGetRecipeDiscovery,
@@ -13,7 +12,6 @@ import {
 import RecipeCard from "@app/views/layouts/Cards/RecipeCard";
 
 import { styles } from "./styles";
-import { RECIPE_FILTERS_OPTIONS } from "@app/common/constants/options";
 
 export default function RecipeDiscovery(props) {
   // Props
@@ -77,6 +75,7 @@ export default function RecipeDiscovery(props) {
                 <RecipeCard
                   key={item.id}
                   name={item.name}
+                  name_owner={item.name_owner}
                   rating={item.rating}
                   rating_count={item.rating_count}
                   image_url={item.thumbnail_url}

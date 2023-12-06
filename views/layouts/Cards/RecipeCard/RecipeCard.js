@@ -17,7 +17,7 @@ import { styles } from "./styles";
 
 export default function RecipeCard(props) {
   // Props
-  const { name, image_url, rating, rating_count, loading } = props;
+  const { name, name_owner, image_url, rating, rating_count, loading } = props;
 
   return (
     <ImageCard
@@ -42,6 +42,11 @@ export default function RecipeCard(props) {
                 <Body style={styles.name}>{name}</Body>
               ) : (
                 <Body style={styles.noNameRecipe}>No Name</Body>
+              )}
+              {name_owner && (
+                <View style={styles.row}>
+                  <SubHeadline2>By {name_owner}</SubHeadline2>
+                </View>
               )}
               {rating && rating_count > 0 ? (
                 <View style={styles.row}>
