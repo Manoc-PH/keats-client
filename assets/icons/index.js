@@ -34,3 +34,4 @@ export { default as CheckIcon } from "./check";
 
 //
 export { default as StarIcon } from "./star";
+export { default as StarGradientIcon } from "./starGradient";

@@ -9,7 +9,7 @@ import { useGetRecipe } from "@app/core/hooks/api";
 import {
   NutrientSummary,
   ScrollPage,
-  IngredientName,
+  RecipeName,
   ConsumeIngredientFooter,
   PageDivider,
   ImagesCarousel,
@@ -70,15 +70,8 @@ export default function RecipeDetails() {
           amount={recipeTotalAmount}
           isLoading={isGetRecipeLoading}
         />
-        {/* <PageDivider style={styles.spacer} />
-        <IngredientName
-          style={styles.spacer}
-          recipeDetails={recipeDetails}
-          isLoading={
-            isGetIngredientDetailsLoading ||
-            isGetIngredientMappingDetailsLoading
-          }
-        /> */}
+        <PageDivider style={styles.spacer} />
+        <RecipeName />
       </View>
     </ScrollPage>
   );

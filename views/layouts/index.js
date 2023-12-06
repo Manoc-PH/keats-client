@@ -19,6 +19,7 @@ export { default as FoodName } from "./ScreenLayouts/Food/FoodName";
 // Recipe
 export { default as RecipeDiscovery } from "./ScreenLayouts/Recipe/RecipeDiscovery";
 export { default as RecipeCreated } from "./ScreenLayouts/Recipe/RecipeCreated";
+export { default as RecipeName } from "./ScreenLayouts/Recipe/RecipeName";
 
 // Signup
 export { default as UsernamePassword } from "./ScreenLayouts/Signup/UsernamePassword";
