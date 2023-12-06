@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { View } from "react-native";
 
 // Constants
@@ -14,9 +15,18 @@ export default function RecipeDiscovery(props) {
   // Props
   const {} = props;
 
-  // Hooks
-  const {} = useGetRecipeDiscovery();
+  // Local states
+  const [recipes, setRecipes] = useState();
 
+  // Hooks
+  const {
+    getRecipeDiscovery,
+    getRecipeDiscoveryData,
+    isGetRecipeDiscoveryLoading,
+  } = useGetRecipeDiscovery();
+
+  // UseEffects
+  useEffect(() => {}, []);
   return (
     <View style={styles.wrapper}>
       <View style={styles.optionContainer}></View>
@@ -32,22 +42,22 @@ export default function RecipeDiscovery(props) {
           />
         </View>
         <View style={styles.recipeContainer}>
-          <RecipeCard />
+          <RecipeCard loading />
         </View>
         <View style={styles.recipeContainer}>
-          <RecipeCard />
+          <RecipeCard loading />
         </View>
         <View style={styles.recipeContainer}>
-          <RecipeCard name={"Thgdg dfg dfgdf"} />
+          <RecipeCard loading name={"Thgdg dfg dfgdf"} />
         </View>
         <View style={styles.recipeContainer}>
-          <RecipeCard />
+          <RecipeCard loading />
         </View>
         <View style={styles.recipeContainer}>
-          <RecipeCard />
+          <RecipeCard loading />
         </View>
         <View style={styles.recipeContainer}>
-          <RecipeCard />
+          <RecipeCard loading />
         </View>
       </View>
     </View>

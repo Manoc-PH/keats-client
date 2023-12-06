@@ -34,4 +34,6 @@ export const styles = StyleSheet.create({
     fontFamily: FONT_FAMILY.Medium,
   },
   row: { flexDirection: "row", gap: SPACING.Tiny, alignItems: "center" },
+  loader: { width: Dimensions.get("window").width / 3 },
+  smallLoader: { width: Dimensions.get("window").width / 5 },
 });
