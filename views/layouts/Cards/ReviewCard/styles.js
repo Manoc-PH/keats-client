@@ -1,6 +1,6 @@
 import { FONT_SIZES, FONT_FAMILY, SPACING } from "@app/common/constants/styles";
 import themeColors from "@app/common/theme";
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   wrapper: {
@@ -16,5 +16,14 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     gap: SPACING.Small,
     alignItems: "center",
+  },
+  loadingTitle: {
+    width: Dimensions.get("window").width / 5,
+  },
+  loadingBody: {
+    width: Dimensions.get("window").width / 2,
+  },
+  loadingTime: {
+    width: Dimensions.get("window").width / 7,
   },
 });

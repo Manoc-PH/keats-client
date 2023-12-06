@@ -1,13 +1,11 @@
 import React from "react";
 import { ImageIcon } from "@app/assets/icons";
-import { FONT_SIZES } from "@app/common/constants/styles";
-import { Image, Pressable, View } from "react-native";
+import { FONT_SIZES, SPACING } from "@app/common/constants/styles";
+import { View } from "react-native";
 
 // Basic
 import {
   InfoCard,
-  Caption1,
-  SubHeadline1,
   TextSkeleton,
   Body,
   StarRating,
@@ -39,20 +37,46 @@ export default function ReviewCard(props) {
       {...rest}
       content={
         <>
-          {isLoading && <View></View>}
+          {isLoading && (
+            <View style={{ ...styles.wrapper, gap: SPACING.Tiny }}>
+              <View style={styles.rowWrapper}>
+                <View style={styles.rowContainer}>
+                  <TextSkeleton
+                    style={styles.loadingTitle}
+                    fontSize={FONT_SIZES.Regular}
+                  />
+                  <StarRating />
+                </View>
+                <View style={styles.rowContainer}>
+                  <TextSkeleton
+                    style={styles.loadingTime}
+                    fontSize={FONT_SIZES.Small}
+                  />
+                </View>
+              </View>
+              <View style={styles.rowWrapper}>
+                <TextSkeleton
+                  style={styles.loadingBody}
+                  fontSize={FONT_SIZES.Regular}
+                />
+              </View>
+            </View>
+          )}
           {!isLoading && (
             <View style={styles.wrapper}>
               <View style={styles.rowWrapper}>
                 <View style={styles.rowContainer}>
-                  <Title3>{name}</Title3>
+                  <Title3>{name && name}</Title3>
                   <StarRating rating={rating} />
                 </View>
                 <View style={styles.rowContainer}>
-                  <SubHeadline2>{moment(date_created).fromNow()}</SubHeadline2>
+                  <SubHeadline2>
+                    {date_created && moment(date_created).fromNow()}
+                  </SubHeadline2>
                 </View>
               </View>
               <View style={styles.rowWrapper}>
-                <Body>{description}</Body>
+                <Body>{description && description}</Body>
               </View>
             </View>
           )}

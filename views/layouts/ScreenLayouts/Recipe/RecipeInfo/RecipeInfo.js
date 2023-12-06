@@ -24,18 +24,21 @@ export default function RecipeInfo(props) {
 
   // Functions
   function handleSwitchView(value) {
+    setInfoSet([]);
     if (value === 1) setActiveInfo("Reviews");
     if (value === 2) setActiveInfo("Ingredients");
     if (value === 3) setActiveInfo("Instructions");
   }
-  function handleSwitchInfo() {}
+  function handleSwitchInfo(value) {
+    if (value === "Reviews") getRecipeReviews({ recipe_id: RecipeID });
+  }
 
   // UseEffects
   useEffect(() => {
     getRecipeReviews({ recipe_id: RecipeID });
   }, [RecipeID]);
   useEffect(() => {
-    handleSwitchInfo();
+    handleSwitchInfo(activeInfo);
   }, [activeInfo]);
   useEffect(() => {
     if (getRecipeReviewsData?.reviews?.length > 0) {
@@ -53,9 +56,18 @@ export default function RecipeInfo(props) {
       />
       {activeInfo === "Reviews" && (
         <View>
+          {isGetRecipeReviewsLoading && (
+            <>
+              <ReviewCard isLoading />
+              <ReviewCard isLoading />
+              <ReviewCard isLoading />
+            </>
+          )}
           {infoSet &&
+            !isGetRecipeReviewsLoading &&
             infoSet.map((item) => (
               <ReviewCard
+                key={item.id}
                 name={item.name_owner}
                 rating={item.rating}
                 description={item.description}
