@@ -1,15 +1,40 @@
 import { FONT_FAMILY, SPACING } from "@app/common/constants/styles";
 import themeColors from "@app/common/theme";
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   wrapper: {
     width: "100%",
     justifyContent: "flex-start",
+    gap: SPACING.Medium,
     paddingVertical: SPACING.Medium,
   },
-  container: { width: "100%", gap: SPACING.Small },
-  rowWrapper: { width: "100%", gap: SPACING.Medium, flexDirection: "row" },
-  rowContainer: { gap: SPACING.Tiny, flexDirection: "row" },
-  subheadline: { fontFamily: FONT_FAMILY.Regular },
+  container: {
+    width: "100%",
+    gap: SPACING.Small,
+    justifyContent: "center",
+  },
+  rowWrapper: {
+    width: "100%",
+    gap: SPACING.Medium,
+    justifyContent: "space-around",
+    flexDirection: "row",
+  },
+  rowContainer: {
+    gap: SPACING.Small,
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  detailContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    gap: SPACING.Regular,
+    backgroundColor: themeColors.background,
+    paddingVertical: SPACING.Large,
+    borderRadius: SPACING.Medium,
+    borderWidth: 1,
+    borderColor: themeColors.backgroundDark,
+    flex: 1,
+  },
+  body: { fontFamily: FONT_FAMILY.Regular, textAlign: "center" },
 });

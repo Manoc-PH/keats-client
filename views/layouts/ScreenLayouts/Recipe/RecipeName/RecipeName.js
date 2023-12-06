@@ -16,10 +16,16 @@ import {
   SubHeadline2,
   TextSkeleton,
   Title2,
-  Title3,
+  Body,
 } from "@app/views/components";
 
 import { styles } from "./styles";
+import {
+  LargeHeartIcon,
+  LargeServingIcon,
+  LargeTimeIcon,
+} from "@app/assets/icons";
+import PageDivider from "@app/views/layouts/PageDivider";
 
 export default function RecipeName(props) {
   // Props
@@ -42,26 +48,31 @@ export default function RecipeName(props) {
             <Title2>{recipeDetails.name}</Title2>
             <SubHeadline1>By {recipeDetails.name_owner}</SubHeadline1>
           </View>
-          <View style={styles.rowWrapper}>
-            <View style={styles.rowContainer}>
-              <SubHeadline2 style={styles.subheadline}>
-                {recipeDetails.servings} Servs.
-              </SubHeadline2>
-            </View>
-            <View style={styles.rowContainer}>
-              <SubHeadline2 style={styles.subheadline}>
-                {recipeDetails.prep_time} Mins.
-              </SubHeadline2>
-            </View>
-            <View style={styles.rowContainer}>
-              <SubHeadline2 style={styles.subheadline}>
-                {recipeDetails.likes} Likes
-              </SubHeadline2>
-            </View>
+          <View style={styles.rowContainer}>
+            <StarRating rating={recipeDetails.rating} />
+            <SubHeadline2>
+              {`${recipeDetails.rating} (${recipeDetails.rating_count})`}
+            </SubHeadline2>
           </View>
-          <StarRating rating={recipeDetails.rating} />
         </View>
       )}
+      {!isLoading && recipeDetails && (
+        <View style={styles.rowWrapper}>
+          <View style={styles.detailContainer}>
+            <LargeServingIcon />
+            <Body style={styles.body}>{recipeDetails.servings} Servs.</Body>
+          </View>
+          <View style={styles.detailContainer}>
+            <LargeTimeIcon />
+            <Body style={styles.body}>{recipeDetails.prep_time} Mins.</Body>
+          </View>
+          <View style={styles.detailContainer}>
+            <LargeHeartIcon />
+            <Body style={styles.body}>{recipeDetails.likes} Likes</Body>
+          </View>
+        </View>
+      )}
+      {!isLoading && recipeDetails && <Body>{recipeDetails.description}</Body>}
     </View>
   );
 }

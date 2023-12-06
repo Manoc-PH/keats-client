@@ -35,3 +35,8 @@ export { default as CheckIcon } from "./check";
 //
 export { default as StarIcon } from "./star";
 export { default as StarGradientIcon } from "./starGradient";
+
+// Large Icons
+export { default as LargeHeartIcon } from "./largeHeart";
+export { default as LargeTimeIcon } from "./largeTime";
+export { default as LargeServingIcon } from "./largeServing";
