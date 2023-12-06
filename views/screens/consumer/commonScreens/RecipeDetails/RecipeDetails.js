@@ -23,7 +23,7 @@ import { Image } from "@app/views/components";
 
 import { styles } from "./styles";
 
-export default function IngredientDetails() {
+export default function RecipeDetails() {
   // Store State
   const { dailyNutrients } = useSelector((state) => state.tracker);
   const {
@@ -33,7 +33,7 @@ export default function IngredientDetails() {
   } = useSelector((state) => state.ingredient);
 
   // Local State
-  const [ingredientDetails, setIngredientDetails] = useState();
+  const [recipeDetails, setIngredientDetails] = useState();
 
   // Hooks
   const {
@@ -63,7 +63,7 @@ export default function IngredientDetails() {
   // UseEffects
   useEffect(() => {
     if (selectedIngredientID) {
-      if (!ingredientDetails || ingredientDetails?.id !== selectedIngredientID)
+      if (!recipeDetails || recipeDetails?.id !== selectedIngredientID)
         getIngredientDetails(selectedIngredientID);
     }
   }, [selectedIngredientID]);
@@ -78,46 +78,35 @@ export default function IngredientDetails() {
     if (getIngredientMappingDetailsData) handleIngredientMappingData();
   }, [getIngredientMappingDetailsData]);
   return (
-    <>
-      <ScrollPage style={styles.wrapper}>
-        <View style={styles.imageWrapper}>
-          {ingredientDetails?.ingredient_images &&
-          ingredientDetails?.ingredient_images?.length > 0 ? (
-            <ImagesCarousel data={ingredientDetails.ingredient_images} />
-          ) : (
-            <Image src={ingredientDetails?.thumbnail_image_link} />
-          )}
-        </View>
-        <View style={styles.container}>
-          <NutrientSummary
-            dailyNutrients={dailyNutrients}
-            details={ingredientDetails}
-            amount={selectedIngredientAmount}
-            isLoading={
-              isGetIngredientDetailsLoading ||
-              isGetIngredientMappingDetailsLoading
-            }
-          />
-          <PageDivider style={styles.spacer} />
-          <IngredientName
-            style={styles.spacer}
-            ingredientDetails={ingredientDetails}
-            isLoading={
-              isGetIngredientDetailsLoading ||
-              isGetIngredientMappingDetailsLoading
-            }
-          />
-        </View>
-      </ScrollPage>
-      {ingredientDetails && (
-        <ConsumeIngredientFooter
-          key={selectedIngredientMappingID}
-          ingredient_mapping_id={
-            selectedIngredientMappingID ||
-            ingredientDetails.ingredient_mapping_id
+    <ScrollPage style={styles.wrapper}>
+      <View style={styles.imageWrapper}>
+        {recipeDetails?.ingredient_images &&
+        recipeDetails?.ingredient_images?.length > 0 ? (
+          <ImagesCarousel data={recipeDetails.ingredient_images} />
+        ) : (
+          <Image src={recipeDetails?.thumbnail_image_link} />
+        )}
+      </View>
+      <View style={styles.container}>
+        <NutrientSummary
+          dailyNutrients={dailyNutrients}
+          details={recipeDetails}
+          amount={selectedIngredientAmount}
+          isLoading={
+            isGetIngredientDetailsLoading ||
+            isGetIngredientMappingDetailsLoading
           }
         />
-      )}
-    </>
+        <PageDivider style={styles.spacer} />
+        <IngredientName
+          style={styles.spacer}
+          recipeDetails={recipeDetails}
+          isLoading={
+            isGetIngredientDetailsLoading ||
+            isGetIngredientMappingDetailsLoading
+          }
+        />
+      </View>
+    </ScrollPage>
   );
 }

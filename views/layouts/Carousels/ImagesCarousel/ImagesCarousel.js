@@ -1,13 +1,13 @@
 import React from "react";
 import { Dimensions, Image, View } from "react-native";
 // Components
-import { Body, CarouselImage, Title3 } from "@app/views/components";
+import { Body, CarouselImage } from "@app/views/components";
 // Theme
 import themeColors from "@app/common/theme";
 // Constants
 import { SPACING } from "@app/common/constants/styles";
 
-export default function IngredientCarousel(props) {
+export default function ImagesCarousel(props) {
   const { data } = props;
   if (!data) return;
 
@@ -27,10 +27,7 @@ export default function IngredientCarousel(props) {
           <Image
             style={{ width: width, height: width }}
             source={{
-              uri:
-                item?.name_file && item?.name_file_domain
-                  ? `${item.name_file_domain}${item.name_file}`
-                  : "",
+              uri: item?.name_url ? item.name_url : "",
             }}
           />
           <View

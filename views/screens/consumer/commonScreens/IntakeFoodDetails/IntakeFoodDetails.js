@@ -15,7 +15,7 @@ import {
   FoodName,
   UpdateFoodIntakeFooter,
   PageDivider,
-  IngredientCarousel,
+  ImagesCarousel,
 } from "@app/views/layouts";
 
 // Components
@@ -65,7 +65,7 @@ export default function IntakeFoodDetails() {
         <View style={styles.imageWrapper}>
           {intakeDetails?.food?.images &&
           intakeDetails?.food?.images?.length > 0 ? (
-            <IngredientCarousel data={intakeDetails.ingredient_images} />
+            <ImagesCarousel data={intakeDetails.ingredient_images} />
           ) : (
             <Image src={intakeDetails?.thumbnail_image_link} />
           )}
