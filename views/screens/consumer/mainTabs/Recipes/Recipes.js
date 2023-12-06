@@ -3,7 +3,7 @@ import { Dimensions, View } from "react-native";
 import { useSelector } from "react-redux";
 
 // Layouts
-import { RecipeDiscovery, ScrollPage } from "@app/views/layouts";
+import { RecipeCreated, RecipeDiscovery, ScrollPage } from "@app/views/layouts";
 // Components
 import { SwitchButton } from "@app/views/components";
 // Constants
@@ -41,7 +41,7 @@ export default function Recipes() {
           />
         </View>
         <View style={styles.container}>
-          <RecipeDiscovery />
+          {page === "Discover" ? <RecipeDiscovery /> : <RecipeCreated />}
         </View>
       </View>
     </ScrollPage>

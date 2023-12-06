@@ -18,6 +18,7 @@ export { default as IngredientName } from "./ScreenLayouts/Ingredient/Ingredient
 export { default as FoodName } from "./ScreenLayouts/Food/FoodName";
 // Recipe
 export { default as RecipeDiscovery } from "./ScreenLayouts/Recipe/RecipeDiscovery";
+export { default as RecipeCreated } from "./ScreenLayouts/Recipe/RecipeCreated";
 
 // Signup
 export { default as UsernamePassword } from "./ScreenLayouts/Signup/UsernamePassword";

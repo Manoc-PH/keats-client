@@ -3,6 +3,7 @@ import { authAxios } from "@app/common/utils/axios";
 
 // Endpoint
 import { RECIPE_ENDPOINTS } from "@app/common/constants/APIUrls";
+import { RECIPE_FILTERS_OPTIONS } from "@app/common/constants/options";
 
 // POST ENDPOINTS
 export const PostRecipe = async ({
@@ -86,7 +87,11 @@ export const GetRecipeDiscovery = async () => {
 };
 export const GetRecipeFiltered = async ({ filter, created, liked }) => {
   const response = await authAxios.get(RECIPE_ENDPOINTS.GET_RECIPE_FILTERED, {
-    params: { filter, created, liked },
+    params: {
+      filter: filter || RECIPE_FILTERS_OPTIONS[0].value,
+      created,
+      liked,
+    },
   });
   return response?.data;
 };
