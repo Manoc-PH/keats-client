@@ -50,7 +50,7 @@ export default function RecipeDetails() {
   useEffect(() => {
     if (getRecipeData) {
       setRecipeDetails(getRecipeData);
-      handleRecipeAmount(getRecipeData);
+      handleRecipeAmount(getRecipeData.recipe);
     }
   }, [getRecipeData]);
   return (
