@@ -17,11 +17,20 @@ import { styles } from "./styles";
 
 export default function RecipeCard(props) {
   // Props
-  const { name, name_owner, image_url, rating, rating_count, loading } = props;
+  const {
+    name,
+    name_owner,
+    image_url,
+    rating,
+    rating_count,
+    loading,
+    onPress,
+  } = props;
 
   return (
     <ImageCard
       image_url={image_url}
+      onPress={onPress}
       content={
         <>
           {loading && (

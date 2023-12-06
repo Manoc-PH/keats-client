@@ -43,6 +43,7 @@ export { default as IngredientDetailsHeader } from "./Headers/IngredientDetailsH
 export { default as MyIntakesHeader } from "./Headers/MyIntakesHeader";
 export { default as IntakeDetailsHeader } from "./Headers/IntakeDetailsHeader";
 export { default as RecipeHeader } from "./Headers/RecipeHeader";
+export { default as RecipeDetailsHeader } from "./Headers/RecipeDetailsHeader";
 
 // Footers
 export { default as ConsumeIngredientFooter } from "./Footers/ConsumeIngredientFooter";

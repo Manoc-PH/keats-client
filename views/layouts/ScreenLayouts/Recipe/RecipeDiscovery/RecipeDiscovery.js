@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import { View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { useDispatch } from "react-redux";
 // Constants
 import { RECIPE_FILTERS_OPTIONS } from "@app/common/constants/options";
 // Components
 import { SwitchOptions } from "@app/views/components";
+// Store
+import { actions } from "@app/core/store";
 // Hooks
 import {
   useGetRecipeDiscovery,
@@ -17,11 +21,16 @@ export default function RecipeDiscovery(props) {
   // Props
   const {} = props;
 
+  // Store Actions
+  const { setSelectedRecipeID: sdi } = actions;
+  const dispatch = useDispatch();
+  const setSelectedRecipeID = (v) => dispatch(sdi(v));
   // Local states
   const [recipes, setRecipes] = useState();
   const [activeOption, setActiveOption] = useState("recommended");
 
   // Hooks
+  const navigation = useNavigation();
   const {
     getRecipeDiscovery,
     getRecipeDiscoveryData,
@@ -43,6 +52,10 @@ export default function RecipeDiscovery(props) {
     } else {
       getRecipeFiltered({ filter: activeOption });
     }
+  }
+  function handlePress(id) {
+    setSelectedRecipeID(id);
+    navigation.navigate("Common", { screen: "RecipeDetails" });
   }
 
   // UseEffects
@@ -79,6 +92,7 @@ export default function RecipeDiscovery(props) {
                   rating={item.rating}
                   rating_count={item.rating_count}
                   image_url={item.thumbnail_url}
+                  onPress={() => handlePress(item.id)}
                 />
               </View>
             );
