@@ -9,14 +9,18 @@ import { INTAKE_TYPES } from "@app/common/constants/options";
 import { actions } from "@app/core/store";
 
 // Layouts
-import { AddIntakeSearchbar, ScrollPage } from "@app/views/layouts";
+import {
+  AddIntakeSearchbar,
+  ScrollPage,
+  SearchResultCard,
+} from "@app/views/layouts";
 
 // Utils
 import useDebounce from "@app/common/utils/debounce";
 // Themes
 import themeColors from "@app/common/theme";
 // Components
-import { Title1, SearchResultCard } from "@app/views/components";
+import { Title1 } from "@app/views/components";
 
 // Hooks
 import { useGetSearchFood, useGetSearchIngredient } from "@app/core/hooks/api";

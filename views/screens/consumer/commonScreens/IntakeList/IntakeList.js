@@ -13,10 +13,10 @@ import { DUMMY_SERACH_DATA } from "@app/common/constants/dummyData";
 import { useGetIntakes } from "@app/core/hooks/api";
 
 // Layouts
-import { ScrollPage } from "@app/views/layouts";
+import { ScrollPage, SearchResultCard } from "@app/views/layouts";
 
 // Components
-import { SearchResultCard, Image } from "@app/views/components";
+import { Image } from "@app/views/components";
 
 import { styles } from "./styles";
 
@@ -81,7 +81,7 @@ export default function IntakeList() {
                   } ${item.amount_unit.toUpperCase()}`
                 : `${item?.food_name_owner}`
             }
-            thumbnail_link={item.thumbnail_image_link}
+            thumbnail_url={item.thumbnail_image_link}
             onPress={() => handlePress(item)}
           />
         ))}

@@ -38,7 +38,7 @@ export { default as DropdownInput } from "./Input/DropdownInput";
 export { default as TextSkeleton } from "./Skeleton/TextSkeleton";
 
 // Cards
-export { default as SearchResultCard } from "./Cards/SearchResultCard";
+export { default as InfoCard } from "./Cards/InfoCard";
 export { default as ImageCard } from "./Cards/ImageCard";
 
 // Loaders

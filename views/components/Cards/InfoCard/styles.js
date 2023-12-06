@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
     marginVertical: SPACING.Tiny,
     borderWidth: 1,
     borderColor: themeColors.backgroundDark,
-    borderRadius: SPACING.Small,
+    borderRadius: SPACING.Regular,
     padding: SPACING.Tiny,
   },
   imageContainer: {
@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: SPACING.Small - 2,
+    borderRadius: SPACING.Regular - 2,
   },
   image: {
     width: "100%",
@@ -35,9 +35,4 @@ export const styles = StyleSheet.create({
     flex: 1,
     marginLeft: SPACING.Regular,
   },
-  title: { color: themeColors.secondary, fontSize: FONT_SIZES.Regular },
-  subtitle: { color: themeColors.secondaryLight },
-  titleSkeleton: { marginBottom: SPACING.Small, width: "90%" },
-  skeleton: { borderRadius: 5 },
-  subHeadlineSkeleton: { width: "40%" },
 });

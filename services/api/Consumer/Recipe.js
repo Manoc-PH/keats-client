@@ -71,7 +71,7 @@ export const GetRecipeInstructions = async ({ recipe_id }) => {
 };
 export const GetRecipeReviews = async ({ recipe_id, page, size }) => {
   const response = await authAxios.get(RECIPE_ENDPOINTS.GET_RECIPE_REVIEWS, {
-    params: { recipe_id, page, size },
+    params: { recipe_id, page: page || 0, size: size || 10 },
   });
   return response?.data;
 };

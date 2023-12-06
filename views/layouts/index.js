@@ -35,6 +35,7 @@ export { default as Sex } from "./ScreenLayouts/Signup/Sex";
 export { default as VitalsCard } from "./Cards/VitalsCard";
 export { default as ProfileCard } from "./Cards/ProfileCard";
 export { default as RecipeCard } from "./Cards/RecipeCard";
+export { default as SearchResultCard } from "./Cards/SearchResultCard";
 
 // Graphs
 export { default as CalorieGraph } from "./Graphs/CalorieGraph";

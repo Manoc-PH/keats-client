@@ -74,7 +74,7 @@ export default function RecipeDetails() {
           isLoading={isGetRecipeLoading}
         />
         <PageDivider />
-        <RecipeInfo />
+        <RecipeInfo RecipeID={selectedRecipeID} />
       </View>
     </ScrollPage>
   );
