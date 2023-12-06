@@ -42,6 +42,7 @@ export default function RecipeCreated(props) {
                 <RecipeCard
                   key={item.id}
                   name={item.name}
+                  name_owner={item.name_owner}
                   rating={item.rating}
                   rating_count={item.rating_count}
                   image_url={item.thumbnail_url}
