@@ -6,7 +6,10 @@ import { FONT_SIZES } from "@app/common/constants/styles";
 // Components
 import { SwitchOptions, TextSkeleton, Title3 } from "@app/views/components";
 // Hooks
-import { useGetRecipeDiscovery } from "@app/core/hooks/api";
+import {
+  useGetRecipeDiscovery,
+  useGetRecipeFiltered,
+} from "@app/core/hooks/api";
 import RecipeCard from "@app/views/layouts/Cards/RecipeCard";
 
 import { styles } from "./styles";
@@ -26,15 +29,34 @@ export default function RecipeDiscovery(props) {
     getRecipeDiscoveryData,
     isGetRecipeDiscoveryLoading,
   } = useGetRecipeDiscovery();
+  const {
+    getRecipeFiltered,
+    getRecipeFilteredData,
+    isGetRecipeFilteredLoading,
+  } = useGetRecipeFiltered();
+
+  // Constants
+  const loading = isGetRecipeDiscoveryLoading || isGetRecipeFilteredLoading;
+
+  // Functions
+  function handleOptionChange() {
+    if (activeOption === "recommended") {
+      getRecipeDiscovery();
+    } else {
+      getRecipeFiltered({ filter: activeOption });
+    }
+  }
 
   // UseEffects
   useEffect(() => {
-    getRecipeDiscovery();
-  }, []);
+    handleOptionChange();
+  }, [activeOption]);
   useEffect(() => {
     if (getRecipeDiscoveryData?.recipes)
       setRecipes(getRecipeDiscoveryData.recipes);
-  }, [getRecipeDiscoveryData]);
+    if (getRecipeFilteredData?.recipes)
+      setRecipes(getRecipeFilteredData.recipes);
+  }, [getRecipeFilteredData, getRecipeDiscoveryData]);
   return (
     <View style={styles.wrapper}>
       <SwitchOptions
@@ -47,7 +69,7 @@ export default function RecipeDiscovery(props) {
       />
       <View style={styles.recipeWrapper}>
         {recipes &&
-          !isGetRecipeDiscoveryLoading &&
+          !loading &&
           recipes?.length > 0 &&
           recipes.map((item) => {
             return (
@@ -62,7 +84,7 @@ export default function RecipeDiscovery(props) {
               </View>
             );
           })}
-        {isGetRecipeDiscoveryLoading &&
+        {loading &&
           Array.from({ length: 4 }, (item, index) => (
             <View key={index} style={styles.recipeContainer}>
               <RecipeCard loading />
