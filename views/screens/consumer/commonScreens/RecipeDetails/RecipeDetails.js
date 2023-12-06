@@ -71,7 +71,10 @@ export default function RecipeDetails() {
           isLoading={isGetRecipeLoading}
         />
         <PageDivider style={styles.spacer} />
-        <RecipeName />
+        <RecipeName
+          recipeDetails={recipeDetails?.recipe}
+          isLoading={isGetRecipeLoading}
+        />
       </View>
     </ScrollPage>
   );

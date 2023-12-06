@@ -12,7 +12,10 @@ import { FONT_SIZES } from "@app/common/constants/styles";
 import {
   DropdownInput,
   StarRating,
+  SubHeadline1,
+  SubHeadline2,
   TextSkeleton,
+  Title2,
   Title3,
 } from "@app/views/components";
 
@@ -21,6 +24,7 @@ import { styles } from "./styles";
 export default function RecipeName(props) {
   // Props
   const { recipeDetails, isLoading, style } = props;
+  console.log(recipeDetails);
 
   // Local State
   const [ingredient, setIngredient] = useState();
@@ -32,7 +36,32 @@ export default function RecipeName(props) {
 
   return (
     <View style={{ ...styles.wrapper, ...style }}>
-      <StarRating rating={3.2} />
+      {!isLoading && recipeDetails && (
+        <View style={styles.container}>
+          <View>
+            <Title2>{recipeDetails.name}</Title2>
+            <SubHeadline1>By {recipeDetails.name_owner}</SubHeadline1>
+          </View>
+          <View style={styles.rowWrapper}>
+            <View style={styles.rowContainer}>
+              <SubHeadline2 style={styles.subheadline}>
+                {recipeDetails.servings} Servs.
+              </SubHeadline2>
+            </View>
+            <View style={styles.rowContainer}>
+              <SubHeadline2 style={styles.subheadline}>
+                {recipeDetails.prep_time} Mins.
+              </SubHeadline2>
+            </View>
+            <View style={styles.rowContainer}>
+              <SubHeadline2 style={styles.subheadline}>
+                {recipeDetails.likes} Likes
+              </SubHeadline2>
+            </View>
+          </View>
+          <StarRating rating={recipeDetails.rating} />
+        </View>
+      )}
     </View>
   );
 }
