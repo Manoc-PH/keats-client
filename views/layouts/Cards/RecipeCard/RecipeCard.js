@@ -1,6 +1,12 @@
 import { View } from "react-native";
 // Components
-import { Image, TextSkeleton, Body, SubHeadline2 } from "@app/views/components";
+import {
+  Image,
+  TextSkeleton,
+  Body,
+  SubHeadline2,
+  ImageCard,
+} from "@app/views/components";
 // Assets
 import { StarIcon } from "@app/assets/icons";
 // Constants
@@ -14,46 +20,56 @@ export default function RecipeCard(props) {
   const { name, image_url, rating, rating_count, loading } = props;
 
   return (
-    <View style={styles.wrapper}>
-      <View style={styles.imageContainer}>
-        <Image src={image_url} />
-      </View>
-      {loading && (
-        <View style={{ ...styles.contentContainer, gap: SPACING.Small }}>
-          <TextSkeleton fontSize={FONT_SIZES.Regular} style={styles.loader} />
-          <TextSkeleton
-            fontSize={FONT_SIZES.Small}
-            style={styles.smallLoader}
-          />
-        </View>
-      )}
-      {!loading && (
-        <View style={styles.contentContainer}>
-          {name ? (
-            <Body style={styles.name}>{name}</Body>
-          ) : (
-            <Body style={styles.noNameRecipe}>No Name</Body>
-          )}
-          {rating && rating_count > 0 ? (
-            <View style={styles.row}>
-              <StarIcon width={FONT_SIZES.Small} height={FONT_SIZES.Small} />
-              <SubHeadline2>
-                {rating} {rating_count && `(${rating_count})`}
-              </SubHeadline2>
-            </View>
-          ) : (
-            <View style={styles.row}>
-              <StarIcon
-                width={FONT_SIZES.Small}
-                height={FONT_SIZES.Small}
-                color={"#00000000"}
-                strokeColor={themeColors.backgroundDark}
+    <ImageCard
+      image_url={image_url}
+      content={
+        <>
+          {loading && (
+            <View style={{ ...styles.contentContainer, gap: SPACING.Small }}>
+              <TextSkeleton
+                fontSize={FONT_SIZES.Regular}
+                style={styles.loader}
               />
-              <SubHeadline2 style={styles.noNameRecipe}>No Rating</SubHeadline2>
+              <TextSkeleton
+                fontSize={FONT_SIZES.Small}
+                style={styles.smallLoader}
+              />
             </View>
           )}
-        </View>
-      )}
-    </View>
+          {!loading && (
+            <View style={styles.contentContainer}>
+              {name ? (
+                <Body style={styles.name}>{name}</Body>
+              ) : (
+                <Body style={styles.noNameRecipe}>No Name</Body>
+              )}
+              {rating && rating_count > 0 ? (
+                <View style={styles.row}>
+                  <StarIcon
+                    width={FONT_SIZES.Small}
+                    height={FONT_SIZES.Small}
+                  />
+                  <SubHeadline2>
+                    {rating} {rating_count && `(${rating_count})`}
+                  </SubHeadline2>
+                </View>
+              ) : (
+                <View style={styles.row}>
+                  <StarIcon
+                    width={FONT_SIZES.Small}
+                    height={FONT_SIZES.Small}
+                    color={"#00000000"}
+                    strokeColor={themeColors.backgroundDark}
+                  />
+                  <SubHeadline2 style={styles.noNameRecipe}>
+                    No Rating
+                  </SubHeadline2>
+                </View>
+              )}
+            </View>
+          )}
+        </>
+      }
+    />
   );
 }

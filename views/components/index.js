@@ -38,6 +38,7 @@ export { default as TextSkeleton } from "./Skeleton/TextSkeleton";
 
 // Cards
 export { default as SearchResultCard } from "./Cards/SearchResultCard";
+export { default as ImageCard } from "./Cards/ImageCard";
 
 // Loaders
 export { default as CircleLoader } from "./Loaders/CircleLoader";
