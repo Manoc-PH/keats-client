@@ -4,19 +4,17 @@ import { useSelector } from "react-redux";
 
 // Hooks
 import { useGetRecipe } from "@app/core/hooks/api";
-
 // Layouts
 import {
   NutrientSummary,
   ScrollPage,
   RecipeName,
-  ConsumeIngredientFooter,
   PageDivider,
   ImagesCarousel,
+  RecipeInfo,
 } from "@app/views/layouts";
-
 // Components
-import { Image } from "@app/views/components";
+import { Image, SwitchButton } from "@app/views/components";
 
 import { styles } from "./styles";
 
@@ -70,12 +68,13 @@ export default function RecipeDetails() {
           amount={recipeTotalAmount}
           isLoading={isGetRecipeLoading}
         />
-        <PageDivider style={styles.spacer} />
+        <PageDivider />
         <RecipeName
           recipeDetails={recipeDetails?.recipe}
           isLoading={isGetRecipeLoading}
         />
-        <PageDivider style={styles.spacer} />
+        <PageDivider />
+        <RecipeInfo />
       </View>
     </ScrollPage>
   );

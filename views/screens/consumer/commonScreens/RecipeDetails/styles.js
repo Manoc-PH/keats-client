@@ -14,8 +14,8 @@ export const styles = StyleSheet.create({
     paddingHorizontal: SPACING.Medium,
     paddingTop: SPACING.Medium,
     paddingBottom: SPACING.Huge * 3,
+    gap: SPACING.Medium,
   },
-  spacer: { paddingTop: SPACING.Medium },
   imageWrapper: {
     aspectRatio: 1,
     width: "100%",
