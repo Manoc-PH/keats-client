@@ -6,6 +6,7 @@ import Tracker from "./Tracker";
 import Account from "./Account";
 import Ingredient from "./Ingredient";
 import Food from "./Food";
+import Recipe from "./Recipe";
 import Ui from "./Ui";
 
 const clearstore = () => ({
@@ -19,6 +20,7 @@ const actionList = {
   ...Account.actions,
   ...Ingredient.actions,
   ...Food.actions,
+  ...Recipe.actions,
   ...Ui.actions,
   clearstore,
 };
@@ -30,6 +32,7 @@ const appReducer = combineReducers({
   account: Account.reducer,
   ingredient: Ingredient.reducer,
   food: Food.reducer,
+  recipe: Recipe.reducer,
   ui: Ui.reducer,
 });
 
