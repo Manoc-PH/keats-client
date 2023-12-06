@@ -21,3 +21,12 @@ export const RECIPE_FILTERS = {
   l_carbs: "l_carbs",
   l_fats: "l_fats",
 };
+
+export const RECIPE_FILTERS_OPTIONS = [
+  { label: "High Protein", value: "h_protein" },
+  { label: "High Carbs", value: "h_carbs" },
+  { label: "High Fats", value: "h_fats" },
+  { label: "Low Calories", value: "l_cal" },
+  { label: "Low Carbs", value: "l_carbs" },
+  { label: "Low Fats", value: "l_fats" },
+];

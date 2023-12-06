@@ -11,6 +11,7 @@ export { default as CircleButton } from "./Basic/CircleButton";
 export { default as Image } from "./Basic/Image";
 export { default as ImageButton } from "./Basic/ImageButton";
 export { default as SwitchButton } from "./Basic/SwitchButton";
+export { default as SwitchOptions } from "./Basic/SwitchOptions";
 export { default as VerticalSlider } from "./Basic/VerticalSlider";
 // Texts
 export { default as Body } from "./Basic/Texts/Body";

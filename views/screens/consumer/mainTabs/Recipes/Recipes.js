@@ -5,9 +5,9 @@ import { useSelector } from "react-redux";
 // Layouts
 import { RecipeDiscovery, ScrollPage } from "@app/views/layouts";
 // Components
-import { Button, SubHeadline2, SwitchButton } from "@app/views/components";
+import { SwitchButton } from "@app/views/components";
 // Constants
-import { BTN_VARIANTS, SIZES, SPACING } from "@app/common/constants/styles";
+import { SPACING } from "@app/common/constants/styles";
 // Images
 import { AdImage } from "@app/assets/images";
 // Styles
@@ -16,7 +16,6 @@ import { styles } from "./styles";
 export default function Recipes() {
   // Store State
   const { recipeSearch } = useSelector((state) => state.search);
-  console.log(recipeSearch);
 
   // Local States
   const [page, setPage] = useState("Discover");
