@@ -39,13 +39,20 @@ export default function RecipeCard(props) {
           {!loading && (
             <View style={styles.contentContainer}>
               {name ? (
-                <Body style={styles.name}>{name}</Body>
+                <Body
+                  numberOfLines={1}
+                  ellipsizeMode='tail'
+                  style={styles.name}>
+                  {name}
+                </Body>
               ) : (
                 <Body style={styles.noNameRecipe}>No Name</Body>
               )}
               {name_owner && (
                 <View style={styles.row}>
-                  <SubHeadline2>By {name_owner}</SubHeadline2>
+                  <SubHeadline2 numberOfLines={1} ellipsizeMode='tail'>
+                    By {name_owner}
+                  </SubHeadline2>
                 </View>
               )}
               {rating && rating_count > 0 ? (
