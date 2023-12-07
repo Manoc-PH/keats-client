@@ -35,7 +35,6 @@ export default function RecipeDetailsFooter(props) {
       setRecipeActions(getRecipeActionsData);
     }
   }, [getRecipeActionsData]);
-  console.log(recipeActions);
   return (
     <SafeAreaView style={styles.wrapper}>
       {!isGetRecipeActionsLoading && recipeActions && (

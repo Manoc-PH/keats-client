@@ -65,7 +65,7 @@ export default function RecipeIngredientCard(props) {
                 {calories > -1 && (
                   <View style={styles.rowContainer}>
                     <CalorieIcon />
-                    <SubHeadline2>{calories} Kcal</SubHeadline2>
+                    <SubHeadline2>{Math.floor(calories)} Kcal</SubHeadline2>
                   </View>
                 )}
                 {amount > -1 && (
