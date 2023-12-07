@@ -9,12 +9,15 @@ export default function StarRating(props) {
   const { rating, editable, setCount } = props;
 
   // Local state
-  const [localCount, setLocalCount] = useState();
+  const [localCount, setLocalCount] = useState(rating);
 
   // useEffects
   useEffect(() => {
     if (editable) setCount(localCount);
   }, [localCount]);
+  useEffect(() => {
+    if (rating > -1) setLocalCount(rating);
+  }, [rating]);
   return (
     <View style={editable ? styles.editableWrapper : styles.wrapper}>
       {editable && (

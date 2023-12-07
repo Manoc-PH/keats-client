@@ -7,7 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 import { actions } from "@app/core/store";
 
 // Hooks
-import { useDeleteIntake } from "@app/core/hooks/api";
+import { useDeleteIntake, useGetRecipeReview } from "@app/core/hooks/api";
 
 // Components
 import {
@@ -16,6 +16,7 @@ import {
   Title2,
   CircleLoader,
   StarRating,
+  TextInput,
 } from "@app/views/components";
 
 // styles
@@ -24,15 +25,45 @@ import { BTN_VARIANTS } from "@app/common/constants/styles";
 
 function ReviewRecipeModal() {
   // Store State
-  const {} = useSelector((state) => state.tracker);
+  const { selectedRecipeID, isReviewEdit } = useSelector(
+    (state) => state.recipe
+  );
 
   // Store Actions
-  // const { setIsDeleteIntakeModalVisible: sid } = actions;
-  // const dispatch = useDispatch();
-  // const setIsDeleteIntakeModalVisible = (value) => dispatch(sid(value));
+  const { setIsReviewRecipeModalVisible: sid, setIsReviewEdit: ser } = actions;
+  const dispatch = useDispatch();
+  const setIsReviewRecipeModalVisible = (value) => dispatch(sid(value));
+  const setIsReviewEdit = (value) => dispatch(ser(value));
 
   // Local State
-  const [count, setCount] = useState();
+  const [count, setCount] = useState(0);
+  const [value, onChangeText] = useState();
+  const [reviewId, setReviewId] = useState();
+
+  // Hooks
+  const { getRecipeReview, getRecipeReviewData, isGetRecipeReviewLoading } =
+    useGetRecipeReview();
+
+  // Functions
+  function handleCancel() {
+    setIsReviewRecipeModalVisible();
+    setCount(0);
+    onChangeText("");
+    setIsReviewEdit();
+  }
+  function handleSave() {}
+
+  // UseEffects
+  useEffect(() => {
+    if (isReviewEdit) getRecipeReview({ recipe_id: selectedRecipeID });
+  }, [selectedRecipeID]);
+  useEffect(() => {
+    if (getRecipeReviewData) {
+      setCount(getRecipeReviewData.rating);
+      onChangeText(getRecipeReviewData.description);
+      setReviewId(getRecipeReviewData.id);
+    }
+  }, [getRecipeReviewData]);
   return (
     <View style={styles.modalWrapper}>
       <View style={styles.modalContainer}>
@@ -40,27 +71,28 @@ function ReviewRecipeModal() {
         {
           <>
             <Title2 style={styles.text}>Add Review</Title2>
-            <View style={styles.spacer} />
-            <StarRating editable setCount={setCount} />
-            {/* <Body style={styles.text}>
-              This action cannot be reversed and will permanently delete this
-              intake.
-            </Body>
-            <View style={styles.spacer} />
-            <View style={styles.spacer} />
-            <Button
-              style={styles.btn}
-              variant={BTN_VARIANTS.tertiary}
-              onPress={handleDelete}>
-              Confirm
-            </Button>
-            <View style={styles.smallSpacer} />
-            <Button
-              style={styles.btn}
-              variant={BTN_VARIANTS.outlined}
-              onPress={handleCancel}>
-              Cancel
-            </Button> */}
+            <StarRating rating={count} editable setCount={setCount} />
+            <TextInput
+              value={value}
+              onChangeText={onChangeText}
+              placeholder='Write your review here'
+              label='Review'
+              multiline
+            />
+            <View style={styles.rowContainer}>
+              <Button
+                style={styles.btn}
+                variant={BTN_VARIANTS.outlined}
+                onPress={handleCancel}>
+                Cancel
+              </Button>
+              <Button
+                style={styles.btn}
+                variant={BTN_VARIANTS.primary}
+                onPress={handleCancel}>
+                Save
+              </Button>
+            </View>
           </>
         }
         {/* {!isDeleteIntakeLoading && isDeleteIntakeError && (

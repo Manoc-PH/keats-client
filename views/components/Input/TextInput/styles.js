@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: themeColors.backgroundLight,
-    borderRadius: SPACING.Regular,
+    borderRadius: SPACING.Small,
   },
   // LABEL
   labelContainer: {

@@ -14,10 +14,15 @@ import { BTN_VARIANTS } from "@app/common/constants/styles";
 export default function RecipeDetailsFooter(props) {
   const { recipe_id } = props;
   // Store Actions
-  const { setAddedLike: sfa, setIsReviewRecipeModalVisible: sir } = actions;
+  const {
+    setAddedLike: sfa,
+    setIsReviewRecipeModalVisible: sir,
+    setIsReviewEdit: ser,
+  } = actions;
   const dispatch = useDispatch();
   const setAddedLike = (value) => dispatch(sfa(value));
   const setIsReviewRecipeModalVisible = (value) => dispatch(sir(value));
+  const setIsReviewEdit = (value) => dispatch(ser(value));
 
   // Hooks
   const { getRecipeActions, getRecipeActionsData, isGetRecipeActionsLoading } =
@@ -41,6 +46,7 @@ export default function RecipeDetailsFooter(props) {
     setRecipeActions({ ...recipeActions, liked: true });
   }
   function handleReview() {
+    if (recipeActions?.reviewed) setIsReviewEdit(true);
     setIsReviewRecipeModalVisible(true);
   }
 

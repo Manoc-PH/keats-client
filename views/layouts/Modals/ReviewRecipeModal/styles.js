@@ -18,11 +18,15 @@ const styles = StyleSheet.create({
     padding: SPACING.Large,
     backgroundColor: themeColors.background,
     alignItems: "center",
+    gap: SPACING.Medium,
   },
-  spacer: { paddingBottom: SPACING.Large },
-  smallSpacer: { paddingBottom: SPACING.Regular },
+  rowContainer: {
+    flexDirection: "row",
+    gap: SPACING.Regular,
+  },
   text: { textAlign: "center" },
   errorMsg: { textAlign: "center", color: themeColors.red },
-  btn: { width: "100%" },
+  // TODO FIX THIS WHAT THE HECK IS THIS BUTTON DOING
+  btn: { flex: 1, height: SPACING.Large * 2 + 1 },
 });
 export default styles;
