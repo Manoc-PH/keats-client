@@ -14,9 +14,10 @@ import { BTN_VARIANTS } from "@app/common/constants/styles";
 export default function RecipeDetailsFooter(props) {
   const { recipe_id } = props;
   // Store Actions
-  const { setAddedLike: sfa } = actions;
+  const { setAddedLike: sfa, setIsReviewRecipeModalVisible: sir } = actions;
   const dispatch = useDispatch();
   const setAddedLike = (value) => dispatch(sfa(value));
+  const setIsReviewRecipeModalVisible = (value) => dispatch(sir(value));
 
   // Hooks
   const { getRecipeActions, getRecipeActionsData, isGetRecipeActionsLoading } =
@@ -38,6 +39,9 @@ export default function RecipeDetailsFooter(props) {
   function handleSuccessfullLike() {
     setAddedLike(true);
     setRecipeActions({ ...recipeActions, liked: true });
+  }
+  function handleReview() {
+    setIsReviewRecipeModalVisible(true);
   }
 
   // UseEffects
@@ -70,7 +74,8 @@ export default function RecipeDetailsFooter(props) {
               recipeActions?.reviewed
                 ? BTN_VARIANTS.outlined
                 : BTN_VARIANTS.primary
-            }>
+            }
+            onPress={handleReview}>
             {recipeActions?.reviewed ? "Edit Review" : "Review"}
           </Button>
         </View>

@@ -7,4 +7,10 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     gap: SPACING.Tiny,
   },
+  editableWrapper: {
+    width: "100%",
+    justifyContent: "space-around",
+    flexDirection: "row",
+    gap: SPACING.Regular,
+  },
 });
