@@ -7,7 +7,7 @@ import { debounce } from "@app/common/utils/debounce";
 // Store
 import { actions } from "@app/core/store";
 // Hooks
-import { useGetRecipeActions } from "@app/core/hooks/api";
+import { useGetRecipeActions, usePostRecipeLike } from "@app/core/hooks/api";
 // Components
 import { Body, Button, CircleLoader, SliderInput } from "@app/views/components";
 
@@ -17,30 +17,49 @@ import { BTN_VARIANTS } from "@app/common/constants/styles";
 export default function RecipeDetailsFooter(props) {
   const { recipe_id } = props;
   // Store Actions
-  const { setSelectedFoodAmount: sfa } = actions;
+  const { setAddedLike: sfa } = actions;
   const dispatch = useDispatch();
-  const setSelectedFoodAmount = (value) => dispatch(sfa(value));
+  const setAddedLike = (value) => dispatch(sfa(value));
 
   // Hooks
   const { getRecipeActions, getRecipeActionsData, isGetRecipeActionsLoading } =
     useGetRecipeActions();
+  const { postRecipeLike, postRecipeLikeData, isPostRecipeLikeLoading } =
+    usePostRecipeLike();
+
   // Local State
   const [recipeActions, setRecipeActions] = useState();
 
+  // Constants
+  const loading = isPostRecipeLikeLoading || isGetRecipeActionsLoading;
+  // Functions
+  function handleLike() {
+    if (!recipeActions?.liked) {
+      postRecipeLike({ recipe_id });
+    }
+  }
+  function handleSuccessfullLike() {
+    setAddedLike(true);
+    setRecipeActions({ ...recipeActions, liked: true });
+  }
+
+  // UseEffects
   useEffect(() => {
     getRecipeActions({ recipe_id });
   }, [recipe_id]);
   useEffect(() => {
-    if (getRecipeActionsData) {
-      setRecipeActions(getRecipeActionsData);
-    }
+    if (getRecipeActionsData) setRecipeActions(getRecipeActionsData);
   }, [getRecipeActionsData]);
+  useEffect(() => {
+    if (postRecipeLikeData) handleSuccessfullLike();
+  }, [postRecipeLikeData]);
   return (
     <SafeAreaView style={styles.wrapper}>
-      {!isGetRecipeActionsLoading && recipeActions && (
+      {!loading && recipeActions && (
         <View style={styles.container}>
           <Button
             style={styles.btn}
+            onPress={handleLike}
             variant={
               recipeActions?.liked
                 ? BTN_VARIANTS.outlined
@@ -59,7 +78,7 @@ export default function RecipeDetailsFooter(props) {
           </Button>
         </View>
       )}
-      {isGetRecipeActionsLoading && <CircleLoader />}
+      {loading && <CircleLoader />}
     </SafeAreaView>
   );
 }

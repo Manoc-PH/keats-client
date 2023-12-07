@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   selectedRecipeID: null,
+  addedLike: false,
 };
 
 const store = createSlice({
@@ -11,6 +12,10 @@ const store = createSlice({
     setSelectedRecipeID: (state, { payload }) => {
       if (payload) state.selectedRecipeID = payload;
       else state.selectedRecipeID = null;
+    },
+    setAddedLike: (state, { payload }) => {
+      if (payload) state.addedLike = payload;
+      else state.addedLike = false;
     },
   },
 });

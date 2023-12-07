@@ -1,6 +1,10 @@
 import { View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 // Constants
 import { FONT_SIZES, SPACING } from "@app/common/constants/styles";
+// Store
+import { actions } from "@app/core/store";
 // Icons
 import {
   LargeAmountIcon,
@@ -24,6 +28,25 @@ export default function RecipeName(props) {
   // Props
   const { recipeDetails, isLoading, style } = props;
 
+  // Store State
+  const { addedLike } = useSelector((state) => state.recipe);
+  // Store Actions
+  const { setAddedLike: sfa } = actions;
+  const dispatch = useDispatch();
+  const setAddedLike = (value) => dispatch(sfa(value));
+
+  // Local state
+  const [likes, setLikes] = useState(0);
+
+  useEffect(() => {
+    if (recipeDetails) setLikes(recipeDetails?.likes || 0);
+  }, [recipeDetails]);
+  useEffect(() => {
+    if (addedLike) {
+      setLikes((prevState) => prevState + 1);
+      setAddedLike();
+    }
+  }, [addedLike]);
   return (
     <View style={{ ...styles.wrapper, ...style }}>
       {!isLoading && recipeDetails ? (
@@ -79,9 +102,7 @@ export default function RecipeName(props) {
           </View>
           <View style={styles.detailContainer}>
             <LargeHeartIcon />
-            <SubHeadline2 style={styles.body}>
-              {recipeDetails.likes} Like(s)
-            </SubHeadline2>
+            <SubHeadline2 style={styles.body}>{likes} Like(s)</SubHeadline2>
           </View>
         </View>
       ) : (
