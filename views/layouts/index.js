@@ -37,6 +37,7 @@ export { default as ProfileCard } from "./Cards/ProfileCard";
 export { default as RecipeCard } from "./Cards/RecipeCard";
 export { default as SearchResultCard } from "./Cards/SearchResultCard";
 export { default as ReviewCard } from "./Cards/ReviewCard";
+export { default as RecipeIngredientCard } from "./Cards/RecipeIngredientCard";
 
 // Graphs
 export { default as CalorieGraph } from "./Graphs/CalorieGraph";

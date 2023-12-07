@@ -55,6 +55,7 @@ export default function RecipeName(props) {
           </View>
         </View>
       )}
+      {!isLoading && recipeDetails && <Body>{recipeDetails.description}</Body>}
       {!isLoading && recipeDetails ? (
         <View style={styles.rowWrapper}>
           <View style={styles.detailContainer}>
@@ -95,7 +96,6 @@ export default function RecipeName(props) {
           </View>
         </View>
       )}
-      {!isLoading && recipeDetails && <Body>{recipeDetails.description}</Body>}
     </View>
   );
 }

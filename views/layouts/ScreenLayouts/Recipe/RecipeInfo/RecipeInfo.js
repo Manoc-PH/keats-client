@@ -6,11 +6,16 @@ import { SPACING } from "@app/common/constants/styles";
 import {} from "@app/assets/icons";
 // Components
 import { SwitchButton } from "@app/views/components";
+// Layouts
+import ReviewCard from "@app/views/layouts/Cards/ReviewCard";
+import RecipeIngredientCard from "@app/views/layouts/Cards/RecipeIngredientCard";
 // Hooks
-import { useGetRecipeReviews } from "@app/core/hooks/api";
+import {
+  useGetRecipeReviews,
+  useGetRecipeIngredients,
+} from "@app/core/hooks/api";
 
 import { styles } from "./styles";
-import ReviewCard from "@app/views/layouts/Cards/ReviewCard";
 
 export default function RecipeInfo(props) {
   // Props
@@ -21,6 +26,11 @@ export default function RecipeInfo(props) {
   // Hooks
   const { getRecipeReviews, getRecipeReviewsData, isGetRecipeReviewsLoading } =
     useGetRecipeReviews();
+  const {
+    getRecipeIngredients,
+    getRecipeIngredientsData,
+    isGetRecipeIngredientsLoading,
+  } = useGetRecipeIngredients();
 
   // Functions
   function handleSwitchView(value) {
@@ -31,6 +41,7 @@ export default function RecipeInfo(props) {
   }
   function handleSwitchInfo(value) {
     if (value === "Reviews") getRecipeReviews({ recipe_id: RecipeID });
+    if (value === "Ingredients") getRecipeIngredients({ recipe_id: RecipeID });
   }
 
   // UseEffects
@@ -45,6 +56,11 @@ export default function RecipeInfo(props) {
       setInfoSet(getRecipeReviewsData.reviews);
     }
   }, [getRecipeReviewsData]);
+  useEffect(() => {
+    if (getRecipeIngredientsData?.ingredients?.length > 0) {
+      setInfoSet(getRecipeIngredientsData.ingredients);
+    }
+  }, [getRecipeIngredientsData]);
   return (
     <View style={styles.wrapper}>
       <SwitchButton
@@ -76,7 +92,28 @@ export default function RecipeInfo(props) {
             ))}
         </View>
       )}
-      {activeInfo === "Ingredients" && <View></View>}
+      {activeInfo === "Ingredients" && (
+        <View>
+          {isGetRecipeIngredientsLoading && (
+            <>
+              <RecipeIngredientCard isLoading />
+              <RecipeIngredientCard isLoading />
+              <RecipeIngredientCard isLoading />
+            </>
+          )}
+          {infoSet &&
+            !isGetRecipeIngredientsLoading &&
+            infoSet.map((item) => (
+              <RecipeIngredientCard
+                key={item.id}
+                name={item.name}
+                name_owner={item.name_owner}
+                calories={item.calories}
+                amount={item.amount}
+              />
+            ))}
+        </View>
+      )}
       {activeInfo === "Instructions" && <View></View>}
     </View>
   );

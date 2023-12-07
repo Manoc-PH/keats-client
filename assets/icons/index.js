@@ -40,3 +40,7 @@ export { default as StarGradientIcon } from "./starGradient";
 export { default as LargeHeartIcon } from "./largeHeart";
 export { default as LargeTimeIcon } from "./largeTime";
 export { default as LargeServingIcon } from "./largeServing";
+
+//
+export { default as ServingIcon } from "./serving";
+export { default as CalorieIcon } from "./calorie";
