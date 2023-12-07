@@ -98,9 +98,9 @@ function ReviewRecipeModal() {
     }
     if (!isReviewEdit) {
       postRecipeReview({
-        // description: description,
-        // rating: rating,
-        // recipe_id: selectedRecipeID,
+        description: description,
+        rating: rating,
+        recipe_id: selectedRecipeID,
       });
     }
   }
