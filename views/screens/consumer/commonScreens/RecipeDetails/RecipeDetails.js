@@ -12,6 +12,7 @@ import {
   PageDivider,
   ImagesCarousel,
   RecipeInfo,
+  RecipeDetailsFooter,
 } from "@app/views/layouts";
 // Components
 import { Image, SwitchButton } from "@app/views/components";
@@ -52,30 +53,39 @@ export default function RecipeDetails() {
     }
   }, [getRecipeData]);
   return (
-    <ScrollPage style={styles.wrapper}>
-      <View style={styles.imageWrapper}>
-        {recipeDetails?.recipe_images &&
-        recipeDetails?.recipe_images?.length > 0 ? (
-          <ImagesCarousel data={recipeDetails.recipe_images} />
-        ) : (
-          <Image src={recipeDetails?.recipe?.thumbnail_image_link} />
-        )}
-      </View>
-      <View style={styles.container}>
-        <NutrientSummary
-          dailyNutrients={dailyNutrients}
-          details={recipeDetails}
-          amount={recipeTotalAmount}
-          isLoading={isGetRecipeLoading}
-        />
-        <PageDivider />
-        <RecipeName
-          recipeDetails={recipeDetails?.recipe}
-          isLoading={isGetRecipeLoading}
-        />
-        <PageDivider />
-        <RecipeInfo RecipeID={selectedRecipeID} />
-      </View>
+    <ScrollPage
+      contentContainerStyle={styles.wrapper}
+      alwaysBounceHorizontal={false}
+      alwaysBounceVertical={false}
+      bounces={false}
+      scrollEnabled={false}
+      automaticallyAdjustKeyboardInsets={true}>
+      <ScrollPage>
+        <View style={styles.imageWrapper}>
+          {recipeDetails?.recipe_images &&
+          recipeDetails?.recipe_images?.length > 0 ? (
+            <ImagesCarousel data={recipeDetails.recipe_images} />
+          ) : (
+            <Image src={recipeDetails?.recipe?.thumbnail_image_link} />
+          )}
+        </View>
+        <View style={styles.container}>
+          <NutrientSummary
+            dailyNutrients={dailyNutrients}
+            details={recipeDetails}
+            amount={recipeTotalAmount}
+            isLoading={isGetRecipeLoading}
+          />
+          <PageDivider />
+          <RecipeName
+            recipeDetails={recipeDetails?.recipe}
+            isLoading={isGetRecipeLoading}
+          />
+          <PageDivider />
+          <RecipeInfo RecipeID={selectedRecipeID} />
+        </View>
+      </ScrollPage>
+      <RecipeDetailsFooter recipe_id={selectedRecipeID} />
     </ScrollPage>
   );
 }

@@ -56,6 +56,7 @@ export { default as ConsumeIngredientFooter } from "./Footers/ConsumeIngredientF
 export { default as ConsumeFoodFooter } from "./Footers/ConsumeFoodFooter";
 export { default as UpdateIntakeFooter } from "./Footers/UpdateIntakeFooter";
 export { default as UpdateFoodIntakeFooter } from "./Footers/UpdateFoodIntakeFooter";
+export { default as RecipeDetailsFooter } from "./Footers/RecipeDetailsFooter";
 
 // Modals
 export { default as DeleteIntakeModal } from "./Modals/DeleteIntakeModal";
