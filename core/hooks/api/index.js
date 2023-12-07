@@ -40,6 +40,7 @@ export { default as useGetRecipeFiltered } from "./recipe/useGetRecipeFiltered";
 export { default as useGetRecipeIngredients } from "./recipe/useGetRecipeIngredients";
 export { default as useGetRecipeInstructions } from "./recipe/useGetRecipeInstructions";
 export { default as useGetRecipeReviews } from "./recipe/useGetRecipeReviews";
+export { default as useGetRecipeReview } from "./recipe/useGetRecipeReview";
 export { default as useGetRecipeActions } from "./recipe/useGetRecipeActions";
 export { default as useGetRecipeSearch } from "./recipe/useGetRecipeSearch";
 export { default as usePatchRecipe } from "./recipe/usePatchRecipe";

@@ -49,6 +49,7 @@ export const RECIPE_ENDPOINTS = {
   GET_RECIPE_INSTRUCTIONS: "/api/recipe/instructions",
   GET_RECIPE_REVIEWS: "/api/recipe/reviews",
   GET_RECIPE_ACTIONS: "/api/recipe/actions",
+  GET_RECIPE_REVIEW: "/api/recipe/review",
   GET_RECIPE_SEARCH: "/api/recipe/search",
   GET_RECIPE_DISCOVERY: "/api/recipe/discovery",
   GET_RECIPE_FILTERED: "/api/recipe/filtered",

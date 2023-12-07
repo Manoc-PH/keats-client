@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   selectedRecipeID: null,
   addedLike: false,
+  isReviewEdit: false,
 };
 
 const store = createSlice({
@@ -16,6 +17,10 @@ const store = createSlice({
     setAddedLike: (state, { payload }) => {
       if (payload) state.addedLike = payload;
       else state.addedLike = false;
+    },
+    setIsReviewEdit: (state, { payload }) => {
+      if (payload) state.isReviewEdit = payload;
+      else state.isReviewEdit = false;
     },
   },
 });
