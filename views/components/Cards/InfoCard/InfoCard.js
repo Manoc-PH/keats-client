@@ -7,7 +7,7 @@ import { styles } from "./styles";
 
 export default function InfoCard(props) {
   // Destructure
-  const { image_url, isLoading, onPress, content, ...rest } = props;
+  const { image_url, hideImage, isLoading, onPress, content, ...rest } = props;
 
   function handlePress() {
     if (onPress) onPress();
@@ -15,7 +15,7 @@ export default function InfoCard(props) {
 
   return (
     <Pressable onPress={handlePress} style={styles.wrapper} {...rest}>
-      {!isLoading && (
+      {!isLoading && !hideImage && (
         <View style={styles.imageContainer}>
           {!image_url && <ImageIcon width={20} />}
           {image_url && (
@@ -23,7 +23,7 @@ export default function InfoCard(props) {
           )}
         </View>
       )}
-      {isLoading && <View style={styles.imageContainer} />}
+      {isLoading && !hideImage && <View style={styles.imageContainer} />}
 
       <View style={styles.nameContainer}>{content}</View>
     </Pressable>
