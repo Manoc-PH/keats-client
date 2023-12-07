@@ -5,8 +5,8 @@ import Svg, { Path } from "react-native-svg";
 export default function LargeHeartIcon(props) {
   return (
     <Svg
-      width={props.width || 34}
-      height={props.height || 34}
+      width={props.width || 25}
+      height={props.height || 25}
       viewBox='0 0 34 34'
       fill='none'
       {...props}>

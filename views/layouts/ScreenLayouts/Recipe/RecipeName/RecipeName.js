@@ -3,6 +3,7 @@ import { View } from "react-native";
 import { FONT_SIZES, SPACING } from "@app/common/constants/styles";
 // Icons
 import {
+  LargeAmountIcon,
   LargeHeartIcon,
   LargeServingIcon,
   LargeTimeIcon,
@@ -60,15 +61,27 @@ export default function RecipeName(props) {
         <View style={styles.rowWrapper}>
           <View style={styles.detailContainer}>
             <LargeServingIcon />
-            <Body style={styles.body}>{recipeDetails.servings} Servs.</Body>
+            <SubHeadline2 style={styles.body}>
+              {recipeDetails.servings} Servs.
+            </SubHeadline2>
           </View>
           <View style={styles.detailContainer}>
             <LargeTimeIcon />
-            <Body style={styles.body}>{recipeDetails.prep_time} Mins.</Body>
+            <SubHeadline2 style={styles.body}>
+              {recipeDetails.prep_time} Mins.
+            </SubHeadline2>
+          </View>
+          <View style={styles.detailContainer}>
+            <LargeAmountIcon />
+            <SubHeadline2 style={styles.body}>
+              {recipeDetails.servings * recipeDetails.servings_size} G
+            </SubHeadline2>
           </View>
           <View style={styles.detailContainer}>
             <LargeHeartIcon />
-            <Body style={styles.body}>{recipeDetails.likes} Likes</Body>
+            <SubHeadline2 style={styles.body}>
+              {recipeDetails.likes} Like(s)
+            </SubHeadline2>
           </View>
         </View>
       ) : (

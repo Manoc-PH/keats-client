@@ -27,15 +27,15 @@ export const styles = StyleSheet.create({
   detailContainer: {
     justifyContent: "center",
     alignItems: "center",
-    gap: SPACING.Regular,
+    gap: SPACING.Small,
     backgroundColor: themeColors.background,
-    paddingVertical: SPACING.Large,
+    paddingVertical: SPACING.Medium,
     borderRadius: SPACING.Medium,
     borderWidth: 1,
     borderColor: themeColors.backgroundDark,
     flex: 1,
   },
-  body: { fontFamily: FONT_FAMILY.Regular, textAlign: "center" },
+  body: { textAlign: "center" },
 
   loadingTitle: { width: Dimensions.get("window").width / 1.5 },
   loadingSubheadline1: { width: Dimensions.get("window").width / 3 },
