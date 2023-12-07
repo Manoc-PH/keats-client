@@ -75,6 +75,12 @@ export const GetRecipeReviews = async ({ recipe_id, page, size }) => {
   });
   return response?.data;
 };
+export const GetRecipeActions = async ({ recipe_id }) => {
+  const response = await authAxios.get(RECIPE_ENDPOINTS.GET_RECIPE_ACTIONS, {
+    params: { recipe_id },
+  });
+  return response?.data;
+};
 export const GetRecipeSearch = async ({ search_term }) => {
   const response = await authAxios.get(RECIPE_ENDPOINTS.GET_RECIPE_SEARCH, {
     params: { search_term },
