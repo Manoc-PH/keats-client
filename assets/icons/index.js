@@ -45,3 +45,4 @@ export { default as LargeAmountIcon } from "./largeAmount";
 //
 export { default as ServingIcon } from "./serving";
 export { default as CalorieIcon } from "./calorie";
+export { default as AmountIcon } from "./amount";

@@ -1,7 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 // Assets
-import { ServingIcon, CalorieIcon } from "@app/assets/icons";
+import { AmountIcon, CalorieIcon } from "@app/assets/icons";
 // Constants
 import { FONT_SIZES, SPACING } from "@app/common/constants/styles";
 // Basic
@@ -70,7 +70,7 @@ export default function RecipeIngredientCard(props) {
                 )}
                 {amount > -1 && (
                   <View style={styles.rowContainer}>
-                    <ServingIcon />
+                    <AmountIcon />
                     <SubHeadline2>{amount} G</SubHeadline2>
                   </View>
                 )}
