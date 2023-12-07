@@ -1,9 +1,6 @@
-import { useEffect, useRef, useState } from "react";
-import { View, SafeAreaView, StyleSheet, TextInput } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigation } from "@react-navigation/native";
-// Utils
-import { debounce } from "@app/common/utils/debounce";
+import { useEffect, useState } from "react";
+import { View, SafeAreaView } from "react-native";
+import { useDispatch } from "react-redux";
 // Store
 import { actions } from "@app/core/store";
 // Hooks
