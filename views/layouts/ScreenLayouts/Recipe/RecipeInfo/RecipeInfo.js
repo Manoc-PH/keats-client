@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { Dimensions, View } from "react-native";
+import { useSelector } from "react-redux";
 // Constants
 import { SPACING } from "@app/common/constants/styles";
-// Icons
-import {} from "@app/assets/icons";
 // Components
 import { SwitchButton } from "@app/views/components";
 // Layouts
@@ -24,6 +23,9 @@ export default function RecipeInfo(props) {
   const { RecipeID } = props;
   const [activeInfo, setActiveInfo] = useState("Reviews");
   const [infoSet, setInfoSet] = useState([]);
+
+  // Store State
+  const { isRecipeUpdated } = useSelector((state) => state.recipe);
 
   // Hooks
   const { getRecipeReviews, getRecipeReviewsData, isGetRecipeReviewsLoading } =
@@ -55,11 +57,15 @@ export default function RecipeInfo(props) {
 
   // UseEffects
   useEffect(() => {
-    getRecipeReviews({ recipe_id: RecipeID });
-  }, [RecipeID]);
+    if (RecipeID) {
+      handleSwitchInfo(activeInfo);
+    }
+  }, [activeInfo, RecipeID]);
   useEffect(() => {
-    handleSwitchInfo(activeInfo);
-  }, [activeInfo]);
+    if (isRecipeUpdated) {
+      handleSwitchInfo(activeInfo);
+    }
+  }, [isRecipeUpdated]);
   useEffect(() => {
     if (getRecipeReviewsData?.reviews?.length > 0) {
       setInfoSet(getRecipeReviewsData.reviews);

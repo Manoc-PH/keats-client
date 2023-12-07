@@ -1,7 +1,8 @@
 import { View } from "react-native";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+// Store
+import { actions } from "@app/core/store";
 // Hooks
 import { useGetRecipe } from "@app/core/hooks/api";
 // Layouts
@@ -15,14 +16,21 @@ import {
   RecipeDetailsFooter,
 } from "@app/views/layouts";
 // Components
-import { Image, SwitchButton } from "@app/views/components";
+import { Image } from "@app/views/components";
 
 import { styles } from "./styles";
 
 export default function RecipeDetails() {
   // Store State
   const { dailyNutrients } = useSelector((state) => state.tracker);
-  const { selectedRecipeID } = useSelector((state) => state.recipe);
+  const { selectedRecipeID, isRecipeUpdated } = useSelector(
+    (state) => state.recipe
+  );
+
+  // Store Actions
+  const { setIsRecipeUpdated: siru } = actions;
+  const dispatch = useDispatch();
+  const setIsRecipeUpdated = (value) => dispatch(siru(value));
 
   // Local State
   const [recipeDetails, setRecipeDetails] = useState();
@@ -42,10 +50,11 @@ export default function RecipeDetails() {
 
   // UseEffects
   useEffect(() => {
-    if (selectedRecipeID) {
-      getRecipe({ recipe_id: selectedRecipeID });
-    }
+    if (selectedRecipeID) getRecipe({ recipe_id: selectedRecipeID });
   }, [selectedRecipeID]);
+  useEffect(() => {
+    if (isRecipeUpdated) getRecipe({ recipe_id: selectedRecipeID });
+  }, [isRecipeUpdated]);
   useEffect(() => {
     if (getRecipeData) {
       setRecipeDetails(getRecipeData);

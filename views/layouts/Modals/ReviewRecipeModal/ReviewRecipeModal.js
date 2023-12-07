@@ -7,7 +7,11 @@ import { useNavigation } from "@react-navigation/native";
 import { actions } from "@app/core/store";
 
 // Hooks
-import { useDeleteIntake, useGetRecipeReview } from "@app/core/hooks/api";
+import {
+  useGetRecipeReview,
+  usePatchRecipeReview,
+  usePostRecipeReview,
+} from "@app/core/hooks/api";
 
 // Components
 import {
@@ -30,28 +34,85 @@ function ReviewRecipeModal() {
   );
 
   // Store Actions
-  const { setIsReviewRecipeModalVisible: sid, setIsReviewEdit: ser } = actions;
+  const {
+    setIsReviewRecipeModalVisible: sid,
+    setIsReviewEdit: ser,
+    setIsRecipeUpdated: siru,
+  } = actions;
   const dispatch = useDispatch();
   const setIsReviewRecipeModalVisible = (value) => dispatch(sid(value));
   const setIsReviewEdit = (value) => dispatch(ser(value));
+  const setIsRecipeUpdated = (value) => dispatch(siru(value));
 
   // Local State
-  const [count, setCount] = useState(0);
-  const [value, onChangeText] = useState();
+  const [rating, setRating] = useState(0);
+  const [description, setDescription] = useState();
   const [reviewId, setReviewId] = useState();
 
   // Hooks
-  const { getRecipeReview, getRecipeReviewData, isGetRecipeReviewLoading } =
-    useGetRecipeReview();
+  const {
+    postRecipeReview,
+    postRecipeReviewData,
+    isPostRecipeReviewLoading,
+    isPostRecipeReviewError,
+  } = usePostRecipeReview();
+  const {
+    getRecipeReview,
+    getRecipeReviewData,
+    isGetRecipeReviewLoading,
+    isGetRecipeReviewError,
+  } = useGetRecipeReview();
+  const {
+    patchRecipeReview,
+    patchRecipeReviewData,
+    isPatchRecipeReviewLoading,
+    isPatchRecipeReviewError,
+  } = usePatchRecipeReview();
+
+  // Constants
+  const loading =
+    isGetRecipeReviewLoading ||
+    isPatchRecipeReviewLoading ||
+    isPostRecipeReviewLoading;
+
+  const error =
+    isPostRecipeReviewError ||
+    isGetRecipeReviewError ||
+    isPatchRecipeReviewError;
 
   // Functions
   function handleCancel() {
     setIsReviewRecipeModalVisible();
-    setCount(0);
-    onChangeText("");
+    setRating(0);
+    setDescription("");
     setIsReviewEdit();
   }
-  function handleSave() {}
+  function handleSave() {
+    if (isReviewEdit) {
+      patchRecipeReview({
+        id: reviewId,
+        description: description,
+        rating: rating,
+        recipe_id: selectedRecipeID,
+      });
+    }
+    if (!isReviewEdit) {
+      postRecipeReview({
+        // description: description,
+        // rating: rating,
+        // recipe_id: selectedRecipeID,
+      });
+    }
+  }
+  function handleSuccessfullSave() {
+    if (postRecipeReviewData || patchRecipeReviewData) {
+      setIsRecipeUpdated(true);
+      setIsReviewRecipeModalVisible();
+      setRating(0);
+      setDescription("");
+      setIsReviewEdit();
+    }
+  }
 
   // UseEffects
   useEffect(() => {
@@ -59,22 +120,32 @@ function ReviewRecipeModal() {
   }, [selectedRecipeID]);
   useEffect(() => {
     if (getRecipeReviewData) {
-      setCount(getRecipeReviewData.rating);
-      onChangeText(getRecipeReviewData.description);
+      setRating(getRecipeReviewData.rating);
+      setDescription(getRecipeReviewData.description);
       setReviewId(getRecipeReviewData.id);
     }
   }, [getRecipeReviewData]);
+  useEffect(() => {
+    handleSuccessfullSave();
+  }, [postRecipeReviewData, patchRecipeReviewData]);
   return (
     <View style={styles.modalWrapper}>
       <View style={styles.modalContainer}>
-        {/* {isDeleteIntakeLoading && <CircleLoader />} */}
-        {
+        {loading && <CircleLoader />}
+        {!loading && (
           <>
-            <Title2 style={styles.text}>Add Review</Title2>
-            <StarRating rating={count} editable setCount={setCount} />
+            {!loading && error ? (
+              <Title2 style={styles.errorMsg}>Could not save review</Title2>
+            ) : (
+              <Title2 style={styles.text}>
+                {isReviewEdit ? "Edit Review" : "Add Review"}
+              </Title2>
+            )}
+
+            <StarRating rating={rating} editable setCount={setRating} />
             <TextInput
-              value={value}
-              onChangeText={onChangeText}
+              value={description}
+              onChangeText={setDescription}
               placeholder='Write your review here'
               label='Review'
               multiline
@@ -89,26 +160,12 @@ function ReviewRecipeModal() {
               <Button
                 style={styles.btn}
                 variant={BTN_VARIANTS.primary}
-                onPress={handleCancel}>
+                onPress={handleSave}>
                 Save
               </Button>
             </View>
           </>
-        }
-        {/* {!isDeleteIntakeLoading && isDeleteIntakeError && (
-          <>
-            <Title2 style={styles.errorMsg}>
-              An error occured in trying to delete intake
-            </Title2>
-            <View style={styles.spacer} />
-            <Button
-              style={styles.btn}
-              variant={BTN_VARIANTS.outlined}
-              onPress={handleCancel}>
-              Cancel
-            </Button>
-          </>
-        )} */}
+        )}
       </View>
     </View>
   );

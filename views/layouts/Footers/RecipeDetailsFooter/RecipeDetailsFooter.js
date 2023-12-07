@@ -18,11 +18,13 @@ export default function RecipeDetailsFooter(props) {
     setAddedLike: sfa,
     setIsReviewRecipeModalVisible: sir,
     setIsReviewEdit: ser,
+    setIsRecipeUpdated: siru,
   } = actions;
   const dispatch = useDispatch();
   const setAddedLike = (value) => dispatch(sfa(value));
   const setIsReviewRecipeModalVisible = (value) => dispatch(sir(value));
   const setIsReviewEdit = (value) => dispatch(ser(value));
+  const setIsRecipeUpdated = (value) => dispatch(siru(value));
 
   // Hooks
   const { getRecipeActions, getRecipeActionsData, isGetRecipeActionsLoading } =
@@ -47,6 +49,7 @@ export default function RecipeDetailsFooter(props) {
   }
   function handleReview() {
     if (recipeActions?.reviewed) setIsReviewEdit(true);
+    setIsRecipeUpdated(false);
     setIsReviewRecipeModalVisible(true);
   }
 

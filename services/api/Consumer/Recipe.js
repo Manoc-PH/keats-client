@@ -126,7 +126,6 @@ export const PatchRecipeReview = async ({
   rating,
   owner_id,
   recipe_id,
-  date_created,
 }) => {
   const response = await authAxios.patch(RECIPE_ENDPOINTS.PATCH_RECIPE_REVIEW, {
     id,
@@ -134,7 +133,6 @@ export const PatchRecipeReview = async ({
     rating,
     owner_id,
     recipe_id,
-    date_created,
   });
   return response?.data;
 };
