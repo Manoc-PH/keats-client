@@ -50,6 +50,7 @@ export { default as MyIntakesHeader } from "./Headers/MyIntakesHeader";
 export { default as IntakeDetailsHeader } from "./Headers/IntakeDetailsHeader";
 export { default as RecipeHeader } from "./Headers/RecipeHeader";
 export { default as RecipeDetailsHeader } from "./Headers/RecipeDetailsHeader";
+export { default as RecipeIngredientHeader } from "./Headers/RecipeIngredientHeader";
 
 // Footers
 export { default as ConsumeIngredientFooter } from "./Footers/ConsumeIngredientFooter";
@@ -57,6 +58,7 @@ export { default as ConsumeFoodFooter } from "./Footers/ConsumeFoodFooter";
 export { default as UpdateIntakeFooter } from "./Footers/UpdateIntakeFooter";
 export { default as UpdateFoodIntakeFooter } from "./Footers/UpdateFoodIntakeFooter";
 export { default as RecipeDetailsFooter } from "./Footers/RecipeDetailsFooter";
+export { default as RecipeIngredientFooter } from "./Footers/RecipeIngredientFooter";
 
 // Modals
 export { default as DeleteIntakeModal } from "./Modals/DeleteIntakeModal";
@@ -78,6 +80,7 @@ export { default as PageDivider } from "./PageDivider";
 
 // Searchbars
 export { default as AddIntakeSearchbar } from "./Searchbars/AddIntakeSearchbar";
+export { default as AddRecipeIngredientSearchbar } from "./Searchbars/AddRecipeIngredientSearchbar";
 
 // Carousels
 export { default as ImagesCarousel } from "./Carousels/ImagesCarousel";

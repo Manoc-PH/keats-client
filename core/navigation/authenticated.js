@@ -21,6 +21,8 @@ import {
   IntakeFoodDetails,
   RecipeDetails,
   CreateRecipe,
+  SearchRecipeIngredient,
+  RecipeIngredientDetails,
 } from "@app/views/screens";
 
 import {
@@ -30,6 +32,7 @@ import {
   IntakeDetailsHeader,
   RecipeHeader,
   RecipeDetailsHeader,
+  RecipeIngredientHeader,
 } from "@app/views/layouts";
 import { BTN_VARIANTS } from "@app/common/constants/styles";
 
@@ -78,6 +81,16 @@ const CommonScreens = () => {
         name='CreateRecipe'
         component={CreateRecipe}
         options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name='SearchRecipeIngredient'
+        component={SearchRecipeIngredient}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name='RecipeIngredientDetails'
+        component={RecipeIngredientDetails}
+        options={{ header: (props) => <RecipeIngredientHeader {...props} /> }}
       />
     </Stack.Navigator>
   );
