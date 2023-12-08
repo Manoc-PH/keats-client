@@ -1,5 +1,6 @@
 import { View } from "react-native";
 import { useEffect, useState } from "react";
+import { useMediaLibraryPermissions } from "expo-image-picker";
 // Layouts
 import {
   ScrollPage,
@@ -16,6 +17,15 @@ export default function CreateRecipe() {
   const [recipeNameDetails, setRecipeNameDetails] = useState({});
   const [recipeIngredients, setRecipeIngredients] = useState();
   const [recipeInstructions, setRecipeInstructions] = useState();
+
+  // Hooks
+  const [status, requestPermission] = useMediaLibraryPermissions();
+
+  // UseEffects
+  useEffect(() => {
+    if (!status) return;
+    if (!status.granted) requestPermission();
+  }, [status]);
   return (
     <View style={styles.wrapper}>
       <ScrollPage>

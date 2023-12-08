@@ -35,6 +35,14 @@
       "eas": {
         "projectId": "580c7986-1e8b-4489-be65-f2b55c13878f"
       }
-    }
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Keats accesses your photos to let you share images of your recipes."
+        }
+      ]
+    ]
   }
 }

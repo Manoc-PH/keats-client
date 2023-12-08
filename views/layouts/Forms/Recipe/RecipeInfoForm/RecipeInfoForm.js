@@ -2,19 +2,14 @@ import { useEffect, useState } from "react";
 import { Dimensions, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
+import { MediaTypeOptions, launchImageLibraryAsync } from "expo-image-picker";
 // Constants
-import { SPACING } from "@app/common/constants/styles";
+import { BTN_VARIANTS, SIZES, SPACING } from "@app/common/constants/styles";
 // Components
-import { Button, SwitchButton } from "@app/views/components";
+import { Button, Image, SwitchButton } from "@app/views/components";
 // Layouts
 import RecipeIngredientCard from "@app/views/layouts/Cards/RecipeIngredientCard";
 import RecipeInstructionCard from "@app/views/layouts/Cards/RecipeInstructionCard";
-// Hooks
-import {
-  useGetRecipeReviews,
-  useGetRecipeIngredients,
-  useGetRecipeInstructions,
-} from "@app/core/hooks/api";
 
 import { styles } from "./styles";
 import { actions } from "@app/core/store";
@@ -29,6 +24,7 @@ export default function RecipeInfoForm(props) {
   const [ingredients, setIngredients] = useState([]);
   const [recipeToUpdate, setRecipeToUpdate] = useState();
   const [steps, setSteps] = useState([]);
+  const [selectedImages, setSelectedImages] = useState([]);
 
   // Store State
   const { recipeIngredient } = useSelector((state) => state.recipe);
@@ -114,7 +110,20 @@ export default function RecipeInfoForm(props) {
     newSteps[i].instruction_description = value;
     setSteps(newSteps);
   }
+  async function pickImageAsync() {
+    let result = await launchImageLibraryAsync({
+      mediaTypes: MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [1, 1],
+      quality: 1,
+    });
 
+    if (!result.canceled) {
+      setSelectedImages([...selectedImages, result.assets[0].uri]);
+    } else {
+      alert("You did not select any image.");
+    }
+  }
   // UseEffects
   useEffect(() => {
     handleSavedIngredient(recipeIngredient);
@@ -177,7 +186,25 @@ export default function RecipeInfoForm(props) {
             ))}
         </View>
       )}
-      {activeInfo === "Images" && <View></View>}
+      {activeInfo === "Images" && (
+        <>
+          <Button onPress={pickImageAsync}>Add Image</Button>
+          <View style={styles.imageWrapper}>
+            {selectedImages &&
+              selectedImages?.length > 0 &&
+              selectedImages.map((value, i) => (
+                <View style={styles.imageContainer} key={i}>
+                  <Image src={value} />
+                  <View style={styles.imageInputContainer}>
+                    <Button variant={BTN_VARIANTS.outlined} size={SIZES.Small}>
+                      Edit
+                    </Button>
+                  </View>
+                </View>
+              ))}
+          </View>
+        </>
+      )}
     </View>
   );
 }

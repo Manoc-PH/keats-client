@@ -40,4 +40,25 @@ export const styles = StyleSheet.create({
   loadingTitle: { width: Dimensions.get("window").width / 1.5 },
   loadingSubheadline1: { width: Dimensions.get("window").width / 3 },
   loadingBody: { width: Dimensions.get("window").width / 5 },
+
+  imageWrapper: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    flexWrap: "wrap",
+    gap: SPACING.Regular,
+  },
+  imageContainer: {
+    width:
+      Dimensions.get("window").width / 2 -
+      (SPACING.Medium + SPACING.Regular / 2),
+    flexDirection: "column",
+    gap: SPACING.Regular,
+    backgroundColor: themeColors.background,
+    borderRadius: SPACING.Regular,
+    overflow: "hidden",
+  },
+  imageInputContainer: {
+    paddingHorizontal: SPACING.Regular,
+    paddingBottom: SPACING.Regular,
+  },
 });
