@@ -12,9 +12,15 @@ import { Body, Button, SliderInput } from "@app/views/components";
 import { styles } from "./styles";
 
 export default function RecipeIngredientFooter(props) {
-  const { ingredient_mapping_id, ingredientDetails } = props;
+  const {
+    ingredient_mapping_id,
+    ingredientDetails,
+    nutrient,
+    selectedVariant,
+    selectedSubvariant,
+  } = props;
   // Store State
-  const { dailyNutrients, dailyIntakes } = useSelector((state) => state.recipe);
+  // const { dailyNutrients, dailyIntakes } = useSelector((state) => state.recipe);
 
   // Store Actions
   const {
@@ -22,12 +28,14 @@ export default function RecipeIngredientFooter(props) {
     setSelectedIngredientID: sId,
     setSelectedIngredientMappingID: sMId,
     setIngredientDetails: sD,
+    setRecipeIngredient: sri,
   } = actions;
   const dispatch = useDispatch();
   const setSelectedIngredientAmount = (value) => dispatch(sfa(value));
   const setSelectedIngredientID = (v) => dispatch(sId(v));
   const setIngredientDetails = (v) => dispatch(sD(v));
   const setSelectedIngredientMappingID = (v) => dispatch(sMId(v));
+  const setRecipeIngredient = (v) => dispatch(sri(v));
 
   // Local State
   const [amount, setAmount] = useState(100);
@@ -49,21 +57,21 @@ export default function RecipeIngredientFooter(props) {
 
   // Functions
   function handleSubmit() {
-    console.log(ingredientDetails);
     const data = {
       ingredient_mapping_id: ingredient_mapping_id,
+      name: `${ingredientDetails?.name}${
+        selectedVariant && ", " + selectedVariant?.name
+      }${selectedSubvariant && ", " + selectedSubvariant?.name}`,
+      name_owner: ingredientDetails?.name_owner,
       amount: parseFloat(amount),
-      amount_unit: measureUnit.value,
-      amount_unit_desc: measureUnit.desc,
+      calories: nutrient?.calories * (parseFloat(amount) * 0.01),
     };
+    setRecipeIngredient(data);
     setSelectedIngredientAmount();
     setIngredientDetails();
     setSelectedIngredientID();
     setSelectedIngredientMappingID();
     navigation.navigate("Common", { screen: "CreateRecipe" });
-  }
-  function handleCancel() {
-    navigation.goBack();
   }
 
   function handleChange(v) {

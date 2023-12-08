@@ -34,6 +34,8 @@ export default function RecipeIngredientDetails() {
 
   // Local State
   const [ingredientDetails, setIngredientDetails] = useState();
+  const [selectedVariant, setSelectedVariant] = useState();
+  const [selectedSubvariant, setSelectedSubvariant] = useState();
 
   // Hooks
   const {
@@ -106,6 +108,8 @@ export default function RecipeIngredientDetails() {
               isGetIngredientDetailsLoading ||
               isGetIngredientMappingDetailsLoading
             }
+            setSelectedVariant={setSelectedVariant}
+            setSelectedSubvariant={setSelectedSubvariant}
           />
         </View>
       </ScrollPage>
@@ -116,7 +120,10 @@ export default function RecipeIngredientDetails() {
             selectedIngredientMappingID ||
             ingredientDetails.ingredient_mapping_id
           }
-          ingredientDetails={ingredientDetails}
+          ingredientDetails={ingredientDetails?.ingredient}
+          nutrient={ingredientDetails?.nutrient}
+          selectedVariant={selectedVariant}
+          selectedSubvariant={selectedSubvariant}
         />
       )}
     </>

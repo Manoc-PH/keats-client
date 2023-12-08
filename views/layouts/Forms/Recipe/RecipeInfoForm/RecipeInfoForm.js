@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Dimensions, View } from "react-native";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 // Constants
 import { SPACING } from "@app/common/constants/styles";
@@ -17,6 +17,7 @@ import {
 } from "@app/core/hooks/api";
 
 import { styles } from "./styles";
+import { actions } from "@app/core/store";
 
 export default function RecipeInfoForm(props) {
   // Props
@@ -24,11 +25,17 @@ export default function RecipeInfoForm(props) {
 
   // Local State
   const [activeInfo, setActiveInfo] = useState("Ingredients");
+  const [ingredientMapping, setIngredientMapping] = useState();
   const [ingredients, setIngredients] = useState([]);
   const [steps, setSteps] = useState([]);
 
   // Store State
   const { recipeIngredient } = useSelector((state) => state.recipe);
+
+  // Store Actions
+  const { setRecipeIngredient: sri } = actions;
+  const dispatch = useDispatch();
+  const setRecipeIngredient = (v) => dispatch(sri(v));
 
   // Hooks
   const navigation = useNavigation();
@@ -42,11 +49,43 @@ export default function RecipeInfoForm(props) {
   function handleAddIngredient() {
     navigation.navigate("Common", { screen: "SearchRecipeIngredient" });
   }
+  function handleSavedIngredient(value) {
+    if (value?.ingredient_mapping_id) {
+      if (!ingredientMapping?.[value?.ingredient_mapping_id]) {
+        setIngredientMapping({
+          ...ingredientMapping,
+          [value?.ingredient_mapping_id]: value,
+        });
+      } else {
+        newIng = { ...value };
+        oldIng = { ...ingredientMapping?.[value?.ingredient_mapping_id] };
+        newIng.calories = newIng.calories + oldIng.calories;
+        newIng.amount = newIng.amount + oldIng.amount;
+        setIngredientMapping({
+          ...ingredientMapping,
+          [value?.ingredient_mapping_id]: newIng,
+        });
+      }
+      setRecipeIngredient();
+    }
+  }
+  function handleMapping() {
+    if (ingredientMapping) {
+      const newIngredients = [];
+      Object.keys(ingredientMapping).forEach(function (key) {
+        newIngredients.push(ingredientMapping[key]);
+      });
+      setIngredients(newIngredients);
+    }
+  }
 
   // UseEffects
   useEffect(() => {
-    // setIngredients(recipeIngredients);
+    handleSavedIngredient(recipeIngredient);
   }, [recipeIngredient]);
+  useEffect(() => {
+    handleMapping();
+  }, [ingredientMapping]);
   return (
     <View style={styles.wrapper}>
       <SwitchButton
@@ -58,11 +97,15 @@ export default function RecipeInfoForm(props) {
       />
       {activeInfo === "Ingredients" && (
         <View>
-          <Button onPress={handleAddIngredient}>Add Ingredient</Button>
+          <Button
+            style={{ marginBottom: SPACING.Tiny }}
+            onPress={handleAddIngredient}>
+            Add Ingredient
+          </Button>
           {ingredients?.length > 0 &&
             ingredients.map((item) => (
               <RecipeIngredientCard
-                key={item.id}
+                key={item.id || item?.ingredient_mapping_id}
                 name={item.name}
                 name_owner={item.name_owner}
                 calories={item.calories}
