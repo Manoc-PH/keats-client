@@ -53,6 +53,7 @@ export default function RecipeIngredientDetails() {
   function fetchIngredientMapping() {
     getIngredientMappingDetails({
       ingredient_mapping_id: selectedIngredientMappingID,
+      return_mappings: true,
     });
   }
   function handleIngredientMappingData() {

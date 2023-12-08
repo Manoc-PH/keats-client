@@ -27,15 +27,22 @@ export default function RecipeInfoForm(props) {
   const [activeInfo, setActiveInfo] = useState("Ingredients");
   const [ingredientMapping, setIngredientMapping] = useState();
   const [ingredients, setIngredients] = useState([]);
+  const [recipeToUpdate, setRecipeToUpdate] = useState();
   const [steps, setSteps] = useState([]);
 
   // Store State
   const { recipeIngredient } = useSelector((state) => state.recipe);
 
   // Store Actions
-  const { setRecipeIngredient: sri } = actions;
+  const {
+    setRecipeIngredient: sri,
+    setSelectedIngredientAmount: sfa,
+    setSelectedIngredientMappingID: sMId,
+  } = actions;
   const dispatch = useDispatch();
   const setRecipeIngredient = (v) => dispatch(sri(v));
+  const setSelectedIngredientAmount = (value) => dispatch(sfa(value));
+  const setSelectedIngredientMappingID = (v) => dispatch(sMId(v));
 
   // Hooks
   const navigation = useNavigation();
@@ -51,7 +58,15 @@ export default function RecipeInfoForm(props) {
   }
   function handleSavedIngredient(value) {
     if (value?.ingredient_mapping_id) {
-      if (!ingredientMapping?.[value?.ingredient_mapping_id]) {
+      if (recipeToUpdate) {
+        const newMapping = {
+          ...ingredientMapping,
+          [recipeToUpdate?.ingredient_mapping_id]: undefined,
+        };
+        newMapping[value?.ingredient_mapping_id] = value;
+        setIngredientMapping(newMapping);
+        setRecipeToUpdate();
+      } else if (!ingredientMapping?.[value?.ingredient_mapping_id]) {
         setIngredientMapping({
           ...ingredientMapping,
           [value?.ingredient_mapping_id]: value,
@@ -67,15 +82,25 @@ export default function RecipeInfoForm(props) {
         });
       }
       setRecipeIngredient();
+    } else if (value?.food_id) {
     }
   }
   function handleMapping() {
     if (ingredientMapping) {
       const newIngredients = [];
       Object.keys(ingredientMapping).forEach(function (key) {
-        newIngredients.push(ingredientMapping[key]);
+        if (ingredientMapping[key]) newIngredients.push(ingredientMapping[key]);
       });
       setIngredients(newIngredients);
+    }
+  }
+  function handleIngredientPressed(item) {
+    const { amount, ingredient_mapping_id } = item;
+    setSelectedIngredientAmount(amount);
+    if (ingredient_mapping_id) {
+      setSelectedIngredientMappingID(ingredient_mapping_id);
+      setRecipeToUpdate(item);
+      navigation.navigate("Common", { screen: "RecipeIngredientDetails" });
     }
   }
 
@@ -110,6 +135,7 @@ export default function RecipeInfoForm(props) {
                 name_owner={item.name_owner}
                 calories={item.calories}
                 amount={item.amount}
+                onPress={() => handleIngredientPressed(item)}
               />
             ))}
         </View>
