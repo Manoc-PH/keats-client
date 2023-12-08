@@ -37,7 +37,7 @@ export default function AddRecipeIngredientSearchbar(props) {
 
   // Functions
   function handleCancel() {
-    navigation.navigate("Home", { screen: "HomeDefault" });
+    navigation.goBack();
   }
   function handleTextClear() {
     onChangeText("");
