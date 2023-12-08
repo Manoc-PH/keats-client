@@ -20,6 +20,7 @@ import {
   FoodDetails,
   IntakeFoodDetails,
   RecipeDetails,
+  CreateRecipe,
 } from "@app/views/screens";
 
 import {
@@ -72,6 +73,11 @@ const CommonScreens = () => {
         name='RecipeDetails'
         component={RecipeDetails}
         options={{ header: (props) => <RecipeDetailsHeader {...props} /> }}
+      />
+      <Stack.Screen
+        name='CreateRecipe'
+        component={CreateRecipe}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );

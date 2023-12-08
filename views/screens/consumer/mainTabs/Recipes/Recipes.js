@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Dimensions, View } from "react-native";
 import { useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
 
 // Layouts
 import { RecipeCreated, RecipeDiscovery, ScrollPage } from "@app/views/layouts";
 // Components
-import { SwitchButton } from "@app/views/components";
+import { Button, SwitchButton } from "@app/views/components";
 // Constants
 import { SPACING } from "@app/common/constants/styles";
 // Images
@@ -20,6 +21,14 @@ export default function Recipes() {
   // Local States
   const [page, setPage] = useState("Discover");
 
+  // Hooks
+  const navigation = useNavigation();
+
+  // Functions
+  function handleCreateRecipe() {
+    navigation.navigate("Common", { screen: "CreateRecipe" });
+  }
+
   // Functions
   function handleSwitchView(value) {
     if (value === 1) setPage("Discover");
@@ -30,6 +39,9 @@ export default function Recipes() {
       <View style={styles.wrapper}>
         <View style={styles.container}>
           <AdImage style={styles.image} resizeMode={"cover"} />
+        </View>
+        <View style={styles.container}>
+          <Button onPress={handleCreateRecipe}>+ Create Recipe</Button>
         </View>
         <View style={styles.container}>
           <SwitchButton

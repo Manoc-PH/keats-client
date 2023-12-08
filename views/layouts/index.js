@@ -66,6 +66,7 @@ export { default as ReviewRecipeModal } from "./Modals/ReviewRecipeModal";
 // Forms
 export { default as LoginForm } from "./Forms/LoginForm";
 export { default as SignupForm } from "./Forms/SignupForm";
+export { default as RecipeNameForm } from "./Forms/Recipe/RecipeNameForm";
 
 // Page Wrappers
 export { default as Splash } from "./PageWrappers/Splash";
