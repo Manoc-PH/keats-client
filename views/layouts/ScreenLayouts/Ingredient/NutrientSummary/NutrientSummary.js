@@ -62,7 +62,7 @@ export default function NutrientSummary(props) {
 
   // UseEffects
   useEffect(() => {
-    if (details) formatMacros();
+    if (details?.nutrient) formatMacros();
   }, [details, amount]);
   return (
     <View style={styles.wrapper}>
