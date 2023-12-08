@@ -26,11 +26,12 @@ export default function TextInput(props) {
     secureTextEntry,
     autoCapitalize,
     onClearPress,
+    wrapperStyle,
     ...rest
   } = props;
 
   return (
-    <View style={styles.wrapper}>
+    <View style={{ ...styles.wrapper, ...wrapperStyle }}>
       {label && (
         <View style={styles.labelContainer}>
           <SubHeadline1>{label}</SubHeadline1>

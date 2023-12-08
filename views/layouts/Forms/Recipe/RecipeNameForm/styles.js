@@ -14,30 +14,15 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
   },
   rowWrapper: {
-    width: "100%",
-    gap: SPACING.Medium,
-    justifyContent: "space-around",
+    gap: SPACING.Regular,
     flexDirection: "row",
   },
   rowContainer: {
     gap: SPACING.Small,
     flexDirection: "row",
-    alignItems: "center",
   },
-  detailContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    gap: SPACING.Small,
-    backgroundColor: themeColors.background,
-    paddingVertical: SPACING.Medium,
-    borderRadius: SPACING.Medium,
-    borderWidth: 1,
-    borderColor: themeColors.backgroundDark,
+  input: {
+    width: "auto",
     flex: 1,
   },
-  body: { textAlign: "center" },
-
-  loadingTitle: { width: Dimensions.get("window").width / 1.5 },
-  loadingSubheadline1: { width: Dimensions.get("window").width / 3 },
-  loadingBody: { width: Dimensions.get("window").width / 5 },
 });

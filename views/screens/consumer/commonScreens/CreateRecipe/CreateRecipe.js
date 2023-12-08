@@ -14,6 +14,7 @@ import {
   ImagesCarousel,
   RecipeInfo,
   RecipeDetailsFooter,
+  RecipeNameForm,
 } from "@app/views/layouts";
 // Components
 import { Image } from "@app/views/components";
@@ -32,8 +33,8 @@ export default function CreateRecipe() {
   // const dispatch = useDispatch();
   // const setIsRecipeUpdated = (value) => dispatch(siru(value));
 
-  // // Local State
-  // const [recipeDetails, setRecipeDetails] = useState();
+  // Local State
+  const [recipeNameDetails, setRecipeNameDetails] = useState({});
   // const [recipeTotalAmount, setRecipeTotalAmount] = useState();
 
   // // Hooks
@@ -48,10 +49,10 @@ export default function CreateRecipe() {
   //   }
   // }
 
-  // // UseEffects
-  // useEffect(() => {
-  //   if (selectedRecipeID) getRecipe({ recipe_id: selectedRecipeID });
-  // }, [selectedRecipeID]);
+  // UseEffects
+  useEffect(() => {
+    console.log(recipeNameDetails);
+  }, [recipeNameDetails]);
   // useEffect(() => {
   //   if (isRecipeUpdated) getRecipe({ recipe_id: selectedRecipeID });
   // }, [isRecipeUpdated]);
@@ -62,23 +63,15 @@ export default function CreateRecipe() {
   //   }
   // }, [getRecipeData]);
   return (
-    <ScrollPage
-      contentContainerStyle={styles.wrapper}
-      alwaysBounceHorizontal={false}
-      alwaysBounceVertical={false}
-      bounces={false}
-      scrollEnabled={false}
-      automaticallyAdjustKeyboardInsets={true}>
+    <View style={styles.wrapper}>
       <ScrollPage>
-        {/* <View style={styles.imageWrapper}>
-          {recipeDetails?.recipe_images &&
-          recipeDetails?.recipe_images?.length > 0 ? (
-            <ImagesCarousel data={recipeDetails.recipe_images} />
-          ) : (
-            <Image src={recipeDetails?.recipe?.thumbnail_image_link} />
-          )}
-        </View> */}
         <View style={styles.container}>
+          <View style={styles.contentWrapper}>
+            <RecipeNameForm
+              recipeNameDetails={recipeNameDetails}
+              setRecipeNameDetails={setRecipeNameDetails}
+            />
+          </View>
           {/* <NutrientSummary
             dailyNutrients={dailyNutrients}
             details={recipeDetails}
@@ -95,6 +88,6 @@ export default function CreateRecipe() {
         </View>
       </ScrollPage>
       {/* <RecipeDetailsFooter recipe_id={selectedRecipeID} /> */}
-    </ScrollPage>
+    </View>
   );
 }

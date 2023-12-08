@@ -17,6 +17,12 @@ export const styles = StyleSheet.create({
     paddingBottom: SPACING.Huge * 3,
     gap: SPACING.Medium,
   },
+  contentWrapper: {
+    paddingBottom: SPACING.Regular,
+    paddingHorizontal: SPACING.Regular,
+    backgroundColor: themeColors.background,
+    borderRadius: SPACING.Regular,
+  },
   imageWrapper: {
     aspectRatio: 1,
     width: "100%",
