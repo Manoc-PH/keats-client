@@ -5,6 +5,7 @@ const initialState = {
   addedLike: false,
   isReviewEdit: false,
   isRecipeUpdated: false,
+  recipeIngredients: [],
 };
 
 const store = createSlice({
@@ -26,6 +27,10 @@ const store = createSlice({
     setIsRecipeUpdated: (state, { payload }) => {
       if (payload) state.isRecipeUpdated = payload;
       else state.isRecipeUpdated = false;
+    },
+    setRecipeIngredients: (state, { payload }) => {
+      if (payload) state.recipeIngredients = payload;
+      else state.recipeIngredients = [];
     },
   },
 });

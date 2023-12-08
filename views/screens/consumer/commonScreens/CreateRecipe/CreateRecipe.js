@@ -15,6 +15,7 @@ import {
   RecipeInfo,
   RecipeDetailsFooter,
   RecipeNameForm,
+  RecipeInfoForm,
 } from "@app/views/layouts";
 // Components
 import { Image } from "@app/views/components";
@@ -50,9 +51,7 @@ export default function CreateRecipe() {
   // }
 
   // UseEffects
-  useEffect(() => {
-    console.log(recipeNameDetails);
-  }, [recipeNameDetails]);
+  useEffect(() => {}, [recipeNameDetails]);
   // useEffect(() => {
   //   if (isRecipeUpdated) getRecipe({ recipe_id: selectedRecipeID });
   // }, [isRecipeUpdated]);
@@ -72,6 +71,8 @@ export default function CreateRecipe() {
               setRecipeNameDetails={setRecipeNameDetails}
             />
           </View>
+          <PageDivider />
+          <RecipeInfoForm />
           {/* <NutrientSummary
             dailyNutrients={dailyNutrients}
             details={recipeDetails}
@@ -83,7 +84,6 @@ export default function CreateRecipe() {
             recipeDetails={recipeDetails?.recipe}
             isLoading={isGetRecipeLoading}
           /> */}
-          <PageDivider />
           {/* <RecipeInfo RecipeID={selectedRecipeID} /> */}
         </View>
       </ScrollPage>
