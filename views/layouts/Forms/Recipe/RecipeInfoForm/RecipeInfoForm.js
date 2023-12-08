@@ -21,7 +21,7 @@ import { actions } from "@app/core/store";
 
 export default function RecipeInfoForm(props) {
   // Props
-  const { RecipeID } = props;
+  const { setRecipeIngredients, setRecipeInstructions } = props;
 
   // Local State
   const [activeInfo, setActiveInfo] = useState("Ingredients");
@@ -104,11 +104,14 @@ export default function RecipeInfoForm(props) {
     }
   }
   function handleAddInstruction() {
-    setSteps([...steps, { step_num: steps.length + 1, description: "" }]);
+    setSteps([
+      ...steps,
+      { step_num: steps.length + 1, instruction_description: "" },
+    ]);
   }
   function handleInstructionChange(i, value) {
     const newSteps = steps;
-    newSteps[i].description = value;
+    newSteps[i].instruction_description = value;
     setSteps(newSteps);
   }
 
@@ -119,6 +122,12 @@ export default function RecipeInfoForm(props) {
   useEffect(() => {
     handleMapping();
   }, [ingredientMapping]);
+  useEffect(() => {
+    setRecipeIngredients(ingredients);
+  }, [ingredients]);
+  useEffect(() => {
+    setRecipeInstructions(steps);
+  }, [steps]);
   return (
     <View style={styles.wrapper}>
       <SwitchButton
@@ -160,9 +169,9 @@ export default function RecipeInfoForm(props) {
             steps.map((item, i) => (
               <RecipeInstructionCard
                 key={i}
-                description={item.instruction_description}
                 order={item.step_num}
                 editable
+                description={steps[i].instruction_description}
                 onChange={(v) => handleInstructionChange(i, v)}
               />
             ))}

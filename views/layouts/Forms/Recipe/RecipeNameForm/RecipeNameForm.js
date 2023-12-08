@@ -18,17 +18,23 @@ export default function RecipeName(props) {
   // UseEffects
   useEffect(() => {
     if (recipeName)
-      setRecipeNameDetails({ ...recipeNameDetails, recipe_name: recipeName });
-    else setRecipeNameDetails({ ...recipeNameDetails, recipe_name: "" });
+      setRecipeNameDetails({ ...recipeNameDetails, name: recipeName });
+    else setRecipeNameDetails({ ...recipeNameDetails, name: "" });
   }, [recipeName]);
   useEffect(() => {
     if (servings)
-      setRecipeNameDetails({ ...recipeNameDetails, servings: servings });
+      setRecipeNameDetails({
+        ...recipeNameDetails,
+        servings: parseInt(servings, 10),
+      });
     else setRecipeNameDetails({ ...recipeNameDetails, servings: "" });
   }, [servings]);
   useEffect(() => {
     if (prepTime)
-      setRecipeNameDetails({ ...recipeNameDetails, prep_time: prepTime });
+      setRecipeNameDetails({
+        ...recipeNameDetails,
+        prep_time: parseInt(prepTime, 10),
+      });
     else setRecipeNameDetails({ ...recipeNameDetails, prep_time: "" });
   }, [prepTime]);
   useEffect(() => {

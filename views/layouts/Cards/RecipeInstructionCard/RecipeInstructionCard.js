@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 // Constants
 import { FONT_SIZES, SPACING } from "@app/common/constants/styles";
@@ -19,6 +19,11 @@ export default function RecipeInstructionCard(props) {
     ...rest
   } = props;
 
+  const [text, setText] = useState(description);
+
+  useEffect(() => {
+    if (editable) onChange(text);
+  }, [text]);
   return (
     <InfoCard
       isLoading={isLoading}
@@ -71,8 +76,8 @@ export default function RecipeInstructionCard(props) {
                   <TextInput
                     wrapperStyle={styles.editableText}
                     multiline
-                    value={description}
-                    onChangeText={onChange}
+                    value={text}
+                    onChangeText={setText}
                   />
                 </View>
               </View>
