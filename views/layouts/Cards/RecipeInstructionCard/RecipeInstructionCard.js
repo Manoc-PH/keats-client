@@ -3,13 +3,21 @@ import { View } from "react-native";
 // Constants
 import { FONT_SIZES, SPACING } from "@app/common/constants/styles";
 // Basic
-import { InfoCard, TextSkeleton, Body } from "@app/views/components";
+import { InfoCard, TextSkeleton, Body, TextInput } from "@app/views/components";
 
 import { styles } from "./styles";
 
 export default function RecipeInstructionCard(props) {
   // Destructure
-  const { description, order, isLoading, onPress, ...rest } = props;
+  const {
+    description,
+    order,
+    isLoading,
+    onPress,
+    editable,
+    onChange,
+    ...rest
+  } = props;
 
   return (
     <InfoCard
@@ -37,7 +45,7 @@ export default function RecipeInstructionCard(props) {
               </View>
             </View>
           )}
-          {!isLoading && (
+          {!isLoading && !editable && (
             <View style={styles.wrapper}>
               <View style={styles.rowWrapper}>
                 <View style={styles.rowContainer}>
@@ -47,6 +55,25 @@ export default function RecipeInstructionCard(props) {
                 </View>
                 <View style={styles.rowContainer}>
                   <Body>{description && description}</Body>
+                </View>
+              </View>
+            </View>
+          )}
+          {editable && (
+            <View style={styles.wrapper}>
+              <View style={styles.rowWrapper}>
+                <View style={styles.rowContainer}>
+                  <View style={styles.orderContainer}>
+                    <Body>{order && order}</Body>
+                  </View>
+                </View>
+                <View style={styles.editableRowContainer}>
+                  <TextInput
+                    wrapperStyle={styles.editableText}
+                    multiline
+                    value={description}
+                    onChangeText={onChange}
+                  />
                 </View>
               </View>
             </View>

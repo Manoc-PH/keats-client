@@ -32,4 +32,15 @@ export const styles = StyleSheet.create({
   loadingBody: {
     width: Dimensions.get("window").width / 4,
   },
+  editableRowContainer: {
+    width: "auto",
+    flex: 1,
+    flexDirection: "row",
+    gap: SPACING.Tiny,
+    alignItems: "center",
+  },
+  editableText: {
+    width: "auto",
+    flex: 1,
+  },
 });

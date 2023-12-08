@@ -103,6 +103,14 @@ export default function RecipeInfoForm(props) {
       navigation.navigate("Common", { screen: "RecipeIngredientDetails" });
     }
   }
+  function handleAddInstruction() {
+    setSteps([...steps, { step_num: steps.length + 1, description: "" }]);
+  }
+  function handleInstructionChange(i, value) {
+    const newSteps = steps;
+    newSteps[i].description = value;
+    setSteps(newSteps);
+  }
 
   // UseEffects
   useEffect(() => {
@@ -140,16 +148,26 @@ export default function RecipeInfoForm(props) {
             ))}
         </View>
       )}
-      {activeInfo === "Instructions" &&
-        steps &&
-        steps?.length > 0 &&
-        steps.map((item) => (
-          <RecipeInstructionCard
-            key={item.id}
-            description={item.instruction_description}
-            order={item.step_num}
-          />
-        ))}
+      {activeInfo === "Instructions" && (
+        <View>
+          <Button
+            style={{ marginBottom: SPACING.Tiny }}
+            onPress={handleAddInstruction}>
+            Add Instruction
+          </Button>
+          {steps &&
+            steps?.length > 0 &&
+            steps.map((item, i) => (
+              <RecipeInstructionCard
+                key={i}
+                description={item.instruction_description}
+                order={item.step_num}
+                editable
+                onChange={(v) => handleInstructionChange(i, v)}
+              />
+            ))}
+        </View>
+      )}
       {activeInfo === "Images" && <View></View>}
     </View>
   );
