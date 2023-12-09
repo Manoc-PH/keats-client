@@ -19,42 +19,43 @@ export default function NutrientSummary(props) {
     let calTotal, proTotal, fatTotal, carTotal;
     if (amount) {
       calTotal =
-        multiplier * details.nutrient.calories + dailyNutrients.calories;
-      proTotal = multiplier * details.nutrient.protein + dailyNutrients.protein;
-      fatTotal = multiplier * details.nutrient.fats + dailyNutrients.fats;
-      carTotal = multiplier * details.nutrient.carbs + dailyNutrients.carbs;
+        multiplier * details?.nutrient.calories + dailyNutrients?.calories;
+      proTotal =
+        multiplier * details?.nutrient.protein + dailyNutrients?.protein;
+      fatTotal = multiplier * details?.nutrient.fats + dailyNutrients?.fats;
+      carTotal = multiplier * details?.nutrient.carbs + dailyNutrients?.carbs;
     } else {
-      calTotal = details.nutrient.calories + dailyNutrients.calories;
-      proTotal = details.nutrient.protein + dailyNutrients.protein;
-      fatTotal = details.nutrient.fats + dailyNutrients.fats;
-      carTotal = details.nutrient.carbs + dailyNutrients.carbs;
+      calTotal = details?.nutrient.calories + dailyNutrients?.calories;
+      proTotal = details?.nutrient.protein + dailyNutrients?.protein;
+      fatTotal = details?.nutrient.fats + dailyNutrients?.fats;
+      carTotal = details?.nutrient.carbs + dailyNutrients?.carbs;
     }
     macros.push({
       label: "calories",
-      value: multiplier * details.nutrient.calories,
+      value: multiplier * details?.nutrient.calories,
       total: calTotal,
-      valueMax: Math.floor(dailyNutrients.max_calories),
+      valueMax: Math.floor(dailyNutrients?.max_calories),
       amountUnit: "",
     });
     macros.push({
       label: "carbs",
       total: carTotal,
-      value: multiplier * details.nutrient.carbs,
-      valueMax: Math.floor(dailyNutrients.max_carbs),
+      value: multiplier * details?.nutrient.carbs,
+      valueMax: Math.floor(dailyNutrients?.max_carbs),
       amountUnit: "g",
     });
     macros.push({
       label: "fats",
       total: fatTotal,
-      value: multiplier * details.nutrient.fats,
-      valueMax: Math.floor(dailyNutrients.max_fats),
+      value: multiplier * details?.nutrient.fats,
+      valueMax: Math.floor(dailyNutrients?.max_fats),
       amountUnit: "g",
     });
     macros.push({
       label: "protein",
       total: proTotal,
-      value: multiplier * details.nutrient.protein,
-      valueMax: Math.floor(dailyNutrients.max_protein),
+      value: multiplier * details?.nutrient.protein,
+      valueMax: Math.floor(dailyNutrients?.max_protein),
       amountUnit: "g",
     });
     setNutrientSummary(macros);
