@@ -66,7 +66,6 @@ export default function CarouselImage(props) {
           [{ nativeEvent: { contentOffset: { x: scrollX } } }],
           { useNativeDriver: false, listener: calculateCurrentIndex }
         )}
-        scrollEventThrottle={26}
         renderItem={({ item, index }) => {
           return (
             <View style={{ width: ITEM_SIZE }}>
