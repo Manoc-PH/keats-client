@@ -31,8 +31,8 @@ export default function CreateRecipeFooter(props) {
   const { postRecipe, postRecipeData, isPostRecipeLoading } = usePostRecipe();
   const navigation = useNavigation();
 
-  // Constants
-  const loading = isPostRecipeLoading;
+  // Local state
+  const [loading, setLoading] = useState(false);
 
   // Functions
   function handleSave() {
@@ -43,16 +43,34 @@ export default function CreateRecipeFooter(props) {
         recipe_instructions,
         timestamp: new Date().toISOString(),
       };
+      setLoading(true);
       postRecipe(data);
     }
   }
   function handleSaveImages(data) {
+    let uploaded = 0;
     recipeImages.forEach(async (item) => {
-      const res = await PostRecipeImage({
-        recipe_id: data?.recipe?.id,
-        name_url_local: item.name_url_local,
-      });
-      const res2 = await PostRecipeImagesCld(res);
+      try {
+        const res = await PostRecipeImage({
+          recipe_id: data?.recipe?.id,
+          name_url_local: item.name_url_local,
+        });
+        const res2 = await PostRecipeImagesCld(res);
+        if (res2 && uploaded + 1 === recipeImages?.length) {
+          setLoading(false);
+          setSelectedRecipeID(data?.recipe?.id);
+          navigation.navigate("Common", { screen: "RecipeDetails" });
+        } else {
+          uploaded += 1;
+        }
+      } catch (error) {
+        console.error(error);
+        if (uploaded + 1 === recipeImages?.length) {
+          setLoading(false);
+          setSelectedRecipeID(data?.recipe?.id);
+          navigation.navigate("Common", { screen: "RecipeDetails" });
+        } else uploaded += 1;
+      }
     });
   }
   function handleCancel() {
