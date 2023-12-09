@@ -14,7 +14,8 @@ import { Button, CircleLoader } from "@app/views/components";
 import { styles } from "./styles";
 
 export default function CreateRecipeFooter(props) {
-  const { recipe, recipe_ingredients, recipe_instructions } = props;
+  const { recipe, recipe_ingredients, recipe_instructions, recipeImages } =
+    props;
 
   // Store Actions
   const { setSelectedRecipeID: sdi } = actions;

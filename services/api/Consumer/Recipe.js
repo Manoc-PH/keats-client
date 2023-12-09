@@ -48,6 +48,10 @@ export const PostRecipeLike = async ({ recipe_id }) => {
   });
   return response?.data;
 };
+export const PostRecipeImagesCld = async ({ upload_url, formData }) => {
+  const response = await authAxios.post(upload_url, { formData });
+  return response?.data;
+};
 // GET ENDPOINTS
 export const GetRecipe = async ({ recipe_id }) => {
   const response = await authAxios.get(RECIPE_ENDPOINTS.GET_RECIPE, {

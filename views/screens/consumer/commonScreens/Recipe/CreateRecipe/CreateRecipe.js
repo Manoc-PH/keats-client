@@ -17,6 +17,7 @@ export default function CreateRecipe() {
   const [recipeNameDetails, setRecipeNameDetails] = useState({});
   const [recipeIngredients, setRecipeIngredients] = useState();
   const [recipeInstructions, setRecipeInstructions] = useState();
+  const [recipeImages, setRecipeImages] = useState();
 
   // Hooks
   const [status, requestPermission] = useMediaLibraryPermissions();
@@ -40,6 +41,7 @@ export default function CreateRecipe() {
           <RecipeInfoForm
             setRecipeIngredients={setRecipeIngredients}
             setRecipeInstructions={setRecipeInstructions}
+            setRecipeImages={setRecipeImages}
           />
           {/* <NutrientSummary
             dailyNutrients={dailyNutrients}
@@ -59,6 +61,7 @@ export default function CreateRecipe() {
         recipe={recipeNameDetails}
         recipe_ingredients={recipeIngredients}
         recipe_instructions={recipeInstructions}
+        recipeImages={recipeImages}
       />
     </View>
   );

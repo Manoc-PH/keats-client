@@ -18,7 +18,8 @@ import { actions } from "@app/core/store";
 
 export default function RecipeInfoForm(props) {
   // Props
-  const { setRecipeIngredients, setRecipeInstructions } = props;
+  const { setRecipeIngredients, setRecipeInstructions, setRecipeImages } =
+    props;
 
   // Local State
   const [activeInfo, setActiveInfo] = useState("Ingredients");
@@ -149,6 +150,9 @@ export default function RecipeInfoForm(props) {
   useEffect(() => {
     setRecipeInstructions(steps);
   }, [steps]);
+  useEffect(() => {
+    setRecipeImages(selectedImages);
+  }, [selectedImages]);
   return (
     <View style={styles.wrapper}>
       <SwitchButton
