@@ -91,7 +91,7 @@ export default function RecipeDiscovery(props) {
                   name_owner={item.name_owner}
                   rating={item.rating}
                   rating_count={item.rating_count}
-                  image_url={item.thumbnail_url}
+                  image_url={item.image_url}
                   onPress={() => handlePress(item.id)}
                 />
               </View>
