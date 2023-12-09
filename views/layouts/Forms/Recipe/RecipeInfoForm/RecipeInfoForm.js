@@ -3,6 +3,8 @@ import { Dimensions, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { MediaTypeOptions, launchImageLibraryAsync } from "expo-image-picker";
+// Theme
+import themeColors from "@app/common/theme";
 // Constants
 import { BTN_VARIANTS, SIZES, SPACING } from "@app/common/constants/styles";
 // Components
@@ -119,10 +121,20 @@ export default function RecipeInfoForm(props) {
     });
 
     if (!result.canceled) {
-      setSelectedImages([...selectedImages, result.assets[0].uri]);
+      setSelectedImages([
+        ...selectedImages,
+        { recipe_id: "", name_url_local: result.assets[0].uri },
+      ]);
     } else {
       alert("You did not select any image.");
     }
+  }
+  function handleRemoveImg(value) {
+    const newImages = [];
+    selectedImages.forEach((item) => {
+      if (item?.name_url_local !== value?.name_url_local) newImages.push(item);
+    });
+    setSelectedImages(newImages);
   }
   // UseEffects
   useEffect(() => {
@@ -194,10 +206,14 @@ export default function RecipeInfoForm(props) {
               selectedImages?.length > 0 &&
               selectedImages.map((value, i) => (
                 <View style={styles.imageContainer} key={i}>
-                  <Image src={value} />
+                  <Image src={value?.name_url_local} />
                   <View style={styles.imageInputContainer}>
-                    <Button variant={BTN_VARIANTS.outlined} size={SIZES.Small}>
-                      Edit
+                    <Button
+                      variant={BTN_VARIANTS.outlined}
+                      color={themeColors.red}
+                      size={SIZES.Small}
+                      onPress={() => handleRemoveImg(value)}>
+                      Remove
                     </Button>
                   </View>
                 </View>
