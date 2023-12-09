@@ -3,8 +3,7 @@ import { Dimensions, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { MediaTypeOptions, launchImageLibraryAsync } from "expo-image-picker";
-// Utils
-import { getImageBlob } from "@app/common/utils/imageGetter";
+import { manipulateAsync, FlipType, SaveFormat } from "expo-image-manipulator";
 // Theme
 import themeColors from "@app/common/theme";
 // Constants
@@ -124,9 +123,14 @@ export default function RecipeInfoForm(props) {
     });
 
     if (!result.canceled) {
+      const manipResult = await manipulateAsync(
+        result.assets[0].uri,
+        [{ resize: { width: 500 } }],
+        { compress: 0.5, format: SaveFormat.JPEG }
+      );
       setSelectedImages([
         ...selectedImages,
-        { recipe_id: "", name_url_local: result.assets[0].uri },
+        { recipe_id: "", name_url_local: manipResult.uri },
       ]);
     } else {
       alert("You did not select any image.");

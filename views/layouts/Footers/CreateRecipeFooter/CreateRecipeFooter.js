@@ -56,6 +56,7 @@ export default function CreateRecipeFooter(props) {
           name_url_local: item.name_url_local,
         });
         const res2 = await PostRecipeImagesCld(res);
+        console.log("CAlled");
         if (res2 && uploaded + 1 >= recipeImages?.length) {
           setLoading(false);
           setSelectedRecipeID(data?.recipe?.id);
