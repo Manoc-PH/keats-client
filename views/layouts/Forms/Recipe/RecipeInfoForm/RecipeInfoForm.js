@@ -3,7 +3,7 @@ import { Dimensions, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { MediaTypeOptions, launchImageLibraryAsync } from "expo-image-picker";
-import { manipulateAsync, FlipType, SaveFormat } from "expo-image-manipulator";
+import { manipulateAsync, SaveFormat } from "expo-image-manipulator";
 // Theme
 import themeColors from "@app/common/theme";
 // Constants

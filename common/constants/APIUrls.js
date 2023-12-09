@@ -42,7 +42,7 @@ export const COMMON_ENDPOINTS = {
 
 export const RECIPE_ENDPOINTS = {
   POST_RECIPE: "/api/recipe",
-  POST_RECIPE_IMAGES: "/api/recipe/image",
+  POST_RECIPE_IMAGE: "/api/recipe/image",
   POST_RECIPE_REVIEW: "/api/recipe/review",
   POST_RECIPE_LIKE: "/api/recipe/like",
   GET_RECIPE: "/api/recipe",
@@ -56,6 +56,7 @@ export const RECIPE_ENDPOINTS = {
   GET_RECIPE_FILTERED: "/api/recipe/filtered",
   PATCH_RECIPE: "/api/recipe",
   PATCH_RECIPE_REVIEW: "/api/recipe/review",
+  PATCH_RECIPE_MAIN_IMAGE: "/api/recipe/main/image",
   DELETE_RECIPE: "/api/recipe",
   DELETE_RECIPE_LIKE: "/api/recipe/like",
   DELETE_RECIPE_REVIEW: "/api/recipe/review",

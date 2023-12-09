@@ -23,10 +23,33 @@ export const PostRecipe = async ({
   return response?.data;
 };
 export const PostRecipeImage = async ({ recipe_id, name_url_local }) => {
-  const response = await authAxios.post(RECIPE_ENDPOINTS.POST_RECIPE_IMAGES, {
+  const response = await authAxios.post(RECIPE_ENDPOINTS.POST_RECIPE_IMAGE, {
     recipe_id: recipe_id,
     name_url_local: name_url_local,
   });
+  return response?.data;
+};
+export const PatchRecipeMainImage = async ({
+  recipe_id,
+  thumbnail_name,
+  thumbnail_url,
+  thumbnail_url_local,
+  image_name,
+  image_url,
+  image_url_local,
+}) => {
+  const response = await authAxios.patch(
+    RECIPE_ENDPOINTS.PATCH_RECIPE_MAIN_IMAGE,
+    {
+      recipe_id,
+      thumbnail_name,
+      thumbnail_url,
+      thumbnail_url_local,
+      image_name,
+      image_url,
+      image_url_local,
+    }
+  );
   return response?.data;
 };
 export const PostRecipeReview = async ({

@@ -21,11 +21,16 @@ export const styles = StyleSheet.create({
     paddingBottom: SPACING.Regular,
     paddingHorizontal: SPACING.Regular,
     backgroundColor: themeColors.background,
-    borderRadius: SPACING.Regular,
+    borderRadius: SPACING.Large,
   },
   imageWrapper: {
-    aspectRatio: 1,
-    width: "100%",
-    backgroundColor: themeColors.backgroundDark,
+    padding: SPACING.Regular,
+    gap: SPACING.Regular,
+    backgroundColor: themeColors.background,
+    borderRadius: SPACING.Large,
+  },
+  imageContainer: {
+    overflow: "hidden",
+    borderRadius: SPACING.Regular,
   },
 });

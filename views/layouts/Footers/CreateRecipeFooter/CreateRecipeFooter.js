@@ -48,31 +48,40 @@ export default function CreateRecipeFooter(props) {
     }
   }
   function handleSaveImages(data) {
-    let uploaded = 0;
-    recipeImages.forEach(async (item) => {
-      try {
-        const res = await PostRecipeImage({
-          recipe_id: data?.recipe?.id,
-          name_url_local: item.name_url_local,
-        });
-        const res2 = await PostRecipeImagesCld(res);
-        console.log("CAlled");
-        if (res2 && uploaded + 1 >= recipeImages?.length) {
-          setLoading(false);
-          setSelectedRecipeID(data?.recipe?.id);
-          navigation.navigate("Common", { screen: "RecipeDetails" });
-        } else {
-          uploaded += 1;
-        }
-      } catch (error) {
-        if (uploaded + 1 >= recipeImages?.length) {
-          setLoading(false);
-          setSelectedRecipeID(data?.recipe?.id);
-          navigation.navigate("Common", { screen: "RecipeDetails" });
-        } else uploaded += 1;
-      }
-    });
+    const promisesArray = recipeImages.map((item) => postImage(data, item));
+    Promise.all(promisesArray)
+      .then((results) => {
+        console.log(results);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error(error.response);
+      });
   }
+  const postImage = async (data, item) => {
+    try {
+      const res = await PostRecipeImage({
+        recipe_id: data?.recipe?.id,
+        name_url_local: item.name_url_local,
+      });
+      const res2 = await PostRecipeImagesCld(res);
+      return res2;
+      // if (res2 && uploaded + 1 >= recipeImages?.length) {
+      //   setLoading(false);
+      //   setSelectedRecipeID(data?.recipe?.id);
+      //   navigation.navigate("Common", { screen: "RecipeDetails" });
+      // } else {
+      //   uploaded += 1;
+      // }
+    } catch (error) {
+      return error;
+      // if (uploaded + 1 >= recipeImages?.length) {
+      //   setLoading(false);
+      //   setSelectedRecipeID(data?.recipe?.id);
+      //   navigation.navigate("Common", { screen: "RecipeDetails" });
+      // } else uploaded += 1;
+    }
+  };
   function handleCancel() {
     // TODO ASK FOR CONFIRMATION
     navigation.goBack();
