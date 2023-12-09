@@ -56,7 +56,7 @@ export default function CreateRecipeFooter(props) {
           name_url_local: item.name_url_local,
         });
         const res2 = await PostRecipeImagesCld(res);
-        if (res2 && uploaded + 1 === recipeImages?.length) {
+        if (res2 && uploaded + 1 >= recipeImages?.length) {
           setLoading(false);
           setSelectedRecipeID(data?.recipe?.id);
           navigation.navigate("Common", { screen: "RecipeDetails" });
@@ -64,8 +64,7 @@ export default function CreateRecipeFooter(props) {
           uploaded += 1;
         }
       } catch (error) {
-        console.error(error);
-        if (uploaded + 1 === recipeImages?.length) {
+        if (uploaded + 1 >= recipeImages?.length) {
           setLoading(false);
           setSelectedRecipeID(data?.recipe?.id);
           navigation.navigate("Common", { screen: "RecipeDetails" });

@@ -30,20 +30,24 @@ export default function ImagesCarousel(props) {
               uri: item?.name_url ? item.name_url : "",
             }}
           />
-          <View
-            style={{
-              position: "absolute",
-              top: SPACING.Regular,
-              left: SPACING.Regular,
-              justifyContent: "center",
-              alignItems: "center",
-              backgroundColor: `${themeColors.secondary}50`,
-              paddingHorizontal: SPACING.Regular,
-              paddingVertical: SPACING.Tiny,
-              borderRadius: SPACING.Tiny,
-            }}>
-            <Body style={{ color: themeColors.background }}>{item.amount}</Body>
-          </View>
+          {/* {item?.amount && (
+            <View
+              style={{
+                position: "absolute",
+                top: SPACING.Regular,
+                left: SPACING.Regular,
+                justifyContent: "center",
+                alignItems: "center",
+                backgroundColor: `${themeColors.secondary}50`,
+                paddingHorizontal: SPACING.Regular,
+                paddingVertical: SPACING.Tiny,
+                borderRadius: SPACING.Tiny,
+              }}>
+              <Body style={{ color: themeColors.background }}>
+                {item?.amount}
+              </Body>
+            </View>
+          )} */}
         </View>
       ),
     });
