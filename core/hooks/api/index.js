@@ -49,4 +49,4 @@ export { default as usePostRecipe } from "./recipe/usePostRecipe";
 export { default as usePostRecipeImages } from "./recipe/usePostRecipeImages";
 export { default as usePostRecipeLike } from "./recipe/usePostRecipeLike";
 export { default as usePostRecipeReview } from "./recipe/usePostRecipeReview";
-export { default as usePostRecipeImagesCld } from "./recipe/usePostRecipeReview";
+export { default as usePostRecipeImagesCld } from "./recipe/usePostRecipeImagesCld";

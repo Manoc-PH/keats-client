@@ -1,4 +1,5 @@
-export const BASE_URL = "https://api.keats.app";
+// export const BASE_URL = "https://api.keats.app";
+export const BASE_URL = "http://localhost:8080";
 export const LOCAL_URL = "http://10.0.2.2:8080";
 //! REVERT BACK TO NEW URL BEFORE DEPLOYING TO PROD
 export const AUTH_ENDPOINTS = {
@@ -41,7 +42,7 @@ export const COMMON_ENDPOINTS = {
 
 export const RECIPE_ENDPOINTS = {
   POST_RECIPE: "/api/recipe",
-  POST_RECIPE_IMAGES: "/api/recipe/images",
+  POST_RECIPE_IMAGES: "/api/recipe/image",
   POST_RECIPE_REVIEW: "/api/recipe/review",
   POST_RECIPE_LIKE: "/api/recipe/like",
   GET_RECIPE: "/api/recipe",

@@ -3,6 +3,8 @@ import { Dimensions, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { MediaTypeOptions, launchImageLibraryAsync } from "expo-image-picker";
+// Utils
+import { getImageBlob } from "@app/common/utils/imageGetter";
 // Theme
 import themeColors from "@app/common/theme";
 // Constants

@@ -8,6 +8,11 @@ import { BTN_VARIANTS } from "@app/common/constants/styles";
 import { actions } from "@app/core/store";
 // Hooks
 import { usePostRecipe } from "@app/core/hooks/api";
+// Services
+import {
+  PostRecipeImage,
+  PostRecipeImagesCld,
+} from "@app/services/api/Consumer/Recipe";
 // Components
 import { Button, CircleLoader } from "@app/views/components";
 
@@ -41,9 +46,14 @@ export default function CreateRecipeFooter(props) {
       postRecipe(data);
     }
   }
-  function handleSuccessfullSave(data) {
-    setSelectedRecipeID(data?.recipe?.id);
-    navigation.navigate("Common", { screen: "RecipeDetails" });
+  function handleSaveImages(data) {
+    recipeImages.forEach(async (item) => {
+      const res = await PostRecipeImage({
+        recipe_id: data?.recipe?.id,
+        name_url_local: item.name_url_local,
+      });
+      const res2 = await PostRecipeImagesCld(res);
+    });
   }
   function handleCancel() {
     // TODO ASK FOR CONFIRMATION
@@ -52,7 +62,9 @@ export default function CreateRecipeFooter(props) {
 
   // UseEffects
   useEffect(() => {
-    if (postRecipeData) handleSuccessfullSave(postRecipeData);
+    if (postRecipeData) {
+      handleSaveImages(postRecipeData);
+    }
   }, [postRecipeData]);
   return (
     <SafeAreaView style={styles.wrapper}>

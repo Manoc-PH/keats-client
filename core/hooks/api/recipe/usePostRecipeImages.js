@@ -1,7 +1,7 @@
 import { useMutation } from "react-query";
 
 // Services
-import { PostRecipeImages } from "@app/services/api/Consumer/Recipe";
+import { PostRecipeImage } from "@app/services/api/Consumer/Recipe";
 
 export default () => {
   const {
@@ -11,7 +11,7 @@ export default () => {
     isLoading: isPostRecipeImagesLoading,
     isSuccess: isPostRecipeImagesSuccess,
     isError: isPostRecipeImagesError,
-  } = useMutation(PostRecipeImages);
+  } = useMutation(PostRecipeImage);
 
   return {
     postRecipeImages,

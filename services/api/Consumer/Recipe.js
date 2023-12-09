@@ -1,5 +1,7 @@
 // import { publicAxios } from 'common/utils/axios'
 import { authAxios } from "@app/common/utils/axios";
+import * as FileSystem from "expo-file-system";
+import axios from "axios";
 
 // Endpoint
 import { RECIPE_ENDPOINTS } from "@app/common/constants/APIUrls";
@@ -20,9 +22,10 @@ export const PostRecipe = async ({
   });
   return response?.data;
 };
-export const PostRecipeImages = async ({ recipe_images }) => {
+export const PostRecipeImage = async ({ recipe_id, name_url_local }) => {
   const response = await authAxios.post(RECIPE_ENDPOINTS.POST_RECIPE_IMAGES, {
-    recipe_images,
+    recipe_id: recipe_id,
+    name_url_local: name_url_local,
   });
   return response?.data;
 };
@@ -48,9 +51,36 @@ export const PostRecipeLike = async ({ recipe_id }) => {
   });
   return response?.data;
 };
-export const PostRecipeImagesCld = async ({ upload_url, formData }) => {
-  const response = await authAxios.post(upload_url, { formData });
-  return response?.data;
+
+export const PostRecipeImagesCld = async (data) => {
+  try {
+    const base64String = await FileSystem.readAsStringAsync(
+      data?.name_url_local,
+      {
+        encoding: FileSystem.EncodingType.Base64,
+      }
+    );
+
+    // Convert the base64 string to a blob
+    const imageBlob = `data:image/jpeg;base64,${base64String}`;
+
+    let newPubId;
+    if (data?.name_file.split(".jpg")?.length > 0) {
+      newPubId = data?.name_file.split(".jpg")[0];
+    } else {
+      newPubId = data?.name_file;
+    }
+    const res = await axios.post(data?.upload_url, {
+      file: imageBlob,
+      api_key: data?.api_key,
+      timestamp: data?.timestamp,
+      signature: data?.signature,
+      public_id: newPubId,
+    });
+    return res;
+  } catch (error) {
+    console.error(error.response);
+  }
 };
 // GET ENDPOINTS
 export const GetRecipe = async ({ recipe_id }) => {
