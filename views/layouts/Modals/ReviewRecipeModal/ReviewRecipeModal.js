@@ -8,6 +8,7 @@ import { actions } from "@app/core/store";
 
 // Hooks
 import {
+  useDeleteRecipeReview,
   useGetRecipeReview,
   usePatchRecipeReview,
   usePostRecipeReview,
@@ -68,17 +69,25 @@ function ReviewRecipeModal() {
     isPatchRecipeReviewLoading,
     isPatchRecipeReviewError,
   } = usePatchRecipeReview();
+  const {
+    deleteRecipeReview,
+    deleteRecipeReviewData,
+    isDeleteRecipeReviewLoading,
+    deleteRecipeReviewError,
+  } = useDeleteRecipeReview();
 
   // Constants
   const loading =
     isGetRecipeReviewLoading ||
     isPatchRecipeReviewLoading ||
-    isPostRecipeReviewLoading;
+    isPostRecipeReviewLoading ||
+    isDeleteRecipeReviewLoading;
 
   const error =
     isPostRecipeReviewError ||
     isGetRecipeReviewError ||
-    isPatchRecipeReviewError;
+    isPatchRecipeReviewError ||
+    deleteRecipeReviewError;
 
   // Functions
   function handleCancel() {
@@ -113,6 +122,20 @@ function ReviewRecipeModal() {
       setIsReviewEdit();
     }
   }
+  function handleDelete() {
+    if (isReviewEdit) {
+      deleteRecipeReview({ recipe_id: selectedRecipeID });
+    }
+  }
+  function handleSuccessfulDelete() {
+    if (deleteRecipeReviewData && !deleteRecipeReviewError) {
+      setIsRecipeUpdated(true);
+      setIsReviewRecipeModalVisible();
+      setRating(0);
+      setDescription("");
+      setIsReviewEdit();
+    }
+  }
 
   // UseEffects
   useEffect(() => {
@@ -128,6 +151,9 @@ function ReviewRecipeModal() {
   useEffect(() => {
     handleSuccessfullSave();
   }, [postRecipeReviewData, patchRecipeReviewData]);
+  useEffect(() => {
+    handleSuccessfulDelete();
+  }, [deleteRecipeReviewData]);
   return (
     <View style={styles.modalWrapper}>
       <View style={styles.modalContainer}>
@@ -135,7 +161,9 @@ function ReviewRecipeModal() {
         {!loading && (
           <>
             {!loading && error ? (
-              <Title2 style={styles.errorMsg}>Could not save review</Title2>
+              <Title2 style={styles.errorMsg}>
+                Could not make changes to review
+              </Title2>
             ) : (
               <Title2 style={styles.text}>
                 {isReviewEdit ? "Edit Review" : "Add Review"}
@@ -164,6 +192,16 @@ function ReviewRecipeModal() {
                 Save
               </Button>
             </View>
+            {/* {isReviewEdit && (
+              <View style={styles.rowContainer}>
+                <Button
+                  style={styles.btn}
+                  variant={BTN_VARIANTS.tertiary}
+                  onPress={handleDelete}>
+                  Delete Review
+                </Button>
+              </View>
+            )} */}
           </>
         )}
       </View>
