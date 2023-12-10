@@ -46,7 +46,7 @@ export default function RecipeName(props) {
     <View style={styles.wrapper}>
       <View style={styles.container}>
         <TextInput
-          label='Recipe Name'
+          label='Recipe Name *'
           placeholder='Enter the recipe name'
           value={recipeName}
           onChangeText={setRecipeName}
@@ -54,7 +54,7 @@ export default function RecipeName(props) {
         <View style={styles.rowWrapper}>
           <TextInput
             wrapperStyle={styles.input}
-            label='Servings'
+            label='Servings *'
             placeholder='4 servings'
             keyboardType='numeric'
             maxLength={5}
@@ -63,7 +63,7 @@ export default function RecipeName(props) {
           />
           <TextInput
             wrapperStyle={styles.input}
-            label='Prep. Time'
+            label='Prep. Time *'
             placeholder='4 minutes'
             keyboardType='numeric'
             maxLength={5}

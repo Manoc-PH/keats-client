@@ -27,6 +27,7 @@ export default function CreateRecipeFooter(props) {
     recipeImages,
     mainImage,
     thumbnail,
+    setErrMsg,
   } = props;
 
   // Store Actions
@@ -43,6 +44,27 @@ export default function CreateRecipeFooter(props) {
 
   // Functions
   function handleSave() {
+    setErrMsg();
+    if (!recipe?.name || !recipe?.servings || !recipe?.prep_time) {
+      setErrMsg(
+        "Missing inputs: recipe name, servings, and preparation time are required"
+      );
+      return;
+    }
+    if (recipe_ingredients?.length < 1 && recipe_instructions?.length < 1) {
+      setErrMsg(
+        "Missing inputs: you must have atleast 1 ingredient and 1 instruction"
+      );
+      return;
+    }
+    if (recipe_ingredients?.length < 1) {
+      setErrMsg("Missing inputs: you must have atleast 1 ingredient");
+      return;
+    }
+    if (recipe_instructions?.length < 1) {
+      setErrMsg("Missing inputs: you must have atleast 1 instruction");
+      return;
+    }
     if (recipe && recipe_ingredients && recipe_instructions) {
       const data = {
         recipe,

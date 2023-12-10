@@ -16,8 +16,9 @@ import {
 } from "@app/views/layouts";
 
 import { styles } from "./styles";
-import { Button, Image } from "@app/views/components";
+import { Button, Image, Title3 } from "@app/views/components";
 import { BTN_VARIANTS } from "@app/common/constants/styles";
+import themeColors from "@app/common/theme";
 
 export default function CreateRecipe() {
   // Local State
@@ -27,6 +28,7 @@ export default function CreateRecipe() {
   const [recipeImages, setRecipeImages] = useState();
   const [mainImage, setMainImage] = useState();
   const [thumbnail, setThumbnail] = useState();
+  const [errMsg, setErrMsg] = useState();
 
   // Hooks
   const [status, requestPermission] = useMediaLibraryPermissions();
@@ -76,6 +78,11 @@ export default function CreateRecipe() {
             </Button>
           </View>
           <PageDivider />
+          {errMsg && (
+            <Title3 style={{ color: themeColors.red, textAlign: "center" }}>
+              {errMsg}
+            </Title3>
+          )}
           <View style={styles.contentWrapper}>
             <RecipeNameForm
               recipeNameDetails={recipeNameDetails}
@@ -88,18 +95,6 @@ export default function CreateRecipe() {
             setRecipeInstructions={setRecipeInstructions}
             setRecipeImages={setRecipeImages}
           />
-          {/* <NutrientSummary
-            dailyNutrients={dailyNutrients}
-            details={recipeDetails}
-            amount={recipeTotalAmount}
-            isLoading={isGetRecipeLoading}
-          />
-          <PageDivider />
-          <RecipeName
-            recipeDetails={recipeDetails?.recipe}
-            isLoading={isGetRecipeLoading}
-          /> */}
-          {/* <RecipeInfo RecipeID={selectedRecipeID} /> */}
         </View>
       </ScrollPage>
       <CreateRecipeFooter
@@ -109,6 +104,7 @@ export default function CreateRecipe() {
         recipeImages={recipeImages}
         mainImage={mainImage}
         thumbnail={thumbnail}
+        setErrMsg={setErrMsg}
       />
     </View>
   );
