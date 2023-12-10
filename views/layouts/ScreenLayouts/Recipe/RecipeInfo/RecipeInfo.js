@@ -20,12 +20,9 @@ import { styles } from "./styles";
 
 export default function RecipeInfo(props) {
   // Props
-  const { RecipeID } = props;
+  const { RecipeID, isRecipeUpdated } = props;
   const [activeInfo, setActiveInfo] = useState("Reviews");
   const [infoSet, setInfoSet] = useState([]);
-
-  // Store State
-  const { isRecipeUpdated } = useSelector((state) => state.recipe);
 
   // Hooks
   const { getRecipeReviews, getRecipeReviewsData, isGetRecipeReviewsLoading } =
@@ -57,14 +54,10 @@ export default function RecipeInfo(props) {
 
   // UseEffects
   useEffect(() => {
-    if (RecipeID) {
-      handleSwitchInfo(activeInfo);
-    }
+    if (RecipeID) handleSwitchInfo(activeInfo);
   }, [activeInfo, RecipeID]);
   useEffect(() => {
-    if (isRecipeUpdated) {
-      handleSwitchInfo(activeInfo);
-    }
+    if (isRecipeUpdated) handleSwitchInfo(activeInfo);
   }, [isRecipeUpdated]);
   useEffect(() => {
     if (getRecipeReviewsData?.reviews?.length > 0) {

@@ -66,6 +66,7 @@ export { default as CreateRecipeFooter } from "./Footers/CreateRecipeFooter";
 export { default as DeleteIntakeModal } from "./Modals/DeleteIntakeModal";
 export { default as ProgressInfoModal } from "./Modals/ProgressInfoModal";
 export { default as ReviewRecipeModal } from "./Modals/ReviewRecipeModal";
+export { default as DeleteLikeModal } from "./Modals/DeleteLikeModal";
 
 // Forms
 export { default as LoginForm } from "./Forms/LoginForm";

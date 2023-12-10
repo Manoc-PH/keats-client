@@ -195,20 +195,23 @@ export const PatchRecipeReview = async ({
 };
 // DELETE ENDPOINTS
 export const DeleteRecipe = async ({ id }) => {
-  const response = await authAxios.get(RECIPE_ENDPOINTS.DELETE_RECIPE, {
-    id,
+  const response = await authAxios.delete(RECIPE_ENDPOINTS.DELETE_RECIPE, {
+    data: { id },
   });
   return response?.data;
 };
 export const DeleteRecipeLike = async ({ recipe_id }) => {
-  const response = await authAxios.get(RECIPE_ENDPOINTS.DELETE_RECIPE_LIKE, {
-    recipe_id,
+  const response = await authAxios.delete(RECIPE_ENDPOINTS.DELETE_RECIPE_LIKE, {
+    data: { recipe_id },
   });
   return response?.data;
 };
 export const DeleteRecipeReview = async ({ recipe_id }) => {
-  const response = await authAxios.get(RECIPE_ENDPOINTS.DELETE_RECIPE_REVIEW, {
-    recipe_id,
-  });
+  const response = await authAxios.delete(
+    RECIPE_ENDPOINTS.DELETE_RECIPE_REVIEW,
+    {
+      data: { recipe_id },
+    }
+  );
   return response?.data;
 };

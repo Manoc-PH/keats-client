@@ -7,6 +7,7 @@ import {
   DeleteIntakeModal,
   ProgressInfoModal,
   ReviewRecipeModal,
+  DeleteLikeModal,
 } from "@app/views/layouts";
 
 // Components
@@ -19,6 +20,7 @@ function Modals() {
     isDeleteIntakeModalVisible,
     isProgressInfoModalVisible,
     isReviewRecipeModalVisible,
+    isDeleteLikeModalVisible,
   } = useSelector((state) => state.ui);
   const [isVisible, setIsVisible] = useState(
     isDeleteIntakeModalVisible || isProgressInfoModalVisible
@@ -28,14 +30,16 @@ function Modals() {
     if (
       isDeleteIntakeModalVisible ||
       isProgressInfoModalVisible ||
-      isReviewRecipeModalVisible
+      isReviewRecipeModalVisible ||
+      isDeleteLikeModalVisible
     ) {
       setIsVisible(true);
     }
     if (
       !isDeleteIntakeModalVisible &&
       !isProgressInfoModalVisible &&
-      !isReviewRecipeModalVisible
+      !isReviewRecipeModalVisible &&
+      !isDeleteLikeModalVisible
     ) {
       setIsVisible(false);
     }
@@ -43,6 +47,7 @@ function Modals() {
     isDeleteIntakeModalVisible,
     isProgressInfoModalVisible,
     isReviewRecipeModalVisible,
+    isDeleteLikeModalVisible,
   ]);
   return (
     <View style={styles.wrapper}>
@@ -54,6 +59,7 @@ function Modals() {
             {isDeleteIntakeModalVisible && <DeleteIntakeModal />}
             {isProgressInfoModalVisible && <ProgressInfoModal />}
             {isReviewRecipeModalVisible && <ReviewRecipeModal />}
+            {isDeleteLikeModalVisible && <DeleteLikeModal />}
           </>
         }
       />

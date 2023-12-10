@@ -59,6 +59,7 @@ export default function RecipeDetails() {
     if (getRecipeData) {
       setRecipeDetails(getRecipeData);
       handleRecipeAmount(getRecipeData.recipe);
+      setIsRecipeUpdated();
     }
   }, [getRecipeData]);
   return (
@@ -91,10 +92,16 @@ export default function RecipeDetails() {
             isLoading={isGetRecipeLoading}
           />
           <PageDivider />
-          <RecipeInfo RecipeID={selectedRecipeID} />
+          <RecipeInfo
+            isRecipeUpdated={isRecipeUpdated}
+            RecipeID={selectedRecipeID}
+          />
         </View>
       </ScrollPage>
-      <RecipeDetailsFooter recipe_id={selectedRecipeID} />
+      <RecipeDetailsFooter
+        isRecipeUpdated={isRecipeUpdated}
+        recipe_id={selectedRecipeID}
+      />
     </ScrollPage>
   );
 }

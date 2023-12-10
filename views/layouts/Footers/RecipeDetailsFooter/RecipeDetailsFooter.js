@@ -12,19 +12,21 @@ import { styles } from "./styles";
 import { BTN_VARIANTS } from "@app/common/constants/styles";
 
 export default function RecipeDetailsFooter(props) {
-  const { recipe_id } = props;
+  const { recipe_id, isRecipeUpdated } = props;
   // Store Actions
   const {
     setAddedLike: sfa,
     setIsReviewRecipeModalVisible: sir,
     setIsReviewEdit: ser,
     setIsRecipeUpdated: siru,
+    setIsDeleteLikeModalVisible: sid,
   } = actions;
   const dispatch = useDispatch();
   const setAddedLike = (value) => dispatch(sfa(value));
   const setIsReviewRecipeModalVisible = (value) => dispatch(sir(value));
   const setIsReviewEdit = (value) => dispatch(ser(value));
   const setIsRecipeUpdated = (value) => dispatch(siru(value));
+  const setIsDeleteLikeModalVisible = (value) => dispatch(sid(value));
 
   // Hooks
   const { getRecipeActions, getRecipeActionsData, isGetRecipeActionsLoading } =
@@ -41,6 +43,8 @@ export default function RecipeDetailsFooter(props) {
   function handleLike() {
     if (!recipeActions?.liked) {
       postRecipeLike({ recipe_id });
+    } else if (recipeActions?.liked) {
+      setIsDeleteLikeModalVisible(true);
     }
   }
   function handleSuccessfullLike() {
@@ -57,6 +61,9 @@ export default function RecipeDetailsFooter(props) {
   useEffect(() => {
     getRecipeActions({ recipe_id });
   }, [recipe_id]);
+  useEffect(() => {
+    if (isRecipeUpdated) getRecipeActions({ recipe_id });
+  }, [isRecipeUpdated]);
   useEffect(() => {
     if (getRecipeActionsData) setRecipeActions(getRecipeActionsData);
   }, [getRecipeActionsData]);
