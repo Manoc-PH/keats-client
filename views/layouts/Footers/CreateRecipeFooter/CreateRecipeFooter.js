@@ -57,16 +57,24 @@ export default function CreateRecipeFooter(props) {
   function handleSaveImages(data) {
     const promisesArray = [];
     recipeImages.map((item) => promisesArray.push(postImage(data, item)));
-    promisesArray.push(patchRecipe(data));
-    Promise.all(promisesArray)
-      .then((results) => {
-        setLoading(false);
-        setSelectedRecipeID(data?.recipe?.id);
-        navigation.navigate("Common", { screen: "RecipeDetails" });
-      })
-      .catch((error) => {
-        console.error(error.response);
-      });
+    if (mainImage && thumbnail) {
+      promisesArray.push(patchRecipe(data));
+    }
+    if (promisesArray?.length > 0) {
+      Promise.all(promisesArray)
+        .then((results) => {
+          setLoading(false);
+          setSelectedRecipeID(data?.recipe?.id);
+          navigation.navigate("Common", { screen: "RecipeDetails" });
+        })
+        .catch((error) => {
+          console.error(error.response);
+        });
+    } else {
+      setLoading(false);
+      setSelectedRecipeID(data?.recipe?.id);
+      navigation.navigate("Common", { screen: "RecipeDetails" });
+    }
   }
   async function postImage(data, item) {
     try {
