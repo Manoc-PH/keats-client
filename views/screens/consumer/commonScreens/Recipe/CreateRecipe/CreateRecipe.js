@@ -66,7 +66,13 @@ export default function CreateRecipe() {
     if (!status.granted) requestPermission();
   }, [status]);
   return (
-    <View style={styles.wrapper}>
+    <ScrollPage
+      contentContainerStyle={styles.wrapper}
+      alwaysBounceHorizontal={false}
+      alwaysBounceVertical={false}
+      bounces={false}
+      scrollEnabled={false}
+      automaticallyAdjustKeyboardInsets={true}>
       <ScrollPage>
         <View style={styles.container}>
           <View style={styles.imageWrapper}>
@@ -106,6 +112,6 @@ export default function CreateRecipe() {
         thumbnail={thumbnail}
         setErrMsg={setErrMsg}
       />
-    </View>
+    </ScrollPage>
   );
 }
