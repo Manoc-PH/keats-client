@@ -4,7 +4,13 @@ import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 
 // Layouts
-import { RecipeCreated, RecipeDiscovery, ScrollPage } from "@app/views/layouts";
+import {
+  Loader,
+  RecipeCreated,
+  RecipeDiscovery,
+  RecipeSearched,
+  ScrollPage,
+} from "@app/views/layouts";
 // Components
 import { Button, SwitchButton } from "@app/views/components";
 // Constants
@@ -34,27 +40,38 @@ export default function Recipes() {
     if (value === 1) setPage("Discover");
     if (value === 2) setPage("MyRecipes");
   }
+
   return (
     <ScrollPage>
       <View style={styles.wrapper}>
-        <View style={styles.container}>
-          <AdImage style={styles.image} resizeMode={"cover"} />
-        </View>
-        <View style={styles.container}>
-          <Button onPress={handleCreateRecipe}>+ Create Recipe</Button>
-        </View>
-        <View style={styles.container}>
-          <SwitchButton
-            onValueChange={handleSwitchView}
-            switchWidth={
-              Dimensions.get("window").width - SPACING.Medium - SPACING.Medium
-            }
-            options={["Discover", "My Recipes"]}
-          />
-        </View>
-        <View style={styles.container}>
-          {page === "Discover" ? <RecipeDiscovery /> : <RecipeCreated />}
-        </View>
+        {recipeSearch ? (
+          <View style={styles.container}>
+            <RecipeSearched recipeSearch={recipeSearch} />
+          </View>
+        ) : (
+          <>
+            <View style={styles.container}>
+              <AdImage style={styles.image} resizeMode={"cover"} />
+            </View>
+            <View style={styles.container}>
+              <Button onPress={handleCreateRecipe}>+ Create Recipe</Button>
+            </View>
+            <View style={styles.container}>
+              <SwitchButton
+                onValueChange={handleSwitchView}
+                switchWidth={
+                  Dimensions.get("window").width -
+                  SPACING.Medium -
+                  SPACING.Medium
+                }
+                options={["Discover", "My Recipes"]}
+              />
+            </View>
+            <View style={styles.container}>
+              {page === "Discover" ? <RecipeDiscovery /> : <RecipeCreated />}
+            </View>
+          </>
+        )}
       </View>
     </ScrollPage>
   );

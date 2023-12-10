@@ -31,4 +31,5 @@ export const styles = StyleSheet.create({
   spacer: { height: SPACING.Huge, width: "100%" },
   spacerSubheadline: { height: SPACING.Regular, width: "100%" },
   wideBtn: { justifyContent: "center" },
+  searchWrapper: {},
 });
