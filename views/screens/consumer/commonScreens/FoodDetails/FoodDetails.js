@@ -12,7 +12,7 @@ import {
   FoodName,
   ConsumeFoodFooter,
   PageDivider,
-  IngredientCarousel,
+  ImagesCarousel,
 } from "@app/views/layouts";
 
 // Components
@@ -52,7 +52,7 @@ export default function FoodDetails() {
       <ScrollPage style={styles.wrapper}>
         <View style={styles.imageWrapper}>
           {foodDetails?.food_images && foodDetails?.food_images?.length > 0 ? (
-            <IngredientCarousel data={foodDetails.food_images} />
+            <ImagesCarousel data={foodDetails.food_images} />
           ) : (
             <Image src={foodDetails?.thumbnail_image_link} />
           )}

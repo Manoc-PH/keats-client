@@ -8,13 +8,13 @@ import themeColors from "@app/common/theme";
 const START_HORIZONTAL = { x: 0, y: 0.5 };
 const END_HORIZONTAL = { x: 1, y: 0.5 };
 const GRADIENT_COLORS = [
-  themeColors.backgroundLight,
-  themeColors.backgroundLight,
-  `${themeColors.backgroundLight}50`,
-  `${themeColors.backgroundLight}50`,
-  themeColors.backgroundLight,
-  themeColors.backgroundLight,
-  themeColors.backgroundLight,
+  themeColors.backgroundDark,
+  themeColors.backgroundDark,
+  `${themeColors.backgroundDark}50`,
+  `${themeColors.backgroundDark}50`,
+  themeColors.backgroundDark,
+  themeColors.backgroundDark,
+  themeColors.backgroundDark,
 ];
 const GRADIENT_LOCATIONS = [0, 0.2, 0.4, 0.6, 0.8, 1, 1];
 const MOVEMENT = GRADIENT_LOCATIONS[1] / 5;

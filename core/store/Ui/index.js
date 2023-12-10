@@ -4,6 +4,8 @@ const initialState = {
   isViewSimple: true,
   isDeleteIntakeModalVisible: false,
   isProgressInfoModalVisible: false,
+  isReviewRecipeModalVisible: false,
+  isDeleteLikeModalVisible: false,
 };
 
 const store = createSlice({
@@ -21,6 +23,14 @@ const store = createSlice({
     setIsProgressInfoModalVisible: (state, { payload }) => {
       if (payload) state.isProgressInfoModalVisible = payload;
       else state.isProgressInfoModalVisible = false;
+    },
+    setIsReviewRecipeModalVisible: (state, { payload }) => {
+      if (payload) state.isReviewRecipeModalVisible = payload;
+      else state.isReviewRecipeModalVisible = false;
+    },
+    setIsDeleteLikeModalVisible: (state, { payload }) => {
+      if (payload) state.isDeleteLikeModalVisible = payload;
+      else state.isDeleteLikeModalVisible = false;
     },
   },
 });

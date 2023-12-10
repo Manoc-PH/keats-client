@@ -20,7 +20,7 @@ export default function Card(props) {
       flexDirection: "row",
       backgroundColor: themeColors.background,
       borderWidth: 1,
-      borderColor: themeColors.backgroundLight,
+      borderColor: themeColors.backgroundDark,
       padding: size
         ? CardPaddingSizeMapping[size]
         : CardPaddingSizeMapping.Regular,

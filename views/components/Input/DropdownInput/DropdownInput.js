@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderWidth: 1,
     borderRadius: RADIUS.Regular,
-    borderColor: themeColors.backgroundLight,
+    borderColor: themeColors.backgroundDark,
     paddingHorizontal: SPACING.Large,
     paddingVertical: SPACING.Regular,
   },
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     borderRadius: RADIUS.Regular,
     marginTop: SPACING.Small,
     overflow: "hidden",
-    borderColor: themeColors.backgroundLight,
+    borderColor: themeColors.backgroundDark,
     backgroundColor: themeColors.background,
   },
   option: {

@@ -35,7 +35,7 @@ export default function VitalsCard(props) {
               style={{
                 flex: 1,
                 borderRightWidth: 1,
-                borderColor: themeColors.backgroundLight,
+                borderColor: themeColors.backgroundDark,
                 marginRight: SPACING.Regular,
               }}>
               {/* Weight  */}
@@ -87,7 +87,7 @@ export default function VitalsCard(props) {
               style={{
                 flex: 1,
                 borderRightWidth: 1,
-                borderColor: themeColors.backgroundLight,
+                borderColor: themeColors.backgroundDark,
                 marginRight: SPACING.Regular,
               }}>
               {/* Birthday  */}

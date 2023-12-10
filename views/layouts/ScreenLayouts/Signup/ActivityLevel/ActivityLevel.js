@@ -28,7 +28,7 @@ export default function ActivityLevel(props) {
             borderColor:
               activity_lvl_id === item.id
                 ? themeColors.primary
-                : themeColors.backgroundLight,
+                : themeColors.backgroundDark,
             backgroundColor: themeColors.background,
           }}>
           <View

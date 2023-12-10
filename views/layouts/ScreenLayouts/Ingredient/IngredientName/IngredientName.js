@@ -15,7 +15,13 @@ import { styles } from "./styles";
 
 export default function IngredientName(props) {
   // Props
-  const { ingredientDetails, isLoading, style } = props;
+  const {
+    ingredientDetails,
+    isLoading,
+    style,
+    setSelectedVariant: SSV,
+    setSelectedSubvariant: SSS,
+  } = props;
 
   // Store Actions
   const { setSelectedIngredientMappingID: sMId } = actions;
@@ -114,6 +120,8 @@ export default function IngredientName(props) {
       setIngredient(ingredientDetails.ingredient);
       setSelectedVariant(ingredientDetails.ingredient_variant);
       setSelectedSubvariant(ingredientDetails.ingredient_subvariant);
+      if (SSV) SSV(ingredientDetails.ingredient_variant);
+      if (SSS) SSS(ingredientDetails.ingredient_subvariant);
       if (ingredientDetails?.ingredient_mappings) {
         formatIngredientMapping(ingredientDetails.ingredient_mappings);
       }

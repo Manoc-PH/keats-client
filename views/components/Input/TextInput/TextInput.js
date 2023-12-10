@@ -26,17 +26,23 @@ export default function TextInput(props) {
     secureTextEntry,
     autoCapitalize,
     onClearPress,
+    wrapperStyle,
     ...rest
   } = props;
 
   return (
-    <View style={styles.wrapper}>
+    <View style={{ ...styles.wrapper, ...wrapperStyle }}>
       {label && (
         <View style={styles.labelContainer}>
           <SubHeadline1>{label}</SubHeadline1>
         </View>
       )}
-      <View style={styles.container}>
+      <View
+        style={{
+          ...styles.container,
+          paddingLeft: startIcon && SPACING.Tiny,
+          paddingRight: onClearPress && SPACING.Tiny,
+        }}>
         {startIcon && (
           <Button
             variant={BTN_VARIANTS.transparent}

@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     height: HEADER_SIZE,
     width: "100%",
     backgroundColor: themeColors.background,
-    borderBottomColor: themeColors.backgroundLight,
+    borderBottomColor: themeColors.backgroundDark,
     borderBottomWidth: 1,
     zIndex: ZINDEX.header,
     elevation: ZINDEX.header,

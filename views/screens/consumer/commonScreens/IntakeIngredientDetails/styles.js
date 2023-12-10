@@ -19,6 +19,6 @@ export const styles = StyleSheet.create({
   imageWrapper: {
     aspectRatio: 1,
     width: "100%",
-    backgroundColor: themeColors.backgroundLight,
+    backgroundColor: themeColors.backgroundDark,
   },
 });

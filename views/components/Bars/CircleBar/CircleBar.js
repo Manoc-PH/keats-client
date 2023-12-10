@@ -38,7 +38,7 @@ function CircleBar(props) {
             cy={center}
             r={radius}
             strokeWidth={strokeWidth}
-            stroke={backgroundColor || themeColors.backgroundLight}
+            stroke={backgroundColor || themeColors.backgroundDark}
             strokeDasharray={circumference}
             strokeDashoffset={circumference / 100}
             strokeLinecap='round'

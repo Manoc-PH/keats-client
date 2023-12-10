@@ -9,14 +9,18 @@ import { INTAKE_TYPES } from "@app/common/constants/options";
 import { actions } from "@app/core/store";
 
 // Layouts
-import { AddIntakeSearchbar } from "@app/views/layouts";
+import {
+  AddIntakeSearchbar,
+  ScrollPage,
+  SearchResultCard,
+} from "@app/views/layouts";
 
 // Utils
 import useDebounce from "@app/common/utils/debounce";
 // Themes
 import themeColors from "@app/common/theme";
 // Components
-import { Title1, SearchResultCard } from "@app/views/components";
+import { Title1 } from "@app/views/components";
 
 // Hooks
 import { useGetSearchFood, useGetSearchIngredient } from "@app/core/hooks/api";
@@ -127,7 +131,7 @@ export default function AddIntake() {
     if (!text) setIsSearchActive(false);
   }, [keyboardIsVisible, text]);
   return (
-    <ScrollView
+    <ScrollPage
       contentContainerStyle={styles.wrapper}
       alwaysBounceHorizontal={false}
       alwaysBounceVertical={false}
@@ -164,6 +168,6 @@ export default function AddIntake() {
         onChangeText={onChangeText}
         text={text}
       />
-    </ScrollView>
+    </ScrollPage>
   );
 }

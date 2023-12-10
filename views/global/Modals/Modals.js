@@ -3,7 +3,12 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 // Layouts
-import { DeleteIntakeModal, ProgressInfoModal } from "@app/views/layouts";
+import {
+  DeleteIntakeModal,
+  ProgressInfoModal,
+  ReviewRecipeModal,
+  DeleteLikeModal,
+} from "@app/views/layouts";
 
 // Components
 import Modal from "@app/views/components/Modal";
@@ -11,20 +16,39 @@ import Modal from "@app/views/components/Modal";
 import styles from "./styles";
 function Modals() {
   // Store State
-  const { isDeleteIntakeModalVisible, isProgressInfoModalVisible } =
-    useSelector((state) => state.ui);
+  const {
+    isDeleteIntakeModalVisible,
+    isProgressInfoModalVisible,
+    isReviewRecipeModalVisible,
+    isDeleteLikeModalVisible,
+  } = useSelector((state) => state.ui);
   const [isVisible, setIsVisible] = useState(
     isDeleteIntakeModalVisible || isProgressInfoModalVisible
   );
 
   useEffect(() => {
-    if (isDeleteIntakeModalVisible || isProgressInfoModalVisible) {
+    if (
+      isDeleteIntakeModalVisible ||
+      isProgressInfoModalVisible ||
+      isReviewRecipeModalVisible ||
+      isDeleteLikeModalVisible
+    ) {
       setIsVisible(true);
     }
-    if (!isDeleteIntakeModalVisible && !isProgressInfoModalVisible) {
+    if (
+      !isDeleteIntakeModalVisible &&
+      !isProgressInfoModalVisible &&
+      !isReviewRecipeModalVisible &&
+      !isDeleteLikeModalVisible
+    ) {
       setIsVisible(false);
     }
-  }, [isDeleteIntakeModalVisible, isProgressInfoModalVisible]);
+  }, [
+    isDeleteIntakeModalVisible,
+    isProgressInfoModalVisible,
+    isReviewRecipeModalVisible,
+    isDeleteLikeModalVisible,
+  ]);
   return (
     <View style={styles.wrapper}>
       <Modal
@@ -34,6 +58,8 @@ function Modals() {
           <>
             {isDeleteIntakeModalVisible && <DeleteIntakeModal />}
             {isProgressInfoModalVisible && <ProgressInfoModal />}
+            {isReviewRecipeModalVisible && <ReviewRecipeModal />}
+            {isDeleteLikeModalVisible && <DeleteLikeModal />}
           </>
         }
       />

@@ -6,7 +6,8 @@ const lightColors = {
   secondaryLight: "#A8AAAE",
 
   background: "#FFFFFF",
-  backgroundLight: "#EBEFF6",
+  backgroundDark: "#EBEFF6",
+  backgroundLight: "#F6F8FC",
 
   red: "#EF5C5C",
   blue: "#62A1FF",

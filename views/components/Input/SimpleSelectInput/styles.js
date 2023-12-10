@@ -50,7 +50,7 @@ export const styles = StyleSheet.create({
     borderRadius: RADIUS.Regular,
     backgroundColor: themeColors.background,
     borderWidth: 1,
-    borderColor: themeColors.backgroundLight,
+    borderColor: themeColors.backgroundDark,
   },
   optionBtn: {
     justifyContent: "flex-start",

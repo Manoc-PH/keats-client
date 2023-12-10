@@ -1,3 +1,4 @@
+import { SPACING } from "@app/common/constants/styles";
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
@@ -5,5 +6,6 @@ export const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
+    gap: SPACING.Regular,
   },
 });

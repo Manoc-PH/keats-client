@@ -68,7 +68,7 @@ const VerticaSlider = (props) => {
     selector: {
       height: _segmentHeight,
       width,
-      borderColor: themeColors.backgroundLight,
+      borderColor: themeColors.backgroundDark,
       borderWidth: 1,
       borderRadius: SPACING.Small,
     },

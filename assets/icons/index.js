@@ -31,3 +31,18 @@ export { default as CloseIcon } from "./close";
 //
 export { default as DeleteIcon } from "./delete";
 export { default as CheckIcon } from "./check";
+
+//
+export { default as StarIcon } from "./star";
+export { default as StarGradientIcon } from "./starGradient";
+
+// Large Icons
+export { default as LargeHeartIcon } from "./largeHeart";
+export { default as LargeTimeIcon } from "./largeTime";
+export { default as LargeServingIcon } from "./largeServing";
+export { default as LargeAmountIcon } from "./largeAmount";
+
+//
+export { default as ServingIcon } from "./serving";
+export { default as CalorieIcon } from "./calorie";
+export { default as AmountIcon } from "./amount";

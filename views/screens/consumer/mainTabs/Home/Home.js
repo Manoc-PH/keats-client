@@ -116,8 +116,7 @@ export default function Home() {
             switchWidth={
               Dimensions.get("window").width - SPACING.Medium - SPACING.Medium
             }
-            text1={"Simple View"}
-            text2={"Advanced View"}
+            options={["Simple View", "Advanced View"]}
           />
           {!isViewSimple && (
             <>
