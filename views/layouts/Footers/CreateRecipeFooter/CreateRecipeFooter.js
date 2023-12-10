@@ -68,6 +68,10 @@ export default function CreateRecipeFooter(props) {
           navigation.navigate("Common", { screen: "RecipeDetails" });
         })
         .catch((error) => {
+          // TODO PROPERLY HANDLE ERROR HERE
+          setLoading(false);
+          setSelectedRecipeID(data?.recipe?.id);
+          navigation.navigate("Common", { screen: "RecipeDetails" });
           console.error(error.response);
         });
     } else {
