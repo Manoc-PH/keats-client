@@ -39,7 +39,6 @@ export default function RecipeSearched(props) {
     if (recipeSearch) getRecipeSearch({ search_term: recipeSearch });
   }, [recipeSearch]);
   useEffect(() => {
-    console.log(getRecipeSearchData);
     if (getRecipeSearchData) setSearchedRecipes(getRecipeSearchData);
   }, [getRecipeSearchData]);
   return (

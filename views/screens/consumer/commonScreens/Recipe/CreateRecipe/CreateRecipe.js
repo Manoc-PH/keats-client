@@ -6,6 +6,12 @@ import {
   launchImageLibraryAsync,
 } from "expo-image-picker";
 import { manipulateAsync, SaveFormat } from "expo-image-manipulator";
+// Components
+import { Button, Image, Title3 } from "@app/views/components";
+// Constants
+import { BTN_VARIANTS } from "@app/common/constants/styles";
+// Theme
+import themeColors from "@app/common/theme";
 // Layouts
 import {
   ScrollPage,
@@ -16,9 +22,6 @@ import {
 } from "@app/views/layouts";
 
 import { styles } from "./styles";
-import { Button, Image, Title3 } from "@app/views/components";
-import { BTN_VARIANTS } from "@app/common/constants/styles";
-import themeColors from "@app/common/theme";
 
 export default function CreateRecipe() {
   // Local State
