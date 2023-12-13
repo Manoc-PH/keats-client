@@ -6,60 +6,62 @@ import { BTN_VARIANTS } from "@app/common/constants/styles";
 // Store
 import { actions } from "@app/core/store";
 // Hooks
-import { useDeleteRecipeLike } from "@app/core/hooks/api";
+import { useDeleteRecipe } from "@app/core/hooks/api";
 // Components
 import { Body, Button, Title2, CircleLoader } from "@app/views/components";
 // styles
 import styles from "./styles";
+import { useNavigation } from "@react-navigation/native";
 
-function DeleteLikeModal() {
+function DeleteRecipeModal() {
   // Store State
   const { selectedRecipeID } = useSelector((state) => state.recipe);
 
   // Store Actions
-  const {
-    setIsDeleteLikeModalVisible: sid,
-    setIsRecipeUpdated: sir,
-    setSelectedIntake: ssi,
-    setDailyNutrients: sdn,
-  } = actions;
+  const { setIsDeleteRecipeModalVisible: sid, setIsRecipeHomeUpdated: sir } =
+    actions;
   const dispatch = useDispatch();
-  const setIsDeleteLikeModalVisible = (value) => dispatch(sid(value));
-  const setIsRecipeUpdated = (value) => dispatch(sir(value));
+  const setIsDeleteRecipeModalVisible = (value) => dispatch(sid(value));
+  const setIsRecipeHomeUpdated = (value) => dispatch(sir(value));
 
   // Hooks
   const {
-    deleteRecipeLike,
-    deleteRecipeLikeData,
-    isDeleteRecipeLikeLoading,
-    deleteRecipeLikeError,
-  } = useDeleteRecipeLike();
+    deleteRecipe,
+    deleteRecipeData,
+    isDeleteRecipeLoading,
+    deleteRecipeError,
+  } = useDeleteRecipe();
+  const navigation = useNavigation();
 
   function handleCancel() {
-    setIsDeleteLikeModalVisible(false);
+    setIsDeleteRecipeModalVisible(false);
   }
   function handleDelete() {
-    deleteRecipeLike({ recipe_id: selectedRecipeID });
+    deleteRecipe({ id: selectedRecipeID });
   }
   function handleSuccessfulDelete() {
-    setIsRecipeUpdated(true);
-    setIsDeleteLikeModalVisible(false);
+    setIsDeleteRecipeModalVisible(false);
+    setIsRecipeHomeUpdated(true);
+    navigation.navigate("Main", { screen: "Recipes" });
   }
 
   useEffect(() => {
-    if (deleteRecipeLikeData) handleSuccessfulDelete();
-  }, [deleteRecipeLikeData]);
+    if (deleteRecipeData) handleSuccessfulDelete();
+  }, [deleteRecipeData]);
   return (
     <View style={styles.modalWrapper}>
       <View style={styles.modalContainer}>
-        {isDeleteRecipeLikeLoading && <CircleLoader />}
-        {!isDeleteRecipeLikeLoading && !deleteRecipeLikeError && (
+        {isDeleteRecipeLoading && <CircleLoader />}
+        {!isDeleteRecipeLoading && !deleteRecipeError && (
           <>
             <Title2 style={styles.text}>
-              Are you sure you want to delete your like?
+              Are you sure you want to delete your recipe?
             </Title2>
             <View style={styles.spacer} />
-            <Body style={styles.text}>You can still like the recipe again</Body>
+            <Body style={styles.text}>
+              All of the reviews and likes will also be deleted and CANNOT be
+              undone.
+            </Body>
             <View style={styles.spacer} />
             <View style={styles.spacer} />
             <Button
@@ -77,10 +79,10 @@ function DeleteLikeModal() {
             </Button>
           </>
         )}
-        {!isDeleteRecipeLikeLoading && deleteRecipeLikeError && (
+        {!isDeleteRecipeLoading && deleteRecipeError && (
           <>
             <Title2 style={styles.errorMsg}>
-              An error occured in trying to delete like
+              An error occured in trying to delete recipe
             </Title2>
             <View style={styles.spacer} />
             <Button
@@ -96,4 +98,4 @@ function DeleteLikeModal() {
   );
 }
 
-export default DeleteLikeModal;
+export default DeleteRecipeModal;

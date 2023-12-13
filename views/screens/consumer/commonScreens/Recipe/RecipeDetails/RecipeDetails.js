@@ -28,9 +28,10 @@ export default function RecipeDetails() {
   );
 
   // Store Actions
-  const { setIsRecipeUpdated: siru } = actions;
+  const { setIsRecipeUpdated: siru, setRecipeOwnerId: sro } = actions;
   const dispatch = useDispatch();
   const setIsRecipeUpdated = (value) => dispatch(siru(value));
+  const setRecipeOwnerId = (value) => dispatch(sro(value));
 
   // Local State
   const [recipeDetails, setRecipeDetails] = useState();
@@ -59,6 +60,7 @@ export default function RecipeDetails() {
     if (getRecipeData) {
       setRecipeDetails(getRecipeData);
       handleRecipeAmount(getRecipeData.recipe);
+      setRecipeOwnerId(getRecipeData?.recipe?.owner_id);
       setIsRecipeUpdated();
     }
   }, [getRecipeData]);

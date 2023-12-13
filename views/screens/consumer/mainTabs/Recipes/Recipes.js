@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Dimensions, View } from "react-native";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
-
+// Store
+import { actions } from "@app/core/store";
 // Layouts
 import {
-  Loader,
   RecipeCreated,
   RecipeDiscovery,
   RecipeSearched,
@@ -23,6 +23,12 @@ import { styles } from "./styles";
 export default function Recipes() {
   // Store State
   const { recipeSearch } = useSelector((state) => state.search);
+  const { isRecipeHomeUpdated } = useSelector((state) => state.recipe);
+
+  // Store Actions
+  const { setIsRecipeHomeUpdated: sir } = actions;
+  const dispatch = useDispatch();
+  const setIsRecipeHomeUpdated = (value) => dispatch(sir(value));
 
   // Local States
   const [page, setPage] = useState("Discover");
@@ -41,6 +47,10 @@ export default function Recipes() {
     if (value === 2) setPage("MyRecipes");
   }
 
+  // UseEffects
+  useEffect(() => {
+    if (isRecipeHomeUpdated) setIsRecipeHomeUpdated(false);
+  }, [isRecipeHomeUpdated]);
   return (
     <ScrollPage>
       <View style={styles.wrapper}>
@@ -67,7 +77,7 @@ export default function Recipes() {
                 options={["Discover", "My Recipes"]}
               />
             </View>
-            <View style={styles.container}>
+            <View style={styles.container} key={isRecipeHomeUpdated}>
               {page === "Discover" ? <RecipeDiscovery /> : <RecipeCreated />}
             </View>
           </>
