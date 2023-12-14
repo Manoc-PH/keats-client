@@ -21,6 +21,8 @@ export default function SignupForm(props) {
 
   // Form states
   const [username, setUsername] = useState(data?.username || "");
+  const [name_first, setNameFirst] = useState(data?.username || "");
+  const [name_last, setNameLast] = useState(data?.username || "");
   const [password, setPassword] = useState(data?.password || "");
   const [birthday, setBirthday] = useState(data?.birthday);
   const [sex, setSex] = useState(data?.sex);
@@ -55,6 +57,10 @@ export default function SignupForm(props) {
       setPassword={setPassword}
       setErrorMsg={setErrorMsg}
       errorMsg={errorMsg}
+      name_first={name_first}
+      setNameFirst={setNameFirst}
+      name_last={name_last}
+      setNameLast={setNameLast}
     />,
     <Sex sex={sex} setSex={setSex} />,
     <Birthday birthday={birthday} setBirthday={setBirthday} />,

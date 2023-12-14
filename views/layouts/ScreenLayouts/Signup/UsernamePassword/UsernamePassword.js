@@ -17,6 +17,10 @@ export default function UsernamePassword(props) {
     setPassword,
     setErrorMsg,
     errorMsg,
+    name_first,
+    setNameFirst,
+    name_last,
+    setNameLast,
   } = props;
   const [confirmPassword, setConfirmPassword] = useState();
 
@@ -58,6 +62,16 @@ export default function UsernamePassword(props) {
         value={username}
         onChangeText={setUsername}
         placeholder={"Username"}
+      />
+      <TextInput
+        value={name_first}
+        onChangeText={setNameFirst}
+        placeholder={"First Name"}
+      />
+      <TextInput
+        value={name_last}
+        onChangeText={setNameLast}
+        placeholder={"Last Name"}
       />
       <TextInput
         value={password}
