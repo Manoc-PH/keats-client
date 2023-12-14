@@ -41,6 +41,10 @@ export default function Login(props) {
 
   // Functions
   function handleSubmit() {
+    if (!data?.username || !data?.password) {
+      setErrMsg("Please enter your username and password");
+      return;
+    }
     loginUser(data);
   }
   function handleEnter(inputData) {
