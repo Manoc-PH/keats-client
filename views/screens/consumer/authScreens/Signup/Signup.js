@@ -15,9 +15,10 @@ import themeColors from "@app/common/theme";
 // Components
 import { Button, HorizontalProgressBar } from "@app/views/components";
 // Layouts
-import { SignupForm, Splash } from "@app/views/layouts";
+import { ScrollPage, SignupForm, Splash } from "@app/views/layouts";
 
 import { styles } from "./styles";
+import moment from "moment";
 
 export default function Signup(props) {
   const { navigation } = props;
@@ -32,6 +33,8 @@ export default function Signup(props) {
   const [data, setData] = useState({
     username: "",
     password: "",
+    name_first: "",
+    name_last: "",
     sex: "",
     birthday: "",
     weight: "",
@@ -60,55 +63,42 @@ export default function Signup(props) {
   } = useSignup();
 
   // Functions
-  function handleNext() {
-    if (errorMsg && errorMsg !== genericSignupErrMsg) return;
-    if (activePage === 0 && (!data.username || !data.password)) {
-      setErrorMsg("Missing fields, please enter both username and password");
+  function handleSubmit() {
+    if (!data.username) {
+      setErrorMsg("Missing fields, please enter username ");
       return;
     }
-    if (activePage === 1 && !data.sex) {
-      setErrorMsg("Please select your sex");
+    if (!data.password) {
+      setErrorMsg("Missing fields, please enter username ");
       return;
     }
-    if (activePage === 2 && !data.birthday) {
-      setErrorMsg("Please enter your birthday");
+    if (!data.name_first) {
+      setErrorMsg("Missing fields, please enter first name ");
       return;
     }
-    if (activePage === 3 && !data.weight) {
-      setErrorMsg("Please enter your weight");
+    if (!data.name_last) {
+      setErrorMsg("Missing fields, please enter last name ");
       return;
     }
-    if (activePage === 4 && !data.height) {
-      setErrorMsg("Please enter your height");
+    if (data.password.length < 10) {
+      setErrorMsg("Password must be longer than 10 characters");
       return;
     }
-    if (activePage === 5 && !data.activity_lvl_id) {
-      setErrorMsg("Please select your activity level");
-      return;
-    }
-    if (activePage === 6 && !data.diet_plan_id) {
-      setErrorMsg("Please select your diet plan");
-      return;
-    }
-    if (
-      activePage === 6 &&
-      data.username &&
-      data.password &&
-      data.sex &&
-      data.birthday &&
-      data.weight &&
-      data.height &&
-      data.activity_lvl_id &&
-      data.diet_plan_id
-    ) {
-      signup(data);
-    }
-    if (activePage < numOfPages - 1) setActivePage((prev) => prev + 1);
+    const newData = {
+      ...data,
+      weight: 68,
+      height: 168,
+      birthday: moment("2001-03-30").toISOString(),
+      sex: "m",
+      activity_lvl_id: "669520e4-0ce6-452c-8960-97d4920b7bcf",
+      diet_plan_id: "6a08b514-2de1-4e5b-b3f9-b2e666f299c5",
+    };
+    signup(newData);
+    // if (activePage < numOfPages - 1) setActivePage((prev) => prev + 1);
     setErrorMsg();
   }
   function handleBack() {
-    if (activePage > 0) setActivePage((prev) => prev - 1);
-    if (activePage === 0) navigation.navigate("Login");
+    navigation.navigate("Login");
   }
   function handleSuccess() {
     const cred = {
@@ -117,7 +107,7 @@ export default function Signup(props) {
       account_type_id: signupData.data.account_type_id,
       token: signupData.data.token,
     };
-    axios.defaults.headers.common[
+    authAxios.defaults.headers.common[
       "Authorization"
     ] = `Bearer ${signupData.data.token}`;
     createCredentials(cred);
@@ -147,11 +137,15 @@ export default function Signup(props) {
   }, [isCreateCredentialsSuccess]);
 
   return (
-    <View
-      style={{
+    <ScrollPage
+      contentContainerStyle={{
         ...styles.wrapper,
         alignItems: loading ? "center" : "flex-start",
-      }}>
+      }}
+      alwaysBounceHorizontal={false}
+      alwaysBounceVertical={false}
+      bounces={false}
+      automaticallyAdjustKeyboardInsets={true}>
       {loading && <Splash />}
       {!loading && (
         <>
@@ -163,22 +157,23 @@ export default function Signup(props) {
             setErrorMsg={setErrorMsg}
           />
           <View style={styles.bottomWrapper}>
-            <HorizontalProgressBar
-              progress={((activePage + 1) / numOfPages) * 100}
-              foregroundColor={themeColors.primary}
-              backgroundColor={`${themeColors.primary}25`}
-            />
             <View style={styles.bottomContentWrapper}>
-              <Button variant={BTN_VARIANTS.outlined} onPress={handleBack}>
+              <Button
+                style={styles.btn}
+                variant={BTN_VARIANTS.outlined}
+                onPress={handleBack}>
                 Back
               </Button>
-              <Button variant={BTN_VARIANTS.outlined} onPress={handleNext}>
-                Next
+              <Button
+                style={styles.btn}
+                variant={BTN_VARIANTS.primary}
+                onPress={handleSubmit}>
+                Signup
               </Button>
             </View>
           </View>
         </>
       )}
-    </View>
+    </ScrollPage>
   );
 }

@@ -18,6 +18,8 @@ export const Logout = async () => {
 export const Signup = async ({
   username,
   password,
+  name_first,
+  name_last,
   weight,
   height,
   birthday,
@@ -29,6 +31,8 @@ export const Signup = async ({
   const response = await authAxios.post(AUTH_ENDPOINTS.POST_SIGNUP, {
     username,
     password,
+    name_first,
+    name_last,
     weight,
     height,
     birthday,
