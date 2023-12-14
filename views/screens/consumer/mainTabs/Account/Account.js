@@ -91,9 +91,9 @@ export default function Account() {
             </Button>
           </View>
           <PageDivider />
-          <View style={styles.container}>
+          {/* <View style={styles.container}>
             <VitalsCard consumerVitals={consumerVitals} />
-          </View>
+          </View> */}
         </View>
       )}
     </ScrollPage>
