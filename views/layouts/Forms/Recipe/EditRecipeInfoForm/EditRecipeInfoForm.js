@@ -17,18 +17,21 @@ import RecipeInstructionCard from "@app/views/layouts/Cards/RecipeInstructionCar
 import { styles } from "./styles";
 import { actions } from "@app/core/store";
 
-export default function RecipeInfoForm(props) {
+export default function EditRecipeInfoForm(props) {
   // Props
-  const { setRecipeIngredients, setRecipeInstructions, setRecipeImages } =
-    props;
+  const {
+    setRecipeIngredients,
+    setRecipeInstructions,
+    recipeIngredients,
+    recipeInstructions,
+  } = props;
 
   // Local State
   const [activeInfo, setActiveInfo] = useState("Ingredients");
   const [ingredientMapping, setIngredientMapping] = useState();
-  const [ingredients, setIngredients] = useState([]);
+  const [ingredients, setIngredients] = useState(recipeIngredients || []);
   const [recipeToUpdate, setRecipeToUpdate] = useState();
-  const [steps, setSteps] = useState([]);
-  const [selectedImages, setSelectedImages] = useState([]);
+  const [steps, setSteps] = useState(recipeInstructions || []);
 
   // Store State
   const { recipeIngredient } = useSelector((state) => state.recipe);
@@ -49,19 +52,23 @@ export default function RecipeInfoForm(props) {
 
   // Functions
   function handleSwitchView(value) {
-    if (value === 1 && activeInfo !== "Ingredients") {
-      setActiveInfo("Ingredients");
-    }
-    if (value === 2 && activeInfo !== "Instructions") {
-      setActiveInfo("Instructions");
-    }
-    if (value === 3 && activeInfo !== "Images") {
-      setActiveInfo("Images");
-    }
+    if (value === 1) setActiveInfo("Ingredients");
+    if (value === 2) setActiveInfo("Instructions");
   }
   function handleAddIngredient() {
     navigation.navigate("Common", { screen: "SearchRecipeIngredient" });
   }
+  function handleInitialIngredients() {
+    let newMapping = {};
+    recipeIngredients.forEach((value) => {
+      if (value?.ingredient_mapping_id) {
+        newMapping = { ...newMapping, [value?.ingredient_mapping_id]: value };
+      } else if (value?.food_id) {
+      }
+    });
+    setIngredientMapping(newMapping);
+  }
+
   function handleSavedIngredient(value) {
     if (value?.ingredient_mapping_id) {
       if (recipeToUpdate) {
@@ -69,7 +76,10 @@ export default function RecipeInfoForm(props) {
           ...ingredientMapping,
           [recipeToUpdate?.ingredient_mapping_id]: undefined,
         };
-        newMapping[value?.ingredient_mapping_id] = value;
+        newMapping[value?.ingredient_mapping_id] = {
+          ...newMapping[value?.ingredient_mapping_id],
+          ...value,
+        };
         setIngredientMapping(newMapping);
         setRecipeToUpdate();
       } else if (!ingredientMapping?.[value?.ingredient_mapping_id]) {
@@ -120,35 +130,6 @@ export default function RecipeInfoForm(props) {
     newSteps[i].instruction_description = value;
     setSteps(newSteps);
   }
-  async function pickImageAsync() {
-    let result = await launchImageLibraryAsync({
-      mediaTypes: MediaTypeOptions.Images,
-      allowsEditing: true,
-      aspect: [1, 1],
-      quality: 1,
-    });
-
-    if (!result.canceled) {
-      const manipResult = await manipulateAsync(
-        result.assets[0].uri,
-        [{ resize: { width: 500 } }],
-        { compress: 0.5, format: SaveFormat.JPEG }
-      );
-      setSelectedImages([
-        ...selectedImages,
-        { recipe_id: "", name_url_local: manipResult.uri },
-      ]);
-    } else {
-      alert("You did not select any image.");
-    }
-  }
-  function handleRemoveImg(value) {
-    const newImages = [];
-    selectedImages.forEach((item) => {
-      if (item?.name_url_local !== value?.name_url_local) newImages.push(item);
-    });
-    setSelectedImages(newImages);
-  }
   // UseEffects
   useEffect(() => {
     handleSavedIngredient(recipeIngredient);
@@ -163,8 +144,8 @@ export default function RecipeInfoForm(props) {
     setRecipeInstructions(steps);
   }, [steps]);
   useEffect(() => {
-    setRecipeImages(selectedImages);
-  }, [selectedImages]);
+    handleInitialIngredients();
+  }, []);
   return (
     <View style={styles.wrapper}>
       <SwitchButton
@@ -172,7 +153,7 @@ export default function RecipeInfoForm(props) {
         switchWidth={
           Dimensions.get("window").width - SPACING.Medium - SPACING.Medium
         }
-        options={["Ingredients", "Instructions", "Images"]}
+        options={["Ingredients", "Instructions"]}
       />
       {activeInfo === "Ingredients" && (
         <View>
@@ -213,29 +194,6 @@ export default function RecipeInfoForm(props) {
               />
             ))}
         </View>
-      )}
-      {activeInfo === "Images" && (
-        <>
-          <Button onPress={pickImageAsync}>Add Image</Button>
-          <View style={styles.imageWrapper}>
-            {selectedImages &&
-              selectedImages?.length > 0 &&
-              selectedImages.map((value, i) => (
-                <View style={styles.imageContainer} key={i}>
-                  <Image src={value?.name_url_local} />
-                  <View style={styles.imageInputContainer}>
-                    <Button
-                      variant={BTN_VARIANTS.outlined}
-                      color={themeColors.red}
-                      size={SIZES.Small}
-                      onPress={() => handleRemoveImg(value)}>
-                      Remove
-                    </Button>
-                  </View>
-                </View>
-              ))}
-          </View>
-        </>
       )}
     </View>
   );

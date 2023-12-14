@@ -20,7 +20,7 @@ export default function RecipeIngredientFooter(props) {
     selectedSubvariant,
   } = props;
   // Store State
-  // const { dailyNutrients, dailyIntakes } = useSelector((state) => state.recipe);
+  const { isRecipeEdit } = useSelector((state) => state.recipe);
 
   // Store Actions
   const {
@@ -71,7 +71,8 @@ export default function RecipeIngredientFooter(props) {
     setIngredientDetails();
     setSelectedIngredientID();
     setSelectedIngredientMappingID();
-    navigation.navigate("Common", { screen: "CreateRecipe" });
+    if (isRecipeEdit) navigation.navigate("Common", { screen: "EditRecipe" });
+    else navigation.navigate("Common", { screen: "CreateRecipe" });
   }
 
   function handleChange(v) {

@@ -31,7 +31,10 @@ export default function SearchResultCard(props) {
                 style={styles.skeleton}
                 fontSize={FONT_SIZES.Medium}
               />
-              <TextSkeleton fontSize={FONT_SIZES.Small} />
+              <TextSkeleton
+                style={styles.smallSkeleton}
+                fontSize={FONT_SIZES.Small}
+              />
             </View>
           )}
           {!isLoading && (

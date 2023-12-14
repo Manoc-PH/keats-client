@@ -31,9 +31,10 @@ export default function CreateRecipeFooter(props) {
   } = props;
 
   // Store Actions
-  const { setSelectedRecipeID: sdi } = actions;
+  const { setSelectedRecipeID: sdi, setIsRecipeHomeUpdated: sir } = actions;
   const dispatch = useDispatch();
   const setSelectedRecipeID = (v) => dispatch(sdi(v));
+  const setIsRecipeHomeUpdated = (v) => dispatch(sir(v));
 
   // Hooks
   const { postRecipe, postRecipeData, isPostRecipeLoading } = usePostRecipe();
@@ -77,6 +78,7 @@ export default function CreateRecipeFooter(props) {
     }
   }
   function handleSaveImages(data) {
+    setIsRecipeHomeUpdated(true);
     const promisesArray = [];
     recipeImages.map((item) => promisesArray.push(postImage(data, item)));
     if (mainImage && thumbnail) {

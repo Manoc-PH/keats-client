@@ -41,8 +41,11 @@ export default function SearchRecipeIngredient() {
   const [searchType, setSearchType] = useState(INTAKE_TYPES.generic);
 
   // Hooks
-  const { getSearchIngredient, getSearchIngredientData } =
-    useGetSearchIngredient();
+  const {
+    getSearchIngredient,
+    getSearchIngredientData,
+    isGetSearchIngredientLoading,
+  } = useGetSearchIngredient();
   const { getSearchFood, getSearchFoodData } = useGetSearchFood();
   const navigation = useNavigation();
 
@@ -146,16 +149,21 @@ export default function SearchRecipeIngredient() {
       {isSearchActive && (
         <View style={styles.container}>
           <ScrollView ref={scrollViewRef} onContentSizeChange={scrollDown}>
-            {searchResult.map((item) => (
-              <SearchResultCard
-                key={item.id}
-                title={item.title}
-                subtitle={item.subtitle}
-                onPress={() => {
-                  handleSelect(item.id);
-                }}
-              />
-            ))}
+            {isGetSearchIngredientLoading &&
+              Array.from({ length: 10 }, (index) => (
+                <SearchResultCard key={index} isLoading={true} />
+              ))}
+            {!isGetSearchIngredientLoading &&
+              searchResult.map((item) => (
+                <SearchResultCard
+                  key={item.id}
+                  title={item.title}
+                  subtitle={item.subtitle}
+                  onPress={() => {
+                    handleSelect(item.id);
+                  }}
+                />
+              ))}
           </ScrollView>
         </View>
       )}

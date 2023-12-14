@@ -14,30 +14,29 @@ export const styles = StyleSheet.create({
     elevation: ZINDEX.header,
     shadowColor: "#00000000",
     justifyContent: "center",
+    alignItems: "center",
   },
   container: {
     width: "100%",
-    alignItems: "stretch",
-    justifyContent: "center",
-    position: "relative",
-  },
-  navContainer: {
-    position: "absolute",
-    left: 0,
-    width: "100%",
     flexDirection: "row",
-    justifyContent: "center",
     alignItems: "center",
+    justifyContent: "space-between",
   },
+  navContainer: {},
 
   //
-  titleContainer: { paddingVertical: SPACING.Regular },
+  titleContainer: {
+    paddingVertical: SPACING.Regular,
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
   btnContainer: {
     height: "100%",
-    flexDirection: "row",
+    justifyContent: "center",
     alignItems: "center",
-    justifyContent: "flex-start",
-    marginLeft: SPACING.Large * -1,
     zIndex: ZINDEX.header + 1,
+    width: SPACING.Huge * 2,
+    padding: 0,
   },
 });
