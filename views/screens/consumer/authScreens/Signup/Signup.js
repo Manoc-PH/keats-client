@@ -64,6 +64,7 @@ export default function Signup(props) {
 
   // Functions
   function handleSubmit() {
+    if (errorMsg && errorMsg !== genericSignupErrMsg) return;
     if (!data.username) {
       setErrorMsg("Missing fields, please enter username ");
       return;
