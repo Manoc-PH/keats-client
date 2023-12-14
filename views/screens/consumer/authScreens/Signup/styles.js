@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { SPACING } from "@app/common/constants/styles";
+import { HEADER_SIZE, SPACING } from "@app/common/constants/styles";
 import themeColors from "@app/common/theme";
 
 export const styles = StyleSheet.create({
@@ -16,7 +16,11 @@ export const styles = StyleSheet.create({
   },
   bottomContentWrapper: {
     marginTop: SPACING.Large,
+    width: "100%",
+    height: HEADER_SIZE / 1.5,
     flexDirection: "row",
+    gap: SPACING.Medium,
     justifyContent: "space-between",
   },
+  btn: { flex: 1 },
 });

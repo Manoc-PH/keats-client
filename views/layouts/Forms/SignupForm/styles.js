@@ -3,12 +3,6 @@ import themeColors from "@app/common/theme";
 import { PixelRatio, StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-  },
   contentWrapper: {
     flex: 1,
     width: "100%",
@@ -19,6 +13,8 @@ export const styles = StyleSheet.create({
     padding: SPACING.Medium,
     position: "absolute",
     top: SPACING.Regular,
+    justifyContent: "center",
+    alignItems: "center",
   },
   itemWrapper: { padding: SPACING.Medium, width: "100%" },
   title: { marginBottom: SPACING.Large },

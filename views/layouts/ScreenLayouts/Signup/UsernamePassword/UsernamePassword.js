@@ -62,28 +62,33 @@ export default function UsernamePassword(props) {
         value={username}
         onChangeText={setUsername}
         placeholder={"Username"}
+        label={"Username"}
       />
       <TextInput
         value={name_first}
         onChangeText={setNameFirst}
         placeholder={"First Name"}
+        label={"First Name"}
       />
       <TextInput
         value={name_last}
         onChangeText={setNameLast}
         placeholder={"Last Name"}
+        label={"Last Name"}
       />
       <TextInput
         value={password}
         onChangeText={setPassword}
         placeholder={"Password"}
         secureTextEntry={true}
+        label={"Password"}
       />
       <TextInput
         value={confirmPassword}
         onChangeText={setConfirmPassword}
         placeholder={"Confirm Password"}
         secureTextEntry={true}
+        label={"Confirm Password"}
       />
     </View>
   );
