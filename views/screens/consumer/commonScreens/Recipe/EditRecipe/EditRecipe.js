@@ -73,7 +73,7 @@ export default function CreateRecipe() {
       setRecipeInstructions(getRecipeInstructionsData?.instructions);
   }, [getRecipeInstructionsData]);
   useEffect(() => {
-    console.log(recipeIngredients);
+    // console.log(recipeIngredients);
   }, [recipeIngredients]);
   return (
     <ScrollPage

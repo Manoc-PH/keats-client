@@ -58,6 +58,17 @@ export default function EditRecipeInfoForm(props) {
   function handleAddIngredient() {
     navigation.navigate("Common", { screen: "SearchRecipeIngredient" });
   }
+  function handleInitialIngredients() {
+    let newMapping = {};
+    recipeIngredients.forEach((value) => {
+      if (value?.ingredient_mapping_id) {
+        newMapping = { ...newMapping, [value?.ingredient_mapping_id]: value };
+      } else if (value?.food_id) {
+      }
+    });
+    setIngredientMapping(newMapping);
+  }
+
   function handleSavedIngredient(value) {
     if (value?.ingredient_mapping_id) {
       if (recipeToUpdate) {
@@ -65,7 +76,10 @@ export default function EditRecipeInfoForm(props) {
           ...ingredientMapping,
           [recipeToUpdate?.ingredient_mapping_id]: undefined,
         };
-        newMapping[value?.ingredient_mapping_id] = value;
+        newMapping[value?.ingredient_mapping_id] = {
+          ...newMapping[value?.ingredient_mapping_id],
+          ...value,
+        };
         setIngredientMapping(newMapping);
         setRecipeToUpdate();
       } else if (!ingredientMapping?.[value?.ingredient_mapping_id]) {
@@ -151,6 +165,9 @@ export default function EditRecipeInfoForm(props) {
   useEffect(() => {
     setRecipeInstructions(steps);
   }, [steps]);
+  useEffect(() => {
+    handleInitialIngredients();
+  }, []);
   return (
     <View style={styles.wrapper}>
       <SwitchButton
