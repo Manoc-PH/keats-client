@@ -96,7 +96,7 @@ const CommonScreens = () => {
       <Stack.Screen
         name='EditRecipe'
         component={EditRecipe}
-        options={{ header: (props) => <RecipeIngredientHeader {...props} /> }}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );
