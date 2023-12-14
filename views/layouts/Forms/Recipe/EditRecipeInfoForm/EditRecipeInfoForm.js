@@ -151,9 +151,6 @@ export default function EditRecipeInfoForm(props) {
   useEffect(() => {
     setRecipeInstructions(steps);
   }, [steps]);
-  useEffect(() => {
-    console.log(recipeIngredients);
-  }, []);
   return (
     <View style={styles.wrapper}>
       <SwitchButton

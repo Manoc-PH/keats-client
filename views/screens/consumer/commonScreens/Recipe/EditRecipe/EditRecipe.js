@@ -29,7 +29,7 @@ export default function CreateRecipe() {
   // Store State
   const { selectedRecipeID } = useSelector((state) => state.recipe);
   // Local State
-  const [recipeNameDetails, setRecipeNameDetails] = useState({});
+  const [recipeNameDetails, setRecipeNameDetails] = useState();
   const [recipeIngredients, setRecipeIngredients] = useState();
   const [recipeInstructions, setRecipeInstructions] = useState();
   const [errMsg, setErrMsg] = useState();
@@ -72,6 +72,9 @@ export default function CreateRecipe() {
     if (getRecipeInstructionsData)
       setRecipeInstructions(getRecipeInstructionsData?.instructions);
   }, [getRecipeInstructionsData]);
+  useEffect(() => {
+    console.log(recipeIngredients);
+  }, [recipeIngredients]);
   return (
     <ScrollPage
       contentContainerStyle={styles.wrapper}
@@ -81,7 +84,7 @@ export default function CreateRecipe() {
       scrollEnabled={false}
       automaticallyAdjustKeyboardInsets={true}>
       <ScrollPage>
-        {!loading && (
+        {!loading && recipeNameDetails && recipeIngredients && (
           <View style={styles.container}>
             {errMsg && (
               <Title3 style={{ color: themeColors.red, textAlign: "center" }}>
@@ -103,7 +106,7 @@ export default function CreateRecipe() {
             />
           </View>
         )}
-        {loading && (
+        {loading && (!recipeNameDetails || !recipeIngredients) && (
           <View style={styles.container}>
             <View style={styles.loader}>
               <Loader />
