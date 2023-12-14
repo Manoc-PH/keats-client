@@ -21,19 +21,18 @@ export default function EditRecipeFooter(props) {
     setSelectedRecipeID: sdi,
     setIsRecipeHomeUpdated: sir,
     setIsRecipeEdit: sire,
+    setIsRecipeUpdated: siru,
   } = actions;
   const dispatch = useDispatch();
   const setSelectedRecipeID = (v) => dispatch(sdi(v));
   const setIsRecipeHomeUpdated = (v) => dispatch(sir(v));
   const setIsRecipeEdit = (v) => dispatch(sire(v));
+  const setIsRecipeUpdated = (v) => dispatch(siru(v));
 
   // Hooks
   const { patchRecipe, patchRecipeData, isPatchRecipeLoading } =
     usePatchRecipe();
   const navigation = useNavigation();
-
-  // Local state
-  const [loading, setLoading] = useState(false);
 
   // Functions
   function handleSave() {
@@ -59,23 +58,53 @@ export default function EditRecipeFooter(props) {
       return;
     }
     if (recipe && recipe_ingredients && recipe_instructions) {
+      const newIngredients = formatIngredients(recipe_ingredients);
+      const newInstructions = formatInstructions(recipe_instructions);
       const data = {
         recipe,
-        recipe_ingredients,
-        recipe_instructions,
-        timestamp: new Date().toISOString(),
+        recipe_ingredients: newIngredients,
+        recipe_instructions: newInstructions,
       };
-      console.log(data);
-      // setLoading(true);
-      // patchRecipe(data);
+      // console.log(data);
+      patchRecipe(data);
     }
   }
-  function handleSaveImages(data) {
+  function handleSaveSuccess(data) {
     setIsRecipeHomeUpdated(true);
-    setLoading(false);
     setSelectedRecipeID(data?.recipe?.id);
     setIsRecipeEdit();
+    setIsRecipeUpdated(true);
     navigation.navigate("Common", { screen: "RecipeDetails" });
+  }
+  function formatIngredients(ingredients) {
+    if (ingredients) {
+      const newIngredients = [];
+      ingredients?.forEach((item) => {
+        if (item?.id) {
+          const newItem = { ...item, action_type: "update" };
+          newIngredients.push(newItem);
+        } else {
+          const newItem = { ...item, action_type: "insert" };
+          newIngredients.push(newItem);
+        }
+      });
+      return newIngredients;
+    }
+  }
+  function formatInstructions(instructions) {
+    if (instructions) {
+      const newInstructions = [];
+      instructions?.forEach((item) => {
+        if (item?.id) {
+          const newItem = { ...item, action_type: "update" };
+          newInstructions.push(newItem);
+        } else {
+          const newItem = { ...item, action_type: "insert" };
+          newInstructions.push(newItem);
+        }
+      });
+      return newInstructions;
+    }
   }
   function handleCancel() {
     // TODO ASK FOR CONFIRMATION
@@ -86,12 +115,12 @@ export default function EditRecipeFooter(props) {
   // UseEffects
   useEffect(() => {
     if (patchRecipeData) {
-      handleSaveImages(patchRecipeData);
+      handleSaveSuccess(patchRecipeData);
     }
   }, [patchRecipeData]);
   return (
     <SafeAreaView style={styles.wrapper}>
-      {!loading && (
+      {!isPatchRecipeLoading && (
         <View style={styles.container}>
           <Button
             style={styles.btn}
@@ -107,7 +136,7 @@ export default function EditRecipeFooter(props) {
           </Button>
         </View>
       )}
-      {loading && <CircleLoader />}
+      {isPatchRecipeLoading && <CircleLoader />}
     </SafeAreaView>
   );
 }

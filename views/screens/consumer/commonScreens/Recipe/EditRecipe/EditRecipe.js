@@ -72,9 +72,6 @@ export default function CreateRecipe() {
     if (getRecipeInstructionsData)
       setRecipeInstructions(getRecipeInstructionsData?.instructions);
   }, [getRecipeInstructionsData]);
-  useEffect(() => {
-    // console.log(recipeIngredients);
-  }, [recipeIngredients]);
   return (
     <ScrollPage
       contentContainerStyle={styles.wrapper}

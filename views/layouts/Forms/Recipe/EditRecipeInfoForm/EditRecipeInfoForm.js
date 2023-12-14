@@ -130,28 +130,6 @@ export default function EditRecipeInfoForm(props) {
     newSteps[i].instruction_description = value;
     setSteps(newSteps);
   }
-  async function pickImageAsync() {
-    let result = await launchImageLibraryAsync({
-      mediaTypes: MediaTypeOptions.Images,
-      allowsEditing: true,
-      aspect: [1, 1],
-      quality: 1,
-    });
-
-    if (!result.canceled) {
-      const manipResult = await manipulateAsync(
-        result.assets[0].uri,
-        [{ resize: { width: 500 } }],
-        { compress: 0.5, format: SaveFormat.JPEG }
-      );
-      setSelectedImages([
-        ...selectedImages,
-        { recipe_id: "", name_url_local: manipResult.uri },
-      ]);
-    } else {
-      alert("You did not select any image.");
-    }
-  }
   // UseEffects
   useEffect(() => {
     handleSavedIngredient(recipeIngredient);
