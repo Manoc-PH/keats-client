@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { View, SafeAreaView } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
 // Services
 import { ReadCredentials } from "@app/services/db";
 // Store
@@ -38,6 +39,7 @@ export default function RecipeDetailsFooter(props) {
     useGetRecipeActions();
   const { postRecipeLike, postRecipeLikeData, isPostRecipeLikeLoading } =
     usePostRecipeLike();
+  const navigation = useNavigation();
 
   // Local State
   const [recipeActions, setRecipeActions] = useState();
@@ -54,19 +56,25 @@ export default function RecipeDetailsFooter(props) {
     }
   }
   function handleSuccessfullLike() {
-    setAddedLike(true);
-    setRecipeActions({ ...recipeActions, liked: true });
+    if (!isOwner) {
+      setAddedLike(true);
+      setRecipeActions({ ...recipeActions, liked: true });
+    }
   }
   function handleReview() {
-    if (recipeActions?.reviewed) setIsReviewEdit(true);
-    setIsRecipeUpdated(false);
-    setIsReviewRecipeModalVisible(true);
+    if (!isOwner) {
+      if (recipeActions?.reviewed) setIsReviewEdit(true);
+      setIsRecipeUpdated(false);
+      setIsReviewRecipeModalVisible(true);
+    }
   }
   async function handleOwnerId() {
     const res = await ReadCredentials();
     if (res?.[0]?.id === recipeOwnerId) setIsOwner(true);
   }
-  function handleEditRecipe() {}
+  function handleEditRecipe() {
+    navigation.navigate("Common", { screen: "EditRecipe" });
+  }
 
   // UseEffects
   useEffect(() => {

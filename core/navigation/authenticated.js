@@ -23,6 +23,7 @@ import {
   CreateRecipe,
   SearchRecipeIngredient,
   RecipeIngredientDetails,
+  EditRecipe,
 } from "@app/views/screens";
 
 import {
@@ -90,6 +91,11 @@ const CommonScreens = () => {
       <Stack.Screen
         name='RecipeIngredientDetails'
         component={RecipeIngredientDetails}
+        options={{ header: (props) => <RecipeIngredientHeader {...props} /> }}
+      />
+      <Stack.Screen
+        name='EditRecipe'
+        component={EditRecipe}
         options={{ header: (props) => <RecipeIngredientHeader {...props} /> }}
       />
     </Stack.Navigator>

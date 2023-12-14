@@ -61,6 +61,7 @@ export { default as UpdateFoodIntakeFooter } from "./Footers/UpdateFoodIntakeFoo
 export { default as RecipeDetailsFooter } from "./Footers/RecipeDetailsFooter";
 export { default as RecipeIngredientFooter } from "./Footers/RecipeIngredientFooter";
 export { default as CreateRecipeFooter } from "./Footers/CreateRecipeFooter";
+export { default as EditRecipeFooter } from "./Footers/EditRecipeFooter";
 
 // Modals
 export { default as DeleteIntakeModal } from "./Modals/DeleteIntakeModal";
@@ -74,6 +75,7 @@ export { default as LoginForm } from "./Forms/LoginForm";
 export { default as SignupForm } from "./Forms/SignupForm";
 export { default as RecipeNameForm } from "./Forms/Recipe/RecipeNameForm";
 export { default as RecipeInfoForm } from "./Forms/Recipe/RecipeInfoForm";
+export { default as EditRecipeInfoForm } from "./Forms/Recipe/EditRecipeInfoForm";
 
 // Page Wrappers
 export { default as Splash } from "./PageWrappers/Splash";
