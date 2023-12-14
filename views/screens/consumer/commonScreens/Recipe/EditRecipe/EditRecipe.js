@@ -1,12 +1,12 @@
 import { View } from "react-native";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+// Hooks
 import {
-  useMediaLibraryPermissions,
-  MediaTypeOptions,
-  launchImageLibraryAsync,
-} from "expo-image-picker";
-import { manipulateAsync, SaveFormat } from "expo-image-manipulator";
+  useGetRecipe,
+  useGetRecipeIngredients,
+  useGetRecipeInstructions,
+} from "@app/core/hooks/api";
 // Components
 import { Button, Image, Title3 } from "@app/views/components";
 // Constants
@@ -20,6 +20,7 @@ import {
   CreateRecipeFooter,
   RecipeNameForm,
   EditRecipeInfoForm,
+  Loader,
 } from "@app/views/layouts";
 
 import { styles } from "./styles";
@@ -34,15 +35,43 @@ export default function CreateRecipe() {
   const [errMsg, setErrMsg] = useState();
 
   // Hooks
-  const [status, requestPermission] = useMediaLibraryPermissions();
+  const {
+    getRecipeIngredients,
+    getRecipeIngredientsData,
+    isGetRecipeIngredientsLoading,
+  } = useGetRecipeIngredients();
+  const {
+    getRecipeInstructions,
+    getRecipeInstructionsData,
+    isGetRecipeInstructionsLoading,
+  } = useGetRecipeInstructions();
+  const { getRecipe, getRecipeData, isGetRecipeLoading } = useGetRecipe();
 
   // Functions
 
+  // Constants
+  const loading =
+    isGetRecipeIngredientsLoading ||
+    isGetRecipeInstructionsLoading ||
+    isGetRecipeLoading;
+
   // UseEffects
   useEffect(() => {
-    if (!status) return;
-    if (!status.granted) requestPermission();
-  }, [status]);
+    getRecipe({ recipe_id: selectedRecipeID });
+    getRecipeInstructions({ recipe_id: selectedRecipeID });
+    getRecipeIngredients({ recipe_id: selectedRecipeID });
+  }, []);
+  useEffect(() => {
+    if (getRecipeData) setRecipeNameDetails(getRecipeData?.recipe);
+  }, [getRecipeData]);
+  useEffect(() => {
+    if (getRecipeIngredientsData)
+      setRecipeIngredients(getRecipeIngredientsData?.ingredients);
+  }, [getRecipeIngredientsData]);
+  useEffect(() => {
+    if (getRecipeInstructionsData)
+      setRecipeInstructions(getRecipeInstructionsData?.instructions);
+  }, [getRecipeInstructionsData]);
   return (
     <ScrollPage
       contentContainerStyle={styles.wrapper}
@@ -52,24 +81,35 @@ export default function CreateRecipe() {
       scrollEnabled={false}
       automaticallyAdjustKeyboardInsets={true}>
       <ScrollPage>
-        <View style={styles.container}>
-          {errMsg && (
-            <Title3 style={{ color: themeColors.red, textAlign: "center" }}>
-              {errMsg}
-            </Title3>
-          )}
-          <View style={styles.contentWrapper}>
-            <RecipeNameForm
-              recipeNameDetails={recipeNameDetails}
-              setRecipeNameDetails={setRecipeNameDetails}
+        {!loading && (
+          <View style={styles.container}>
+            {errMsg && (
+              <Title3 style={{ color: themeColors.red, textAlign: "center" }}>
+                {errMsg}
+              </Title3>
+            )}
+            <View style={styles.contentWrapper}>
+              <RecipeNameForm
+                recipeNameDetails={recipeNameDetails}
+                setRecipeNameDetails={setRecipeNameDetails}
+              />
+            </View>
+            <PageDivider />
+            <EditRecipeInfoForm
+              setRecipeIngredients={setRecipeIngredients}
+              setRecipeInstructions={setRecipeInstructions}
+              recipeIngredients={recipeIngredients}
+              recipeInstructions={recipeInstructions}
             />
           </View>
-          <PageDivider />
-          <EditRecipeInfoForm
-            setRecipeIngredients={setRecipeIngredients}
-            setRecipeInstructions={setRecipeInstructions}
-          />
-        </View>
+        )}
+        {loading && (
+          <View style={styles.container}>
+            <View style={styles.loader}>
+              <Loader />
+            </View>
+          </View>
+        )}
       </ScrollPage>
       <CreateRecipeFooter
         recipe={recipeNameDetails}

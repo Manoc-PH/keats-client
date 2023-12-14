@@ -1,6 +1,6 @@
 import { SPACING } from "@app/common/constants/styles";
 import themeColors from "@app/common/theme";
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   wrapper: {
@@ -32,5 +32,8 @@ export const styles = StyleSheet.create({
   imageContainer: {
     overflow: "hidden",
     borderRadius: SPACING.Regular,
+  },
+  loader: {
+    height: Dimensions.get("window").height / 2,
   },
 });

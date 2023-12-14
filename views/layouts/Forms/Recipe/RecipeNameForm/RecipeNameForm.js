@@ -10,10 +10,16 @@ export default function RecipeName(props) {
   const { recipeNameDetails, setRecipeNameDetails } = props;
 
   // Local state
-  const [recipeName, setRecipeName] = useState();
-  const [servings, setServings] = useState();
-  const [prepTime, setPrepTime] = useState();
-  const [description, setDescription] = useState();
+  const [recipeName, setRecipeName] = useState(recipeNameDetails?.name);
+  const [servings, setServings] = useState(
+    recipeNameDetails?.servings ? `${recipeNameDetails?.servings}` : ""
+  );
+  const [prepTime, setPrepTime] = useState(
+    recipeNameDetails?.prep_time ? `${recipeNameDetails?.prep_time}` : ""
+  );
+  const [description, setDescription] = useState(
+    recipeNameDetails?.description
+  );
 
   // UseEffects
   useEffect(() => {
