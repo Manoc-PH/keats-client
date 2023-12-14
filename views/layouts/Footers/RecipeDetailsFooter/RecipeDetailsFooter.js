@@ -26,6 +26,7 @@ export default function RecipeDetailsFooter(props) {
     setIsReviewEdit: ser,
     setIsRecipeUpdated: siru,
     setIsDeleteLikeModalVisible: sid,
+    setIsRecipeEdit: sire,
   } = actions;
   const dispatch = useDispatch();
   const setAddedLike = (value) => dispatch(sfa(value));
@@ -33,6 +34,7 @@ export default function RecipeDetailsFooter(props) {
   const setIsReviewEdit = (value) => dispatch(ser(value));
   const setIsRecipeUpdated = (value) => dispatch(siru(value));
   const setIsDeleteLikeModalVisible = (value) => dispatch(sid(value));
+  const setIsRecipeEdit = (value) => dispatch(sire(value));
 
   // Hooks
   const { getRecipeActions, getRecipeActionsData, isGetRecipeActionsLoading } =
@@ -73,6 +75,7 @@ export default function RecipeDetailsFooter(props) {
     if (res?.[0]?.id === recipeOwnerId) setIsOwner(true);
   }
   function handleEditRecipe() {
+    setIsRecipeEdit(true);
     navigation.navigate("Common", { screen: "EditRecipe" });
   }
 

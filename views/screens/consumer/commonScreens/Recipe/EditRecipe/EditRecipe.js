@@ -17,7 +17,7 @@ import themeColors from "@app/common/theme";
 import {
   ScrollPage,
   PageDivider,
-  CreateRecipeFooter,
+  EditRecipeFooter,
   RecipeNameForm,
   EditRecipeInfoForm,
   Loader,
@@ -111,7 +111,7 @@ export default function CreateRecipe() {
           </View>
         )}
       </ScrollPage>
-      <CreateRecipeFooter
+      <EditRecipeFooter
         recipe={recipeNameDetails}
         recipe_ingredients={recipeIngredients}
         recipe_instructions={recipeInstructions}

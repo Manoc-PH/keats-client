@@ -17,10 +17,15 @@ export default function EditRecipeFooter(props) {
   const { recipe, recipe_ingredients, recipe_instructions, setErrMsg } = props;
 
   // Store Actions
-  const { setSelectedRecipeID: sdi, setIsRecipeHomeUpdated: sir } = actions;
+  const {
+    setSelectedRecipeID: sdi,
+    setIsRecipeHomeUpdated: sir,
+    setIsRecipeEdit: sire,
+  } = actions;
   const dispatch = useDispatch();
   const setSelectedRecipeID = (v) => dispatch(sdi(v));
   const setIsRecipeHomeUpdated = (v) => dispatch(sir(v));
+  const setIsRecipeEdit = (v) => dispatch(sire(v));
 
   // Hooks
   const { patchRecipe, patchRecipeData, isPatchRecipeLoading } =
@@ -69,10 +74,12 @@ export default function EditRecipeFooter(props) {
     setIsRecipeHomeUpdated(true);
     setLoading(false);
     setSelectedRecipeID(data?.recipe?.id);
+    setIsRecipeEdit();
     navigation.navigate("Common", { screen: "RecipeDetails" });
   }
   function handleCancel() {
     // TODO ASK FOR CONFIRMATION
+    setIsRecipeEdit();
     navigation.goBack();
   }
 

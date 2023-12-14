@@ -4,6 +4,7 @@ const initialState = {
   selectedRecipeID: null,
   recipeOwnerId: null,
   addedLike: false,
+  isRecipeEdit: false,
   isReviewEdit: false,
   isRecipeUpdated: false,
   isRecipeHomeUpdated: false,
@@ -29,6 +30,10 @@ const store = createSlice({
     setIsReviewEdit: (state, { payload }) => {
       if (payload) state.isReviewEdit = payload;
       else state.isReviewEdit = false;
+    },
+    setIsRecipeEdit: (state, { payload }) => {
+      if (payload) state.isRecipeEdit = payload;
+      else state.isRecipeEdit = false;
     },
     setIsRecipeUpdated: (state, { payload }) => {
       if (payload) state.isRecipeUpdated = payload;
