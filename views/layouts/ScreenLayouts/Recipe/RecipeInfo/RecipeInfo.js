@@ -40,10 +40,18 @@ export default function RecipeInfo(props) {
 
   // Functions
   function handleSwitchView(value) {
-    setInfoSet([]);
-    if (value === 1) setActiveInfo("Reviews");
-    if (value === 2) setActiveInfo("Ingredients");
-    if (value === 3) setActiveInfo("Instructions");
+    if (value === 1 && activeInfo !== "Reviews") {
+      setActiveInfo("Reviews");
+      setInfoSet([]);
+    }
+    if (value === 2 && activeInfo !== "Ingredients") {
+      setActiveInfo("Ingredients");
+      setInfoSet([]);
+    }
+    if (value === 3 && activeInfo !== "Instructions") {
+      setActiveInfo("Instructions");
+      setInfoSet([]);
+    }
   }
   function handleSwitchInfo(value) {
     if (value === "Reviews") getRecipeReviews({ recipe_id: RecipeID });

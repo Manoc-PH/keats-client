@@ -49,9 +49,15 @@ export default function RecipeInfoForm(props) {
 
   // Functions
   function handleSwitchView(value) {
-    if (value === 1) setActiveInfo("Ingredients");
-    if (value === 2) setActiveInfo("Instructions");
-    if (value === 3) setActiveInfo("Images");
+    if (value === 1 && activeInfo !== "Ingredients") {
+      setActiveInfo("Ingredients");
+    }
+    if (value === 2 && activeInfo !== "Instructions") {
+      setActiveInfo("Instructions");
+    }
+    if (value === 3 && activeInfo !== "Images") {
+      setActiveInfo("Images");
+    }
   }
   function handleAddIngredient() {
     navigation.navigate("Common", { screen: "SearchRecipeIngredient" });
