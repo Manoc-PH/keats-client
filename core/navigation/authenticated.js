@@ -34,6 +34,7 @@ import {
   RecipeHeader,
   RecipeDetailsHeader,
   RecipeIngredientHeader,
+  EditRecipeHeader,
 } from "@app/views/layouts";
 import { BTN_VARIANTS } from "@app/common/constants/styles";
 
@@ -96,7 +97,7 @@ const CommonScreens = () => {
       <Stack.Screen
         name='EditRecipe'
         component={EditRecipe}
-        options={{ header: (props) => <RecipeIngredientHeader {...props} /> }}
+        options={{ header: (props) => <EditRecipeHeader {...props} /> }}
       />
     </Stack.Navigator>
   );
@@ -122,7 +123,7 @@ function MainTabs() {
   }
   return (
     <Tab.Navigator screenOptions={screenOptions}>
-      <Tab.Screen
+      {/* <Tab.Screen
         options={{ header: (props) => <HomeHeader {...props} /> }}
         name='Home'
         component={Home}
@@ -136,7 +137,7 @@ function MainTabs() {
         options={{ headerShown: false }}
         name='Insights'
         component={Insights}
-      />
+      /> */}
       <Tab.Screen
         options={{ header: (props) => <RecipeHeader {...props} /> }}
         name='Recipes'
