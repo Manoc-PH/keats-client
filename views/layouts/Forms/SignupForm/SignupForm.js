@@ -38,6 +38,7 @@ export default function SignupForm(props) {
 
   // Functions
   function updateData() {
+    setErrorMsg();
     setData({
       username,
       password,
