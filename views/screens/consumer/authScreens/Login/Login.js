@@ -52,6 +52,7 @@ export default function Login(props) {
   }
   function handleLoginErr() {
     if (loginUserError) {
+      console.log(loginUserError);
       setErrMsg(loginUserError?.response?.data?.message || "An error occured");
       setLoading(false);
     }
@@ -70,7 +71,6 @@ export default function Login(props) {
   }
 
   // UseEffect
-  useEffect(() => setErrMsg(), [data]);
   useEffect(() => {
     if (loginUserData) handleLoginSuccess();
   }, [loginUserData]);

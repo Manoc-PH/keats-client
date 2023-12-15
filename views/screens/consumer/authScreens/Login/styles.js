@@ -14,9 +14,9 @@ export const styles = StyleSheet.create({
   },
   errorContainer: {
     width: "100%",
-    alignItems: "flex-start",
-    paddingBottom: SPACING.Tiny,
-    paddingHorizontal: SPACING.Large,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: SPACING.Medium,
   },
   error: { color: themeColors.red, fontFamily: FONT_FAMILY.SemiBold },
   forgotPassword: {
