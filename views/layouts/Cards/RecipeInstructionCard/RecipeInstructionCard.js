@@ -58,7 +58,7 @@ export default function RecipeInstructionCard(props) {
                     <Body>{order && order}</Body>
                   </View>
                 </View>
-                <View style={styles.rowContainer}>
+                <View style={styles.descriptionContainer}>
                   <Body>{description && description}</Body>
                 </View>
               </View>

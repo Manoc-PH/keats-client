@@ -17,6 +17,9 @@ export const styles = StyleSheet.create({
     gap: SPACING.Tiny,
     alignItems: "center",
   },
+  descriptionContainer: {
+    flex: 1,
+  },
   orderContainer: {
     borderRadius: SPACING.Huge,
     borderWidth: 1,
