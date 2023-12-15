@@ -71,7 +71,7 @@ export default function RecipeCard(props) {
                     height={FONT_SIZES.Small}
                   />
                   <SubHeadline2>
-                    {rating} {rating_count && `(${rating_count})`}
+                    {rating?.toFixed(1)} {rating_count && `(${rating_count})`}
                   </SubHeadline2>
                 </View>
               ) : (

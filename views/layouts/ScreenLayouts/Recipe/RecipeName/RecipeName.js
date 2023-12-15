@@ -58,7 +58,9 @@ export default function RecipeName(props) {
           <View style={styles.rowContainer}>
             <StarRating rating={recipeDetails.rating} />
             <SubHeadline2>
-              {`${recipeDetails.rating} (${recipeDetails.rating_count})`}
+              {`${recipeDetails.rating?.toFixed(1)} (${
+                recipeDetails.rating_count
+              })`}
             </SubHeadline2>
           </View>
         </View>
