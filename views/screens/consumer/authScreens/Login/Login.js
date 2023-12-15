@@ -105,12 +105,12 @@ export default function Login(props) {
 
           <LoginForm data={data} setData={setData} onSubmit={handleEnter} />
           <View style={styles.forgotPassword}>
-            <Button
+            {/* <Button
               variant={BTN_VARIANTS.transparent}
               size={SIZES.Small}
               color={themeColors.secondaryLight}>
               Forgot Password
-            </Button>
+            </Button> */}
           </View>
           <View style={styles.btnsContainer}>
             <Button onPress={handleSubmit}>Login</Button>
