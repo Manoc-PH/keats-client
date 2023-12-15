@@ -71,7 +71,7 @@ export default function ReviewCard(props) {
                 </View>
                 <View style={styles.rowContainer}>
                   <SubHeadline2>
-                    {date_created && moment(date_created).fromNow()}
+                    {/* {date_created && moment(date_created).fromNow()} */}
                   </SubHeadline2>
                 </View>
               </View>
