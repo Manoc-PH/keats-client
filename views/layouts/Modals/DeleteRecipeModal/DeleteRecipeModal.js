@@ -18,11 +18,15 @@ function DeleteRecipeModal() {
   const { selectedRecipeID } = useSelector((state) => state.recipe);
 
   // Store Actions
-  const { setIsDeleteRecipeModalVisible: sid, setIsRecipeHomeUpdated: sir } =
-    actions;
+  const {
+    setIsDeleteRecipeModalVisible: sid,
+    setIsRecipeHomeUpdated: sir,
+    setRecipeOwnerId: sro,
+  } = actions;
   const dispatch = useDispatch();
   const setIsDeleteRecipeModalVisible = (value) => dispatch(sid(value));
   const setIsRecipeHomeUpdated = (value) => dispatch(sir(value));
+  const setRecipeOwnerId = (v) => dispatch(sro(v));
 
   // Hooks
   const {
@@ -42,6 +46,7 @@ function DeleteRecipeModal() {
   function handleSuccessfulDelete() {
     setIsDeleteRecipeModalVisible(false);
     setIsRecipeHomeUpdated(true);
+    setRecipeOwnerId();
     navigation.navigate("Main", { screen: "Recipes" });
   }
 

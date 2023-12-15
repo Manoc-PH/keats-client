@@ -97,7 +97,7 @@ export default function RecipeDetailsFooter(props) {
   }, [recipeOwnerId]);
   return (
     <SafeAreaView style={styles.wrapper}>
-      {!loading && recipeActions && !isOwner && (
+      {!loading && recipeActions && !isOwner && recipeOwnerId && (
         <View style={styles.container}>
           <Button
             style={styles.btn}
