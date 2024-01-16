@@ -2,11 +2,11 @@
   "name": "keats",
   "version": "1.0.0",
   "scripts": {
-    "dev": "expo-cli start --tunnel",
-    "start": "expo start --dev-client",
-    "android": "expo run:android",
-    "ios": "expo run:ios",
-    "web": "expo start --web"
+    "dev": "npx expo start --tunnel",
+    "start": "npx expo start --dev-client",
+    "android": "npx expo run:android",
+    "ios": "npx expo run:ios",
+    "web": "npx expo start --web"
   },
   "dependencies": {
     "@expo-google-fonts/outfit": "^0.2.3",
